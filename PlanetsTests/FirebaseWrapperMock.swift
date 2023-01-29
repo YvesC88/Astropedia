@@ -1,14 +1,13 @@
 //
-//  PlanetsTests.swift
+//  FirebaseWrapperMock.swift
 //  PlanetsTests
 //
-//  Created by Yves Charpentier on 16/01/2023.
+//  Created by Yves Charpentier on 24/01/2023.
 //
 
 import XCTest
-@testable import Planets
 
-final class PlanetsTests: XCTestCase {
+final class FirebaseWrapperMock: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
