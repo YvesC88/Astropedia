@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class PlanetService {
+class DataService {
     // MARK: - Properties
     let firebaseWrapper: FirebaseProtocol
     
@@ -18,10 +18,10 @@ class PlanetService {
     // MARK: - Methods
     
     // fetch places in FireStore
-    func fetchPlanets(collectionID: String, completion: @escaping ([Planet], String?) -> ()) {
-        firebaseWrapper.fetch(collectionID: collectionID) { planet, error in
-            if let planet = planet {
-                completion(planet, nil)
+    func fetchData(collectionID: String, completion: @escaping ([Data], String?) -> ()) {
+        firebaseWrapper.fetch(collectionID: collectionID) { data, error in
+            if let data = data {
+                completion(data, nil)
             } else {
                 completion([], error)
             }

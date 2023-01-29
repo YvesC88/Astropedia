@@ -9,13 +9,32 @@
 /* Begin PBXBuildFile section */
 		FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAD6297566D800FEE718 /* AppDelegate.swift */; };
 		FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAD8297566D800FEE718 /* SceneDelegate.swift */; };
-		FB15CADB297566D800FEE718 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CADA297566D800FEE718 /* ViewController.swift */; };
+		FB15CADB297566D800FEE718 /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CADA297566D800FEE718 /* PlanetViewController.swift */; };
 		FB15CADE297566D800FEE718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB15CADC297566D800FEE718 /* Main.storyboard */; };
 		FB15CAE0297566DA00FEE718 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB15CADF297566DA00FEE718 /* Assets.xcassets */; };
 		FB15CAE3297566DA00FEE718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB15CAE1297566DA00FEE718 /* LaunchScreen.storyboard */; };
-		FB15CAEE297566DB00FEE718 /* PlanetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAED297566DB00FEE718 /* PlanetsTests.swift */; };
 		FB15CAF8297566DB00FEE718 /* PlanetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAF7297566DB00FEE718 /* PlanetsUITests.swift */; };
 		FB15CAFA297566DB00FEE718 /* PlanetsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAF9297566DB00FEE718 /* PlanetsUITestsLaunchTests.swift */; };
+		FB15CB0729756AD600FEE718 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB0629756AD600FEE718 /* Data.swift */; };
+		FB15CB0A29756CD600FEE718 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB15CB0929756CD600FEE718 /* GoogleService-Info.plist */; };
+		FB15CB0B29756CD600FEE718 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB15CB0929756CD600FEE718 /* GoogleService-Info.plist */; };
+		FB15CB0F29756EDA00FEE718 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB15CB0E29756EDA00FEE718 /* FirebaseAnalytics */; };
+		FB15CB1129756EDA00FEE718 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB15CB1029756EDA00FEE718 /* FirebaseAuth */; };
+		FB15CB1329756EDA00FEE718 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB15CB1229756EDA00FEE718 /* FirebaseCrashlytics */; };
+		FB15CB1529756EDA00FEE718 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FB15CB1429756EDA00FEE718 /* FirebaseDatabase */; };
+		FB15CB1729756EDA00FEE718 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FB15CB1629756EDA00FEE718 /* FirebaseFirestore */; };
+		FB15CB1929756EDB00FEE718 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FB15CB1829756EDB00FEE718 /* FirebaseStorage */; };
+		FB15CB1E2975735700FEE718 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB1D2975735700FEE718 /* DataService.swift */; };
+		FB15CB1F2975735700FEE718 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB1D2975735700FEE718 /* DataService.swift */; };
+		FB15CB212975745200FEE718 /* FirebaseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB202975745200FEE718 /* FirebaseWrapper.swift */; };
+		FB15CB222975745200FEE718 /* FirebaseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB202975745200FEE718 /* FirebaseWrapper.swift */; };
+		FB15CB272975958A00FEE718 /* PresentPlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */; };
+		FB15CB282975958A00FEE718 /* PresentPlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */; };
+		FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB292976935000FEE718 /* DetailViewController.swift */; };
+		FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE7BE297C073A00F60C92 /* Utilities.swift */; };
+		FB5DE80A297FCA4100F60C92 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */; };
+		FB5DE80C297FCB2900F60C92 /* FirebaseWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */; };
+		FBBD541A2978C2A300B47629 /* MoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD54192978C2A300B47629 /* MoonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,16 +58,27 @@
 		FB15CAD3297566D800FEE718 /* Planets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB15CAD6297566D800FEE718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB15CAD8297566D800FEE718 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FB15CADA297566D800FEE718 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FB15CADA297566D800FEE718 /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
 		FB15CADD297566D800FEE718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB15CADF297566DA00FEE718 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB15CAE2297566DA00FEE718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB15CAE4297566DA00FEE718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB15CAE9297566DB00FEE718 /* PlanetsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanetsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB15CAED297566DB00FEE718 /* PlanetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsTests.swift; sourceTree = "<group>"; };
 		FB15CAF3297566DB00FEE718 /* PlanetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB15CAF7297566DB00FEE718 /* PlanetsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsUITests.swift; sourceTree = "<group>"; };
 		FB15CAF9297566DB00FEE718 /* PlanetsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FB15CB0629756AD600FEE718 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		FB15CB0929756CD600FEE718 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FB15CB1D2975735700FEE718 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		FB15CB202975745200FEE718 /* FirebaseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapper.swift; sourceTree = "<group>"; };
+		FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPlanetCell.swift; sourceTree = "<group>"; };
+		FB15CB292976935000FEE718 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FB5DE7BE297C073A00F60C92 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		FB5DE7C5297C3DB200F60C92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		FB5DE7C6297C3DB300F60C92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapperMock.swift; sourceTree = "<group>"; };
+		FBBD54192978C2A300B47629 /* MoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +86,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB15CB1329756EDA00FEE718 /* FirebaseCrashlytics in Frameworks */,
+				FB15CB0F29756EDA00FEE718 /* FirebaseAnalytics in Frameworks */,
+				FB15CB1529756EDA00FEE718 /* FirebaseDatabase in Frameworks */,
+				FB15CB1729756EDA00FEE718 /* FirebaseFirestore in Frameworks */,
+				FB15CB1129756EDA00FEE718 /* FirebaseAuth in Frameworks */,
+				FB15CB1929756EDB00FEE718 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,10 +137,10 @@
 			children = (
 				FB15CAD6297566D800FEE718 /* AppDelegate.swift */,
 				FB15CAD8297566D800FEE718 /* SceneDelegate.swift */,
-				FB15CADA297566D800FEE718 /* ViewController.swift */,
-				FB15CADC297566D800FEE718 /* Main.storyboard */,
+				FB15CB1A2975731100FEE718 /* Model */,
+				FB15CB1B2975731D00FEE718 /* View */,
+				FB15CB1C2975732C00FEE718 /* Controller */,
 				FB15CADF297566DA00FEE718 /* Assets.xcassets */,
-				FB15CAE1297566DA00FEE718 /* LaunchScreen.storyboard */,
 				FB15CAE4297566DA00FEE718 /* Info.plist */,
 			);
 			path = Planets;
@@ -113,7 +149,8 @@
 		FB15CAEC297566DB00FEE718 /* PlanetsTests */ = {
 			isa = PBXGroup;
 			children = (
-				FB15CAED297566DB00FEE718 /* PlanetsTests.swift */,
+				FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */,
+				FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */,
 			);
 			path = PlanetsTests;
 			sourceTree = "<group>";
@@ -123,8 +160,40 @@
 			children = (
 				FB15CAF7297566DB00FEE718 /* PlanetsUITests.swift */,
 				FB15CAF9297566DB00FEE718 /* PlanetsUITestsLaunchTests.swift */,
+				FB15CB0929756CD600FEE718 /* GoogleService-Info.plist */,
 			);
 			path = PlanetsUITests;
+			sourceTree = "<group>";
+		};
+		FB15CB1A2975731100FEE718 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB15CB0629756AD600FEE718 /* Data.swift */,
+				FB15CB1D2975735700FEE718 /* DataService.swift */,
+				FB15CB202975745200FEE718 /* FirebaseWrapper.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FB15CB1B2975731D00FEE718 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB15CADC297566D800FEE718 /* Main.storyboard */,
+				FB15CAE1297566DA00FEE718 /* LaunchScreen.storyboard */,
+				FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */,
+				FB5DE7BE297C073A00F60C92 /* Utilities.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB15CB1C2975732C00FEE718 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FB15CADA297566D800FEE718 /* PlanetViewController.swift */,
+				FBBD54192978C2A300B47629 /* MoonViewController.swift */,
+				FB15CB292976935000FEE718 /* DetailViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +212,14 @@
 			dependencies = (
 			);
 			name = Planets;
+			packageProductDependencies = (
+				FB15CB0E29756EDA00FEE718 /* FirebaseAnalytics */,
+				FB15CB1029756EDA00FEE718 /* FirebaseAuth */,
+				FB15CB1229756EDA00FEE718 /* FirebaseCrashlytics */,
+				FB15CB1429756EDA00FEE718 /* FirebaseDatabase */,
+				FB15CB1629756EDA00FEE718 /* FirebaseFirestore */,
+				FB15CB1829756EDB00FEE718 /* FirebaseStorage */,
+			);
 			productName = Planets;
 			productReference = FB15CAD3297566D800FEE718 /* Planets.app */;
 			productType = "com.apple.product-type.application";
@@ -213,8 +290,12 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = FB15CACA297566D800FEE718;
+			packageReferences = (
+				FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = FB15CAD4297566D800FEE718 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB15CAE3297566DA00FEE718 /* LaunchScreen.storyboard in Resources */,
+				FB15CB0A29756CD600FEE718 /* GoogleService-Info.plist in Resources */,
 				FB15CAE0297566DA00FEE718 /* Assets.xcassets in Resources */,
 				FB15CADE297566D800FEE718 /* Main.storyboard in Resources */,
 			);
@@ -241,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB15CB0B29756CD600FEE718 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +341,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB15CADB297566D800FEE718 /* ViewController.swift in Sources */,
+				FB15CB272975958A00FEE718 /* PresentPlanetCell.swift in Sources */,
+				FBBD541A2978C2A300B47629 /* MoonViewController.swift in Sources */,
+				FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */,
+				FB15CB1E2975735700FEE718 /* DataService.swift in Sources */,
+				FB15CADB297566D800FEE718 /* PlanetViewController.swift in Sources */,
+				FB15CB212975745200FEE718 /* FirebaseWrapper.swift in Sources */,
 				FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */,
 				FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */,
+				FB15CB0729756AD600FEE718 /* Data.swift in Sources */,
+				FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +358,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB15CAEE297566DB00FEE718 /* PlanetsTests.swift in Sources */,
+				FB15CB1F2975735700FEE718 /* DataService.swift in Sources */,
+				FB15CB222975745200FEE718 /* FirebaseWrapper.swift in Sources */,
+				FB5DE80C297FCB2900F60C92 /* FirebaseWrapperMock.swift in Sources */,
+				FB15CB282975958A00FEE718 /* PresentPlanetCell.swift in Sources */,
+				FB5DE80A297FCA4100F60C92 /* DataServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +395,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FB15CADD297566D800FEE718 /* Base */,
+				FB5DE7C5297C3DB200F60C92 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -309,6 +404,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FB15CAE2297566DA00FEE718 /* Base */,
+				FB5DE7C6297C3DB300F60C92 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -320,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -366,7 +463,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -380,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -420,7 +521,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -440,11 +544,16 @@
 				DEVELOPMENT_TEAM = 8ZV67K9B93;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Planets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Astropédia";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,9 +561,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -468,11 +580,16 @@
 				DEVELOPMENT_TEAM = 8ZV67K9B93;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Planets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Astropédia";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,9 +597,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -602,6 +722,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB15CB0E29756EDA00FEE718 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		FB15CB1029756EDA00FEE718 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FB15CB1229756EDA00FEE718 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		FB15CB1429756EDA00FEE718 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		FB15CB1629756EDA00FEE718 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		FB15CB1829756EDB00FEE718 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB15CACB297566D800FEE718 /* Project object */;
 }
