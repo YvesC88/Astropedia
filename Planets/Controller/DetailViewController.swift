@@ -42,7 +42,7 @@ class DetailViewController: UIViewController {
     }
     
     private func setUI() {
-        objectView.layer.cornerRadius = 125
+        objectView.layer.cornerRadius = view.frame.width / 3.5
         objectView.clipsToBounds = true
         objectView.layer.borderWidth = 2
         objectView.layer.borderColor = UIColor.white.cgColor

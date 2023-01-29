@@ -136,12 +136,14 @@
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="f0Z-VI-81p" firstAttribute="top" secondItem="SOu-hr-IUf" secondAttribute="top" constant="20" id="6F0-LW-9wV"/>
+                                                    <constraint firstItem="f0Z-VI-81p" firstAttribute="leading" secondItem="SOu-hr-IUf" secondAttribute="leading" constant="20" id="Jie-iJ-Q4G"/>
                                                     <constraint firstAttribute="width" secondItem="SOu-hr-IUf" secondAttribute="height" multiplier="1:1" id="P3l-ib-B6m"/>
+                                                    <constraint firstAttribute="bottom" secondItem="f0Z-VI-81p" secondAttribute="bottom" constant="20" id="Uec-uB-QPd"/>
                                                     <constraint firstAttribute="width" constant="250" id="Ve9-Rq-wIc"/>
-                                                    <constraint firstAttribute="bottom" secondItem="f0Z-VI-81p" secondAttribute="bottom" constant="20" id="iyC-hm-2p3"/>
-                                                    <constraint firstItem="f0Z-VI-81p" firstAttribute="leading" secondItem="SOu-hr-IUf" secondAttribute="leading" constant="20" id="k34-sZ-NlE"/>
-                                                    <constraint firstAttribute="trailing" secondItem="f0Z-VI-81p" secondAttribute="trailing" constant="20" id="mgP-60-gAq"/>
-                                                    <constraint firstItem="f0Z-VI-81p" firstAttribute="top" secondItem="SOu-hr-IUf" secondAttribute="top" constant="20" id="sU0-y9-UJP"/>
+                                                    <constraint firstItem="f0Z-VI-81p" firstAttribute="centerX" secondItem="SOu-hr-IUf" secondAttribute="centerX" id="mSb-2y-Ng8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="f0Z-VI-81p" secondAttribute="trailing" constant="20" id="rKe-RW-L4M"/>
+                                                    <constraint firstItem="f0Z-VI-81p" firstAttribute="centerY" secondItem="SOu-hr-IUf" secondAttribute="centerY" id="sAr-Ud-D6J"/>
                                                     <constraint firstAttribute="height" constant="250" id="tiL-Ov-nmR"/>
                                                 </constraints>
                                             </view>
