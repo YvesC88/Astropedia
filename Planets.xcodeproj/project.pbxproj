@@ -34,6 +34,11 @@
 		FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE7BE297C073A00F60C92 /* Utilities.swift */; };
 		FB5DE80A297FCA4100F60C92 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */; };
 		FB5DE80C297FCB2900F60C92 /* FirebaseWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */; };
+		FB849A3129D6E8A700ACABA6 /* AsteroidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */; };
+		FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */; };
+		FB849A3729D6EB1900ACABA6 /* APIAsteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3629D6EB1900ACABA6 /* APIAsteroid.swift */; };
+		FB849A3A29D6EBF900ACABA6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FB849A3929D6EBF900ACABA6 /* Alamofire */; };
+		FB849A4829DB126600ACABA6 /* PresentAsteroidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A4729DB126500ACABA6 /* PresentAsteroidCell.swift */; };
 		FBBD541A2978C2A300B47629 /* MoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD54192978C2A300B47629 /* MoonViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +83,10 @@
 		FB5DE7C6297C3DB300F60C92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapperMock.swift; sourceTree = "<group>"; };
+		FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidsViewController.swift; sourceTree = "<group>"; };
+		FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidService.swift; sourceTree = "<group>"; };
+		FB849A3629D6EB1900ACABA6 /* APIAsteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAsteroid.swift; sourceTree = "<group>"; };
+		FB849A4729DB126500ACABA6 /* PresentAsteroidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAsteroidCell.swift; sourceTree = "<group>"; };
 		FBBD54192978C2A300B47629 /* MoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB15CB1329756EDA00FEE718 /* FirebaseCrashlytics in Frameworks */,
+				FB849A3A29D6EBF900ACABA6 /* Alamofire in Frameworks */,
 				FB15CB0F29756EDA00FEE718 /* FirebaseAnalytics in Frameworks */,
 				FB15CB1529756EDA00FEE718 /* FirebaseDatabase in Frameworks */,
 				FB15CB1729756EDA00FEE718 /* FirebaseFirestore in Frameworks */,
@@ -170,6 +180,8 @@
 			children = (
 				FB15CB0629756AD600FEE718 /* Data.swift */,
 				FB15CB1D2975735700FEE718 /* DataService.swift */,
+				FB849A3629D6EB1900ACABA6 /* APIAsteroid.swift */,
+				FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */,
 				FB15CB202975745200FEE718 /* FirebaseWrapper.swift */,
 			);
 			path = Model;
@@ -181,6 +193,7 @@
 				FB15CADC297566D800FEE718 /* Main.storyboard */,
 				FB15CAE1297566DA00FEE718 /* LaunchScreen.storyboard */,
 				FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */,
+				FB849A4729DB126500ACABA6 /* PresentAsteroidCell.swift */,
 				FB5DE7BE297C073A00F60C92 /* Utilities.swift */,
 			);
 			path = View;
@@ -191,6 +204,7 @@
 			children = (
 				FB15CADA297566D800FEE718 /* PlanetViewController.swift */,
 				FBBD54192978C2A300B47629 /* MoonViewController.swift */,
+				FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */,
 				FB15CB292976935000FEE718 /* DetailViewController.swift */,
 			);
 			path = Controller;
@@ -219,6 +233,7 @@
 				FB15CB1429756EDA00FEE718 /* FirebaseDatabase */,
 				FB15CB1629756EDA00FEE718 /* FirebaseFirestore */,
 				FB15CB1829756EDB00FEE718 /* FirebaseStorage */,
+				FB849A3929D6EBF900ACABA6 /* Alamofire */,
 			);
 			productName = Planets;
 			productReference = FB15CAD3297566D800FEE718 /* Planets.app */;
@@ -295,6 +310,7 @@
 			mainGroup = FB15CACA297566D800FEE718;
 			packageReferences = (
 				FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = FB15CAD4297566D800FEE718 /* Products */;
 			projectDirPath = "";
@@ -341,15 +357,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */,
 				FB15CB272975958A00FEE718 /* PresentPlanetCell.swift in Sources */,
 				FBBD541A2978C2A300B47629 /* MoonViewController.swift in Sources */,
 				FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */,
 				FB15CB1E2975735700FEE718 /* DataService.swift in Sources */,
 				FB15CADB297566D800FEE718 /* PlanetViewController.swift in Sources */,
 				FB15CB212975745200FEE718 /* FirebaseWrapper.swift in Sources */,
+				FB849A4829DB126600ACABA6 /* PresentAsteroidCell.swift in Sources */,
 				FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */,
 				FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */,
 				FB15CB0729756AD600FEE718 /* Data.swift in Sources */,
+				FB849A3129D6E8A700ACABA6 /* AsteroidsViewController.swift in Sources */,
+				FB849A3729D6EB1900ACABA6 /* APIAsteroid.swift in Sources */,
 				FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -732,6 +752,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -764,6 +792,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB15CB0D29756EDA00FEE718 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		FB849A3929D6EBF900ACABA6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
