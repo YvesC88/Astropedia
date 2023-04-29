@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Data: Codable {
+struct FirebaseData: Codable {
     // MARK: - Properties
     
     let name: String
@@ -18,5 +18,5 @@ struct Data: Codable {
     let source: String
     let membership: String
     let type: String
-    let diameter: Int
+    let diameter: Double
 }

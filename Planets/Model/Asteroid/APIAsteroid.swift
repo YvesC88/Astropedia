@@ -54,7 +54,7 @@ struct APIAsteroid: Codable {
 struct CloseApproachDatum: Codable {
     let closeApproachDate, closeApproachDateFull: String
     let epochDateCloseApproach: Int
-    let relativeVelocity: RelativeVelocity
+    var relativeVelocity: RelativeVelocity
     let missDistance: MissDistance
     let orbitingBody: String
 
@@ -73,7 +73,7 @@ struct MissDistance: Codable {
 }
 
 struct RelativeVelocity: Codable {
-    let kilometersPerSecond, kilometersPerHour, milesPerHour: String
+    var kilometersPerSecond, kilometersPerHour, milesPerHour: String
 
     enum CodingKeys: String, CodingKey {
         case kilometersPerSecond = "kilometers_per_second"
@@ -100,5 +100,60 @@ struct NearEarthObjectLinks: Codable {
 
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
+    }
+}
+
+extension APIAsteroid {
+    
+    func toAsteroid() -> Asteroid {
+        let dateFormatter = DateFormatter()
+        
+        let formatName = self.name.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
+        let moy = (self.estimatedDiameter.meters.estimatedDiameterMin + self.estimatedDiameter.meters.estimatedDiameterMax) / 2.0
+        let estimatedDiameter = String(format: "%.1f", moy)
+        
+        let potentiallyHazardous: String
+        if self.isPotentiallyHazardousAsteroid == true {
+            potentiallyHazardous = "Potentiellement dangereux"
+        } else {
+            potentiallyHazardous = "Pas dangereux"
+        }
+        
+        var approachDate: String = ""
+        for closeApproachDate in self.closeApproachData {
+            approachDate += closeApproachDate.closeApproachDateFull
+        }
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "us_US")
+        let date = dateFormatter.date(from: approachDate)
+        dateFormatter.dateFormat = "d MMMM yyyy 'à' HH:mm"
+        dateFormatter.locale = Locale(identifier: "fr_FR")
+        let finalDate = dateFormatter.string(from: date!)
+        
+        var relativeVelocity: String = ""
+        for velocity in self.closeApproachData {
+            relativeVelocity += velocity.relativeVelocity.kilometersPerSecond
+        }
+        var relativeVelocityRounded = Double(relativeVelocity)
+        relativeVelocityRounded = round(relativeVelocityRounded! * 10) / 10
+        
+        var distance: String = ""
+        for missDistance in self.closeApproachData {
+            distance += missDistance.missDistance.lunar
+        }
+        var distanceDouble = Double(distance)
+        distanceDouble = round(distanceDouble!)
+        
+        let url = URL(string: self.nasaJplURL)
+        
+        return Asteroid(name: formatName,
+                        estimatedDiameter: estimatedDiameter,
+                        isPotentiallyHazardous: potentiallyHazardous,
+                        url: url,
+                        relativeVelocity: relativeVelocityRounded,
+                        missDistance: Double(distance),
+                        closeApproachDate: finalDate,
+                        absoluteMagnitude: self.absoluteMagnitudeH)
     }
 }

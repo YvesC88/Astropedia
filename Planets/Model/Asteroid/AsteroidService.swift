@@ -10,12 +10,12 @@ import Foundation
 
 class AsteroidService {
     
-    func getValue(callback: @escaping (ResultAsteroid?) -> Void) {
+    func getValue(startDate: String, endDate: String, callback: @escaping (ResultAsteroid?) -> Void) {
         let url = "https://api.nasa.gov/neo/rest/v1/feed"
         let parameters = [
             "api_key": "NaNCdJL2CUtgUxl7faub3fEzkEjuEBhyyR0qpy5j",
-            "start_date": "2023-03-30",
-            "end_date": "2023-03-31"
+            "start_date": startDate,
+            "end_date": endDate,
         ] as [String : Any]
         
         AF.request(url, method: .get, parameters: parameters).response { response in
@@ -23,8 +23,8 @@ class AsteroidService {
                 callback(nil)
                 return
             }
-            let welcome = try? JSONDecoder().decode(ResultAsteroid.self, from: data)
-            callback(welcome)
+            let response = try? JSONDecoder().decode(ResultAsteroid.self, from: data)
+            callback(response)
         }
     }
 }

@@ -16,17 +16,14 @@ class PresentPlanetCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
-    func configure(name: String?, image: String?, tempMoy: String?, membership: String?, type: String?, diameter: Int) {
-        if let url = URL(string: image!) {
+    func configure(name: String, image: String, tempMoy: String, membership: String, type: String, diameter: Double) {
+        if let url = URL(string: image) {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let imageData = data else { return }
                 DispatchQueue.main.async {
@@ -38,7 +35,7 @@ class PresentPlanetCell: UITableViewCell {
         objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 120)
         let gradient = getGradientLayer(bounds: objectLabel.bounds)
         objectLabel.textColor = gradientColor(bounds: objectLabel.bounds, gradientLayer: gradient)
-        membershipLabel.text = membership!
+        membershipLabel.text = membership
         diameterLabel.text = "\(diameter) km"
         typeLabel.text = type
     }

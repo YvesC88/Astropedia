@@ -10,7 +10,7 @@ import UIKit
 class MoonViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var planets: [Data] = [] {
+    var planets: [FirebaseData] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -24,7 +24,7 @@ class MoonViewController: UIViewController {
     }
     
     func loadData() {
-        let service = DataService(wrapper: FirebaseWrapper())
+        let service = FirebaseDataService(wrapper: FirebaseWrapper())
         service.fetchData(collectionID: "moons") { planet, error in
             for data in planet {
                 self.planets.append(data)
@@ -43,7 +43,12 @@ extension MoonViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let planet = planets[indexPath.row]
-        cell.configure(name: planet.name, image: planet.image, tempMoy: planet.tempMoy, membership: planet.membership, type: planet.type, diameter: planet.diameter)
+        cell.configure(name: planet.name,
+                       image: planet.image,
+                       tempMoy: planet.tempMoy,
+                       membership: planet.membership,
+                       type: planet.type,
+                       diameter: planet.diameter)
         let info = UIImage(systemName: "info.circle.fill")
         cell.accessoryType = .detailButton
         cell.accessoryView = UIImageView(image: info)

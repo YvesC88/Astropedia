@@ -14,26 +14,20 @@ class PlanetViewController: UIViewController, UISearchBarDelegate {
     
     let searchController = UISearchController()
     
-    var planets: [Data] = [] {
+    var planets: [FirebaseData] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-    var moons: [Data] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    var moons: [FirebaseData] = []
     
-    var allData: [Data] {
+    var allData: [FirebaseData] {
         return planets + moons
     }
     
-    var filteredData = [Data]()
+    var filteredData = [FirebaseData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +41,7 @@ class PlanetViewController: UIViewController, UISearchBarDelegate {
     }
     
     func loadPlanets() {
-        let service = DataService(wrapper: FirebaseWrapper())
+        let service = FirebaseDataService(wrapper: FirebaseWrapper())
         service.fetchData(collectionID: "planets") { planet, error in
             for data in planet {
                 self.planets.append(data)
@@ -56,7 +50,7 @@ class PlanetViewController: UIViewController, UISearchBarDelegate {
     }
     
     func loadMoons() {
-        let service = DataService(wrapper: FirebaseWrapper())
+        let service = FirebaseDataService(wrapper: FirebaseWrapper())
         service.fetchData(collectionID: "moons") { moon, error in
             for data in moon {
                 self.moons.append(data)
@@ -85,7 +79,7 @@ extension PlanetViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PresentPlanetCell", for: indexPath) as? PresentPlanetCell else {
             return UITableViewCell()
         }
-        let data: Data
+        let data: FirebaseData
         if isFiltering() {
             data = filteredData[indexPath.row]
         } else {
@@ -103,7 +97,7 @@ extension PlanetViewController: UITableViewDataSource {
 extension PlanetViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data: Data
+        let data: FirebaseData
         if isFiltering() {
             if indexPath.row < filteredData.count {
                 data = filteredData[indexPath.row]

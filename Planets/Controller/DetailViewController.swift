@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var objectView: UIView!
     @IBOutlet weak var sourceLabel: UILabel!
     
-    var data: Data!
+    var data: FirebaseData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class DetailViewController: UIViewController {
     }
     
     private func setUI() {
-        objectView.layer.cornerRadius = view.frame.width / 3.5
+        objectView.layer.cornerRadius = 50
         objectView.clipsToBounds = true
         objectView.layer.borderWidth = 2
         objectView.layer.borderColor = UIColor.white.cgColor

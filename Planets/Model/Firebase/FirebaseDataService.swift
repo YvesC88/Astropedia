@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class DataService {
+class FirebaseDataService {
     // MARK: - Properties
     let firebaseWrapper: FirebaseProtocol
     
@@ -18,7 +18,7 @@ class DataService {
     // MARK: - Methods
     
     // fetch places in FireStore
-    func fetchData(collectionID: String, completion: @escaping ([Data], String?) -> ()) {
+    func fetchData(collectionID: String, completion: @escaping ([FirebaseData], String?) -> ()) {
         firebaseWrapper.fetch(collectionID: collectionID) { data, error in
             if let data = data {
                 completion(data, nil)

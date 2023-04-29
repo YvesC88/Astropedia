@@ -8,11 +8,11 @@
 import Firebase
 
 protocol FirebaseProtocol {
-    func fetch(collectionID: String, completion: @escaping ([Data]?, String?) -> ())
+    func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ())
 }
 
 class FirebaseWrapper: FirebaseProtocol {
-    func fetch(collectionID: String, completion: @escaping ([Data]?, String?) -> ()) {
+    func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ()) {
         let db = Firestore.firestore()
         db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
@@ -23,10 +23,10 @@ class FirebaseWrapper: FirebaseProtocol {
         }
     }
     
-    internal func build(from documents: [QueryDocumentSnapshot]) -> [Data] {
-        var planets = [Data]()
+    internal func build(from documents: [QueryDocumentSnapshot]) -> [FirebaseData] {
+        var planets = [FirebaseData]()
         for document in documents {
-            planets.append(Data(name: document["name"] as? String ?? "",
+            planets.append(FirebaseData(name: document["name"] as? String ?? "",
                                 image: document["image"] as? String ?? "",
                                 tempMoy: document["tempMoy"] as? String ?? "",
                                 gravity: document["gravity"] as? Double ?? 0,
@@ -34,7 +34,7 @@ class FirebaseWrapper: FirebaseProtocol {
                                 source: document["source"] as? String ?? "",
                                 membership: document["membership"] as? String ?? "",
                                 type: document["type"] as? String ?? "",
-                                diameter: document["diameter"] as? Int ?? 0))
+                                diameter: document["diameter"] as? Double ?? 0.0))
         }
         return planets
     }
