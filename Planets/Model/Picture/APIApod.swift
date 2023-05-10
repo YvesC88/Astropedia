@@ -25,10 +25,31 @@ struct APIApod: Codable {
 extension APIApod {
     
     func toPicture() -> Picture {
-        return Picture(title: self.title,
-                       url: self.url,
-                       hdurl: self.hdurl,
-                       copyright: self.copyright,
-                       explanation: self.explanation)
+        var picture = Picture(title: self.title,
+                              imageSD: nil,
+                              imageHD: nil,
+                              copyright: self.copyright,
+                              explanation: self.explanation)
+        let group = DispatchGroup()
+        if let sdURL = URL(string: self.url) {
+            group.enter()
+            URLSession.shared.dataTask(with: sdURL) { data, response, error in
+                defer { group.leave() }
+                guard let data = data, error == nil else { return }
+                picture.imageSD = data
+            }
+            .resume()
+        }
+        if let hdURL = URL(string: self.hdurl) {
+            group.enter()
+            URLSession.shared.dataTask(with: hdURL) { data, response, error in
+                defer { group.leave() }
+                guard let data = data, error == nil else { return }
+                picture.imageHD = data
+            }
+            .resume()
+        }
+        group.wait()
+        return picture
     }
 }

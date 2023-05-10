@@ -3,9 +3,8 @@
     <entity name="LocalPicture" representedClassName=".LocalPicture" syncable="YES" codeGenerationType="category">
         <attribute name="copyright" optional="YES" attributeType="String"/>
         <attribute name="explanation" optional="YES" attributeType="String"/>
-        <attribute name="hdurl" optional="YES" attributeType="String"/>
-        <attribute name="imageKey" optional="YES" attributeType="String"/>
+        <attribute name="imageHD" optional="YES" attributeType="Binary"/>
+        <attribute name="imageSD" optional="YES" attributeType="Binary"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="url" optional="YES" attributeType="String"/>
     </entity>
 </model>

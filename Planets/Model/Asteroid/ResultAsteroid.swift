@@ -109,8 +109,7 @@ extension APIAsteroid {
         let dateFormatter = DateFormatter()
         
         let formatName = self.name.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-        let moy = (self.estimatedDiameter.meters.estimatedDiameterMin + self.estimatedDiameter.meters.estimatedDiameterMax) / 2.0
-        let estimatedDiameter = String(format: "%.1f", moy)
+        let estimatedDiameter = (self.estimatedDiameter.meters.estimatedDiameterMin + self.estimatedDiameter.meters.estimatedDiameterMax) / 2.0.rounded()
         
         let potentiallyHazardous: String
         if self.isPotentiallyHazardousAsteroid == true {

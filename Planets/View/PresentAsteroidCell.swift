@@ -12,8 +12,6 @@ class PresentAsteroidCell: UITableViewCell {
     @IBOutlet weak var estimatedDiameterLabel: UILabel!
     @IBOutlet weak var isPotentiallyHazardousLabel: UILabel!
     
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -22,7 +20,7 @@ class PresentAsteroidCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(name: String, size: String, isPotentiallyHazardous: String) {
+    func configure(name: String, size: Double, isPotentiallyHazardous: String) {
         if isPotentiallyHazardous == "Potentiellement dangereux" {
             isPotentiallyHazardousLabel.textColor = UIColor.systemRed
         } else {
@@ -31,7 +29,7 @@ class PresentAsteroidCell: UITableViewCell {
         let gradient = getGradientLayer(bounds: nameLabel.bounds)
         nameLabel.textColor = gradientColor(bounds: nameLabel.bounds, gradientLayer: gradient)
         nameLabel.text = name
-        estimatedDiameterLabel.text = "\(size) mètres"
+        estimatedDiameterLabel.text = String(format: "%.1f mètres", size)
         isPotentiallyHazardousLabel.text = isPotentiallyHazardous
     }
     

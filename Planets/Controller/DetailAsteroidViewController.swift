@@ -15,7 +15,7 @@ class DetailAsteroidViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var asteroidNameLabel: UILabel!
     @IBOutlet weak var urlButton: UIButton!
-    @IBOutlet weak var closeDateLabel: UILabel!
+    @IBOutlet weak var infoTextView: UITextView!
     @IBOutlet weak var globalView: UIView!
     @IBOutlet weak var sizeView: UIView!
     @IBOutlet weak var velocityView: UIView!
@@ -42,17 +42,17 @@ class DetailAsteroidViewController: UIViewController {
            let closeDate = asteroid.closeApproachDate,
            let dangerous = asteroid.isPotentiallyHazardous,
            let absoluteMagnitude = asteroid.absoluteMagnitude {
-            sizeLabel.text = size
+            sizeLabel.text = String(format: "%.1f", size)
             velocityLabel.text = "\(velocity)"
             distanceLabel.text = String(format: "%.1fx", distance)
             asteroidNameLabel.text = asteroidName
-            closeDateLabel.text = "• Au plus proche de la Terre le \(closeDate)\n• \(dangerous)\n• Magnitude absolue : \(absoluteMagnitude)"
+            infoTextView.text = "• Au plus proche de la Terre le \(closeDate)\n• \(dangerous)\n• Magnitude absolue : \(absoluteMagnitude)"
         } else {
             sizeLabel.text = "Pas de données."
             velocityLabel.text = "Pas de données."
             distanceLabel.text = "Pas de données."
             asteroidNameLabel.text = "Pas de données"
-            closeDateLabel.text = "Pas de données"
+            infoTextView.text = "Pas de données"
         }
     }
     

@@ -12,7 +12,7 @@ struct Asteroid {
     // MARK: - Properties
     
     var name: String?
-    var estimatedDiameter: String?
+    var estimatedDiameter: Double?
     var isPotentiallyHazardous: String?
     var url: URL?
     var relativeVelocity: Double?

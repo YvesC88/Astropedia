@@ -10,11 +10,14 @@ import UIKit
 class AsteroidsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var asteroidOfDay: UILabel!
+    @IBOutlet weak var numberOfAsteroidLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     let asteroidService = AsteroidService()
-    let datePicker = UIDatePicker()
     let refreshControl = UIRefreshControl()
+    
+    var selectedCategory = 0
+    var isAscending = true
     
     let datePickerViewController = UIViewController()
     private var result: [APIAsteroid] = [] {
@@ -29,21 +32,13 @@ class AsteroidsViewController: UIViewController {
         super.viewDidLoad()
         loadingData()
         fetchData()
-        setDatePicker()
         setRefreshControl()
     }
     
     private func loadingData() {
-        let spinner = UIActivityIndicatorView(style: .large)
+        let spinner = UIActivityIndicatorView(style: .medium)
         spinner.startAnimating()
         tableView.backgroundView = spinner
-    }
-    
-    private func dayDate(date: Date) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        dateFormatter.locale = Locale(identifier: "FR-fr")
-        asteroidOfDay.text = "Données de la NASA. \(result.count) astéroïdes trouvés au \(dateFormatter.string(from: date))"
     }
     
     private func setDatePicker() {
@@ -57,6 +52,13 @@ class AsteroidsViewController: UIViewController {
         tableView.addSubview(refreshControl)
     }
     
+    func incrementLabel(to endValue: Int) {
+        let duration: Double = 10 //seconds
+        UIView.animate(withDuration: duration) {
+            self.numberOfAsteroidLabel.text = "\(endValue)"
+        }
+    }
+    
     private func fetchData() {
         let date = Date()
         let dateFormat = "yyyy-MM-dd"
@@ -65,14 +67,15 @@ class AsteroidsViewController: UIViewController {
         let calendar = Calendar.current
         let newDate = calendar.date(byAdding: .day, value: daysToAdd, to: date)
         let endDate = self.getFormattedDate(date: newDate!, dateFormat: dateFormat)
-        
         asteroidService.getValue(startDate: startDate, endDate: endDate) { result in
+            if let result = result {
+                self.numberOfAsteroidLabel.text = "\(result.elementCount)"
+            }
             guard let asteroids = result?.nearEarthObjects.values.flatMap( { $0 }) else {
                 self.presentAlert(title: "Erreur", message: "Erreur réseau")
                 return
             }
             self.result = asteroids
-            self.dayDate(date: Date())
         }
     }
     
@@ -82,42 +85,44 @@ class AsteroidsViewController: UIViewController {
         fetchData()
     }
     
-    @IBAction func didTapDatePicker() {
-        let alertController = UIAlertController(title: "Sélectionner une date", message: nil, preferredStyle: .actionSheet)
-        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 55, width: 250, height: 200))
-        datePicker.datePickerMode = .date
-        datePicker.locale = Locale(identifier: "fr_FR")
-        alertController.view.addSubview(datePicker)
-        alertController.addAction(UIAlertAction())
-        alertController.addAction(UIAlertAction(title: "Valider", style: .default, handler: { (action) in
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            let selectedDate = dateFormatter.string(from: datePicker.date)
-            let daysToAdd = 1
-            let calendar = Calendar.current
-            let newDate = calendar.date(byAdding: .day, value: daysToAdd, to: datePicker.date)
-            let endDate = self.getFormattedDate(date: newDate!, dateFormat: "yyyy-MM-dd")
-            self.asteroidService.getValue(startDate: selectedDate, endDate: endDate) { result in
-                guard let asteroids = result?.nearEarthObjects.values.flatMap( { $0 }) else {
-                    print("Échec")
-                    return
-                }
-                self.result = asteroids
-                self.dayDate(date: datePicker.date)
-                self.loadingData()
-                self.setRefreshControl()
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        loadingData()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let selectedDate = dateFormatter.string(from: sender.date)
+        let calendar = Calendar.current
+        let nextDay = calendar.date(byAdding: .day, value: 1, to: sender.date)
+        let endDate = self.getFormattedDate(date: nextDay!, dateFormat: "yyyy-MM-dd")
+        self.asteroidService.getValue(startDate: selectedDate, endDate: endDate) { result in
+            if let result = result {
+                self.numberOfAsteroidLabel.text = "\(result.elementCount)"
             }
-        }))
-        alertController.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
+            guard let asteroids = result?.nearEarthObjects.values.flatMap( { $0 }) else {
+                print("Échec")
+                return
+            }
+            self.result = asteroids
+            self.setRefreshControl()
+        }
+    }
+    
+    @IBAction func categoryChanged(_ sender: UISegmentedControl) {
+        selectedCategory = sender.selectedSegmentIndex
+        switch selectedCategory {
+        case 0:
+            result.sort { ($0.toAsteroid().estimatedDiameter ?? 0) < ($1.toAsteroid().estimatedDiameter ?? 0) }
+        case 1:
+            result.sort { ($0.toAsteroid().missDistance ?? 0) < ($1.toAsteroid().missDistance ?? 0) }
+        case 2:
+            result.sort { ($0.toAsteroid().relativeVelocity ?? 0) < ($1.toAsteroid().relativeVelocity ?? 0) }
+        default:
+            tableView.reloadData()
+        }
+        tableView.reloadData()
     }
 }
 
 extension AsteroidsViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return result.count
@@ -129,7 +134,8 @@ extension AsteroidsViewController: UITableViewDataSource {
         }
         guard indexPath.row < result.count else { return cell }
         let asteroid = result[indexPath.row].toAsteroid()
-        cell.configure(name: asteroid.name!, size: asteroid.estimatedDiameter!,
+        cell.configure(name: asteroid.name!,
+                       size: asteroid.estimatedDiameter!,
                        isPotentiallyHazardous: asteroid.isPotentiallyHazardous!)
         let info = UIImage(systemName: "info.circle.fill")
         cell.accessoryType = .detailButton

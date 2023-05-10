@@ -9,9 +9,11 @@ import Firebase
 
 protocol FirebaseProtocol {
     func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ())
+    func fetchArticle(collectionID: String, completion: @escaping ([FirebaseArticle]?, String?) -> ())
 }
 
 class FirebaseWrapper: FirebaseProtocol {
+    
     func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ()) {
         let db = Firestore.firestore()
         db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
@@ -37,5 +39,28 @@ class FirebaseWrapper: FirebaseProtocol {
                                 diameter: document["diameter"] as? Double ?? 0.0))
         }
         return planets
+    }
+    
+    func fetchArticle(collectionID: String, completion: @escaping ([FirebaseArticle]?, String?) -> ()) {
+        let db = Firestore.firestore()
+        db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+                completion(self.build(from: querySnapshot.documents), nil)
+            } else {
+                completion(nil, error?.localizedDescription)
+            }
+        }
+    }
+    
+    internal func build(from documents: [QueryDocumentSnapshot]) -> [FirebaseArticle] {
+        var articles = [FirebaseArticle]()
+        for document in documents {
+            articles.append(FirebaseArticle(title: document["title"] as? String ?? "",
+                                            image: document["image"] as? String ?? "",
+                                            text: document["text"] as? String ?? "",
+                                            source: document["source"] as? String ?? ""
+                                           ))
+        }
+        return articles
     }
 }

@@ -49,18 +49,18 @@ open class CoreDataStack: CoreDataStackProtocol {
         }
     }
 
-//    func unSave(uri: String) throws {
-//        let fetchRequest: NSFetchRequest<LocalPicture>
-//        fetchRequest = LocalPicture.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "uri == %@", uri)
-//        let result = try? viewContext.fetch(fetchRequest)
-//        if let localRecipe = result?.first {
-//            viewContext.delete(localRecipe)
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                print("Error")
-//            }
-//        }
-//    }
+    func unSave(picture: Picture) throws {
+        let fetchRequest: NSFetchRequest<LocalPicture>
+        fetchRequest = LocalPicture.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", picture.title ?? "")
+        let result = try? viewContext.fetch(fetchRequest)
+        if let localPicture = result?.first {
+            viewContext.delete(localPicture)
+            do {
+                try viewContext.save()
+            } catch {
+                print("Error")
+            }
+        }
+    }
 }

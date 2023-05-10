@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1073BD2A0A552600BC73BD /* NewsViewController.swift */; };
 		FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAD6297566D800FEE718 /* AppDelegate.swift */; };
 		FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAD8297566D800FEE718 /* SceneDelegate.swift */; };
 		FB15CADB297566D800FEE718 /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CADA297566D800FEE718 /* PlanetViewController.swift */; };
@@ -34,9 +35,11 @@
 		FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE7BE297C073A00F60C92 /* Utilities.swift */; };
 		FB5DE80A297FCA4100F60C92 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */; };
 		FB5DE80C297FCB2900F60C92 /* FirebaseWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */; };
+		FB6922282A094C400034A65B /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922272A094C400034A65B /* FavoriteCell.swift */; };
+		FB69222A2A095ED50034A65B /* DetailFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922292A095ED50034A65B /* DetailFavoriteViewController.swift */; };
 		FB849A3129D6E8A700ACABA6 /* AsteroidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */; };
 		FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */; };
-		FB849A3729D6EB1900ACABA6 /* APIAsteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3629D6EB1900ACABA6 /* APIAsteroid.swift */; };
+		FB849A3729D6EB1900ACABA6 /* ResultAsteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3629D6EB1900ACABA6 /* ResultAsteroid.swift */; };
 		FB849A3A29D6EBF900ACABA6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FB849A3929D6EBF900ACABA6 /* Alamofire */; };
 		FB849A4829DB126600ACABA6 /* PresentAsteroidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A4729DB126500ACABA6 /* PresentAsteroidCell.swift */; };
 		FB849A4A29DB69AB00ACABA6 /* Asteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A4929DB69AB00ACABA6 /* Asteroid.swift */; };
@@ -44,12 +47,13 @@
 		FBAB2A7929F6D75500B31C6D /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB2A7829F6D75500B31C6D /* Picture.swift */; };
 		FBAC78FA29F563AB009DFF86 /* PictureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78F929F563AB009DFF86 /* PictureService.swift */; };
 		FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78FB29F56464009DFF86 /* APIApod.swift */; };
-		FBAC78FE29F564A8009DFF86 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78FD29F564A8009DFF86 /* PictureViewController.swift */; };
 		FBBD541A2978C2A300B47629 /* MoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD54192978C2A300B47629 /* MoonViewController.swift */; };
 		FBF8657029FD0DD700646278 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */; };
 		FBF8657629FD0F4700646278 /* Astropedia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8657429FD0F4700646278 /* Astropedia.xcdatamodeld */; };
 		FBF8657D29FD17C200646278 /* LocalPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8657C29FD17C200646278 /* LocalPicture.swift */; };
 		FBF8657F29FD195B00646278 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8657E29FD195B00646278 /* CoreDataStack.swift */; };
+		FBF937852A0A6E1D008235E6 /* PresentPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF937842A0A6E1C008235E6 /* PresentPictureCell.swift */; };
+		FBF937892A0A94FF008235E6 /* FirebaseArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF937882A0A94FF008235E6 /* FirebaseArticle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB1073BD2A0A552600BC73BD /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		FB15CAD3297566D800FEE718 /* Planets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB15CAD6297566D800FEE718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB15CAD8297566D800FEE718 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,21 +98,24 @@
 		FB5DE7C6297C3DB300F60C92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapperMock.swift; sourceTree = "<group>"; };
+		FB6922272A094C400034A65B /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		FB6922292A095ED50034A65B /* DetailFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFavoriteViewController.swift; sourceTree = "<group>"; };
 		FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidsViewController.swift; sourceTree = "<group>"; };
 		FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidService.swift; sourceTree = "<group>"; };
-		FB849A3629D6EB1900ACABA6 /* APIAsteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAsteroid.swift; sourceTree = "<group>"; };
+		FB849A3629D6EB1900ACABA6 /* ResultAsteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultAsteroid.swift; sourceTree = "<group>"; };
 		FB849A4729DB126500ACABA6 /* PresentAsteroidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAsteroidCell.swift; sourceTree = "<group>"; };
 		FB849A4929DB69AB00ACABA6 /* Asteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid.swift; sourceTree = "<group>"; };
 		FB849A4B29DD7A5200ACABA6 /* DetailAsteroidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAsteroidViewController.swift; sourceTree = "<group>"; };
 		FBAB2A7829F6D75500B31C6D /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		FBAC78F929F563AB009DFF86 /* PictureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureService.swift; sourceTree = "<group>"; };
 		FBAC78FB29F56464009DFF86 /* APIApod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIApod.swift; sourceTree = "<group>"; };
-		FBAC78FD29F564A8009DFF86 /* PictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		FBBD54192978C2A300B47629 /* MoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonViewController.swift; sourceTree = "<group>"; };
 		FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		FBF8657529FD0F4700646278 /* Astropedia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Astropedia.xcdatamodel; sourceTree = "<group>"; };
 		FBF8657C29FD17C200646278 /* LocalPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPicture.swift; sourceTree = "<group>"; };
 		FBF8657E29FD195B00646278 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FBF937842A0A6E1C008235E6 /* PresentPictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPictureCell.swift; sourceTree = "<group>"; };
+		FBF937882A0A94FF008235E6 /* FirebaseArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseArticle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +221,8 @@
 				FB15CAE1297566DA00FEE718 /* LaunchScreen.storyboard */,
 				FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */,
 				FB849A4729DB126500ACABA6 /* PresentAsteroidCell.swift */,
+				FBF937842A0A6E1C008235E6 /* PresentPictureCell.swift */,
+				FB6922272A094C400034A65B /* FavoriteCell.swift */,
 				FB5DE7BE297C073A00F60C92 /* Utilities.swift */,
 			);
 			path = View;
@@ -221,13 +231,14 @@
 		FB15CB1C2975732C00FEE718 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FB1073BD2A0A552600BC73BD /* NewsViewController.swift */,
 				FB15CADA297566D800FEE718 /* PlanetViewController.swift */,
 				FBBD54192978C2A300B47629 /* MoonViewController.swift */,
 				FB15CB292976935000FEE718 /* DetailViewController.swift */,
 				FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */,
 				FB849A4B29DD7A5200ACABA6 /* DetailAsteroidViewController.swift */,
-				FBAC78FD29F564A8009DFF86 /* PictureViewController.swift */,
 				FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */,
+				FB6922292A095ED50034A65B /* DetailFavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -245,7 +256,7 @@
 		FBF8657929FD10A100646278 /* Asteroid */ = {
 			isa = PBXGroup;
 			children = (
-				FB849A3629D6EB1900ACABA6 /* APIAsteroid.swift */,
+				FB849A3629D6EB1900ACABA6 /* ResultAsteroid.swift */,
 				FB849A4929DB69AB00ACABA6 /* Asteroid.swift */,
 				FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */,
 			);
@@ -258,6 +269,7 @@
 				FB15CB202975745200FEE718 /* FirebaseWrapper.swift */,
 				FB15CB0629756AD600FEE718 /* FirebaseData.swift */,
 				FB15CB1D2975735700FEE718 /* FirebaseDataService.swift */,
+				FBF937882A0A94FF008235E6 /* FirebaseArticle.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -444,17 +456,21 @@
 			files = (
 				FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */,
 				FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */,
+				FB6922282A094C400034A65B /* FavoriteCell.swift in Sources */,
 				FB15CB272975958A00FEE718 /* PresentPlanetCell.swift in Sources */,
 				FB849A4C29DD7A5300ACABA6 /* DetailAsteroidViewController.swift in Sources */,
 				FBBD541A2978C2A300B47629 /* MoonViewController.swift in Sources */,
 				FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */,
 				FB15CB1E2975735700FEE718 /* FirebaseDataService.swift in Sources */,
+				FB69222A2A095ED50034A65B /* DetailFavoriteViewController.swift in Sources */,
+				FBF937892A0A94FF008235E6 /* FirebaseArticle.swift in Sources */,
 				FB15CADB297566D800FEE718 /* PlanetViewController.swift in Sources */,
 				FB15CB212975745200FEE718 /* FirebaseWrapper.swift in Sources */,
-				FBAC78FE29F564A8009DFF86 /* PictureViewController.swift in Sources */,
 				FB849A4829DB126600ACABA6 /* PresentAsteroidCell.swift in Sources */,
 				FBF8657629FD0F4700646278 /* Astropedia.xcdatamodeld in Sources */,
 				FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */,
+				FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */,
+				FBF937852A0A6E1D008235E6 /* PresentPictureCell.swift in Sources */,
 				FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */,
 				FB849A4A29DB69AB00ACABA6 /* Asteroid.swift in Sources */,
 				FBF8657F29FD195B00646278 /* CoreDataStack.swift in Sources */,
@@ -463,7 +479,7 @@
 				FB849A3129D6E8A700ACABA6 /* AsteroidsViewController.swift in Sources */,
 				FBF8657029FD0DD700646278 /* FavoritesViewController.swift in Sources */,
 				FBAB2A7929F6D75500B31C6D /* Picture.swift in Sources */,
-				FB849A3729D6EB1900ACABA6 /* APIAsteroid.swift in Sources */,
+				FB849A3729D6EB1900ACABA6 /* ResultAsteroid.swift in Sources */,
 				FBAC78FA29F563AB009DFF86 /* PictureService.swift in Sources */,
 				FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */,
 			);
@@ -674,7 +690,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -710,7 +726,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

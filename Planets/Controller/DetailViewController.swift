@@ -7,20 +7,25 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var objectImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var statisticsTextView: UITextView!
     @IBOutlet weak var objectView: UIView!
     @IBOutlet weak var sourceLabel: UILabel!
+    @IBOutlet weak var scrollImageView: UIScrollView!
     
     var data: FirebaseData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = data.name
+        scrollImageView.delegate = self
         setUI()
         setData()
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return objectImageView
     }
     
     private func setData() {
@@ -32,7 +37,7 @@ class DetailViewController: UIViewController {
                 }
             }.resume()
         }
-        titleLabel.text = "Informations"
+        titleLabel.text = data.name
         var statisticLine: String = ""
         for statistic in data.statistics {
             statisticLine += "• \(statistic)\n\n"

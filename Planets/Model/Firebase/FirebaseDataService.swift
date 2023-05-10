@@ -27,4 +27,14 @@ class FirebaseDataService {
             }
         }
     }
+    
+    func fetchArticle(collectionID: String, completion: @escaping ([FirebaseArticle], String?) -> ()) {
+        firebaseWrapper.fetchArticle(collectionID: collectionID) { article, error in
+            if let article = article {
+                completion(article, nil)
+            } else {
+                completion([], error)
+            }
+        }
+    }
 }

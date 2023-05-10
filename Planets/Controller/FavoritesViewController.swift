@@ -20,15 +20,15 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPicture()
+        fetchLocalPicture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchPicture()
+        fetchLocalPicture()
     }
     
-    private func fetchPicture() {
+    private func fetchLocalPicture() {
         let request: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
         guard let picture = try? CoreDataStack.share.viewContext.fetch(request) else { return }
         favoritePicture = picture
@@ -42,11 +42,12 @@ extension FavoritesViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell", for: indexPath)
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell", for: indexPath) as? FavoriteCell else {
+            return UITableViewCell()
+        }
         guard indexPath.row < favoritePicture.count else { return cell }
         let picture = favoritePicture[indexPath.row]
-        cell.textLabel?.text = picture.title
+        cell.configure(title: picture.title!, image: picture.imageSD!)
         return cell
     }
 }
@@ -64,13 +65,14 @@ extension FavoritesViewController: UITableViewDelegate {
             print("Error")
         }
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        guard indexPath.row < favoriteRecipe.count else { return }
-//        let recipe = favoriteRecipe[indexPath.row]
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-//        customViewController.recipe = recipe.toRecipe()
-//        self.navigationController?.pushViewController(customViewController, animated: true)
-//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        guard indexPath.row < favoritePicture.count else { return }
+        let picture = favoritePicture[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailFavoriteViewController") as! DetailFavoriteViewController
+        customViewController.picture = picture.toPicture()
+        self.navigationController?.pushViewController(customViewController, animated: true)
+    }
 }

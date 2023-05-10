@@ -15,6 +15,10 @@ extension LocalPicture {
     // MARK: - Methods
     
     func toPicture() -> Picture {
-        return Picture(title: title, url: url, hdurl: hdurl, copyright: copyright, explanation: explanation)
+        return Picture(title: title,
+                       imageSD: imageSD,
+                       imageHD: imageHD,
+                       copyright: copyright,
+                       explanation: explanation)
     }
 }

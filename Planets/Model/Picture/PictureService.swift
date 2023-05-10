@@ -7,36 +7,37 @@
 
 import Alamofire
 import Foundation
-import CryptoKit
+import CoreData
 
 class PictureService {
     
-    func getPicture(callback: @escaping (APIApod?) -> Void) {
+    func getPicture(startDate: String, endDate: String, callback: @escaping ([APIApod]?) -> Void) {
         let url = "https://api.nasa.gov/planetary/apod"
         let parameters = [
-            "api_key": "NaNCdJL2CUtgUxl7faub3fEzkEjuEBhyyR0qpy5j"
+            "api_key": "NaNCdJL2CUtgUxl7faub3fEzkEjuEBhyyR0qpy5j",
+            "start_date": startDate,
+            "end_date": endDate,
         ] as [String : Any]
-        
+
         AF.request(url, method: .get, parameters: parameters).response { response in
             guard let data = response.data else {
                 callback(nil)
                 return
             }
-            let response = try? JSONDecoder().decode(APIApod.self, from: data)
+            let response = try? JSONDecoder().decode([APIApod].self, from: data)
             callback(response)
         }
     }
     
-    func savePicture(title: String?, url: String?, hdurl: String?, copyright: String?, explanation: String?, imageKey: String?)
+    func savePicture(title: String?, imageSD: Data?, imageHD: Data?, copyright: String?, explanation: String?)
     {
         let coreDataStack = CoreDataStack()
         let pictures = LocalPicture(context: coreDataStack.viewContext)
         pictures.title = title
-        pictures.url = url
-        pictures.hdurl = hdurl
+        pictures.imageSD = imageSD
+        pictures.imageHD = imageHD
         pictures.copyright = copyright
         pictures.explanation = explanation
-        pictures
         do {
             try coreDataStack.save()
         } catch {
@@ -44,9 +45,18 @@ class PictureService {
         }
     }
     
-    func createImageKey(imageData: Data) -> String {
-        let hashedData = SHA256.hash(data: imageData)
-        let hashedString = hashedData.compactMap { String(format: "%02x", $0) }.joined()
-        return hashedString
+    func unsaveRecipe(picture: Picture) {
+        do {
+            try CoreDataStack.share.unSave(picture: picture)
+        } catch {
+            print("Error : \(error)")
+        }
+    }
+    
+    func isFavorite(picture: Picture) -> Bool {
+        let context = CoreDataStack.share.viewContext
+        let fetchRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", picture.title ?? "")
+        return ((try? context.count(for: fetchRequest)) ?? 0) > 0
     }
 }
