@@ -45,10 +45,11 @@ extension UIViewController {
     func setUIView(view: [UIView]) {
         let views = view
         for view in views {
-            view.layer.cornerRadius = 20
-            view.layer.shadowColor = CGColor(red: 4/255, green: 4/255, blue: 170/255, alpha: 1)
+            view.layer.cornerRadius = 15
+            view.layer.shadowColor = UIColor.black.cgColor
+//            view.layer.shadowColor = CGColor(red: 4/255, green: 4/255, blue: 170/255, alpha: 1)
             view.layer.backgroundColor = UIColor.white.cgColor
-            view.layer.shadowOpacity = 0.3
+            view.layer.shadowOpacity = 0.2
             view.center = self.view.center
             view.layer.shadowOffset = CGSize.zero
             view.layer.shadowRadius = 15

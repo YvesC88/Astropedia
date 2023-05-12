@@ -11,7 +11,7 @@ struct FirebaseArticle: Codable {
     
     let title: String
     let image: String
-    let text: String
     let source: String
-
+    let subTitle: String
+    let articleText: [String]
 }

@@ -57,8 +57,9 @@ class FirebaseWrapper: FirebaseProtocol {
         for document in documents {
             articles.append(FirebaseArticle(title: document["title"] as? String ?? "",
                                             image: document["image"] as? String ?? "",
-                                            text: document["text"] as? String ?? "",
-                                            source: document["source"] as? String ?? ""
+                                            source: document["source"] as? String ?? "",
+                                            subTitle: document["subTitle"] as? String ?? "",
+                                            articleText: document["articleText"] as? [String] ?? []
                                            ))
         }
         return articles

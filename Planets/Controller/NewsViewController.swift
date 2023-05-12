@@ -9,12 +9,21 @@ import UIKit
 
 class NewsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtextView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var articleLabel: UILabel!
+    @IBOutlet weak var lastPictureLabel: UILabel!
+    @IBOutlet weak var articleView: UIView!
+    @IBOutlet weak var detailArticleView: UIView!
+    @IBOutlet weak var lastPictureView: UIView!
+    @IBOutlet weak var detailArticleImageView: UIImageView!
+    @IBOutlet weak var detailTitleLabel: UILabel!
+    @IBOutlet weak var detailTextView: UITextView!
     
     let pictureService = PictureService()
     let refreshControl = UIRefreshControl()
+    var article: FirebaseArticle!
     
     private var picture: [APIApod] = [] {
         didSet {
@@ -26,21 +35,17 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
         fetchData()
-        
-        
-        //        imageView.layer.cornerRadius = 15
-        //        imageView.clipsToBounds = true
-        //        fetchData()
-        //        loadingData()
-        //        setRefreshControl()
-        //        loadArticle()
+        setupViews()
     }
     
     private func setupViews() {
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
+        articleLabel.text = articleLabel.text?.uppercased()
+        lastPictureLabel.text = lastPictureLabel.text?.uppercased()
+        self.setUIView(view: [articleView, detailArticleView, lastPictureView])
+        detailArticleView.transform = CGAffineTransform(scaleX: 0.00001, y: 0.00001)
         setRefreshControl()
         loadArticle()
         loadingSpinner()
@@ -52,14 +57,22 @@ class NewsViewController: UIViewController {
         tableView.backgroundView = spinner
     }
     
-    func loadArticle() {
+    private func loadArticle() {
         let service = FirebaseDataService(wrapper: FirebaseWrapper())
         service.fetchArticle(collectionID: "article") { article, error in
             for article in article {
-                self.textView.text = article.text
+                self.article = article
+                var articlesText: String = ""
+                for text in article.articleText {
+                    articlesText += "\(text)\n \n"
+                }
+                self.detailTextView.text = articlesText
+                self.detailTitleLabel.text = article.title
+                self.subtextView.text = article.subTitle
                 self.titleLabel.text = article.title
                 if let data = try? Data(contentsOf: URL(string: article.image)!) {
                     self.imageView.image = UIImage(data: data)
+                    self.detailArticleImageView.image = UIImage(data: data)
                 }
             }
         }
@@ -91,6 +104,24 @@ class NewsViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func didTappedArticle(_ sender: Any) {
+        UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.0, options: [], animations: {
+            self.detailArticleView.transform = CGAffineTransform.identity
+        }, completion: nil)
+    }
+    
+    @IBAction func closeDetailArticle() {
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0.0, options: [], animations: {
+            self.detailArticleView.transform = CGAffineTransform(scaleX: 0.00001, y: 0.00001)
+        }, completion: nil)
+    }
+    
+    @IBAction func didSharedArticle() {
+        if let url = URL(string: article.source) {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 
@@ -106,10 +137,6 @@ extension NewsViewController: UITableViewDataSource {
         guard indexPath.row < picture.count else { return cell }
         let picture = picture[indexPath.row].toPicture()
         cell.configure(title: picture.title!, image: picture.imageSD!)
-        let info = UIImage(systemName: "info.circle.fill")
-        cell.accessoryType = .detailButton
-        cell.accessoryView = UIImageView(image: info)
-        cell.accessoryView?.tintColor = UIColor.systemBlue
         return cell
     }
 }
