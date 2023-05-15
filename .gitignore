@@ -98,6 +98,6 @@ iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-Planetes/Planets/Planets/Model/ApiKeys.swift
+**/ApiKeys.swift
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode
