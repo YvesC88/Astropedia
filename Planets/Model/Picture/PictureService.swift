@@ -11,10 +11,12 @@ import CoreData
 
 class PictureService {
     
+    private var apiKey = ApiKeys()
+    
     func getPicture(startDate: String, endDate: String, callback: @escaping ([APIApod]?) -> Void) {
         let url = "https://api.nasa.gov/planetary/apod"
         let parameters = [
-            "api_key": "NaNCdJL2CUtgUxl7faub3fEzkEjuEBhyyR0qpy5j",
+            "api_key": apiKey.keyNasa!,
             "start_date": startDate,
             "end_date": endDate,
         ] as [String : Any]

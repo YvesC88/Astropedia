@@ -27,6 +27,7 @@
 		FB15CB282975958A00FEE718 /* PresentPlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */; };
 		FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB292976935000FEE718 /* DetailViewController.swift */; };
 		FB1881AC2A11044000B6EBCC /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = FB1881AB2A11044000B6EBCC /* AlamofireImage */; };
+		FB1881AE2A12DC5100B6EBCC /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1881AD2A12DC5100B6EBCC /* ApiKeys.swift */; };
 		FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE7BE297C073A00F60C92 /* Utilities.swift */; };
 		FB5DE80A297FCA4100F60C92 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */; };
 		FB5DE80C297FCB2900F60C92 /* FirebaseWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */; };
@@ -91,6 +92,7 @@
 		FB15CB202975745200FEE718 /* FirebaseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapper.swift; sourceTree = "<group>"; };
 		FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentPlanetCell.swift; sourceTree = "<group>"; };
 		FB15CB292976935000FEE718 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FB1881AD2A12DC5100B6EBCC /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		FB5DE7BE297C073A00F60C92 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FB5DE7C5297C3DB200F60C92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		FB5DE7C6297C3DB300F60C92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				FBF8657A29FD10C600646278 /* Firebase */,
 				FBF8657929FD10A100646278 /* Asteroid */,
 				FBF8657729FD108500646278 /* Picture */,
+				FB1881AD2A12DC5100B6EBCC /* ApiKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,8 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				FBAC78FB29F56464009DFF86 /* APIApod.swift */,
-				FBAC78F929F563AB009DFF86 /* PictureService.swift */,
 				FBAB2A7829F6D75500B31C6D /* Picture.swift */,
+				FBAC78F929F563AB009DFF86 /* PictureService.swift */,
 			);
 			path = Picture;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */,
 				FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */,
 				FBF937852A0A6E1D008235E6 /* PresentPictureCell.swift in Sources */,
+				FB1881AE2A12DC5100B6EBCC /* ApiKeys.swift in Sources */,
 				FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */,
 				FB849A4A29DB69AB00ACABA6 /* Asteroid.swift in Sources */,
 				FBF8657F29FD195B00646278 /* CoreDataStack.swift in Sources */,

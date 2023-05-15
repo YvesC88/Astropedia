@@ -10,10 +10,12 @@ import Foundation
 
 class AsteroidService {
     
+    private var apiKey = ApiKeys()
+    
     func getValue(startDate: String, endDate: String, callback: @escaping (ResultAsteroid?) -> Void) {
         let url = "https://api.nasa.gov/neo/rest/v1/feed"
         let parameters = [
-            "api_key": "NaNCdJL2CUtgUxl7faub3fEzkEjuEBhyyR0qpy5j",
+            "api_key": apiKey.keyNasa!,
             "start_date": startDate,
             "end_date": endDate,
         ] as [String : Any]
