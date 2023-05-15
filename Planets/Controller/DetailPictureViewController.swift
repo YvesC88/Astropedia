@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailFavoriteViewController: UIViewController, UIScrollViewDelegate {
+class DetailPictureViewController: UIViewController {
     @IBOutlet weak var uiView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -26,14 +26,11 @@ class DetailFavoriteViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         setUI()
         scrollImageView.delegate = self
+        scrollView.delegate = self
         uiView.layer.cornerRadius = 15
         uiView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
-    }
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
     }
     
     func setUI() {
@@ -54,7 +51,7 @@ class DetailFavoriteViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func hdButtonTapped(_ sender: UIButton) {
-        imageView.image = UIImage(data: isHD ? picture.imageSD! : picture.imageHD!)
+        imageView.image = UIImage(data: (isHD ? picture.imageSD : picture.imageHD)!)
         definitionButton.setTitle(isHD ? "HD" : "SD", for: .normal)
         isHD.toggle()
     }
@@ -78,4 +75,12 @@ class DetailFavoriteViewController: UIViewController, UIScrollViewDelegate {
         navigationController?.popViewController(animated: true)
         favoriteButton.isSelected = false
     }
+}
+
+extension DetailPictureViewController: UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
 }

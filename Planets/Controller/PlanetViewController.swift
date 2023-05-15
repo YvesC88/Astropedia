@@ -86,10 +86,10 @@ extension PlanetViewController: UITableViewDataSource {
             data = planets[indexPath.row]
         }
         cell.configure(name: data.name, image: data.image, tempMoy: data.tempMoy, membership: data.membership, type: data.type, diameter: data.diameter)
-        let info = UIImage(systemName: "info.circle.fill")
+        let info = UIImage(systemName: "chevron.right")
         cell.accessoryType = .detailButton
         cell.accessoryView = UIImageView(image: info)
-        cell.accessoryView?.tintColor = UIColor.systemBlue
+        cell.accessoryView?.tintColor = UIColor.systemGray
         return cell
     }
 }

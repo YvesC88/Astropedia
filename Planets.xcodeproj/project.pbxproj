@@ -26,11 +26,12 @@
 		FB15CB272975958A00FEE718 /* PresentPlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */; };
 		FB15CB282975958A00FEE718 /* PresentPlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* PresentPlanetCell.swift */; };
 		FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB292976935000FEE718 /* DetailViewController.swift */; };
+		FB1881AC2A11044000B6EBCC /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = FB1881AB2A11044000B6EBCC /* AlamofireImage */; };
 		FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE7BE297C073A00F60C92 /* Utilities.swift */; };
 		FB5DE80A297FCA4100F60C92 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */; };
 		FB5DE80C297FCB2900F60C92 /* FirebaseWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */; };
 		FB6922282A094C400034A65B /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922272A094C400034A65B /* FavoriteCell.swift */; };
-		FB69222A2A095ED50034A65B /* DetailFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922292A095ED50034A65B /* DetailFavoriteViewController.swift */; };
+		FB69222A2A095ED50034A65B /* DetailPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922292A095ED50034A65B /* DetailPictureViewController.swift */; };
 		FB849A3129D6E8A700ACABA6 /* AsteroidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */; };
 		FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */; };
 		FB849A3729D6EB1900ACABA6 /* ResultAsteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3629D6EB1900ACABA6 /* ResultAsteroid.swift */; };
@@ -96,7 +97,7 @@
 		FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		FB5DE80B297FCB2900F60C92 /* FirebaseWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapperMock.swift; sourceTree = "<group>"; };
 		FB6922272A094C400034A65B /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
-		FB6922292A095ED50034A65B /* DetailFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFavoriteViewController.swift; sourceTree = "<group>"; };
+		FB6922292A095ED50034A65B /* DetailPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPictureViewController.swift; sourceTree = "<group>"; };
 		FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidsViewController.swift; sourceTree = "<group>"; };
 		FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidService.swift; sourceTree = "<group>"; };
 		FB849A3629D6EB1900ACABA6 /* ResultAsteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultAsteroid.swift; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 			files = (
 				FBF12B6C2A0E39B20061FEB8 /* FirebaseCrashlytics in Frameworks */,
 				FBF12B6E2A0E39B20061FEB8 /* FirebaseFirestore in Frameworks */,
+				FB1881AC2A11044000B6EBCC /* AlamofireImage in Frameworks */,
 				FBF12B6A2A0E39B20061FEB8 /* FirebaseAnalytics in Frameworks */,
 				FB849A3A29D6EBF900ACABA6 /* Alamofire in Frameworks */,
 			);
@@ -232,7 +234,7 @@
 				FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */,
 				FB849A4B29DD7A5200ACABA6 /* DetailAsteroidViewController.swift */,
 				FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */,
-				FB6922292A095ED50034A65B /* DetailFavoriteViewController.swift */,
+				FB6922292A095ED50034A65B /* DetailPictureViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -300,6 +302,7 @@
 				FBF12B692A0E39B20061FEB8 /* FirebaseAnalytics */,
 				FBF12B6B2A0E39B20061FEB8 /* FirebaseCrashlytics */,
 				FBF12B6D2A0E39B20061FEB8 /* FirebaseFirestore */,
+				FB1881AB2A11044000B6EBCC /* AlamofireImage */,
 			);
 			productName = Planets;
 			productReference = FB15CAD3297566D800FEE718 /* Planets.app */;
@@ -377,6 +380,7 @@
 			packageReferences = (
 				FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				FBF12B682A0E39B20061FEB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FB1881AA2A11044000B6EBCC /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = FB15CAD4297566D800FEE718 /* Products */;
 			projectDirPath = "";
@@ -453,7 +457,7 @@
 				FBBD541A2978C2A300B47629 /* MoonViewController.swift in Sources */,
 				FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */,
 				FB15CB1E2975735700FEE718 /* FirebaseDataService.swift in Sources */,
-				FB69222A2A095ED50034A65B /* DetailFavoriteViewController.swift in Sources */,
+				FB69222A2A095ED50034A65B /* DetailPictureViewController.swift in Sources */,
 				FBF937892A0A94FF008235E6 /* FirebaseArticle.swift in Sources */,
 				FB15CADB297566D800FEE718 /* PlanetViewController.swift in Sources */,
 				FB15CB212975745200FEE718 /* FirebaseWrapper.swift in Sources */,
@@ -587,7 +591,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -645,7 +649,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -681,7 +685,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -717,7 +721,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -847,6 +851,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FB1881AA2A11044000B6EBCC /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -866,6 +878,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FB1881AB2A11044000B6EBCC /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB1881AA2A11044000B6EBCC /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
 		FB849A3929D6EBF900ACABA6 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */;

@@ -134,9 +134,9 @@ extension AsteroidsViewController: UITableViewDataSource {
         }
         guard indexPath.row < result.count else { return cell }
         let asteroid = result[indexPath.row].toAsteroid()
-        cell.configure(name: asteroid.name!,
-                       size: asteroid.estimatedDiameter!,
-                       isPotentiallyHazardous: asteroid.isPotentiallyHazardous!)
+        cell.configure(name: asteroid.name,
+                       size: asteroid.estimatedDiameter,
+                       isPotentiallyHazardous: asteroid.isPotentiallyHazardous)
         let info = UIImage(systemName: "info.circle.fill")
         cell.accessoryType = .detailButton
         cell.accessoryView = UIImageView(image: info)

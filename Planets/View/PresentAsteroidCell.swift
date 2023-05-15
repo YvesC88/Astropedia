@@ -20,7 +20,7 @@ class PresentAsteroidCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(name: String, size: Double, isPotentiallyHazardous: String) {
+    func configure(name: String?, size: Double?, isPotentiallyHazardous: String?) {
         if isPotentiallyHazardous == "Potentiellement dangereux" {
             isPotentiallyHazardousLabel.textColor = UIColor.systemRed
         } else {
@@ -29,7 +29,7 @@ class PresentAsteroidCell: UITableViewCell {
         let gradient = getGradientLayer(bounds: nameLabel.bounds)
         nameLabel.textColor = gradientColor(bounds: nameLabel.bounds, gradientLayer: gradient)
         nameLabel.text = name
-        estimatedDiameterLabel.text = String(format: "%.1f mètres", size)
+        estimatedDiameterLabel.text = String(format: "%.1f mètres", size!)
         isPotentiallyHazardousLabel.text = isPotentiallyHazardous
     }
     

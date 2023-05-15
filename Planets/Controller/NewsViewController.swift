@@ -10,16 +10,18 @@ import UIKit
 class NewsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtextView: UITextView!
+    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var articleLabel: UILabel!
     @IBOutlet weak var lastPictureLabel: UILabel!
     @IBOutlet weak var articleView: UIView!
     @IBOutlet weak var detailArticleView: UIView!
     @IBOutlet weak var lastPictureView: UIView!
+    @IBOutlet weak var insideArticleView: UIView!
     @IBOutlet weak var detailArticleImageView: UIImageView!
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailTextView: UITextView!
+    @IBOutlet weak var globalScrollView: UIScrollView!
     
     let pictureService = PictureService()
     let refreshControl = UIRefreshControl()
@@ -37,6 +39,13 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         fetchData()
         setupViews()
+        loadingData()
+    }
+    
+    private func loadingData() {
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.startAnimating()
+        tableView.backgroundView = spinner
     }
     
     private func setupViews() {
@@ -48,13 +57,6 @@ class NewsViewController: UIViewController {
         detailArticleView.transform = CGAffineTransform(scaleX: 0.00001, y: 0.00001)
         setRefreshControl()
         loadArticle()
-        loadingSpinner()
-    }
-    
-    private func loadingSpinner() {
-        let spinner = UIActivityIndicatorView(style: .medium)
-        spinner.startAnimating()
-        tableView.backgroundView = spinner
     }
     
     private func loadArticle() {
@@ -68,11 +70,16 @@ class NewsViewController: UIViewController {
                 }
                 self.detailTextView.text = articlesText
                 self.detailTitleLabel.text = article.title
-                self.subtextView.text = article.subTitle
+                self.subtitleLabel.text = article.subTitle
                 self.titleLabel.text = article.title
-                if let data = try? Data(contentsOf: URL(string: article.image)!) {
-                    self.imageView.image = UIImage(data: data)
-                    self.detailArticleImageView.image = UIImage(data: data)
+                if let url = URL(string: article.image) {
+                    URLSession.shared.dataTask(with: url) { data, response, error in
+                        guard let imageData = data else { return }
+                        DispatchQueue.main.async {
+                            self.imageView.image = UIImage(data: imageData)
+                            self.detailArticleImageView.image = UIImage(data: imageData)
+                        }
+                    }.resume()
                 }
             }
         }
@@ -80,11 +87,10 @@ class NewsViewController: UIViewController {
     
     private func setRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
-        tableView.addSubview(refreshControl)
+        globalScrollView.addSubview(refreshControl)
     }
     
     @objc private func refreshTableView() {
-        tableView.reloadData()
         refreshControl.endRefreshing()
         fetchData()
     }
@@ -95,7 +101,7 @@ class NewsViewController: UIViewController {
         let calendar = Calendar.current
         let start = calendar.date(byAdding: .day, value: -1, to: date)
         let startDate = self.getFormattedDate(date: start!, dateFormat: dateFormat)
-        let newDate = calendar.date(byAdding: .day, value: -3, to: date)
+        let newDate = calendar.date(byAdding: .day, value: -5, to: date)
         let endDate = self.getFormattedDate(date: newDate!, dateFormat: dateFormat)
         pictureService.getPicture(startDate: endDate, endDate: startDate) { picture in
             if let picture = picture {
@@ -135,8 +141,8 @@ extension NewsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         guard indexPath.row < picture.count else { return cell }
-        let picture = picture[indexPath.row].toPicture()
-        cell.configure(title: picture.title!, image: picture.imageSD!)
+        let picture = picture[indexPath.row]
+        cell.configure(title: picture.title, image: picture.url)
         return cell
     }
 }
@@ -145,12 +151,11 @@ extension NewsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < picture.count {
-            let picture = picture[indexPath.row].toPicture()
+            let picture = picture[indexPath.row]
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailFavoriteViewController") as! DetailFavoriteViewController
-            customViewController.picture = picture
+            let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailFavoriteViewController") as! DetailPictureViewController
+            customViewController.picture = picture.toPicture()
             self.navigationController?.pushViewController(customViewController, animated: true)
         }
     }
-    
 }

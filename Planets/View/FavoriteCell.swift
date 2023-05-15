@@ -22,8 +22,8 @@ class FavoriteCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(title: String, image: Data) {
+    func configure(title: String?, image: Data?) {
         titleLabel.text = title
-        dayImageView.image = UIImage(data: image)
+        dayImageView.image = UIImage(data: image!)
     }
 }

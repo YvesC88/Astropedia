@@ -11,6 +11,7 @@ import CoreData
 
 class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var favoriteLabel: UILabel!
     
     private var favoritePicture: [LocalPicture] = [] {
         didSet {
@@ -21,11 +22,24 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchLocalPicture()
+        showLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchLocalPicture()
+        showLabel()
+    }
+    
+    private func showLabel() {
+            favoriteLabel.text = "Votre liste est vide\n\n\n\n Cliquez sur le cœur pour ajouter vos images préférées et les retrouver même sans connexion."
+            if favoritePicture.isEmpty {
+                tableView.isHidden = true
+                favoriteLabel.isHidden = false
+            } else {
+                tableView.isHidden = false
+                favoriteLabel.isHidden = true
+            }
     }
     
     private func fetchLocalPicture() {
@@ -46,8 +60,8 @@ extension FavoritesViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         guard indexPath.row < favoritePicture.count else { return cell }
-        let picture = favoritePicture[indexPath.row]
-        cell.configure(title: picture.title!, image: picture.imageSD!)
+        let picture = favoritePicture[indexPath.row].toPicture()
+        cell.configure(title: picture.title, image: picture.imageSD)
         return cell
     }
 }
@@ -61,6 +75,7 @@ extension FavoritesViewController: UITableViewDelegate {
         favoritePicture.remove(at: indexPath.row)
         do {
             try context.save()
+            showLabel()
         } catch {
             print("Error")
         }
@@ -71,7 +86,7 @@ extension FavoritesViewController: UITableViewDelegate {
         guard indexPath.row < favoritePicture.count else { return }
         let picture = favoritePicture[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailFavoriteViewController") as! DetailFavoriteViewController
+        let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailFavoriteViewController") as! DetailPictureViewController
         customViewController.picture = picture.toPicture()
         self.navigationController?.pushViewController(customViewController, animated: true)
     }

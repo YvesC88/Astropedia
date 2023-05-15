@@ -49,10 +49,10 @@ extension MoonViewController: UITableViewDataSource {
                        membership: planet.membership,
                        type: planet.type,
                        diameter: planet.diameter)
-        let info = UIImage(systemName: "info.circle.fill")
+        let info = UIImage(systemName: "chevron.right")
         cell.accessoryType = .detailButton
         cell.accessoryView = UIImageView(image: info)
-        cell.accessoryView?.tintColor = UIColor.systemBlue
+        cell.accessoryView?.tintColor = UIColor.systemGray
         return cell
     }
 }
