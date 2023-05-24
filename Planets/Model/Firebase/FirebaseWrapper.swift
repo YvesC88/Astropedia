@@ -59,8 +59,8 @@ class FirebaseWrapper: FirebaseProtocol {
                                             image: document["image"] as? String ?? "",
                                             source: document["source"] as? String ?? "",
                                             subTitle: document["subTitle"] as? String ?? "",
-                                            articleText: document["articleText"] as? [String] ?? []
-                                           ))
+                                            articleText: document["articleText"] as? [String] ?? [],
+                                            id: document["id"] as? String ?? ""))
         }
         return articles
     }

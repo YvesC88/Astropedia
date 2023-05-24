@@ -11,7 +11,7 @@ struct ResultAsteroid: Codable {
     let links: WelcomeLinks
     let elementCount: Int
     let nearEarthObjects: [String: [APIAsteroid]]
-
+    
     enum CodingKeys: String, CodingKey {
         case links
         case elementCount = "element_count"
@@ -21,7 +21,7 @@ struct ResultAsteroid: Codable {
 
 struct WelcomeLinks: Codable {
     let next, previous, linksSelf: String
-
+    
     enum CodingKeys: String, CodingKey {
         case next, previous
         case linksSelf = "self"
@@ -37,7 +37,7 @@ struct APIAsteroid: Codable {
     let isPotentiallyHazardousAsteroid: Bool
     let closeApproachData: [CloseApproachDatum]
     let isSentryObject: Bool
-
+    
     enum CodingKeys: String, CodingKey {
         case links, id
         case neoReferenceID = "neo_reference_id"
@@ -57,7 +57,7 @@ struct CloseApproachDatum: Codable {
     var relativeVelocity: RelativeVelocity
     let missDistance: MissDistance
     let orbitingBody: String
-
+    
     enum CodingKeys: String, CodingKey {
         case closeApproachDate = "close_approach_date"
         case closeApproachDateFull = "close_approach_date_full"
@@ -74,7 +74,7 @@ struct MissDistance: Codable {
 
 struct RelativeVelocity: Codable {
     var kilometersPerSecond, kilometersPerHour, milesPerHour: String
-
+    
     enum CodingKeys: String, CodingKey {
         case kilometersPerSecond = "kilometers_per_second"
         case kilometersPerHour = "kilometers_per_hour"
@@ -88,7 +88,7 @@ struct EstimatedDiameter: Codable {
 
 struct Feet: Codable {
     let estimatedDiameterMin, estimatedDiameterMax: Double
-
+    
     enum CodingKeys: String, CodingKey {
         case estimatedDiameterMin = "estimated_diameter_min"
         case estimatedDiameterMax = "estimated_diameter_max"
@@ -97,7 +97,7 @@ struct Feet: Codable {
 
 struct NearEarthObjectLinks: Codable {
     let linksSelf: String
-
+    
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PresentPlanetCell: UITableViewCell {
+class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var objectLabel: UILabel!
     @IBOutlet weak var membershipLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!

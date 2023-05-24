@@ -16,8 +16,7 @@ extension LocalPicture {
     
     func toPicture() -> Picture {
         return Picture(title: title,
-                       imageSD: imageSD,
-                       imageHD: imageHD,
+                       image: image,
                        copyright: copyright,
                        explanation: explanation)
     }

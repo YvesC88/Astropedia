@@ -32,6 +32,7 @@ open class CoreDataStack: CoreDataStackProtocol {
         let container = NSPersistentContainer(name: persistentContainerName)
         container.loadPersistentStores(completionHandler: { storeDescritpion, error in
             if let error = error as NSError? {
+                
                 fatalError("Unresolved error \(error), \(error.userInfo) for : \(storeDescritpion.description)")
             }
         })
@@ -49,13 +50,28 @@ open class CoreDataStack: CoreDataStackProtocol {
         }
     }
 
-    func unSave(picture: Picture) throws {
+    func unsavePicture(picture: Picture) throws {
         let fetchRequest: NSFetchRequest<LocalPicture>
         fetchRequest = LocalPicture.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "title == %@", picture.title ?? "")
         let result = try? viewContext.fetch(fetchRequest)
         if let localPicture = result?.first {
             viewContext.delete(localPicture)
+            do {
+                try viewContext.save()
+            } catch {
+                print("Error")
+            }
+        }
+    }
+    
+    func unsaveArticle(article: Article) throws {
+        let fetchRequest: NSFetchRequest<LocalArticle>
+        fetchRequest = LocalArticle.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", article.id ?? "")
+        let result = try? viewContext.fetch(fetchRequest)
+        if let localArticle = result?.first {
+            viewContext.delete(localArticle)
             do {
                 try viewContext.save()
             } catch {

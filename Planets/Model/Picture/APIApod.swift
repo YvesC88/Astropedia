@@ -24,32 +24,24 @@ struct APIApod: Codable {
 
 extension APIApod {
     
-    func toPicture() -> Picture {
+    func toPicture(completion: @escaping (Picture?) -> Void) {
         var picture = Picture(title: self.title,
-                              imageSD: nil,
-                              imageHD: nil,
+                              image: nil,
                               copyright: self.copyright,
                               explanation: self.explanation)
-        let group = DispatchGroup()
-        if let sdURL = URL(string: self.url) {
-            group.enter()
-            URLSession.shared.dataTask(with: sdURL) { data, response, error in
-                defer { group.leave() }
-                guard let data = data, error == nil else { return }
-                picture.imageSD = data
+        
+        if let image = URL(string: self.url) {
+            URLSession.shared.dataTask(with: image) { data, response, error in
+                guard let data = data, error == nil else {
+                    completion(nil)
+                    return
+                }
+                picture.image = data
+                completion(picture)
             }
             .resume()
+        } else {
+            completion(nil)
         }
-        if let hdURL = URL(string: self.hdurl) {
-            group.enter()
-            URLSession.shared.dataTask(with: hdURL) { data, response, error in
-                defer { group.leave() }
-                guard let data = data, error == nil else { return }
-                picture.imageHD = data
-            }
-            .resume()
-        }
-        group.wait()
-        return picture
     }
 }

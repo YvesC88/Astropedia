@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Charts
 
 class DetailAsteroidViewController: UIViewController {
     @IBOutlet weak var sizeLabel: UILabel!
@@ -31,7 +30,7 @@ class DetailAsteroidViewController: UIViewController {
         let gradientTitleLabel = self.getGradientLayer(bounds: asteroidNameLabel.bounds)
         asteroidNameLabel.textColor = self.gradientColor(bounds: asteroidNameLabel.bounds, gradientLayer: gradientTitleLabel)
         setData()
-        self.setUIView(view: [sizeView, velocityView, distanceView, legendView, infoView])
+        self.setUIView(view: [statisticsView])
     }
     
     func setData() {

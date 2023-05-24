@@ -20,7 +20,7 @@ class PictureService {
             "start_date": startDate,
             "end_date": endDate,
         ] as [String : Any]
-
+        
         AF.request(url, method: .get, parameters: parameters).response { response in
             guard let data = response.data else {
                 callback(nil)
@@ -31,25 +31,24 @@ class PictureService {
         }
     }
     
-    func savePicture(title: String?, imageSD: Data?, imageHD: Data?, copyright: String?, explanation: String?)
+    func savePicture(title: String?, image: Data?, copyright: String?, explanation: String?)
     {
         let coreDataStack = CoreDataStack()
         let pictures = LocalPicture(context: coreDataStack.viewContext)
         pictures.title = title
-        pictures.imageSD = imageSD
-        pictures.imageHD = imageHD
+        pictures.image = image
         pictures.copyright = copyright
         pictures.explanation = explanation
         do {
             try coreDataStack.save()
         } catch {
-            print("Erreor \(error)")
+            print("Error \(error)")
         }
     }
     
     func unsaveRecipe(picture: Picture) {
         do {
-            try CoreDataStack.share.unSave(picture: picture)
+            try CoreDataStack.share.unsavePicture(picture: picture)
         } catch {
             print("Error : \(error)")
         }

@@ -13,14 +13,12 @@ class DetailPictureViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var explanationTextView: UITextView!
     @IBOutlet weak var copyrightLabel: UILabel!
-    @IBOutlet weak var definitionButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollImageView: UIScrollView!
     @IBOutlet weak var favoriteButton: UIButton!
     
     var picture: Picture!
     let pictureService = PictureService()
-    private var isHD = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +32,11 @@ class DetailPictureViewController: UIViewController {
     }
     
     func setUI() {
+        if pictureService.isFavorite(picture: picture) {
+            favoriteButton.isSelected = true
+        } else {
+            favoriteButton.isSelected = false
+        }
         titleLabel.text = picture.title
         explanationTextView.text = picture.explanation
         if picture.copyright != nil {
@@ -41,19 +44,13 @@ class DetailPictureViewController: UIViewController {
         } else {
             copyrightLabel.text = "Pas d'auteur"
         }
-        guard let imageSDData = picture.imageSD else { return }
-        imageView.image = UIImage(data: imageSDData)
-        guard pictureService.isFavorite(picture: picture) else {
-            favoriteButton.isSelected = false
-            return
+        
+        if let imageData = picture.image  {
+            imageView.image = UIImage(data: imageData)
+        } else {
+            imageView.image = nil
         }
-        favoriteButton.isSelected = true
-    }
-    
-    @IBAction func hdButtonTapped(_ sender: UIButton) {
-        imageView.image = UIImage(data: (isHD ? picture.imageSD : picture.imageHD)!)
-        definitionButton.setTitle(isHD ? "HD" : "SD", for: .normal)
-        isHD.toggle()
+        
     }
     
     @IBAction func didSharedImage() {
@@ -66,13 +63,13 @@ class DetailPictureViewController: UIViewController {
     @IBAction func didTappedFavorite() {
         let isFavorite: Bool = pictureService.isFavorite(picture: picture)
         guard isFavorite else {
-            pictureService.savePicture(title: picture.title, imageSD: picture.imageSD, imageHD: picture.imageHD, copyright: picture.copyright, explanation: picture.explanation)
-            presentAlert(title: "Favoris", message: "Image sauvegardée dans les favoris.")
+            pictureService.savePicture(title: picture.title, image: picture.image, copyright: picture.copyright, explanation: picture.explanation)
+            showInfo(title: "Enregistré")
             favoriteButton.isSelected = true
             return
         }
         pictureService.unsaveRecipe(picture: picture)
-        navigationController?.popViewController(animated: true)
+        showInfo(title: "Effacé")
         favoriteButton.isSelected = false
     }
 }
