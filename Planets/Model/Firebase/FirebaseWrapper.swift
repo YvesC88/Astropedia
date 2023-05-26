@@ -18,17 +18,17 @@ class FirebaseWrapper: FirebaseProtocol {
         let db = Firestore.firestore()
         db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
-                completion(self.build(from: querySnapshot.documents), nil)
+                completion(self.buildData(from: querySnapshot.documents), nil)
             } else {
                 completion(nil, error?.localizedDescription)
             }
         }
     }
     
-    internal func build(from documents: [QueryDocumentSnapshot]) -> [FirebaseData] {
-        var planets = [FirebaseData]()
+    internal func buildData(from documents: [QueryDocumentSnapshot]) -> [FirebaseData] {
+        var object = [FirebaseData]()
         for document in documents {
-            planets.append(FirebaseData(name: document["name"] as? String ?? "",
+            object.append(FirebaseData(name: document["name"] as? String ?? "",
                                 image: document["image"] as? String ?? "",
                                 tempMoy: document["tempMoy"] as? String ?? "",
                                 gravity: document["gravity"] as? Double ?? 0,
@@ -38,21 +38,21 @@ class FirebaseWrapper: FirebaseProtocol {
                                 type: document["type"] as? String ?? "",
                                 diameter: document["diameter"] as? Double ?? 0.0))
         }
-        return planets
+        return object
     }
     
     func fetchArticle(collectionID: String, completion: @escaping ([FirebaseArticle]?, String?) -> ()) {
         let db = Firestore.firestore()
         db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
-                completion(self.build(from: querySnapshot.documents), nil)
+                completion(self.buildArticle(from: querySnapshot.documents), nil)
             } else {
                 completion(nil, error?.localizedDescription)
             }
         }
     }
     
-    internal func build(from documents: [QueryDocumentSnapshot]) -> [FirebaseArticle] {
+    internal func buildArticle(from documents: [QueryDocumentSnapshot]) -> [FirebaseArticle] {
         var articles = [FirebaseArticle]()
         for document in documents {
             articles.append(FirebaseArticle(title: document["title"] as? String ?? "",

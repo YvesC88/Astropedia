@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SDWebImage
+import WebKit
 
 class DetailViewController: UIViewController {
     
@@ -44,16 +46,9 @@ class DetailViewController: UIViewController {
     // MARK: - Private Methods
     
     private func configureData() {
-        if let url = URL(string: data.image) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let imageData = data else { return }
-                DispatchQueue.main.async {
-                    self.objectImageView.image = UIImage(data: imageData)
-                }
-            }.resume()
-        }
+        objectImageView.sd_setImage(with: URL(string: data.image))
         titleLabel.text = data.name
-        statisticsTextView.text = data.statistics.map { "• \($0)\n\n" }.joined()
+        statisticsTextView.text = data.statistics.map { "• \($0)" }.joined(separator: "\n\n")
         sourceLabel.text = data.source
     }
     

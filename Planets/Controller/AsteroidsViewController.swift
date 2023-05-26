@@ -9,17 +9,17 @@ import UIKit
 
 class AsteroidsViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var numberOfAsteroidLabel: UILabel!
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var numberOfAsteroidLabel: UILabel!
+    @IBOutlet weak private var datePicker: UIDatePicker!
     
-    let asteroidService = AsteroidService()
-    let refreshControl = UIRefreshControl()
+    private let asteroidService = AsteroidService()
+    private let refreshControl = UIRefreshControl()
+    private let spinner = UIActivityIndicatorView(style: .medium)
     
-    var selectedCategory = 0
-    var isAscending = true
+    private var selectedCategory = 0
+    private let datePickerViewController = UIViewController()
     
-    let datePickerViewController = UIViewController()
     private var result: [APIAsteroid] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -35,31 +35,29 @@ class AsteroidsViewController: UIViewController {
         setRefreshControl()
     }
     
-    private func loadingData() {
-        let spinner = UIActivityIndicatorView(style: .medium)
+    private final func loadingData() {
         spinner.startAnimating()
         tableView.backgroundView = spinner
     }
     
-    private func setDatePicker() {
+    private final func setDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "fr_FR")
         datePicker.minimumDate = Date()
     }
     
-    private func setRefreshControl() {
+    private final func setRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
     
-    func incrementLabel(to endValue: Int) {
-        let duration: Double = 10 //seconds
-        UIView.animate(withDuration: duration) {
-            self.numberOfAsteroidLabel.text = "\(endValue)"
-        }
+    @objc private final func refreshTableView() {
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+        fetchData()
     }
     
-    private func fetchData() {
+    private final func fetchData() {
         let date = Date()
         let dateFormat = "yyyy-MM-dd"
         let startDate = self.getFormattedDate(date: date, dateFormat: dateFormat)
@@ -76,16 +74,11 @@ class AsteroidsViewController: UIViewController {
                 return
             }
             self.result = asteroids
+            self.spinner.stopAnimating()
         }
     }
     
-    @objc private func refreshTableView() {
-        tableView.reloadData()
-        refreshControl.endRefreshing()
-        fetchData()
-    }
-    
-    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+    @IBAction private final func datePickerValueChanged(_ sender: UIDatePicker) {
         loadingData()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -106,7 +99,7 @@ class AsteroidsViewController: UIViewController {
         }
     }
     
-    @IBAction func categoryChanged(_ sender: UISegmentedControl) {
+    @IBAction private final func categoryChanged(_ sender: UISegmentedControl) {
         selectedCategory = sender.selectedSegmentIndex
         switch selectedCategory {
         case 0:

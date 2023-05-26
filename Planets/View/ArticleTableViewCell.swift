@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var articleTitleLabel: UILabel!
@@ -25,14 +26,7 @@ class ArticleTableViewCell: UITableViewCell {
     func configure(title: String?, subtitle: String?, image: String?) {
         articleTitleLabel.text = title
         articleSubtitleLabel.text = subtitle
-        if let url = URL(string: image!) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let imageData = data else { return }
-                DispatchQueue.main.async {
-                    self.articleImageView.image = UIImage(data: imageData)
-                }
-            }.resume()
-        }
+        articleImageView.sd_setImage(with: URL(string: image!))
     }
     
 }

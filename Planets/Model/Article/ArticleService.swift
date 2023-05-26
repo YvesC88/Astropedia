@@ -10,7 +10,7 @@ import CoreData
 
 class ArticleService {
 
-    func saveArticle(title: String?, subtitle: String?, image: Data?, source: String?, articleText: [String]?, id: String?)
+    func saveArticle(title: String?, subtitle: String?, image: String?, source: String?, articleText: [String]?, id: String?)
     {
         let coreDataStack = CoreDataStack()
         let context = coreDataStack.persistentContainer.viewContext

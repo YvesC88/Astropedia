@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailArticleViewController: UIViewController {
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleTextView: UITextView!
+    @IBOutlet weak var subtitleTextView: UITextView!
     @IBOutlet weak var favoriteButton: UIButton!
     
     
@@ -28,12 +30,9 @@ class DetailArticleViewController: UIViewController {
         } else {
             favoriteButton.isSelected = false
         }
-        if let imageData = article.image {
-            articleImageView.image = UIImage(data: imageData)
-        } else {
-            articleImageView.image = nil
-        }
+        articleImageView.sd_setImage(with: URL(string: article.image!))
         articleTitleLabel.text = article.title
+        subtitleTextView.text = article.subtitle
         if let articleTextArray = article.articleText {
             var articleText: String = ""
             for text in articleTextArray {
@@ -61,11 +60,5 @@ class DetailArticleViewController: UIViewController {
         articleService.unsaveArticle(article: article)
         showInfo(title: "Effacé")
         favoriteButton.isSelected = false
-    }
-    
-    @IBAction func openUrlArticle() {
-        if let url = URL(string: article.source ?? "") {
-            UIApplication.shared.open(url)
-        }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SDWebImage
 
 struct APIApod: Codable {
     let date, explanation: String
@@ -24,24 +25,7 @@ struct APIApod: Codable {
 
 extension APIApod {
     
-    func toPicture(completion: @escaping (Picture?) -> Void) {
-        var picture = Picture(title: self.title,
-                              image: nil,
-                              copyright: self.copyright,
-                              explanation: self.explanation)
-        
-        if let image = URL(string: self.url) {
-            URLSession.shared.dataTask(with: image) { data, response, error in
-                guard let data = data, error == nil else {
-                    completion(nil)
-                    return
-                }
-                picture.image = data
-                completion(picture)
-            }
-            .resume()
-        } else {
-            completion(nil)
-        }
+    func toPicture() -> Picture {
+        return Picture(title: self.title, image: self.hdurl, copyright: self.copyright, explanation: self.explanation)
     }
 }

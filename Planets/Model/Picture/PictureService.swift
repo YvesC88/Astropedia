@@ -31,7 +31,7 @@ class PictureService {
         }
     }
     
-    func savePicture(title: String?, image: Data?, copyright: String?, explanation: String?)
+    func savePicture(title: String?, image: String?, copyright: String?, explanation: String?)
     {
         let coreDataStack = CoreDataStack()
         let pictures = LocalPicture(context: coreDataStack.viewContext)

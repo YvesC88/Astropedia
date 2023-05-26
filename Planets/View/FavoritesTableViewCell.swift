@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FavoritesTableViewCell: UITableViewCell {
     
@@ -22,12 +23,8 @@ class FavoritesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(title: String?, image: Data?) {
+    func configure(title: String?, image: String?) {
         titleLabel.text = title
-        guard let image = image, let imageObject = UIImage(data: image) else {
-            dayImageView.image = nil
-            return
-        }
-        dayImageView.image = imageObject
+        dayImageView.sd_setImage(with: URL(string: image!))
     }
 }

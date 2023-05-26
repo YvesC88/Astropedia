@@ -48,6 +48,8 @@
 		FBAB2A7929F6D75500B31C6D /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB2A7829F6D75500B31C6D /* Picture.swift */; };
 		FBAC78FA29F563AB009DFF86 /* PictureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78F929F563AB009DFF86 /* PictureService.swift */; };
 		FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78FB29F56464009DFF86 /* APIApod.swift */; };
+		FBC473432A1F618400E70C4A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FBC473422A1F618400E70C4A /* SDWebImage */; };
+		FBC473452A1FBCBC00E70C4A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */; };
 		FBF12B6A2A0E39B20061FEB8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBF12B692A0E39B20061FEB8 /* FirebaseAnalytics */; };
 		FBF12B6C2A0E39B20061FEB8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBF12B6B2A0E39B20061FEB8 /* FirebaseCrashlytics */; };
 		FBF12B6E2A0E39B20061FEB8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FBF12B6D2A0E39B20061FEB8 /* FirebaseFirestore */; };
@@ -118,6 +120,7 @@
 		FBAB2A7829F6D75500B31C6D /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		FBAC78F929F563AB009DFF86 /* PictureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureService.swift; sourceTree = "<group>"; };
 		FBAC78FB29F56464009DFF86 /* APIApod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIApod.swift; sourceTree = "<group>"; };
+		FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		FBF8657529FD0F4700646278 /* Astropedia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Astropedia.xcdatamodel; sourceTree = "<group>"; };
 		FBF8657C29FD17C200646278 /* LocalPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPicture.swift; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBC473432A1F618400E70C4A /* SDWebImage in Frameworks */,
 				FBF12B6C2A0E39B20061FEB8 /* FirebaseCrashlytics in Frameworks */,
 				FBF12B6E2A0E39B20061FEB8 /* FirebaseFirestore in Frameworks */,
 				FB1881AC2A11044000B6EBCC /* AlamofireImage in Frameworks */,
@@ -248,6 +252,7 @@
 				FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */,
 				FB6922292A095ED50034A65B /* DetailPictureViewController.swift */,
 				FB40AE642A14C6B90067FCAC /* DetailArticleViewController.swift */,
+				FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				FBF12B6B2A0E39B20061FEB8 /* FirebaseCrashlytics */,
 				FBF12B6D2A0E39B20061FEB8 /* FirebaseFirestore */,
 				FB1881AB2A11044000B6EBCC /* AlamofireImage */,
+				FBC473422A1F618400E70C4A /* SDWebImage */,
 			);
 			productName = Planets;
 			productReference = FB15CAD3297566D800FEE718 /* Planets.app */;
@@ -404,6 +410,7 @@
 				FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				FBF12B682A0E39B20061FEB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				FB1881AA2A11044000B6EBCC /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				FBC473412A1F618300E70C4A /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = FB15CAD4297566D800FEE718 /* Products */;
 			projectDirPath = "";
@@ -448,6 +455,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		FB0EAAF929F7388E0044B593 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -478,6 +486,7 @@
 				FB15CB272975958A00FEE718 /* SolarSystemTableViewCell.swift in Sources */,
 				FB849A4C29DD7A5300ACABA6 /* DetailAsteroidViewController.swift in Sources */,
 				FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */,
+				FBC473452A1FBCBC00E70C4A /* SettingsTableViewController.swift in Sources */,
 				FB15CB1E2975735700FEE718 /* FirebaseDataService.swift in Sources */,
 				FB69222A2A095ED50034A65B /* DetailPictureViewController.swift in Sources */,
 				FBF937892A0A94FF008235E6 /* FirebaseArticle.swift in Sources */,
@@ -619,7 +628,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -677,7 +685,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -713,7 +720,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -749,7 +756,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -895,6 +902,14 @@
 				kind = branch;
 			};
 		};
+		FBC473412A1F618300E70C4A /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		FBF12B682A0E39B20061FEB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -915,6 +930,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		FBC473422A1F618400E70C4A /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBC473412A1F618300E70C4A /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 		FBF12B692A0E39B20061FEB8 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

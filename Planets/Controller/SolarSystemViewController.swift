@@ -12,16 +12,15 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak private var tableView: UITableView!
     
-    private let searchController = UISearchController(searchResultsController: nil)
-    private var isSearchCancelled = false
+    private let searchController = UISearchController()
     
     private var planets: [FirebaseData] = []
     private var moons: [FirebaseData] = []
+    private var stars: [FirebaseData] = []
     
-    private var categories: [String] = ["Planètes", "Lunes"]
     
+    private var categories: [String] = ["Étoile", "Planètes", "Lunes"]
     private var solarSystem: [(category: String, data: [FirebaseData])] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,24 +57,37 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
                 self.updateSolarSystem()
             }
         }
+        
+        service.fetchData(collectionID: "stars") { [weak self] star, error in
+            guard let self = self else { return }
+            if let error = error {
+                print("Erre ur lors du chargement des étoiles:", error)
+            } else {
+                self.stars = star
+                self.updateSolarSystem()
+            }
+        }
     }
     
     private final func updateSolarSystem() {
-        guard !planets.isEmpty, !moons.isEmpty else {
+        guard !planets.isEmpty, !moons.isEmpty, !stars.isEmpty else {
             return
         }
         
         var filteredPlanets: [FirebaseData] = []
         var filteredMoons: [FirebaseData] = []
+        var filteredStars: [FirebaseData] = []
         
         if isFiltering() {
             let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).uppercased() ?? ""
             filteredPlanets = planets.filter { $0.name.uppercased().hasPrefix(searchText) }
             filteredMoons = moons.filter { $0.name.uppercased().hasPrefix(searchText) }
+            filteredStars = stars.filter { $0.name.uppercased().hasPrefix(searchText) }
         }
         solarSystem = [
-            (category: categories[0], data: isFiltering() ? filteredPlanets : planets),
-            (category: categories[1], data: isFiltering() ? filteredMoons : moons)
+            (category: categories[0], data: isFiltering() ? filteredStars : stars),
+            (category: categories[1], data: isFiltering() ? filteredPlanets : planets),
+            (category: categories[2], data: isFiltering() ? filteredMoons : moons)
         ]
         
         DispatchQueue.main.async {
@@ -112,10 +124,6 @@ extension SolarSystemViewController: UITableViewDataSource {
         }
         let data = solarSystem[indexPath.section].data[indexPath.row]
         cell.configure(name: data.name, image: data.image, tempMoy: data.tempMoy, membership: data.membership, type: data.type, diameter: data.diameter)
-        let info = UIImage(systemName: "chevron.right")
-        cell.accessoryType = .detailButton
-        cell.accessoryView = UIImageView(image: info)
-        cell.accessoryView?.tintColor = UIColor.lightGray
         return cell
     }
 }
@@ -134,14 +142,14 @@ extension SolarSystemViewController: UITableViewDelegate {
 extension SolarSystemViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-            return
-        }
+        let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let filteredPlanets = planets.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
         let filteredMoons = moons.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
+        let filteredStars = stars.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
         solarSystem = [
-            (category: categories[0], data: filteredPlanets),
-            (category: categories[1], data: filteredMoons)
+            (category: categories[0], data: filteredStars),
+            (category: categories[1], data: filteredPlanets),
+            (category: categories[2], data: filteredMoons)
         ]
         DispatchQueue.main.async {
             self.tableView.reloadData()

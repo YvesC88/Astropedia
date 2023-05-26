@@ -3,7 +3,7 @@
     <entity name="LocalArticle" representedClassName=".LocalArticle" syncable="YES" codeGenerationType="category">
         <attribute name="articleText" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName" customClassName="[String]"/>
         <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="source" optional="YES" attributeType="String"/>
         <attribute name="subtitle" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -11,7 +11,7 @@
     <entity name="LocalPicture" representedClassName=".LocalPicture" syncable="YES" codeGenerationType="category">
         <attribute name="copyright" optional="YES" attributeType="String"/>
         <attribute name="explanation" optional="YES" attributeType="String"/>
-        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
 </model>

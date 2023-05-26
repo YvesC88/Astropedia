@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PictureTableViewCell: UITableViewCell {
     
@@ -24,13 +25,6 @@ class PictureTableViewCell: UITableViewCell {
     
     func configure(title: String?, image: String?) {
         titleLabel.text = title
-        if let url = URL(string: image!) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let imageData = data else { return }
-                DispatchQueue.main.async {
-                    self.pictureImageView.image = UIImage(data: imageData)
-                }
-            }.resume()
-        }
+        pictureImageView.sd_setImage(with: URL(string: image!))
     }
 }

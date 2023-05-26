@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var objectLabel: UILabel!
@@ -23,14 +24,7 @@ class SolarSystemTableViewCell: UITableViewCell {
     }
     
     func configure(name: String, image: String, tempMoy: String, membership: String, type: String, diameter: Double) {
-        if let url = URL(string: image) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let imageData = data else { return }
-                DispatchQueue.main.async {
-                    self.objectImageView.image = UIImage(data: imageData)
-                }
-            }.resume()
-        }
+        objectImageView.sd_setImage(with: URL(string: image))
         objectLabel.text = name
         objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 120)
         let gradient = getGradientLayer(bounds: objectLabel.bounds)

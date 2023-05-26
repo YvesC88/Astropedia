@@ -19,26 +19,7 @@ struct FirebaseArticle: Codable {
 
 extension FirebaseArticle {
     
-    func toArticle(completion: @escaping (Article?) -> Void) {
-        var article = Article(title: self.title,
-                              subtitle: self.subTitle,
-                              image: nil,
-                              articleText: self.articleText,
-                              source: self.source,
-                              id: self.id)
-        
-        if let imageURL = URL(string: self.image) {
-            URLSession.shared.dataTask(with: imageURL) { data, response, error in
-                guard let data = data, error == nil else {
-                    completion(nil)
-                    return
-                }
-                article.image = data
-                completion(article)
-            }
-            .resume()
-        } else {
-            completion(nil)
-        }
+    func toArticle() -> Article {
+        return Article(title: self.title, subtitle: self.subTitle, image: self.image, articleText: self.articleText, source: self.source, id: self.id)
     }
 }

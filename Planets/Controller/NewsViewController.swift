@@ -15,7 +15,6 @@ class NewsViewController: UIViewController {
     @IBOutlet weak private var articleView: UIView!
     @IBOutlet weak private var lastPictureView: UIView!
     @IBOutlet weak private var globalScrollView: UIScrollView!
-    @IBOutlet weak private var refreshButton: UIButton!
     
     let pictureService = PictureService()
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -75,11 +74,6 @@ class NewsViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func didTappedRefresh() {
-        loadArticle()
-        fetchData()
-    }
 }
 
 
@@ -103,7 +97,7 @@ extension NewsViewController: UITableViewDataSource {
             }
             guard indexPath.row < picture.count else { return cell }
             let picture = picture[indexPath.row]
-            cell.configure(title: picture.title, image: picture.url)
+            cell.configure(title: picture.title, image: picture.hdurl)
             return cell
         case articleTableView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else {
@@ -126,32 +120,18 @@ extension NewsViewController: UITableViewDelegate {
         switch tableView {
         case pictureTableView:
             guard indexPath.row < picture.count else { return }
-            let selectedPicture = picture[indexPath.row]
-            selectedPicture.toPicture { [weak self] picture in
-                guard let self = self, let picture = picture else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as! DetailPictureViewController
-                    detailViewController.picture = picture
-                    self.navigationController?.pushViewController(detailViewController, animated: true)
-                }
-            }
+            let selectedPicture = picture[indexPath.row].toPicture()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as! DetailPictureViewController
+            detailViewController.picture = selectedPicture
+            self.navigationController?.pushViewController(detailViewController, animated: true)
         case articleTableView:
             guard indexPath.row < article.count else { return }
-            let selectedFirebaseArticle = article[indexPath.row]
-            selectedFirebaseArticle.toArticle { [weak self] article in
-                guard let self = self, let article = article else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as! DetailArticleViewController
-                    detailViewController.article = article
-                    self.navigationController?.pushViewController(detailViewController, animated: true)
-                }
-            }
+            let selectedArticle = article[indexPath.row].toArticle()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as? DetailArticleViewController else { return }
+            detailArticleVC.article = selectedArticle
+            self.navigationController?.pushViewController(detailArticleVC, animated: true)
         default:
             break
         }

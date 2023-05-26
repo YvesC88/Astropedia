@@ -13,7 +13,7 @@ struct Article {
     
     var title: String?
     var subtitle: String?
-    var image: Data?
+    var image: String?
     var articleText: [String]?
     var source: String?
     var id: String?

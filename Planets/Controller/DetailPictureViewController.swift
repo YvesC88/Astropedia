@@ -44,13 +44,7 @@ class DetailPictureViewController: UIViewController {
         } else {
             copyrightLabel.text = "Pas d'auteur"
         }
-        
-        if let imageData = picture.image  {
-            imageView.image = UIImage(data: imageData)
-        } else {
-            imageView.image = nil
-        }
-        
+        imageView.sd_setImage(with: URL(string: picture.image!))
     }
     
     @IBAction func didSharedImage() {
