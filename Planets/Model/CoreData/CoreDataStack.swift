@@ -58,7 +58,7 @@ open class CoreDataStack: CoreDataStackProtocol {
         if let localPicture = result?.first {
             viewContext.delete(localPicture)
             do {
-                try viewContext.save()
+                try save()
             } catch {
                 print("Error")
             }
@@ -73,10 +73,45 @@ open class CoreDataStack: CoreDataStackProtocol {
         if let localArticle = result?.first {
             viewContext.delete(localArticle)
             do {
-                try viewContext.save()
+                try save()
             } catch {
                 print("Error")
             }
         }
+    }
+    
+    func deleteAllData() throws {
+        let entities = persistentContainer.managedObjectModel.entities
+        for entity in entities {
+            if let entityName = entity.name {
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                do {
+                    try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: viewContext)
+                } catch {
+                    print("Failed to delete data for entity: \(entityName), error: \(error)")
+                    throw error
+                }
+            }
+        }
+        try save()
+    }
+    
+    func hasData() -> Bool {
+        let entities = persistentContainer.managedObjectModel.entities
+        for entity in entities {
+            if let entityName = entity.name {
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+                do {
+                    let count = try viewContext.count(for: fetchRequest)
+                    if count > 0 {
+                        return true
+                    }
+                } catch {
+                    print("Failed to fetch data for entity: \(entityName), error: \(error)")
+                }
+            }
+        }
+        return false
     }
 }

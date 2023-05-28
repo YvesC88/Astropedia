@@ -17,9 +17,8 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     private var planets: [FirebaseData] = []
     private var moons: [FirebaseData] = []
     private var stars: [FirebaseData] = []
-    
-    
-    private var categories: [String] = ["Étoile", "Planètes", "Lunes"]
+    private var dwarfPlanets: [FirebaseData] = []
+    private var categories: [String] = ["Étoile", "Planètes", "Planètes naines", "Lunes", ]
     private var solarSystem: [(category: String, data: [FirebaseData])] = []
     
     override func viewDidLoad() {
@@ -44,6 +43,16 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
                 print("Erreur lors du chargement des planètes:", error)
             } else {
                 self.planets = planet
+                self.updateSolarSystem()
+            }
+        }
+        
+        service.fetchData(collectionID: "dwarfPlanets") { [weak self] dwarfPlanets, error in
+            guard let self = self else { return }
+            if let error = error {
+                print("Erreur lors du chargement des planètes naines", error)
+            } else {
+                self.dwarfPlanets = dwarfPlanets
                 self.updateSolarSystem()
             }
         }
@@ -77,17 +86,20 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         var filteredPlanets: [FirebaseData] = []
         var filteredMoons: [FirebaseData] = []
         var filteredStars: [FirebaseData] = []
+        var filteredDwarfPlanets: [FirebaseData] = []
         
         if isFiltering() {
             let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).uppercased() ?? ""
             filteredPlanets = planets.filter { $0.name.uppercased().hasPrefix(searchText) }
             filteredMoons = moons.filter { $0.name.uppercased().hasPrefix(searchText) }
             filteredStars = stars.filter { $0.name.uppercased().hasPrefix(searchText) }
+            filteredDwarfPlanets = dwarfPlanets.filter { $0.name.uppercased().hasPrefix(searchText) }
         }
         solarSystem = [
             (category: categories[0], data: isFiltering() ? filteredStars : stars),
             (category: categories[1], data: isFiltering() ? filteredPlanets : planets),
-            (category: categories[2], data: isFiltering() ? filteredMoons : moons)
+            (category: categories[2], data: isFiltering() ? filteredDwarfPlanets : dwarfPlanets),
+            (category: categories[3], data: isFiltering() ? filteredMoons : moons)
         ]
         
         DispatchQueue.main.async {
@@ -146,10 +158,12 @@ extension SolarSystemViewController: UISearchResultsUpdating {
         let filteredPlanets = planets.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
         let filteredMoons = moons.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
         let filteredStars = stars.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
+        let filteredDwarfPlanets = dwarfPlanets.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
         solarSystem = [
             (category: categories[0], data: filteredStars),
             (category: categories[1], data: filteredPlanets),
-            (category: categories[2], data: filteredMoons)
+            (category: categories[2], data: filteredDwarfPlanets),
+            (category: categories[3], data: filteredMoons)
         ]
         DispatchQueue.main.async {
             self.tableView.reloadData()

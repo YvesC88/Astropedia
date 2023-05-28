@@ -10,6 +10,7 @@ import Firebase
 protocol FirebaseProtocol {
     func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ())
     func fetchArticle(collectionID: String, completion: @escaping ([FirebaseArticle]?, String?) -> ())
+    func fetchPrivacyPolicy(collectionID: String, completion: @escaping ([FirebasePrivacyPolicy]?, String?) -> ())
 }
 
 class FirebaseWrapper: FirebaseProtocol {
@@ -63,5 +64,26 @@ class FirebaseWrapper: FirebaseProtocol {
                                             id: document["id"] as? String ?? ""))
         }
         return articles
+    }
+    
+    func fetchPrivacyPolicy(collectionID: String, completion: @escaping ([FirebasePrivacyPolicy]?, String?) -> ()) {
+        let db = Firestore.firestore()
+        db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+                completion(self.buildPrivacyPolicy(from: querySnapshot.documents), nil)
+            } else {
+                completion(nil, error?.localizedDescription)
+            }
+        }
+    }
+    
+    internal func buildPrivacyPolicy(from documents: [QueryDocumentSnapshot]) -> [FirebasePrivacyPolicy] {
+        var privacyPolicy = [FirebasePrivacyPolicy]()
+        for document in documents {
+            privacyPolicy.append(FirebasePrivacyPolicy(title: document["title"] as? String ?? "",
+                                                       date: document["date"] as? String ?? "",
+                                                       privacyPolicyText: document["privacyPolicyText"] as? [String] ?? []))
+        }
+        return privacyPolicy
     }
 }

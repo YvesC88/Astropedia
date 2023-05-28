@@ -26,7 +26,6 @@
 		FB15CB272975958A00FEE718 /* SolarSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* SolarSystemTableViewCell.swift */; };
 		FB15CB282975958A00FEE718 /* SolarSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* SolarSystemTableViewCell.swift */; };
 		FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB292976935000FEE718 /* DetailViewController.swift */; };
-		FB1881AC2A11044000B6EBCC /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = FB1881AB2A11044000B6EBCC /* AlamofireImage */; };
 		FB1881AE2A12DC5100B6EBCC /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1881AD2A12DC5100B6EBCC /* ApiKeys.swift */; };
 		FB40AE5F2A13D14A0067FCAC /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB40AE5E2A13D14A0067FCAC /* ArticleService.swift */; };
 		FB40AE612A13D1700067FCAC /* LocalArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB40AE602A13D1700067FCAC /* LocalArticle.swift */; };
@@ -45,6 +44,8 @@
 		FB849A4829DB126600ACABA6 /* AsteroidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A4729DB126500ACABA6 /* AsteroidTableViewCell.swift */; };
 		FB849A4A29DB69AB00ACABA6 /* Asteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A4929DB69AB00ACABA6 /* Asteroid.swift */; };
 		FB849A4C29DD7A5300ACABA6 /* DetailAsteroidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A4B29DD7A5200ACABA6 /* DetailAsteroidViewController.swift */; };
+		FB9D31BA2A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D31B92A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift */; };
+		FB9D31BC2A21621700CCC8D9 /* FirebasePrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D31BB2A21621700CCC8D9 /* FirebasePrivacyPolicy.swift */; };
 		FBAB2A7929F6D75500B31C6D /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB2A7829F6D75500B31C6D /* Picture.swift */; };
 		FBAC78FA29F563AB009DFF86 /* PictureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78F929F563AB009DFF86 /* PictureService.swift */; };
 		FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78FB29F56464009DFF86 /* APIApod.swift */; };
@@ -117,6 +118,8 @@
 		FB849A4729DB126500ACABA6 /* AsteroidTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidTableViewCell.swift; sourceTree = "<group>"; };
 		FB849A4929DB69AB00ACABA6 /* Asteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid.swift; sourceTree = "<group>"; };
 		FB849A4B29DD7A5200ACABA6 /* DetailAsteroidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAsteroidViewController.swift; sourceTree = "<group>"; };
+		FB9D31B92A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		FB9D31BB2A21621700CCC8D9 /* FirebasePrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePrivacyPolicy.swift; sourceTree = "<group>"; };
 		FBAB2A7829F6D75500B31C6D /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		FBAC78F929F563AB009DFF86 /* PictureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureService.swift; sourceTree = "<group>"; };
 		FBAC78FB29F56464009DFF86 /* APIApod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIApod.swift; sourceTree = "<group>"; };
@@ -137,7 +140,6 @@
 				FBC473432A1F618400E70C4A /* SDWebImage in Frameworks */,
 				FBF12B6C2A0E39B20061FEB8 /* FirebaseCrashlytics in Frameworks */,
 				FBF12B6E2A0E39B20061FEB8 /* FirebaseFirestore in Frameworks */,
-				FB1881AC2A11044000B6EBCC /* AlamofireImage in Frameworks */,
 				FBF12B6A2A0E39B20061FEB8 /* FirebaseAnalytics in Frameworks */,
 				FB849A3A29D6EBF900ACABA6 /* Alamofire in Frameworks */,
 			);
@@ -253,6 +255,7 @@
 				FB6922292A095ED50034A65B /* DetailPictureViewController.swift */,
 				FB40AE642A14C6B90067FCAC /* DetailArticleViewController.swift */,
 				FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */,
+				FB9D31B92A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				FB15CB0629756AD600FEE718 /* FirebaseData.swift */,
 				FB15CB1D2975735700FEE718 /* FirebaseDataService.swift */,
 				FBF937882A0A94FF008235E6 /* FirebaseArticle.swift */,
+				FB9D31BB2A21621700CCC8D9 /* FirebasePrivacyPolicy.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -330,7 +334,6 @@
 				FBF12B692A0E39B20061FEB8 /* FirebaseAnalytics */,
 				FBF12B6B2A0E39B20061FEB8 /* FirebaseCrashlytics */,
 				FBF12B6D2A0E39B20061FEB8 /* FirebaseFirestore */,
-				FB1881AB2A11044000B6EBCC /* AlamofireImage */,
 				FBC473422A1F618400E70C4A /* SDWebImage */,
 			);
 			productName = Planets;
@@ -409,7 +412,6 @@
 			packageReferences = (
 				FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				FBF12B682A0E39B20061FEB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				FB1881AA2A11044000B6EBCC /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				FBC473412A1F618300E70C4A /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = FB15CAD4297566D800FEE718 /* Products */;
@@ -485,6 +487,7 @@
 				FB6922282A094C400034A65B /* FavoritesTableViewCell.swift in Sources */,
 				FB15CB272975958A00FEE718 /* SolarSystemTableViewCell.swift in Sources */,
 				FB849A4C29DD7A5300ACABA6 /* DetailAsteroidViewController.swift in Sources */,
+				FB9D31BC2A21621700CCC8D9 /* FirebasePrivacyPolicy.swift in Sources */,
 				FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */,
 				FBC473452A1FBCBC00E70C4A /* SettingsTableViewController.swift in Sources */,
 				FB15CB1E2975735700FEE718 /* FirebaseDataService.swift in Sources */,
@@ -502,6 +505,7 @@
 				FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */,
 				FBF937852A0A6E1D008235E6 /* PictureTableViewCell.swift in Sources */,
 				FB1881AE2A12DC5100B6EBCC /* ApiKeys.swift in Sources */,
+				FB9D31BA2A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift in Sources */,
 				FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */,
 				FB849A4A29DB69AB00ACABA6 /* Asteroid.swift in Sources */,
 				FB40AE5F2A13D14A0067FCAC /* ArticleService.swift in Sources */,
@@ -720,7 +724,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.5;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -756,7 +760,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.5;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -781,9 +785,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.PlanetsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planets.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Planets";
 			};
 			name = Debug;
@@ -801,9 +808,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.PlanetsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planets.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Planets";
 			};
 			name = Release;
@@ -886,14 +896,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FB1881AA2A11044000B6EBCC /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
 		FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -921,11 +923,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FB1881AB2A11044000B6EBCC /* AlamofireImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FB1881AA2A11044000B6EBCC /* XCRemoteSwiftPackageReference "AlamofireImage" */;
-			productName = AlamofireImage;
-		};
 		FB849A3929D6EBF900ACABA6 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB849A3829D6EBF800ACABA6 /* XCRemoteSwiftPackageReference "Alamofire" */;
