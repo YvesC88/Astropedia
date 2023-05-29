@@ -10,5 +10,37 @@ import XCTest
 
 final class DataServiceTest: XCTestCase {
     
-}
-
+    let firebaseMock = FirebaseWrapperMock()
+    
+    func testGivenDataTestWhenFetchPlaceThenFetchIsOK() {
+        // Given
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        let firebaseDataService = FirebaseDataService(wrapper: firebaseMock)
+        firebaseMock.dataResult = [FirebaseData(name: "Terre",
+                                                image: "",
+                                                tempMoy: "",
+                                                gravity: nil,
+                                                statistics: [],
+                                                source: "",
+                                                membership: "",
+                                                type: "",
+                                                diameter: nil)]
+        firebaseMock.dataError = nil
+        
+        var resultData: [FirebaseData]?
+        var resultError: String?
+        // When
+        firebaseDataService.fetchData(collectionID: "test") { data, error in
+            resultData = data
+            resultError = error
+            expectation.fulfill()
+        }
+        // Then
+        wait(for: [expectation], timeout: 0.01)
+        XCTAssertEqual(resultData
+        XCTAssertEqual(resultData[0].name, "Terre")
+        XCTAssertNil(resultError)
+        XCTAssertTrue(firebaseMock.isFetchDataCalled)
+    }
+    

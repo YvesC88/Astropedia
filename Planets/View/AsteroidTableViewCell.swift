@@ -29,7 +29,7 @@ class AsteroidTableViewCell: UITableViewCell {
         let gradient = getGradientLayer(bounds: nameLabel.bounds)
         nameLabel.textColor = gradientColor(bounds: nameLabel.bounds, gradientLayer: gradient)
         nameLabel.text = name
-        estimatedDiameterLabel.text = String(format: "%.1f mètres", size!)
+        estimatedDiameterLabel.text = String(format: "%.1f mètres", size ?? 0.0)
         isPotentiallyHazardousLabel.text = isPotentiallyHazardous
     }
     

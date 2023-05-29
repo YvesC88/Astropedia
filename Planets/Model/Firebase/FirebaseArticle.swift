@@ -9,12 +9,8 @@ import UIKit
 
 struct FirebaseArticle: Codable {
     
-    let title: String
-    let image: String
-    let source: String
-    let subTitle: String
+    let title, image, source, subTitle, id: String
     let articleText: [String]
-    let id: String
 }
 
 extension FirebaseArticle {

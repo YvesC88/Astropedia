@@ -24,9 +24,8 @@ class ArticleTableViewCell: UITableViewCell {
     }
     
     func configure(title: String?, subtitle: String?, image: String?) {
-        articleTitleLabel.text = title
-        articleSubtitleLabel.text = subtitle
-        articleImageView.sd_setImage(with: URL(string: image!))
+        articleTitleLabel.text = title ?? ""
+        articleSubtitleLabel.text = subtitle ?? ""
+        articleImageView.sd_setImage(with: URL(string: image ?? ""))
     }
-    
 }

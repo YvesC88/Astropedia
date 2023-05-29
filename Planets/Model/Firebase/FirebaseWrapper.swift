@@ -30,14 +30,14 @@ class FirebaseWrapper: FirebaseProtocol {
         var object = [FirebaseData]()
         for document in documents {
             object.append(FirebaseData(name: document["name"] as? String ?? "",
-                                image: document["image"] as? String ?? "",
-                                tempMoy: document["tempMoy"] as? String ?? "",
-                                gravity: document["gravity"] as? Double ?? 0,
-                                statistics: document["statistics"] as? [String] ?? [],
-                                source: document["source"] as? String ?? "",
-                                membership: document["membership"] as? String ?? "",
-                                type: document["type"] as? String ?? "",
-                                diameter: document["diameter"] as? Double ?? 0.0))
+                                       image: document["image"] as? String ?? "",
+                                       tempMoy: document["tempMoy"] as? String ?? "",
+                                       source: document["source"] as? String ?? "",
+                                       membership: document["membership"] as? String ?? "",
+                                       type: document["type"] as? String ?? "",
+                                       gravity: document["gravity"] as? Double ?? 0,
+                                       diameter: document["diameter"] as? Double ?? 0,
+                                       statistics: document["statistics"] as? [String] ?? []))
         }
         return object
     }
@@ -60,8 +60,8 @@ class FirebaseWrapper: FirebaseProtocol {
                                             image: document["image"] as? String ?? "",
                                             source: document["source"] as? String ?? "",
                                             subTitle: document["subTitle"] as? String ?? "",
-                                            articleText: document["articleText"] as? [String] ?? [],
-                                            id: document["id"] as? String ?? ""))
+                                            id: document["id"] as? String ?? "",
+                                            articleText: document["articleText"] as? [String] ?? []))
         }
         return articles
     }

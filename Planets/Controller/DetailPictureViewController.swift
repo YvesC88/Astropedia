@@ -39,12 +39,8 @@ class DetailPictureViewController: UIViewController {
         }
         titleLabel.text = picture.title
         explanationTextView.text = picture.explanation
-        if picture.copyright != nil {
-            copyrightLabel.text = picture.copyright
-        } else {
-            copyrightLabel.text = "Pas d'auteur"
-        }
-        imageView.sd_setImage(with: URL(string: picture.image!))
+        copyrightLabel.text = picture.copyright ?? "Pas d'auteur"
+        imageView.sd_setImage(with: URL(string: picture.image ?? ""))
     }
     
     @IBAction func didSharedImage() {

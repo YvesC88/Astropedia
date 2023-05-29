@@ -145,7 +145,7 @@ extension FavoritesViewController: UITableViewDelegate {
             guard dataIndex < favoriteArticle.count else { return }
             let article = favoriteArticle[dataIndex].toArticle()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as! DetailArticleViewController
+            guard let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as? DetailArticleViewController else { return }
             detailArticleVC.article = article
             self.navigationController?.pushViewController(detailArticleVC, animated: true)
         }

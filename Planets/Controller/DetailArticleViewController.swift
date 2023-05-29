@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 
 class DetailArticleViewController: UIViewController {
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleTextView: UITextView!
@@ -21,6 +22,7 @@ class DetailArticleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.delegate = self
         setUI()
     }
     
@@ -30,7 +32,9 @@ class DetailArticleViewController: UIViewController {
         } else {
             favoriteButton.isSelected = false
         }
-        articleImageView.sd_setImage(with: URL(string: article.image!))
+        if let imageURL = article.image {
+            articleImageView.sd_setImage(with: URL(string: imageURL))
+        }
         articleTitleLabel.text = article.title
         subtitleTextView.text = article.subtitle
         if let articleTextArray = article.articleText {
@@ -60,5 +64,20 @@ class DetailArticleViewController: UIViewController {
         articleService.unsaveArticle(article: article)
         showInfo(title: "Effacé")
         favoriteButton.isSelected = false
+    }
+}
+
+extension DetailArticleViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        if offsetY < 0 {
+            let zoomFactor = 1 + abs(offsetY) / 1000
+            let scaleTransform = CGAffineTransform(scaleX: zoomFactor, y: zoomFactor)
+            let translationTransform = CGAffineTransform(translationX: 0, y: offsetY)
+            articleImageView.transform = scaleTransform.concatenating(translationTransform)
+        } else {
+            articleImageView.transform = CGAffineTransform.identity
+        }
     }
 }

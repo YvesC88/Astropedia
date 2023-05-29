@@ -24,7 +24,7 @@ class FavoritesTableViewCell: UITableViewCell {
     }
     
     func configure(title: String?, image: String?) {
-        titleLabel.text = title
-        dayImageView.sd_setImage(with: URL(string: image!))
+        titleLabel.text = title ?? ""
+        dayImageView.sd_setImage(with: URL(string: image ?? ""))
     }
 }

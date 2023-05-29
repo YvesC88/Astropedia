@@ -9,7 +9,6 @@ import UIKit
 
 struct FirebasePrivacyPolicy {
     
-    let title: String
-    let date: String
+    let title, date: String
     let privacyPolicyText: [String]
 }

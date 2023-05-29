@@ -8,12 +8,29 @@
 @testable import Planets
 
 final class FirebaseWrapperMock: FirebaseProtocol {
-    var dataResult: [Data]?
+
+    var dataResult: [FirebaseData]?
+    var articleRestult: [FirebaseArticle]?
+    var privacyPolicyResult: [FirebasePrivacyPolicy]?
     var dataError: String?
+    var articleError: String?
+    var privacyPolicyError: String?
     var isFetchDataCalled: Bool = false
-    
-    func func fetch(collectionID: String, completion: @escaping ([Data]?, String?) -> ()) {
+    var isFetchArticleCalled: Bool = false
+    var isFetchPrivacyCalled: Bool = false
+
+    func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ()) {
         isFetchDataCalled = true
         completion(dataResult, dataError)
+    }
+
+    func fetchArticle(collectionID: String, completion: @escaping ([FirebaseArticle]?, String?) -> ()) {
+        isFetchArticleCalled = true
+        completion(articleRestult, articleError)
+    }
+
+    func fetchPrivacyPolicy(collectionID: String, completion: @escaping ([FirebasePrivacyPolicy]?, String?) -> ()) {
+        isFetchPrivacyCalled = true
+        completion(privacyPolicyResult, privacyPolicyError)
     }
 }

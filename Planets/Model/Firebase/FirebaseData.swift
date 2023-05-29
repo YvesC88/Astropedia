@@ -5,18 +5,12 @@
 //  Created by Yves Charpentier on 16/01/2023.
 //
 
-import UIKit
+import Foundation
 
 struct FirebaseData: Codable {
     // MARK: - Properties
     
-    let name: String
-    let image: String
-    let tempMoy: String
-    let gravity: Double
+    let name, image, tempMoy, source, membership, type: String
+    let gravity, diameter: Double
     let statistics: [String]
-    let source: String
-    let membership: String
-    let type: String
-    let diameter: Double
 }

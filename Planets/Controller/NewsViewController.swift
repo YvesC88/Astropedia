@@ -64,9 +64,9 @@ class NewsViewController: UIViewController {
         let dateFormat = "yyyy-MM-dd"
         let calendar = Calendar.current
         let start = calendar.date(byAdding: .day, value: -1, to: date)
-        let startDate = self.getFormattedDate(date: start!, dateFormat: dateFormat)
+        let startDate = self.getFormattedDate(date: start ?? Date(), dateFormat: dateFormat)
         let newDate = calendar.date(byAdding: .day, value: -7, to: date)
-        let endDate = self.getFormattedDate(date: newDate!, dateFormat: dateFormat)
+        let endDate = self.getFormattedDate(date: newDate ?? Date(), dateFormat: dateFormat)
         pictureService.getPicture(startDate: endDate, endDate: startDate) { picture in
             if let picture = picture {
                 self.picture = picture

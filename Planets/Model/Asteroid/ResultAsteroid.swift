@@ -128,21 +128,21 @@ extension APIAsteroid {
         let date = dateFormatter.date(from: approachDate)
         dateFormatter.dateFormat = "d MMMM yyyy 'à' HH:mm"
         dateFormatter.locale = Locale(identifier: "fr_FR")
-        let finalDate = dateFormatter.string(from: date!)
+        let finalDate = dateFormatter.string(from: date ?? Date())
         
         var relativeVelocity: String = ""
         for velocity in self.closeApproachData {
             relativeVelocity += velocity.relativeVelocity.kilometersPerSecond
         }
         var relativeVelocityRounded = Double(relativeVelocity)
-        relativeVelocityRounded = round(relativeVelocityRounded! * 10) / 10
+        relativeVelocityRounded = round(relativeVelocityRounded ?? 0.0 * 10) / 10
         
         var distance: String = ""
         for missDistance in self.closeApproachData {
             distance += missDistance.missDistance.lunar
         }
         var distanceDouble = Double(distance)
-        distanceDouble = round(distanceDouble!)
+        distanceDouble = round(distanceDouble ?? 0.0)
         
         let url = URL(string: self.nasaJplURL)
         

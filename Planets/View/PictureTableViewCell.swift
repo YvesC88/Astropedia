@@ -25,6 +25,8 @@ class PictureTableViewCell: UITableViewCell {
     
     func configure(title: String?, image: String?) {
         titleLabel.text = title
-        pictureImageView.sd_setImage(with: URL(string: image!))
+        if let stringImage = image {
+            pictureImageView.sd_setImage(with: URL(string: stringImage))
+        }
     }
 }
