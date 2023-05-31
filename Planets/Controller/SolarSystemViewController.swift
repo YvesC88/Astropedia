@@ -13,12 +13,6 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak private var tableView: UITableView!
     
     private let searchController = UISearchController()
-    
-    private var planets: [FirebaseData] = []
-    private var moons: [FirebaseData] = []
-    private var stars: [FirebaseData] = []
-    private var dwarfPlanets: [FirebaseData] = []
-    private var categories: [String] = ["Étoile", "Planètes", "Planètes naines", "Lunes", ]
     private var solarSystem: [(category: String, data: [FirebaseData])] = []
     
     override func viewDidLoad() {
@@ -31,77 +25,67 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Rechercher dans le Système Solaire"
+        searchController.searchBar.placeholder = (LanguageSettings.currentLanguage == "fr") ? LanguageSettings.placeholderFr : LanguageSettings.placeholderEn
         definesPresentationContext = true
     }
     
     private final func loadData() {
         let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        service.fetchData(collectionID: "planets") { [weak self] planet, error in
+        service.fetchData(collectionID: LanguageSettings.collectionPlanet) { [weak self] planet, error in
             guard let self = self else { return }
             if let error = error {
                 print("Erreur lors du chargement des planètes:", error)
             } else {
-                self.planets = planet
+                LanguageSettings.planets = planet
                 self.updateSolarSystem()
             }
         }
-        
-        service.fetchData(collectionID: "dwarfPlanets") { [weak self] dwarfPlanets, error in
+        service.fetchData(collectionID: LanguageSettings.collectionDwarfPlanet) { [weak self] dwarfPlanets, error in
             guard let self = self else { return }
             if let error = error {
                 print("Erreur lors du chargement des planètes naines", error)
             } else {
-                self.dwarfPlanets = dwarfPlanets
+                LanguageSettings.dwarfPlanets = dwarfPlanets
                 self.updateSolarSystem()
             }
         }
-        
-        service.fetchData(collectionID: "moons") { [weak self] moon, error in
+        service.fetchData(collectionID: LanguageSettings.collectionMoon) { [weak self] moon, error in
             guard let self = self else { return }
             if let error = error {
                 print("Erreur lors du chargement des lunes:", error)
             } else {
-                self.moons = moon
+                LanguageSettings.moons = moon
                 self.updateSolarSystem()
             }
         }
-        
-        service.fetchData(collectionID: "stars") { [weak self] star, error in
+        service.fetchData(collectionID: LanguageSettings.collectionStar) { [weak self] star, error in
             guard let self = self else { return }
             if let error = error {
-                print("Erre ur lors du chargement des étoiles:", error)
+                print("Erreur lors du chargement des étoiles:", error)
             } else {
-                self.stars = star
+                LanguageSettings.stars = star
                 self.updateSolarSystem()
             }
         }
     }
     
     private final func updateSolarSystem() {
-        guard !planets.isEmpty, !moons.isEmpty, !stars.isEmpty else {
+        guard !LanguageSettings.planets.isEmpty, !LanguageSettings.moons.isEmpty, !LanguageSettings.stars.isEmpty, !LanguageSettings.dwarfPlanets.isEmpty else {
             return
         }
-        
-        var filteredPlanets: [FirebaseData] = []
-        var filteredMoons: [FirebaseData] = []
-        var filteredStars: [FirebaseData] = []
-        var filteredDwarfPlanets: [FirebaseData] = []
-        
         if isFiltering() {
             let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).uppercased() ?? ""
-            filteredPlanets = planets.filter { $0.name.uppercased().hasPrefix(searchText) }
-            filteredMoons = moons.filter { $0.name.uppercased().hasPrefix(searchText) }
-            filteredStars = stars.filter { $0.name.uppercased().hasPrefix(searchText) }
-            filteredDwarfPlanets = dwarfPlanets.filter { $0.name.uppercased().hasPrefix(searchText) }
+            LanguageSettings.filteredPlanets = LanguageSettings.planets.filter { $0.name.uppercased().hasPrefix(searchText) }
+            LanguageSettings.filteredMoons = LanguageSettings.moons.filter { $0.name.uppercased().hasPrefix(searchText) }
+            LanguageSettings.filteredStars = LanguageSettings.stars.filter { $0.name.uppercased().hasPrefix(searchText) }
+            LanguageSettings.filteredDwarfPlanets = LanguageSettings.dwarfPlanets.filter { $0.name.uppercased().hasPrefix(searchText) }
         }
         solarSystem = [
-            (category: categories[0], data: isFiltering() ? filteredStars : stars),
-            (category: categories[1], data: isFiltering() ? filteredPlanets : planets),
-            (category: categories[2], data: isFiltering() ? filteredDwarfPlanets : dwarfPlanets),
-            (category: categories[3], data: isFiltering() ? filteredMoons : moons)
+            (category: LanguageSettings.categories[0], data: isFiltering() ? LanguageSettings.filteredStars : LanguageSettings.stars),
+            (category: LanguageSettings.categories[1], data: isFiltering() ? LanguageSettings.filteredPlanets : LanguageSettings.planets),
+            (category: LanguageSettings.categories[2], data: isFiltering() ? LanguageSettings.filteredDwarfPlanets : LanguageSettings.dwarfPlanets),
+            (category: LanguageSettings.categories[3], data: isFiltering() ? LanguageSettings.filteredMoons : LanguageSettings.moons)
         ]
-        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -145,7 +129,7 @@ extension SolarSystemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = solarSystem[indexPath.section].data[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         detailVC.data = data
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -155,19 +139,24 @@ extension SolarSystemViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let filteredPlanets = planets.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
-        let filteredMoons = moons.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
-        let filteredStars = stars.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
-        let filteredDwarfPlanets = dwarfPlanets.filter { $0.name.uppercased().hasPrefix(searchText.uppercased()) }
+        
+        let filterClosure: (FirebaseData) -> Bool = { data in
+            return data.name.uppercased().hasPrefix(searchText.uppercased())
+        }
+        let filteredPlanets = LanguageSettings.planets.filter(filterClosure)
+        let filteredMoons = LanguageSettings.moons.filter(filterClosure)
+        let filteredStars = LanguageSettings.stars.filter(filterClosure)
+        let filteredDwarfPlanets = LanguageSettings.dwarfPlanets.filter(filterClosure)
+        
         solarSystem = [
-            (category: categories[0], data: filteredStars),
-            (category: categories[1], data: filteredPlanets),
-            (category: categories[2], data: filteredDwarfPlanets),
-            (category: categories[3], data: filteredMoons)
+            (category: LanguageSettings.categories[0], data: filteredStars),
+            (category: LanguageSettings.categories[1], data: filteredPlanets),
+            (category: LanguageSettings.categories[2], data: filteredDwarfPlanets),
+            (category: LanguageSettings.categories[3], data: filteredMoons)
         ]
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
 }
-

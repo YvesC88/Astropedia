@@ -39,7 +39,7 @@ class FirebaseDataService {
     }
     
     func fetchPrivacyPolicy(collectionID: String, completion: @escaping ([FirebasePrivacyPolicy], String?) -> ()) {
-        firebaseWrapper.fetchPrivacyPolicy(collectionID: "privacyPolicy") { privacyPolicy, error in
+        firebaseWrapper.fetchPrivacyPolicy(collectionID: collectionID) { privacyPolicy, error in
             if let privacyPolicy = privacyPolicy {
                 completion(privacyPolicy, nil)
             } else {

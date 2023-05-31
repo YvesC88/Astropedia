@@ -13,6 +13,8 @@ class SettingsTableViewController: UITableViewController {
     
     let themeKey = "preferredTheme"
     let switchKey = "switchState"
+    var currentLanguage = Bundle.main.preferredLocalizations.first
+    let appDelegate = AppDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,26 +50,24 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let alertVC = UIAlertController(title: "Suppression", message: "Êtes-vous sûr de vouloir supprimer vos favoris ?", preferredStyle: .alert)
-            let confirmAction = UIAlertAction(title: "Annuler", style: .default)
-            alertVC.addAction(confirmAction)
-            let cancelAction = UIAlertAction(title: "Effacer", style: .destructive) { action in
-                if CoreDataStack.share.hasData() {
-                    // element in CoreData
-                    do {
-                        try CoreDataStack.share.deleteAllData()
-                        self.showInfo(title: "Supprimé")
-                    } catch {
-                        self.presentAlert(title: "Erreur", message: "Une erreur est survenue lors de la suppression des favoris. Veuillez réessayer.")
-                    }
+            if indexPath.row == 0 {
+                if currentLanguage != "fr" {
+                    showLanguageChangeAlert(forLanguage: "fr")
                 } else {
-                    // nothing element in CoreData
-                    self.presentAlert(title: "Impossible", message: "Votre liste de favoris est vide. Cliquez sur le cœur pour en ajouter !")
+                    self.showInfo(title: "La langue est déjà en français.")
                 }
             }
-            alertVC.addAction(cancelAction)
-            alertVC.preferredAction = confirmAction
-            present(alertVC, animated: true, completion: nil)
+
+            if indexPath.row == 1 {
+                if currentLanguage != "en" {
+                    showLanguageChangeAlert(forLanguage: "en")
+                } else {
+                    self.showInfo(title: "The language is already in english.")
+                }
+            }
+        }
+        if indexPath.section == 2 {
+            showAlertDeleteFavorite(forLanguage: currentLanguage!)
         }
     }
 }

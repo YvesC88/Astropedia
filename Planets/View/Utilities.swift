@@ -50,6 +50,90 @@ extension UIViewController {
         }
     }
     
+    func languageDidChange(language: String) {
+        UserDefaults.standard.set([language], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+    }
+    
+    func showAlertDeleteFavorite(forLanguage language: String) {
+        let title: String
+        let message: String
+        let cancelTitle: String
+        let deleteTitle: String
+        
+        if language == "fr" {
+            title = "Suppression des favoris"
+            message = "Êtes-vous sûr de vouloir supprimer vos favoris ?"
+            cancelTitle = "Annuler"
+            deleteTitle = "Effacer"
+        } else {
+            title = "Delete favorite"
+            message = "Are you sure you want to delete your favorites?"
+            cancelTitle = "Cancel"
+            deleteTitle = "Delete"
+        }
+        
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: cancelTitle, style: .default)
+        alertVC.addAction(confirmAction)
+        
+        let cancelAction = UIAlertAction(title: deleteTitle, style: .destructive) { action in
+            if CoreDataStack.share.hasData() {
+                // element in CoreData
+                do {
+                    try CoreDataStack.share.deleteAllData()
+                    self.showInfo(title: "Deleted")
+                } catch {
+                    self.presentAlert(title: "Error", message: "Une erreur est survenue lors de la suppression des favoris. Veuillez réessayer.")
+                }
+            } else {
+                // nothing element in CoreData
+                self.presentAlert(title: "Impossible", message: "Your favorites list is empty. Click on the heart to add more!")
+            }
+        }
+        alertVC.addAction(cancelAction)
+        
+        alertVC.preferredAction = confirmAction
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    func showLanguageChangeAlert(forLanguage language: String) {
+        let title: String
+        let message: String
+        let cancelTitle: String
+        let confirmTitle: String
+        let infoTitle: String
+        
+        if language == "fr" {
+            title = "Change language"
+            message = "Would you like to use French like language?"
+            cancelTitle = "Cancel"
+            confirmTitle = "OK"
+            infoTitle = "Restart application"
+        } else {
+            title = "Changer la langue"
+            message = "Voulez-vous utiliser l'Anglais comme langue ?"
+            cancelTitle = "Annuler"
+            confirmTitle = "OK"
+            infoTitle = "Relancer l'application"
+        }
+        
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .default)
+        alertVC.addAction(cancelAction)
+        
+        let confirmAction = UIAlertAction(title: confirmTitle, style: .destructive) { action in
+            self.languageDidChange(language: language)
+            self.showInfo(title: infoTitle)
+        }
+        alertVC.addAction(confirmAction)
+        
+        alertVC.preferredAction = cancelAction
+        present(alertVC, animated: true, completion: nil)
+    }
+    
     func setUIView(view: [UIView]) {
         let views = view
         for view in views {

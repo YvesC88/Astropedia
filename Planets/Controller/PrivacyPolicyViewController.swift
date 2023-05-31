@@ -24,7 +24,8 @@ class PrivacyPolicyViewController: UIViewController {
     
     private final func loadPrivacyPolicy() {
         let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        service.fetchPrivacyPolicy(collectionID: "privacyPolicy") { privacyPolicy, error in
+        let collectionID = (LanguageSettings.currentLanguage == "fr") ? "privacyPolicy" : "privacyPolicyEn"
+        service.fetchPrivacyPolicy(collectionID: collectionID) { privacyPolicy, error in
             for data in privacyPolicy {
                 self.data = privacyPolicy
                 self.titleLabel.text = data.title
@@ -34,6 +35,7 @@ class PrivacyPolicyViewController: UIViewController {
             }
         }
     }
+
     
     @IBAction func closePrivacyPolicyVC() {
         dismiss(animated: true)

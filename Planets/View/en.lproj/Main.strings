@@ -1,0 +1,195 @@
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "0ZP-yx-qAQ"; */
+"0ZP-yx-qAQ.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1ex-Bc-yFS"; */
+"1ex-Bc-yFS.text" = "Label";
+
+/* Class = "UILabel"; text = "Vitesse en km/s"; ObjectID = "3gk-OH-SE7"; */
+"3gk-OH-SE7.text" = "Velocity in km/s";
+
+/* Class = "UILabel"; text = "Astéroïdes trouvés"; ObjectID = "4Vd-Fs-frC"; */
+"4Vd-Fs-frC.text" = "Asteroids founded";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4j7-ZL-TQ2"; */
+"4j7-ZL-TQ2.text" = "Label";
+
+/* Class = "UILabel"; text = "Mode sombre"; ObjectID = "5tP-Ew-xTL"; */
+"5tP-Ew-xTL.text" = "Dark mode";
+
+/* Class = "UILabel"; text = "Français"; ObjectID = "oGc-st-xZ5"; */
+"oGc-st-xZ5.text" = "French";
+
+/* Class = "UILabel"; text = "Français"; ObjectID = "GSX-f4-Tpi"; */
+"GSX-f4-Tpi.text" = "English";
+
+/* Class = "UINavigationItem"; title = "Favoris"; ObjectID = "6Am-Af-ge2"; */
+"6Am-Af-ge2.title" = "Favorites";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9Fe-E7-gAY"; */
+"9Fe-E7-gAY.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Actualités"; ObjectID = "9sb-qc-Qzl"; */
+"9sb-qc-Qzl.title" = "News";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "El7-z0-ED7"; */
+"El7-z0-ED7.text" = "0";
+
+/* Class = "UILabel"; text = "La sélection de la semaine"; ObjectID = "F73-nP-C9T"; */
+"F73-nP-C9T.text" = "Selection of the week";
+
+/* Class = "UILabel"; text = "Nos images"; ObjectID = "FOr-nQ-Pbm"; */
+"FOr-nQ-Pbm.text" = "Our pictures";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HLO-me-lEM"; */
+"HLO-me-lEM.text" = "Label";
+
+/* Class = "UILabel"; text = "Chargement..."; ObjectID = "Hba-RY-cf6"; */
+"Hba-RY-cf6.text" = "Loading...";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HcK-oF-sd5"; */
+"HcK-oF-sd5.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Actualités"; ObjectID = "IzA-Iw-ePw"; */
+"IzA-Iw-ePw.title" = "News";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "JVP-ab-ap5"; */
+"JVP-ab-ap5.text" = "Label";
+
+/* Class = "UILabel"; text = "Voyage cosmique"; ObjectID = "JiB-GR-zqM"; */
+"JiB-GR-zqM.text" = "Cosmic travel";
+
+/* Class = "UINavigationItem"; title = "Paramètres"; ObjectID = "LMY-fv-9jL"; */
+"LMY-fv-9jL.title" = "Settings";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Mzd-HC-JsT"; */
+"Mzd-HC-JsT.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Mentions légales"; ObjectID = "NrJ-pg-gnG"; */
+"NrJ-pg-gnG.headerTitle" = "Privacy Policy";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Oh8-is-mQy"; */
+"Oh8-is-mQy.text" = "Your favorites list is empty\n\n\nClick on the heart to add your favorite images and articles and find them even without a connection.";
+
+/* Class = "UILabel"; text = "Chargement..."; ObjectID = "RTz-GM-OIp"; */
+"RTz-GM-OIp.text" = "Loading...";
+
+/* Class = "UILabel"; text = "Vitesse"; ObjectID = "RyH-im-htS"; */
+"RyH-im-htS.text" = "Velocity";
+
+/* Class = "UILabel"; text = "Supprimer tous les favoris"; ObjectID = "SeQ-I6-2gW"; */
+"SeQ-I6-2gW.text" = "Delete all favorites";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TWv-mP-ek2"; */
+"TWv-mP-ek2.text" = "Label";
+
+/* Class = "UILabel"; text = " Version 1.7"; ObjectID = "Tp8-zs-wha"; */
+"Tp8-zs-wha.text" = " Version 1.7";
+
+/* Class = "UITextView"; text = "Subtitle"; ObjectID = "UT2-RM-XSJ"; */
+"UT2-RM-XSJ.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VJ2-uV-H4i"; */
+"VJ2-uV-H4i.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Wtv-7k-GOE"; */
+"Wtv-7k-GOE.text" = "Label";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."; ObjectID = "XAk-VP-8Gk"; */
+"XAk-VP-8Gk.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XPj-wx-sPA"; */
+"XPj-wx-sPA.text" = "Label";
+
+/* Class = "UILabel"; text = "Nos articles"; ObjectID = "Y0Y-Uh-nU4"; */
+"Y0Y-Uh-nU4.text" = "Our articles";
+
+/* Class = "UINavigationItem"; title = "Astéroïdes"; ObjectID = "a3u-Fo-izG"; */
+"a3u-Fo-izG.title" = "Asteroids";
+
+/* Class = "UILabel"; text = "Distance Terre - Lune"; ObjectID = "asd-ES-tgx"; */
+"asd-ES-tgx.text" = "Earth-Moon distance";
+
+/* Class = "UILabel"; text = "Taille en mètres"; ObjectID = "c1W-FN-0qD"; */
+"c1W-FN-0qD.text" = "Size in meters";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cYD-9y-6P2"; */
+"cYD-9y-6P2.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Système Solaire"; ObjectID = "f0H-Wk-D0g"; */
+"f0H-Wk-D0g.title" = "Solar System";
+
+/* Class = "UITabBarItem"; title = "Astéroïdes"; ObjectID = "fq4-jd-Acu"; */
+"fq4-jd-Acu.title" = "Asteroids";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "hky-8Y-SDd"; */
+"hky-8Y-SDd.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hpc-iT-qzN"; */
+"hpc-iT-qzN.text" = "Label";
+
+/* Class = "UISegmentedControl"; hu0-dt-Mnw.segmentTitles[0] = "Taille"; ObjectID = "hu0-dt-Mnw"; */
+"hu0-dt-Mnw.segmentTitles[0]" = "Size";
+
+/* Class = "UISegmentedControl"; hu0-dt-Mnw.segmentTitles[1] = "Distance"; ObjectID = "hu0-dt-Mnw"; */
+"hu0-dt-Mnw.segmentTitles[1]" = "Distance";
+
+/* Class = "UISegmentedControl"; hu0-dt-Mnw.segmentTitles[2] = "Vitesse"; ObjectID = "hu0-dt-Mnw"; */
+"hu0-dt-Mnw.segmentTitles[2]" = "Velocity";
+
+/* Class = "UILabel"; text = "Taille"; ObjectID = "jI3-5i-7Qz"; */
+"jI3-5i-7Qz.text" = "Size";
+
+/* Class = "UIButton"; normalTitle = "Fermer"; ObjectID = "lAl-1K-Ah4"; */
+"lAl-1K-Ah4.normalTitle" = "Close";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "lWV-ST-JKy"; */
+"lWV-ST-JKy.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "liO-76-xaP"; */
+"liO-76-xaP.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Plus de détails"; ObjectID = "mqF-5D-0WP"; */
+"mqF-5D-0WP.normalTitle" = "More";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "mx8-y0-t2A"; */
+"mx8-y0-t2A.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nam-Il-Uxr"; */
+"nam-Il-Uxr.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Favoris"; ObjectID = "o49-gh-haK"; */
+"o49-gh-haK.headerTitle" = "Favorites";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "ocv-mC-Msh"; */
+"ocv-mC-Msh.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UITabBarItem"; title = "Système Solaire"; ObjectID = "p38-T8-c8Z"; */
+"p38-T8-c8Z.title" = "Solar System";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qgt-87-5Ct"; */
+"qgt-87-5Ct.text" = "Label";
+
+/* Class = "UILabel"; text = "Sélectionner une date"; ObjectID = "qzS-UO-Xbg"; */
+"qzS-UO-Xbg.text" = "Select date";
+
+/* Class = "UILabel"; text = "Politique de confidentialité"; ObjectID = "rwx-33-cR1"; */
+"rwx-33-cR1.text" = "Privacy Policy";
+
+/* Class = "UITabBarItem"; title = "Favoris"; ObjectID = "t4T-Sa-V84"; */
+"t4T-Sa-V84.title" = "Favorites";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ukF-jz-tlQ"; */
+"ukF-jz-tlQ.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Apparence"; ObjectID = "v2M-qU-khj"; */
+"v2M-qU-khj.headerTitle" = "Appearence";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "wtv-iv-GOT"; */
+"wtv-iv-GOT.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Distance"; ObjectID = "xgZ-Yj-1pF"; */
+"xgZ-Yj-1pF.text" = "Distance";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zJV-el-gFA"; */
+"zJV-el-gFA.text" = "Label";

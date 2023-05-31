@@ -31,6 +31,8 @@ class FavoritesViewController: UIViewController {
         }
     }
     
+    var currentLanguage = LanguageSettings.currentLanguage
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
@@ -44,7 +46,6 @@ class FavoritesViewController: UIViewController {
     }
     
     private func showLabel() {
-        favoriteLabel.text = "Votre liste est vide\n\n\n\n Cliquez sur le cœur pour ajouter vos images et articles préférés et les retrouver même sans connexion."
         let isEmpty = favoriteArticle.isEmpty && favoritePicture.isEmpty
         tableView.isHidden = isEmpty
         favoriteLabel.isHidden = !isEmpty
@@ -59,9 +60,16 @@ class FavoritesViewController: UIViewController {
         guard let article = try? CoreDataStack.share.viewContext.fetch(articleRequest) else { return }
         favoriteArticle = article
         
-        favorites = [
-            (category: "Mes images", data: favoritePicture),
-            (category: "Mes articles", data: favoriteArticle)]
+        if LanguageSettings.currentLanguage == "fr" {
+            favorites = [
+                (category: "Mes images", data: favoritePicture),
+                (category: "Mes articles", data: favoriteArticle)]
+        } else {
+            favorites = [
+                (category: "My pictures", data: favoritePicture),
+                (category: "My articles", data: favoriteArticle)]
+        }
+        
     }
 }
 
