@@ -14,7 +14,6 @@ class NewsViewController: UIViewController {
     @IBOutlet weak private var lastPictureLabel: UILabel!
     @IBOutlet weak private var articleView: UIView!
     @IBOutlet weak private var lastPictureView: UIView!
-    @IBOutlet weak private var globalScrollView: UIScrollView!
     
     let pictureService = PictureService()
     let spinner = UIActivityIndicatorView(style: .medium)

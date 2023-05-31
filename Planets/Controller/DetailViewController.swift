@@ -16,7 +16,6 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var objectImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var statisticsTextView: UITextView!
-    @IBOutlet private weak var objectView: UIView!
     @IBOutlet private weak var sourceLabel: UILabel!
     @IBOutlet private weak var scrollImageView: UIScrollView!
     @IBOutlet private weak var containView: UIView!
@@ -24,7 +23,6 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    var originalTitleLabelHeight: CGFloat = 0
     var data: FirebaseData!
     
     // MARK: - Lifecycle Methods
@@ -33,14 +31,8 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         scrollImageView.delegate = self
         globalScrollView.delegate = self
-        originalTitleLabelHeight = titleLabel.frame.height
         configureUI()
         configureData()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        containView.frame.size.height = view.frame.height - (tabBarController?.tabBar.frame.height ?? 0)
     }
     
     // MARK: - Private Methods
@@ -53,9 +45,6 @@ class DetailViewController: UIViewController {
     }
     
     private func configureUI() {
-        objectView.layer.cornerRadius = 50
-        objectView.clipsToBounds = true
-        objectView.layer.backgroundColor = UIColor.black.cgColor
         titleLabel.layer.masksToBounds = true
         titleLabel.layer.cornerRadius = 25
         let gradientTitleLabel = self.getGradientLayer(bounds: titleLabel.bounds)
@@ -70,10 +59,10 @@ extension DetailViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let titleLabelMinY = titleLabel.frame.minY
+        let titleLabelMaxY = titleLabel.frame.maxY
         let contentOffsetY = globalScrollView.contentOffset.y
         let frame = globalScrollView.convert(titleLabel.frame, to: view)
-        guard titleLabelMinY < contentOffsetY || frame.origin.y < view.safeAreaInsets.bottom else {
+        guard titleLabelMaxY < contentOffsetY || frame.origin.y < view.safeAreaInsets.bottom else {
             titleLabel.text = data.name
             navigationItem.title = nil
             return

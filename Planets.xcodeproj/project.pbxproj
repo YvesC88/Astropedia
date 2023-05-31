@@ -107,8 +107,6 @@
 		FB40AE622A13D2E00067FCAC /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		FB40AE642A14C6B90067FCAC /* DetailArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleViewController.swift; sourceTree = "<group>"; };
 		FB5DE7BE297C073A00F60C92 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		FB5DE7C5297C3DB200F60C92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		FB5DE7C6297C3DB300F60C92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		FB605C882A1543E400622E94 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		FB6922272A094C400034A65B /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -565,7 +563,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				FB15CADD297566D800FEE718 /* Base */,
-				FB5DE7C5297C3DB200F60C92 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -574,7 +571,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				FB15CAE2297566DA00FEE718 /* Base */,
-				FB5DE7C6297C3DB300F60C92 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
