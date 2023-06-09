@@ -9,13 +9,14 @@ import Foundation
 
 struct LanguageSettings {
     static var currentLanguage = Bundle.main.preferredLocalizations.first
+    
     static let placeholderFr = "Rechercher dans le Système Solaire"
     static let placeholderEn = "Search in Solar System"
     
     static let categoriesFr = ["Étoile", "Planètes", "Planètes naines", "Lunes"]
     static let categoriesEn = ["Star", "Planets", "Dwarf planets", "Moons"]
     static var categories: [String] {
-        return (currentLanguage == "fr") ? categoriesFr : categoriesEn
+        return currentLanguage == "fr" ? categoriesFr : categoriesEn
     }
     
     static var planets: [FirebaseData] = []
@@ -29,15 +30,24 @@ struct LanguageSettings {
     static var filteredDwarfPlanets: [FirebaseData] = []
     
     static var collectionStar: String {
-        return (currentLanguage == "fr") ? "stars" : "starsEn"
+        return currentLanguage == "fr" ? "stars" : "starsEn"
     }
     static var collectionPlanet: String {
-        return (currentLanguage == "fr") ? "planets" : "planetsEn"
+        return currentLanguage == "fr" ? "planets" : "planetsEn"
     }
     static var collectionDwarfPlanet: String {
-        return (currentLanguage == "fr") ? "dwarfPlanets" : "dwarfPlanets"
+        return currentLanguage == "fr" ? "dwarfPlanets" : "dwarfPlanets"
     }
     static var collectionMoon: String {
-        return (currentLanguage == "fr") ? "moons" : "moonsEn"
+        return currentLanguage == "fr" ? "moons" : "moonsEn"
     }
+    static var collectionArticle: String {
+        return currentLanguage == "fr" ? "article" : "articleEn"
+    }
+    
+    static var unit: String {
+        return currentLanguage == "fr" ? "km" : "mi"
+    }
+    
+    static let service = FirebaseDataService(wrapper: FirebaseWrapper())
 }

@@ -16,7 +16,9 @@ extension LocalPicture {
     
     func toPicture() -> Picture {
         return Picture(title: title,
-                       image: image,
+                       videoURL: videoURL,
+                       imageURL: imageURL,
+                       mediaType: mediaType,
                        copyright: copyright,
                        explanation: explanation)
     }

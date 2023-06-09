@@ -23,10 +23,12 @@ class PictureTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(title: String?, image: String?) {
+    func configure(title: String?, image: String?, mediaType: String?) {
         titleLabel.text = title
-        if let stringImage = image {
-            pictureImageView.sd_setImage(with: URL(string: stringImage))
+        if mediaType == "image" {
+            pictureImageView.sd_setImage(with: URL(string: image ?? ""))
+        } else {
+            pictureImageView.image = UIImage(named: "image_ytb")
         }
     }
 }

@@ -31,6 +31,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         scrollImageView.delegate = self
         globalScrollView.delegate = self
+        setupBarButtonItem()
         configureUI()
         configureData()
     }
@@ -49,6 +50,21 @@ class DetailViewController: UIViewController {
         titleLabel.layer.cornerRadius = 25
         let gradientTitleLabel = self.getGradientLayer(bounds: titleLabel.bounds)
         titleLabel.textColor = self.gradientColor(bounds: titleLabel.bounds, gradientLayer: gradientTitleLabel)
+    }
+    
+    private func setupBarButtonItem() {
+        let action1 = UIAction(title: "Galerie", image: UIImage(systemName: "photo.fill.on.rectangle.fill")) { action in
+            print("Copy")
+        }
+        let action2 = UIAction(title: "Sauvegarder", image: UIImage(systemName: "square.and.arrow.down")) { action in
+            print("Copy")
+        }
+        let action3 = UIAction(title: "Partager", image: UIImage(systemName: "square.and.arrow.up")) { action in
+            print("Copy")
+        }
+        let menu = UIMenu(children: [action1, action2, action3])
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), menu: menu)
+        navigationItem.rightBarButtonItem = menuButton
     }
 }
 

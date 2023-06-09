@@ -8,17 +8,16 @@
 import UIKit
 import SDWebImage
 
-class DetailArticleViewController: UIViewController {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var articleImageView: UIImageView!
-    @IBOutlet weak var articleTitleLabel: UILabel!
-    @IBOutlet weak var articleTextView: UITextView!
-    @IBOutlet weak var subtitleTextView: UITextView!
-    @IBOutlet weak var favoriteButton: UIButton!
-    
+final class DetailArticleViewController: UIViewController {
+    @IBOutlet weak private var scrollView: UIScrollView!
+    @IBOutlet weak private var articleImageView: UIImageView!
+    @IBOutlet weak private var articleTitleLabel: UILabel!
+    @IBOutlet weak private var articleTextView: UITextView!
+    @IBOutlet weak private var subtitleTextView: UITextView!
+    @IBOutlet weak private var favoriteButton: UIButton!
     
     var article: Article!
-    let articleService = ArticleService()
+    private let articleService = ArticleService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +25,7 @@ class DetailArticleViewController: UIViewController {
         setUI()
     }
     
-    func setUI() {
+    private final func setUI() {
         if articleService.isFavoriteArticle(article: article) {
             favoriteButton.isSelected = true
         } else {
@@ -48,7 +47,7 @@ class DetailArticleViewController: UIViewController {
         }
     }
     
-    @IBAction func didTappedFavorite() {
+    @IBAction private final func didTappedFavorite() {
         let isFavorite: Bool = articleService.isFavoriteArticle(article: article)
         guard isFavorite else {
             articleService.saveArticle(title: article.title,
@@ -69,7 +68,7 @@ class DetailArticleViewController: UIViewController {
 
 extension DetailArticleViewController: UIScrollViewDelegate {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    internal final func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         if offsetY < 0 {
             let zoomFactor = 1 + abs(offsetY) / 1000

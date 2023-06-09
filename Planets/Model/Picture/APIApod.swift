@@ -11,9 +11,9 @@ import SDWebImage
 struct APIApod: Codable {
     let date, explanation: String
     let copyright: String?
-    let hdurl: String
+    let hdurl: String?
     let mediaType, serviceVersion, title: String
-    let url: String
+    let url: String?
     
     enum CodingKeys: String, CodingKey {
         case copyright, date, explanation, hdurl
@@ -26,6 +26,11 @@ struct APIApod: Codable {
 extension APIApod {
     
     func toPicture() -> Picture {
-        return Picture(title: self.title, image: self.hdurl, copyright: self.copyright, explanation: self.explanation)
+        return Picture(title: self.title,
+                       videoURL: self.url,
+                       imageURL: self.hdurl,
+                       mediaType: self.mediaType,
+                       copyright: self.copyright,
+                       explanation: self.explanation)
     }
 }

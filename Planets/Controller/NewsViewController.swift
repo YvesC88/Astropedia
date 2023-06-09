@@ -49,7 +49,7 @@ class NewsViewController: UIViewController {
     
     private final func loadArticle() {
         let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        service.fetchArticle(collectionID: "article") { article, error in
+        service.fetchArticle(collectionID: LanguageSettings.collectionArticle) { article, error in
             for data in article {
                 self.article.append(data)
             }
@@ -95,8 +95,8 @@ extension NewsViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             guard indexPath.row < picture.count else { return cell }
-            let picture = picture[indexPath.row]
-            cell.configure(title: picture.title, image: picture.hdurl)
+            let picture = picture[indexPath.row].toPicture()
+            cell.configure(title: picture.title, image: picture.imageURL, mediaType: picture.mediaType)
             return cell
         case articleTableView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else {

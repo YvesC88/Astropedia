@@ -31,12 +31,14 @@ class PictureService {
         }
     }
     
-    func savePicture(title: String?, image: String?, copyright: String?, explanation: String?)
+    func savePicture(title: String?, videoURL: String?, imageURL: String?, mediaType: String?, copyright: String?, explanation: String?)
     {
         let coreDataStack = CoreDataStack()
         let pictures = LocalPicture(context: coreDataStack.viewContext)
         pictures.title = title
-        pictures.image = image
+        pictures.imageURL = imageURL
+        pictures.videoURL = videoURL
+        pictures.mediaType = mediaType
         pictures.copyright = copyright
         pictures.explanation = explanation
         do {

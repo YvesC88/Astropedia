@@ -8,7 +8,7 @@
 import UIKit
 
 
-class SolarSystemViewController: UIViewController, UISearchBarDelegate {
+final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak private var tableView: UITableView!
     
@@ -30,8 +30,7 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     }
     
     private final func loadData() {
-        let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        service.fetchData(collectionID: LanguageSettings.collectionPlanet) { [weak self] planet, error in
+        LanguageSettings.service.fetchData(collectionID: LanguageSettings.collectionPlanet) { [weak self] planet, error in
             guard let self = self else { return }
             if let error = error {
                 print("Erreur lors du chargement des planètes:", error)
@@ -40,7 +39,8 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
                 self.updateSolarSystem()
             }
         }
-        service.fetchData(collectionID: LanguageSettings.collectionDwarfPlanet) { [weak self] dwarfPlanets, error in
+        
+        LanguageSettings.service.fetchData(collectionID: LanguageSettings.collectionDwarfPlanet) { [weak self] dwarfPlanets, error in
             guard let self = self else { return }
             if let error = error {
                 print("Erreur lors du chargement des planètes naines", error)
@@ -49,7 +49,7 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
                 self.updateSolarSystem()
             }
         }
-        service.fetchData(collectionID: LanguageSettings.collectionMoon) { [weak self] moon, error in
+        LanguageSettings.service.fetchData(collectionID: LanguageSettings.collectionMoon) { [weak self] moon, error in
             guard let self = self else { return }
             if let error = error {
                 print("Erreur lors du chargement des lunes:", error)
@@ -58,7 +58,7 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
                 self.updateSolarSystem()
             }
         }
-        service.fetchData(collectionID: LanguageSettings.collectionStar) { [weak self] star, error in
+        LanguageSettings.service.fetchData(collectionID: LanguageSettings.collectionStar) { [weak self] star, error in
             guard let self = self else { return }
             if let error = error {
                 print("Erreur lors du chargement des étoiles:", error)
@@ -69,10 +69,7 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    private final func updateSolarSystem() {
-        guard !LanguageSettings.planets.isEmpty, !LanguageSettings.moons.isEmpty, !LanguageSettings.stars.isEmpty, !LanguageSettings.dwarfPlanets.isEmpty else {
-            return
-        }
+    func filterData() {
         if isFiltering() {
             let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).uppercased() ?? ""
             LanguageSettings.filteredPlanets = LanguageSettings.planets.filter { $0.name.uppercased().hasPrefix(searchText) }
@@ -80,6 +77,13 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
             LanguageSettings.filteredStars = LanguageSettings.stars.filter { $0.name.uppercased().hasPrefix(searchText) }
             LanguageSettings.filteredDwarfPlanets = LanguageSettings.dwarfPlanets.filter { $0.name.uppercased().hasPrefix(searchText) }
         }
+    }
+    
+    private final func updateSolarSystem() {
+        guard !LanguageSettings.planets.isEmpty, !LanguageSettings.moons.isEmpty, !LanguageSettings.stars.isEmpty, !LanguageSettings.dwarfPlanets.isEmpty else {
+            return
+        }
+        filterData()
         solarSystem = [
             (category: LanguageSettings.categories[0], data: isFiltering() ? LanguageSettings.filteredStars : LanguageSettings.stars),
             (category: LanguageSettings.categories[1], data: isFiltering() ? LanguageSettings.filteredPlanets : LanguageSettings.planets),
@@ -90,13 +94,12 @@ class SolarSystemViewController: UIViewController, UISearchBarDelegate {
             self.tableView.reloadData()
         }
     }
-    
     private final func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
+        return isSearchBarEmpty(searchController.searchBar)
     }
-    
-    private final func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
+
+    private final func isSearchBarEmpty(_ searchBar: UISearchBar) -> Bool {
+        return searchBar.text?.isEmpty ?? true
     }
 }
 

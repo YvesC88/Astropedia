@@ -57,20 +57,26 @@ extension UIViewController {
     
     func showAlertDeleteFavorite(forLanguage language: String) {
         let title: String
+        let confirmDeleteTitle: String
         let message: String
         let cancelTitle: String
         let deleteTitle: String
+        let isEmptyMessage: String
         
         if language == "fr" {
             title = "Suppression des favoris"
+            confirmDeleteTitle = "Supprimé"
             message = "Êtes-vous sûr de vouloir supprimer vos favoris ?"
             cancelTitle = "Annuler"
             deleteTitle = "Effacer"
+            isEmptyMessage = "Votre liste de favoris est vide. Cliquez sur le cœur pour en ajouter !"
         } else {
             title = "Delete favorite"
+            confirmDeleteTitle = "Deleted"
             message = "Are you sure you want to delete your favorites?"
             cancelTitle = "Cancel"
             deleteTitle = "Delete"
+            isEmptyMessage = "Your favorites list is empty. Click on the heart to add more!"
         }
         
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -83,13 +89,13 @@ extension UIViewController {
                 // element in CoreData
                 do {
                     try CoreDataStack.share.deleteAllData()
-                    self.showInfo(title: "Deleted")
+                    self.showInfo(title: confirmDeleteTitle)
                 } catch {
                     self.presentAlert(title: "Error", message: "Une erreur est survenue lors de la suppression des favoris. Veuillez réessayer.")
                 }
             } else {
                 // nothing element in CoreData
-                self.presentAlert(title: "Impossible", message: "Your favorites list is empty. Click on the heart to add more!")
+                self.presentAlert(title: "Impossible", message: isEmptyMessage)
             }
         }
         alertVC.addAction(cancelAction)

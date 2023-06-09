@@ -23,8 +23,12 @@ class FavoritesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(title: String?, image: String?) {
-        titleLabel.text = title ?? ""
-        dayImageView.sd_setImage(with: URL(string: image ?? ""))
+    func configure(title: String?, image: String?, mediaType: String?) {
+        titleLabel.text = title
+        if mediaType == "image" {
+            dayImageView.sd_setImage(with: URL(string: image ?? ""))
+        } else {
+            dayImageView.image = UIImage(named: "image_ytb")
+        }
     }
 }

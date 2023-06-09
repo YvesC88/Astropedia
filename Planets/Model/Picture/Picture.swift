@@ -12,7 +12,9 @@ struct Picture {
     // MARK: - Properties
     
     var title: String?
-    var image: String?
+    var videoURL: String?
+    var imageURL: String?
+    var mediaType: String?
     var copyright: String?
     var explanation: String?
 }

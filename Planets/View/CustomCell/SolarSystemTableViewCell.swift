@@ -8,12 +8,15 @@
 import UIKit
 import SDWebImage
 
-class SolarSystemTableViewCell: UITableViewCell {
+final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var objectLabel: UILabel!
     @IBOutlet weak var membershipLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var objectImageView: UIImageView!
     @IBOutlet weak var diameterLabel: UILabel!
+    @IBOutlet weak var memberLabel: UILabel!
+    @IBOutlet weak var typeTextLabel: UILabel!
+    @IBOutlet weak var sizeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,13 +27,16 @@ class SolarSystemTableViewCell: UITableViewCell {
     }
     
     func configure(name: String, image: String, tempMoy: String, membership: String, type: String, diameter: Double) {
+        memberLabel.text = memberLabel.text?.uppercased()
+        typeTextLabel.text = typeTextLabel.text?.uppercased()
+        sizeLabel.text = sizeLabel.text?.uppercased()
         objectImageView.sd_setImage(with: URL(string: image))
         objectLabel.text = name
-        objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 120)
+        objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
         let gradient = getGradientLayer(bounds: objectLabel.bounds)
         objectLabel.textColor = gradientColor(bounds: objectLabel.bounds, gradientLayer: gradient)
         membershipLabel.text = membership
-        diameterLabel.text = "\(diameter) km"
+        diameterLabel.text = "\(diameter) \(LanguageSettings.unit)"
         typeLabel.text = type
     }
     
