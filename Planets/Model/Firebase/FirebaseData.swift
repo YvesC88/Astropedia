@@ -12,5 +12,5 @@ struct FirebaseData: Codable {
     
     let name, image, tempMoy, source, membership, type: String
     let gravity, diameter: Double
-    let statistics: [String]
+    let statistics, galleries: [String]
 }

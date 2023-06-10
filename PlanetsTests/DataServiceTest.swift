@@ -18,14 +18,15 @@ final class DataServiceTest: XCTestCase {
         
         let firebaseDataService = FirebaseDataService(wrapper: firebaseMock)
         firebaseMock.dataResult = [FirebaseData(name: "Terre",
-                                                image: "",
-                                                tempMoy: "",
-                                                gravity: nil,
-                                                statistics: [],
-                                                source: "",
-                                                membership: "",
-                                                type: "",
-                                                diameter: nil)]
+                                                 image: "",
+                                                 tempMoy: "",
+                                                 source: "",
+                                                 membership: "",
+                                                 type: "",
+                                                 gravity: nil,
+                                                 diameter: nil,
+                                                 statistics: [],
+                                                 galleries: [])]
         firebaseMock.dataError = nil
         
         var resultData: [FirebaseData]?

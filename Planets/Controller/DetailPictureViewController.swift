@@ -34,12 +34,6 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         imageView.clipsToBounds = true
     }
     
-    private final func shareItems(_ items: [Any]) {
-        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-    
     private final func setUI() {
         let isFavorite = pictureService.isFavorite(picture: picture)
         favoriteButton.isSelected = isFavorite

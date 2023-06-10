@@ -158,4 +158,10 @@ extension UIViewController {
             view.layer.shadowRadius = 15
         }
     }
+    
+    final func shareItems(_ items: [Any]) {
+        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
+    }
 }

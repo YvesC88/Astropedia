@@ -8,6 +8,7 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -298,6 +299,101 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlW-O0-75u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="14041" y="-710"/>
+        </scene>
+        <!--Gallery View Controller-->
+        <scene sceneID="PGl-yf-H6D">
+            <objects>
+                <viewController storyboardIdentifier="GalleryViewController" id="dSk-HE-d66" customClass="GalleryViewController" customModule="Planets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="He8-8o-RrS">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="adF-Da-73d">
+                                <rect key="frame" x="10" y="0.0" width="410" height="932"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MrS-Yq-qah">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="9ew-vr-621" customClass="GalleryCollectionViewCell" customModule="Planets" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HAf-U4-x6c">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hDa-aY-5If">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="hDa-aY-5If" secondAttribute="bottom" id="4ei-Lw-pQy"/>
+                                                <constraint firstItem="hDa-aY-5If" firstAttribute="leading" secondItem="HAf-U4-x6c" secondAttribute="leading" id="8Fs-V7-63G"/>
+                                                <constraint firstAttribute="trailing" secondItem="hDa-aY-5If" secondAttribute="trailing" id="dCd-cu-pU6"/>
+                                                <constraint firstItem="hDa-aY-5If" firstAttribute="top" secondItem="HAf-U4-x6c" secondAttribute="top" id="piU-Me-JL1"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="150" height="150"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="hDa-aY-5If" id="jtw-Y2-PpM"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="dSk-HE-d66" id="luK-SQ-DaK"/>
+                                    <outlet property="delegate" destination="dSk-HE-d66" id="VrO-yT-2ml"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OLI-cc-HGw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="adF-Da-73d" secondAttribute="bottom" id="Cq6-pu-0Dq"/>
+                            <constraint firstItem="adF-Da-73d" firstAttribute="leading" secondItem="He8-8o-RrS" secondAttribute="leading" constant="10" id="beN-ee-BpD"/>
+                            <constraint firstAttribute="trailing" secondItem="adF-Da-73d" secondAttribute="trailing" constant="10" id="gfs-Rw-91B"/>
+                            <constraint firstItem="adF-Da-73d" firstAttribute="top" secondItem="He8-8o-RrS" secondAttribute="top" id="zMT-xc-6cr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="0cf-Sa-c8o"/>
+                    <connections>
+                        <outlet property="collectionView" destination="adF-Da-73d" id="3AX-JD-gsU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PNu-dg-v3h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14792" y="-710"/>
+        </scene>
+        <!--Detail Gallery View Controller-->
+        <scene sceneID="rYh-sc-C4J">
+            <objects>
+                <viewController storyboardIdentifier="DetailGalleryViewController" id="5yX-RS-iho" customClass="DetailGalleryViewController" customModule="Planets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ow7-LE-cpV">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eaM-kp-YHw">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="898"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="njg-OK-Di4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eaM-kp-YHw" secondAttribute="trailing" id="0MX-tV-H9d"/>
+                            <constraint firstItem="eaM-kp-YHw" firstAttribute="leading" secondItem="Ow7-LE-cpV" secondAttribute="leading" id="91H-9y-uvb"/>
+                            <constraint firstItem="eaM-kp-YHw" firstAttribute="top" secondItem="Ow7-LE-cpV" secondAttribute="top" id="SLl-Jq-s2v"/>
+                            <constraint firstItem="eaM-kp-YHw" firstAttribute="bottom" secondItem="njg-OK-Di4" secondAttribute="bottom" id="Tft-Tx-zUb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="eaM-kp-YHw" id="x32-WQ-vos"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4YT-V0-BUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="15570.697674418605" y="-710.08583690987132"/>
         </scene>
         <!--Detail Asteroid View Controller-->
         <scene sceneID="dEq-XC-ma3">
@@ -943,7 +1039,7 @@
                 <navigationController storyboardIdentifier="brawser" automaticallyAdjustsScrollViewInsets="NO" id="oyz-LU-FaD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="NR9-nK-kES">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1232,7 +1328,7 @@
                     <tabBarItem key="tabBarItem" title="Actualités" image="newspaper.fill" catalog="system" id="IzA-Iw-ePw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dcG-Pc-4up">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

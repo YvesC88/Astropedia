@@ -5,7 +5,7 @@
 //  Created by Yves Charpentier on 16/01/2023.
 //
 
-import Firebase
+import FirebaseFirestore
 
 protocol FirebaseProtocol {
     func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ())
@@ -37,7 +37,8 @@ class FirebaseWrapper: FirebaseProtocol {
                                        type: document["type"] as? String ?? "",
                                        gravity: document["gravity"] as? Double ?? 0,
                                        diameter: document["diameter"] as? Double ?? 0,
-                                       statistics: document["statistics"] as? [String] ?? []))
+                                       statistics: document["statistics"] as? [String] ?? [],
+                                       galleries: document["galleries"] as? [String] ?? []))
         }
         return object
     }
