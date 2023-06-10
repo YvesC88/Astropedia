@@ -14,7 +14,6 @@ class SettingsTableViewController: UITableViewController {
     let themeKey = "preferredTheme"
     let switchKey = "switchState"
     var currentLanguage = Bundle.main.preferredLocalizations.first
-    let appDelegate = AppDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()

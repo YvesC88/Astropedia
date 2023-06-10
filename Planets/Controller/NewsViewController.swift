@@ -17,6 +17,7 @@ class NewsViewController: UIViewController {
     
     let pictureService = PictureService()
     let spinner = UIActivityIndicatorView(style: .medium)
+    var language = LanguageSettings(language: BundleLanguage())
     
     private var picture: [APIApod] = [] {
         didSet {
@@ -49,7 +50,7 @@ class NewsViewController: UIViewController {
     
     private final func loadArticle() {
         let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        service.fetchArticle(collectionID: LanguageSettings.collectionArticle) { article, error in
+        service.fetchArticle(collectionID: language.collectionArticle) { article, error in
             for data in article {
                 self.article.append(data)
             }

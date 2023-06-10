@@ -9,6 +9,13 @@ import UIKit
 
 extension UIViewController {
     
+    static let service = FirebaseDataService(wrapper: FirebaseWrapper())
+    static let searchController = UISearchController()
+    static var solarSystem: [(category: String, data: [FirebaseData])] = []
+    
+    static let categoriesFr = ["Étoile", "Planètes", "Planètes naines", "Lunes"]
+    static let categoriesEn = ["Star", "Planets", "Dwarf planets", "Moons"]
+    
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {
         let gradient = CAGradientLayer()
         gradient.frame = bounds

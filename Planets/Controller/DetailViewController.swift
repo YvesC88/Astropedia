@@ -52,18 +52,23 @@ class DetailViewController: UIViewController {
         titleLabel.textColor = self.gradientColor(bounds: titleLabel.bounds, gradientLayer: gradientTitleLabel)
     }
     
+    private final func shareItems(_ items: [Any]) {
+        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     private func setupBarButtonItem() {
         let action1 = UIAction(title: "Galerie", image: UIImage(systemName: "photo.fill.on.rectangle.fill")) { action in
             print("Copy")
         }
-        let action2 = UIAction(title: "Sauvegarder", image: UIImage(systemName: "square.and.arrow.down")) { action in
-            print("Copy")
+        let action2 = UIAction(title: "Partager", image: UIImage(systemName: "square.and.arrow.up")) { action in
+            guard let image = self.objectImageView.image,
+                  let statistics = self.statisticsTextView.text else { return }
+            self.shareItems([image, statistics])
         }
-        let action3 = UIAction(title: "Partager", image: UIImage(systemName: "square.and.arrow.up")) { action in
-            print("Copy")
-        }
-        let menu = UIMenu(children: [action1, action2, action3])
-        let menuButton = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), menu: menu)
+        let menu = UIMenu(children: [action1, action2])
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: menu)
         navigationItem.rightBarButtonItem = menuButton
     }
 }

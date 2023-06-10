@@ -18,6 +18,8 @@ final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var typeTextLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     
+    var language = LanguageSettings(language: BundleLanguage())
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -36,7 +38,7 @@ final class SolarSystemTableViewCell: UITableViewCell {
         let gradient = getGradientLayer(bounds: objectLabel.bounds)
         objectLabel.textColor = gradientColor(bounds: objectLabel.bounds, gradientLayer: gradient)
         membershipLabel.text = membership
-        diameterLabel.text = "\(diameter) \(LanguageSettings.unit)"
+        diameterLabel.text = "\(diameter) \(language.unit)"
         typeLabel.text = type
     }
     

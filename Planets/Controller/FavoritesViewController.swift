@@ -31,7 +31,7 @@ class FavoritesViewController: UIViewController {
         }
     }
     
-    var currentLanguage = LanguageSettings.currentLanguage
+    var language = LanguageSettings(language: BundleLanguage())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,7 @@ class FavoritesViewController: UIViewController {
         guard let article = try? CoreDataStack.share.viewContext.fetch(articleRequest) else { return }
         favoriteArticle = article
         
-        if LanguageSettings.currentLanguage == "fr" {
+        if language.currentLanguage == "fr" {
             favorites = [
                 (category: "Mes images", data: favoritePicture),
                 (category: "Mes articles", data: favoriteArticle)]

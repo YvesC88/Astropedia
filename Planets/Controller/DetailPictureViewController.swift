@@ -21,6 +21,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
     
     var picture: Picture!
     private let pictureService = PictureService()
+    var language = LanguageSettings(language: BundleLanguage())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +74,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         let title: String
         if isFavorite {
             pictureService.unsaveRecipe(picture: picture)
-            title = LanguageSettings.currentLanguage == "fr" ? "Effacé" : "Deleted"
+            title = language.deleteTitleAlert
             favoriteButton.isSelected = false
         } else {
             pictureService.savePicture(title: picture.title,
@@ -82,7 +83,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
                                        mediaType: picture.mediaType,
                                        copyright: picture.copyright,
                                        explanation: picture.explanation)
-            title = LanguageSettings.currentLanguage == "fr" ? "Sauvegardé" : "Saved"
+            title = language.saveTitleAlert
             favoriteButton.isSelected = true
         }
         showInfo(title: title)

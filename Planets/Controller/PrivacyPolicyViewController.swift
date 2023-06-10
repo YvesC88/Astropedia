@@ -15,6 +15,7 @@ class PrivacyPolicyViewController: UIViewController {
     @IBOutlet private weak var privacyPolicyTextView: UITextView!
     
     private var data: [FirebasePrivacyPolicy] = []
+    var language = LanguageSettings(language: BundleLanguage())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class PrivacyPolicyViewController: UIViewController {
     
     private final func loadPrivacyPolicy() {
         let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        let collectionID = (LanguageSettings.currentLanguage == "fr") ? "privacyPolicy" : "privacyPolicyEn"
+        let collectionID = (language.currentLanguage == "fr") ? "privacyPolicy" : "privacyPolicyEn"
         service.fetchPrivacyPolicy(collectionID: collectionID) { privacyPolicy, error in
             for data in privacyPolicy {
                 self.data = privacyPolicy
