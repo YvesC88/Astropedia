@@ -15,7 +15,6 @@ class GalleryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = data.name
     }
 }
 
@@ -41,6 +40,7 @@ extension GalleryViewController: UICollectionViewDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let detailGalleryVC = storyboard.instantiateViewController(withIdentifier: "DetailGalleryViewController") as? DetailGalleryViewController else { return }
         detailGalleryVC.image = selectedImage
-        self.navigationController?.pushViewController(detailGalleryVC, animated: true)
+        self.present(detailGalleryVC, animated: true)
+//        self.navigationController?.pushViewController(detailGalleryVC, animated: true)
     }
 }

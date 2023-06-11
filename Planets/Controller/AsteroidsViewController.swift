@@ -52,9 +52,9 @@ class AsteroidsViewController: UIViewController {
     }
     
     @objc private final func refreshTableView() {
-        tableView.reloadData()
-        refreshControl.endRefreshing()
         fetchData()
+        refreshControl.endRefreshing()
+        tableView.reloadData()
     }
     
     private final func fetchData() {

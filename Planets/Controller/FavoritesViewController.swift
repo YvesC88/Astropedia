@@ -69,7 +69,10 @@ class FavoritesViewController: UIViewController {
                 (category: "My pictures", data: favoritePicture),
                 (category: "My articles", data: favoriteArticle)]
         }
-        
+    }
+    
+    @IBAction func dismissFavoritesVC() {
+        dismiss(animated: true)
     }
 }
 

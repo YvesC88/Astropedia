@@ -8,16 +8,19 @@
 import UIKit
 
 class NewsViewController: UIViewController {
+    @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var pictureTableView: UITableView!
     @IBOutlet weak private var articleTableView: UITableView!
     @IBOutlet weak private var articleLabel: UILabel!
     @IBOutlet weak private var lastPictureLabel: UILabel!
     @IBOutlet weak private var articleView: UIView!
     @IBOutlet weak private var lastPictureView: UIView!
+    @IBOutlet weak private var errorLabel: UILabel!
     
     let pictureService = PictureService()
     let spinner = UIActivityIndicatorView(style: .medium)
     var language = LanguageSettings(language: BundleLanguage())
+//    let refreshControl = UIRefreshControl()
     
     private var picture: [APIApod] = [] {
         didSet {
@@ -38,6 +41,8 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+//        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+//        scrollView.addSubview(refreshControl)
     }
     
     private final func setupViews() {
@@ -47,6 +52,14 @@ class NewsViewController: UIViewController {
         loadArticle()
         fetchData()
     }
+    
+//    @objc func refreshData() {
+//        loadArticle()
+//        fetchData()
+//        refreshControl.endRefreshing()
+//        articleTableView.reloadData()
+//        pictureTableView.reloadData()
+//    }
     
     private final func loadArticle() {
         let service = FirebaseDataService(wrapper: FirebaseWrapper())
@@ -58,6 +71,7 @@ class NewsViewController: UIViewController {
     }
     
     private final func fetchData() {
+        errorLabel.isHidden = true
         spinner.startAnimating()
         pictureTableView.backgroundView = spinner
         let date = Date()
@@ -70,8 +84,10 @@ class NewsViewController: UIViewController {
         pictureService.getPicture(startDate: endDate, endDate: startDate) { picture in
             if let picture = picture {
                 self.picture = picture
-                self.spinner.stopAnimating()
+            } else {
+                self.errorLabel.isHidden = false
             }
+            self.spinner.stopAnimating()
         }
     }
 }

@@ -18,10 +18,10 @@
 "5tP-Ew-xTL.text" = "Dark mode";
 
 /* Class = "UILabel"; text = "Français"; ObjectID = "oGc-st-xZ5"; */
-"oGc-st-xZ5.text" = "French";
+"oGc-st-xZ5.text" = "🇫🇷 French";
 
 /* Class = "UILabel"; text = "Français"; ObjectID = "GSX-f4-Tpi"; */
-"GSX-f4-Tpi.text" = "English";
+"GSX-f4-Tpi.text" = "🇺🇸 English";
 
 /* Class = "UINavigationItem"; title = "Favoris"; ObjectID = "6Am-Af-ge2"; */
 "6Am-Af-ge2.title" = "Favorites";
@@ -31,6 +31,9 @@
 
 /* Class = "UINavigationItem"; title = "Actualités"; ObjectID = "9sb-qc-Qzl"; */
 "9sb-qc-Qzl.title" = "News";
+
+/* Class = "UINavigationItem"; title = "Actualités"; ObjectID = "y5s-fz-86P"; */
+"y5s-fz-86P.title" = "More";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "El7-z0-ED7"; */
 "El7-z0-ED7.text" = "0";
@@ -57,7 +60,7 @@
 "JVP-ab-ap5.text" = "Label";
 
 /* Class = "UILabel"; text = "Voyage cosmique"; ObjectID = "JiB-GR-zqM"; */
-"JiB-GR-zqM.text" = "Cosmic travel";
+"JiB-GR-zqM.text" = "Cosmic travel 💫";
 
 /* Class = "UINavigationItem"; title = "Paramètres"; ObjectID = "LMY-fv-9jL"; */
 "LMY-fv-9jL.title" = "Settings";
@@ -69,7 +72,7 @@
 "NrJ-pg-gnG.headerTitle" = "Privacy Policy";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Oh8-is-mQy"; */
-"Oh8-is-mQy.text" = "Your favorites list is empty\n\n\nClick on the heart to add your favorite images and articles and find them even without a connection.";
+"Oh8-is-mQy.text" = "Your favorites list is empty\n\n\nClick on ❤️ to add your favorite images and articles and find them even without a connection.";
 
 /* Class = "UILabel"; text = "Chargement..."; ObjectID = "RTz-GM-OIp"; */
 "RTz-GM-OIp.text" = "Loading...";
@@ -83,8 +86,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "TWv-mP-ek2"; */
 "TWv-mP-ek2.text" = "Label";
 
-/* Class = "UILabel"; text = " Version 1.7"; ObjectID = "Tp8-zs-wha"; */
-"Tp8-zs-wha.text" = " Version 1.7";
+/* Class = "UILabel"; text = " v1.9"; ObjectID = "Tp8-zs-wha"; */
+"Tp8-zs-wha.text" = " v1.9";
 
 /* Class = "UITextView"; text = "Subtitle"; ObjectID = "UT2-RM-XSJ"; */
 "UT2-RM-XSJ.text" = "Subtitle";
@@ -108,7 +111,7 @@
 "a3u-Fo-izG.title" = "Asteroids";
 
 /* Class = "UILabel"; text = "Distance Terre - Lune"; ObjectID = "asd-ES-tgx"; */
-"asd-ES-tgx.text" = "Earth-Moon distance";
+"asd-ES-tgx.text" = "🌍 -> 🌕 distance";
 
 /* Class = "UILabel"; text = "Taille en mètres"; ObjectID = "c1W-FN-0qD"; */
 "c1W-FN-0qD.text" = "Size in meters";
@@ -185,6 +188,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Apparence"; ObjectID = "v2M-qU-khj"; */
 "v2M-qU-khj.headerTitle" = "Appearence";
 
+/* Class = "UITableViewSection"; headerTitle = "Langue"; ObjectID = "yog-gh-rFx"; */
+"yog-gh-rFx.headerTitle" = "Language";
+
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "wtv-iv-GOT"; */
 "wtv-iv-GOT.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
@@ -193,3 +199,21 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "zJV-el-gFA"; */
 "zJV-el-gFA.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "b8x-u1-27X"; */
+"b8x-u1-27X.text" = "Favorites";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PPA-Dg-Rhr"; */
+"PPA-Dg-Rhr.text" = "Member";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SkI-Ey-ARx"; */
+"SkI-Ey-ARx.text" = "Kind";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gbU-Jx-rHk"; */
+"gbU-Jx-rHk.text" = "Size";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "k6j-xF-R4u"; */
+"k6j-xF-R4u.text" = "Moon";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "T5X-yR-aRA"; */
+"T5X-yR-aRA.text" = "Server Error";

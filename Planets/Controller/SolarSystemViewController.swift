@@ -121,7 +121,7 @@ extension SolarSystemViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let data = SolarSystemViewController.solarSystem[indexPath.section].data[indexPath.row]
-        cell.configure(name: data.name, image: data.image, tempMoy: data.tempMoy, membership: data.membership, type: data.type, diameter: data.diameter)
+        cell.configure(name: data.name, image: data.image, tempMoy: data.tempMoy, sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
         return cell
     }
 }

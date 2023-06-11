@@ -14,9 +14,11 @@ final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var objectImageView: UIImageView!
     @IBOutlet weak var diameterLabel: UILabel!
-    @IBOutlet weak var memberLabel: UILabel!
+    @IBOutlet weak var memberTextLabel: UILabel!
     @IBOutlet weak var typeTextLabel: UILabel!
-    @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var diameterTextLabel: UILabel!
+    @IBOutlet weak var satTextLabel: UILabel!
+    @IBOutlet weak var satLabel: UILabel!
     
     var language = LanguageSettings(language: BundleLanguage())
     
@@ -28,10 +30,11 @@ final class SolarSystemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(name: String, image: String, tempMoy: String, membership: String, type: String, diameter: Double) {
-        memberLabel.text = memberLabel.text?.uppercased()
+    func configure(name: String, image: String, tempMoy: String, sat: Int, membership: String, type: String, diameter: Double) {
+        memberTextLabel.text = memberTextLabel.text?.uppercased()
         typeTextLabel.text = typeTextLabel.text?.uppercased()
-        sizeLabel.text = sizeLabel.text?.uppercased()
+        diameterTextLabel.text = diameterTextLabel.text?.uppercased()
+        satTextLabel.text = satTextLabel.text?.uppercased()
         objectImageView.sd_setImage(with: URL(string: image))
         objectLabel.text = name
         objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
@@ -40,6 +43,9 @@ final class SolarSystemTableViewCell: UITableViewCell {
         membershipLabel.text = membership
         diameterLabel.text = "\(diameter) \(language.unit)"
         typeLabel.text = type
+        satTextLabel.isHidden = sat == 0
+        satLabel.isHidden = sat == 0
+        satLabel.text = sat == 0 ? "" : "\(sat)"
     }
     
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {

@@ -35,6 +35,7 @@ class FirebaseWrapper: FirebaseProtocol {
                                        source: document["source"] as? String ?? "",
                                        membership: document["membership"] as? String ?? "",
                                        type: document["type"] as? String ?? "",
+                                       sat: document["sat"] as? Int ?? 0,
                                        gravity: document["gravity"] as? Double ?? 0,
                                        diameter: document["diameter"] as? Double ?? 0,
                                        statistics: document["statistics"] as? [String] ?? [],

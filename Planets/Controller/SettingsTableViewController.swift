@@ -43,10 +43,6 @@ class SettingsTableViewController: UITableViewController {
         UserDefaults.standard.set(sender.isOn, forKey: switchKey)
     }
     
-    @IBAction func closeSettings() {
-        dismiss(animated: true)
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 0 {
@@ -66,7 +62,9 @@ class SettingsTableViewController: UITableViewController {
             }
         }
         if indexPath.section == 2 {
-            showAlertDeleteFavorite(forLanguage: currentLanguage!)
+            if indexPath.row == 1 {
+                showAlertDeleteFavorite(forLanguage: currentLanguage!)
+            }
         }
     }
 }

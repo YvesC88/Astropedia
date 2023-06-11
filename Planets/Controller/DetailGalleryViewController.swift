@@ -23,4 +23,13 @@ class DetailGalleryViewController: UIViewController {
     func showImage(image: String) {
         imageView.sd_setImage(with: URL(string: image))
     }
+    
+    @IBAction func dismissDetailGalleryVC() {
+        dismiss(animated: true)
+    }
+    
+    @IBAction func shareImage() {
+        guard let image = imageView.image else { return }
+        shareItems([image])
+    }
 }
