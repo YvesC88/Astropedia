@@ -48,23 +48,25 @@
 		FBAB2A7929F6D75500B31C6D /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB2A7829F6D75500B31C6D /* Picture.swift */; };
 		FBAC78FA29F563AB009DFF86 /* PictureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78F929F563AB009DFF86 /* PictureService.swift */; };
 		FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78FB29F56464009DFF86 /* APIApod.swift */; };
+		FBBB05802A4B2EEB0033B090 /* FirebaseCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB057F2A4B2EEB0033B090 /* FirebaseCollection.swift */; };
 		FBC473452A1FBCBC00E70C4A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */; };
 		FBC8304E2A33210F0004C79B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FBC8304D2A33210F0004C79B /* Alamofire */; };
 		FBC830512A3321520004C79B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBC830502A3321520004C79B /* FirebaseAnalytics */; };
 		FBC830532A3321520004C79B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBC830522A3321520004C79B /* FirebaseCrashlytics */; };
 		FBC830552A3321520004C79B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FBC830542A3321520004C79B /* FirebaseFirestore */; };
 		FBC830582A3321800004C79B /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FBC830572A3321800004C79B /* SDWebImage */; };
-		FBC8305B2A338AD20004C79B /* BundleLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8305A2A338AD20004C79B /* BundleLanguage.swift */; };
 		FBC8305D2A3471970004C79B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8305C2A3471970004C79B /* GalleryViewController.swift */; };
 		FBC830612A347B8B0004C79B /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC830602A347B8B0004C79B /* GalleryCollectionViewCell.swift */; };
 		FBC830632A3482D90004C79B /* DetailGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC830622A3482D90004C79B /* DetailGalleryViewController.swift */; };
+		FBEC43EB2A3F674A00D76790 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EA2A3F674A00D76790 /* QuestionService.swift */; };
+		FBEC43ED2A3F6CB700D76790 /* QuizzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */; };
+		FBEC43EF2A3F96CD00D76790 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EE2A3F96CD00D76790 /* Question.swift */; };
 		FBF8657029FD0DD700646278 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */; };
 		FBF8657629FD0F4700646278 /* Astropedia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBF8657429FD0F4700646278 /* Astropedia.xcdatamodeld */; };
 		FBF8657D29FD17C200646278 /* LocalPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8657C29FD17C200646278 /* LocalPicture.swift */; };
 		FBF8657F29FD195B00646278 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF8657E29FD195B00646278 /* CoreDataStack.swift */; };
 		FBF937852A0A6E1D008235E6 /* PictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF937842A0A6E1C008235E6 /* PictureTableViewCell.swift */; };
 		FBF937892A0A94FF008235E6 /* FirebaseArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF937882A0A94FF008235E6 /* FirebaseArticle.swift */; };
-		FBFFD8A82A27A902009D9679 /* LanguageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFFD8A72A27A902009D9679 /* LanguageSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,21 +128,20 @@
 		FBAB2A7829F6D75500B31C6D /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		FBAC78F929F563AB009DFF86 /* PictureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureService.swift; sourceTree = "<group>"; };
 		FBAC78FB29F56464009DFF86 /* APIApod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIApod.swift; sourceTree = "<group>"; };
+		FBBB057F2A4B2EEB0033B090 /* FirebaseCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollection.swift; sourceTree = "<group>"; };
 		FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		FBC8305A2A338AD20004C79B /* BundleLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleLanguage.swift; sourceTree = "<group>"; };
 		FBC8305C2A3471970004C79B /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		FBC830602A347B8B0004C79B /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		FBC830622A3482D90004C79B /* DetailGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGalleryViewController.swift; sourceTree = "<group>"; };
+		FBEC43EA2A3F674A00D76790 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
+		FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzViewController.swift; sourceTree = "<group>"; };
+		FBEC43EE2A3F96CD00D76790 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		FBF8657529FD0F4700646278 /* Astropedia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Astropedia.xcdatamodel; sourceTree = "<group>"; };
 		FBF8657C29FD17C200646278 /* LocalPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPicture.swift; sourceTree = "<group>"; };
 		FBF8657E29FD195B00646278 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FBF937842A0A6E1C008235E6 /* PictureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureTableViewCell.swift; sourceTree = "<group>"; };
 		FBF937882A0A94FF008235E6 /* FirebaseArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseArticle.swift; sourceTree = "<group>"; };
-		FBFFD8A22A276395009D9679 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		FBFFD8A32A276395009D9679 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		FBFFD8A52A278F31009D9679 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		FBFFD8A72A27A902009D9679 /* LanguageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,7 +230,7 @@
 		FB15CB1A2975731100FEE718 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FBC830592A338AB00004C79B /* Language */,
+				FBEC43E72A3F66CF00D76790 /* Quizz */,
 				FBF8657B29FD10DE00646278 /* CoreData */,
 				FBF8657A29FD10C600646278 /* Firebase */,
 				FBF8657929FD10A100646278 /* Asteroid */,
@@ -266,6 +267,7 @@
 				FB40AE642A14C6B90067FCAC /* DetailArticleViewController.swift */,
 				FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */,
 				FB9D31B92A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift */,
+				FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -279,13 +281,13 @@
 			path = Article;
 			sourceTree = "<group>";
 		};
-		FBC830592A338AB00004C79B /* Language */ = {
+		FBEC43E72A3F66CF00D76790 /* Quizz */ = {
 			isa = PBXGroup;
 			children = (
-				FBC8305A2A338AD20004C79B /* BundleLanguage.swift */,
-				FBFFD8A72A27A902009D9679 /* LanguageSettings.swift */,
+				FBEC43EE2A3F96CD00D76790 /* Question.swift */,
+				FBEC43EA2A3F674A00D76790 /* QuestionService.swift */,
 			);
-			path = Language;
+			path = Quizz;
 			sourceTree = "<group>";
 		};
 		FBF8657729FD108500646278 /* Picture */ = {
@@ -313,6 +315,7 @@
 			children = (
 				FB15CB202975745200FEE718 /* FirebaseWrapper.swift */,
 				FB15CB0629756AD600FEE718 /* FirebaseData.swift */,
+				FBBB057F2A4B2EEB0033B090 /* FirebaseCollection.swift */,
 				FB15CB1D2975735700FEE718 /* FirebaseDataService.swift */,
 				FBF937882A0A94FF008235E6 /* FirebaseArticle.swift */,
 				FB9D31BB2A21621700CCC8D9 /* FirebasePrivacyPolicy.swift */,
@@ -438,7 +441,6 @@
 			knownRegions = (
 				en,
 				Base,
-				fr,
 			);
 			mainGroup = FB15CACA297566D800FEE718;
 			packageReferences = (
@@ -516,7 +518,6 @@
 			files = (
 				FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */,
 				FBC830612A347B8B0004C79B /* GalleryCollectionViewCell.swift in Sources */,
-				FBC8305B2A338AD20004C79B /* BundleLanguage.swift in Sources */,
 				FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */,
 				FB6922282A094C400034A65B /* FavoritesTableViewCell.swift in Sources */,
 				FB15CB272975958A00FEE718 /* SolarSystemTableViewCell.swift in Sources */,
@@ -530,13 +531,15 @@
 				FB605C892A1543E400622E94 /* ArticleTableViewCell.swift in Sources */,
 				FB15CADB297566D800FEE718 /* SolarSystemViewController.swift in Sources */,
 				FB15CB212975745200FEE718 /* FirebaseWrapper.swift in Sources */,
-				FBFFD8A82A27A902009D9679 /* LanguageSettings.swift in Sources */,
+				FBBB05802A4B2EEB0033B090 /* FirebaseCollection.swift in Sources */,
 				FB40AE632A13D2E00067FCAC /* Article.swift in Sources */,
 				FB40AE612A13D1700067FCAC /* LocalArticle.swift in Sources */,
 				FB849A4829DB126600ACABA6 /* AsteroidTableViewCell.swift in Sources */,
 				FB40AE652A14C6B90067FCAC /* DetailArticleViewController.swift in Sources */,
 				FBF8657629FD0F4700646278 /* Astropedia.xcdatamodeld in Sources */,
+				FBEC43ED2A3F6CB700D76790 /* QuizzViewController.swift in Sources */,
 				FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */,
+				FBEC43EF2A3F96CD00D76790 /* Question.swift in Sources */,
 				FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */,
 				FBF937852A0A6E1D008235E6 /* PictureTableViewCell.swift in Sources */,
 				FB1881AE2A12DC5100B6EBCC /* ApiKeys.swift in Sources */,
@@ -553,6 +556,7 @@
 				FBC8305D2A3471970004C79B /* GalleryViewController.swift in Sources */,
 				FBAB2A7929F6D75500B31C6D /* Picture.swift in Sources */,
 				FB849A3729D6EB1900ACABA6 /* ResultAsteroid.swift in Sources */,
+				FBEC43EB2A3F674A00D76790 /* QuestionService.swift in Sources */,
 				FBAC78FA29F563AB009DFF86 /* PictureService.swift in Sources */,
 				FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */,
 			);
@@ -599,8 +603,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				FB15CADD297566D800FEE718 /* Base */,
-				FBFFD8A22A276395009D9679 /* fr */,
-				FBFFD8A52A278F31009D9679 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -609,7 +611,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				FB15CAE2297566DA00FEE718 /* Base */,
-				FBFFD8A32A276395009D9679 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -762,7 +763,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -798,7 +799,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -17,7 +17,7 @@ class FirebaseDataService {
     }
     // MARK: - Methods
     
-    // fetch places in FireStore
+    // fetch planets in FireStore
     func fetchData(collectionID: String, completion: @escaping ([FirebaseData], String?) -> ()) {
         firebaseWrapper.fetch(collectionID: collectionID) { data, error in
             if let data = data {
@@ -27,7 +27,7 @@ class FirebaseDataService {
             }
         }
     }
-    
+    // fetch articles in FireStore
     func fetchArticle(collectionID: String, completion: @escaping ([FirebaseArticle], String?) -> ()) {
         firebaseWrapper.fetchArticle(collectionID: collectionID) { article, error in
             if let article = article {
@@ -37,7 +37,7 @@ class FirebaseDataService {
             }
         }
     }
-    
+    // fetch privacy policy in FireStore
     func fetchPrivacyPolicy(collectionID: String, completion: @escaping ([FirebasePrivacyPolicy], String?) -> ()) {
         firebaseWrapper.fetchPrivacyPolicy(collectionID: collectionID) { privacyPolicy, error in
             if let privacyPolicy = privacyPolicy {

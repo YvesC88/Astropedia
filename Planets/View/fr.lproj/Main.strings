@@ -66,7 +66,7 @@
 "NrJ-pg-gnG.headerTitle" = "Mentions légales";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Oh8-is-mQy"; */
-"Oh8-is-mQy.text" = "Votre liste est vide\n\n\n\nCliquez sur ❤️ pour ajouter vos images et articles préférés et les retrouver même sans connexion.";
+"Oh8-is-mQy.text" = "Votre liste est vide\n\n\n\nCliquez sur le ♥️ pour ajouter vos images et articles préférés et les retrouver même sans connexion.";
 
 /* Class = "UILabel"; text = "Chargement..."; ObjectID = "RTz-GM-OIp"; */
 "RTz-GM-OIp.text" = "Chargement...";
@@ -146,8 +146,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "liO-76-xaP"; */
 "liO-76-xaP.text" = "Label";
 
-/* Class = "UIButton"; normalTitle = "Plus de détails"; ObjectID = "mqF-5D-0WP"; */
-"mqF-5D-0WP.normalTitle" = "Plus de détails";
+/* Class = "UIButton"; normalTitle = "Plus de détails"; ObjectID = "Npc-L6-Wvq"; */
+"Npc-L6-Wvq.normalTitle" = "Plus de détails";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "mx8-y0-t2A"; */
 "mx8-y0-t2A.text" = "Label";

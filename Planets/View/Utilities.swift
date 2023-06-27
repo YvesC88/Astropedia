@@ -11,10 +11,6 @@ extension UIViewController {
     
     static let service = FirebaseDataService(wrapper: FirebaseWrapper())
     static let searchController = UISearchController()
-    static var solarSystem: [(category: String, data: [FirebaseData])] = []
-    
-    static let categoriesFr = ["Étoile", "Planètes", "Planètes naines", "Lunes"]
-    static let categoriesEn = ["Star", "Planets", "Dwarf planets", "Moons"]
     
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {
         let gradient = CAGradientLayer()
@@ -76,14 +72,14 @@ extension UIViewController {
             message = "Êtes-vous sûr de vouloir supprimer vos favoris ?"
             cancelTitle = "Annuler"
             deleteTitle = "Effacer"
-            isEmptyMessage = "Votre liste de favoris est vide. Cliquez sur le cœur pour en ajouter !"
+            isEmptyMessage = "Votre liste de favoris est vide. Cliquez sur ♥️ pour en ajouter !"
         } else {
             title = "Delete favorite"
             confirmDeleteTitle = "Deleted"
             message = "Are you sure you want to delete your favorites?"
             cancelTitle = "Cancel"
             deleteTitle = "Delete"
-            isEmptyMessage = "Your favorites list is empty. Click on the heart to add more!"
+            isEmptyMessage = "Your favorites list is empty. Click on ♥️ to add more!"
         }
         
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -117,7 +113,6 @@ extension UIViewController {
         let cancelTitle: String
         let confirmTitle: String
         let infoTitle: String
-        
         if language == "fr" {
             title = "Change language"
             message = "Would you like to use French like language?"
@@ -131,20 +126,51 @@ extension UIViewController {
             confirmTitle = "OK"
             infoTitle = "Relancer l'application"
         }
-        
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
         let cancelAction = UIAlertAction(title: cancelTitle, style: .default)
         alertVC.addAction(cancelAction)
-        
         let confirmAction = UIAlertAction(title: confirmTitle, style: .destructive) { action in
             self.languageDidChange(language: language)
             self.showInfo(title: infoTitle)
         }
         alertVC.addAction(confirmAction)
-        
         alertVC.preferredAction = cancelAction
         present(alertVC, animated: true, completion: nil)
+    }
+    
+    func setUIButton(button: [UIButton]) {
+        let buttons = button
+        for button in buttons {
+            button.layer.borderColor = UIColor.systemPurple.withAlphaComponent(0.5).cgColor
+            button.layer.borderWidth = 2
+            button.layer.cornerRadius = 20
+        }
+    }
+    
+    func colorSelectedButton(button: UIButton) {
+        button.layer.borderColor = UIColor.systemBlue.cgColor
+        button.layer.borderWidth = 2
+    }
+    
+    func correctColorButton(button: UIButton) {
+        button.layer.borderColor = UIColor.systemGreen.cgColor
+        button.layer.borderWidth = 2
+    }
+    
+    func incorrectColorButton(button: UIButton) {
+        button.layer.borderColor = UIColor.systemRed.cgColor
+        button.layer.borderWidth = 2
+    }
+    
+    func resetSelectedButton(buttons: [UIButton]) {
+        for button in buttons {
+            button.layer.borderColor = UIColor.clear.cgColor
+            button.layer.borderWidth = 0
+        }
+    }
+    
+    func updateColorAfterCheck(button: UIButton, color: CGColor) {
+        button.layer.borderColor = color
     }
     
     func setUIView(view: [UIView]) {

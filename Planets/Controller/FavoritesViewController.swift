@@ -31,8 +31,6 @@ class FavoritesViewController: UIViewController {
         }
     }
     
-    var language = LanguageSettings(language: BundleLanguage())
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
@@ -54,21 +52,13 @@ class FavoritesViewController: UIViewController {
     private func fetchData() {
         let pictureRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
         let articleRequest: NSFetchRequest<LocalArticle> = LocalArticle.fetchRequest()
-        
         guard let picture = try? CoreDataStack.share.viewContext.fetch(pictureRequest) else { return }
         favoritePicture = picture
         guard let article = try? CoreDataStack.share.viewContext.fetch(articleRequest) else { return }
         favoriteArticle = article
-        
-        if language.currentLanguage == "fr" {
-            favorites = [
-                (category: "Mes images", data: favoritePicture),
-                (category: "Mes articles", data: favoriteArticle)]
-        } else {
-            favorites = [
-                (category: "My pictures", data: favoritePicture),
-                (category: "My articles", data: favoriteArticle)]
-        }
+        favorites = [
+            (category: "Mes images", data: favoritePicture),
+            (category: "Mes articles", data: favoriteArticle)]
     }
     
     @IBAction func dismissFavoritesVC() {

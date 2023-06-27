@@ -18,7 +18,6 @@ final class DetailArticleViewController: UIViewController {
     
     var article: Article!
     private let articleService = ArticleService()
-    private var language = LanguageSettings(language: BundleLanguage())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +49,8 @@ final class DetailArticleViewController: UIViewController {
     
     @IBAction private final func didTappedFavorite() {
         let isFavorite: Bool = articleService.isFavoriteArticle(article: article)
-        let title: String
         if isFavorite {
             articleService.unsaveArticle(article: article)
-            title = language.deleteTitleAlert
             favoriteButton.isSelected = false
         } else {
             articleService.saveArticle(title: article.title,
@@ -62,10 +59,8 @@ final class DetailArticleViewController: UIViewController {
                                        source: article.source,
                                        articleText: article.articleText,
                                        id: article.id)
-            title = language.saveTitleAlert
             favoriteButton.isSelected = true
         }
-        showInfo(title: title)
     }
 }
 

@@ -20,8 +20,6 @@ final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var satTextLabel: UILabel!
     @IBOutlet weak var satLabel: UILabel!
     
-    var language = LanguageSettings(language: BundleLanguage())
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -41,7 +39,7 @@ final class SolarSystemTableViewCell: UITableViewCell {
         let gradient = getGradientLayer(bounds: objectLabel.bounds)
         objectLabel.textColor = gradientColor(bounds: objectLabel.bounds, gradientLayer: gradient)
         membershipLabel.text = membership
-        diameterLabel.text = "\(diameter) \(language.unit)"
+        diameterLabel.text = "\(diameter) m"
         typeLabel.text = type
         satTextLabel.isHidden = sat == 0
         satLabel.isHidden = sat == 0

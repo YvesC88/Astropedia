@@ -14,15 +14,12 @@ class DetailAsteroidViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var asteroidNameLabel: UILabel!
     @IBOutlet weak var urlButton: UIButton!
-    @IBOutlet weak var infoTextView: UITextView!
-    @IBOutlet weak var globalView: UIView!
-    @IBOutlet weak var sizeView: UIView!
-    @IBOutlet weak var velocityView: UIView!
-    @IBOutlet weak var distanceView: UIView!
-    @IBOutlet weak var statisticsView: UIView!
-    @IBOutlet weak var legendView: UIView!
-    @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var closeLabel: UILabel!
+    @IBOutlet weak var dangerousLabel: UILabel!
+    @IBOutlet weak var absoluteMagnitudeLabel: UILabel!
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var legendView: UIView!
     
     var asteroid: Asteroid!
     
@@ -32,29 +29,17 @@ class DetailAsteroidViewController: UIViewController {
         let gradientTitleLabel = self.getGradientLayer(bounds: asteroidNameLabel.bounds)
         asteroidNameLabel.textColor = self.gradientColor(bounds: asteroidNameLabel.bounds, gradientLayer: gradientTitleLabel)
         setData()
-        self.setUIView(view: [statisticsView])
+        setUIView(view: [infoView, legendView])
     }
     
     func setData() {
-        if let size = asteroid.estimatedDiameter,
-           let velocity = asteroid.relativeVelocity,
-           let distance = asteroid.missDistance,
-           let asteroidName = asteroid.name,
-           let closeDate = asteroid.closeApproachDate,
-           let dangerous = asteroid.isPotentiallyHazardous,
-           let absoluteMagnitude = asteroid.absoluteMagnitude {
-            sizeLabel.text = String(format: "%.1f", size)
-            velocityLabel.text = "\(velocity)"
-            distanceLabel.text = String(format: "%.1fx", distance)
-            asteroidNameLabel.text = asteroidName
-            infoTextView.text = "• Au plus proche de la Terre le \(closeDate)\n• \(dangerous)\n• Magnitude absolue : \(absoluteMagnitude)"
-        } else {
-            sizeLabel.text = "Pas de données."
-            velocityLabel.text = "Pas de données."
-            distanceLabel.text = "Pas de données."
-            asteroidNameLabel.text = "Pas de données"
-            infoTextView.text = "Pas de données"
-        }
+        sizeLabel.text = String(format: "%.1f", asteroid.estimatedDiameter ?? "")
+        velocityLabel.text = "\(asteroid.relativeVelocity ?? 0)"
+        distanceLabel.text = String(format: "%.1fx", asteroid.missDistance ?? 0)
+        asteroidNameLabel.text = asteroid.name ?? ""
+        closeLabel.text = "• Au plus proche de la Terre le \(asteroid.closeApproachDate ?? "")"
+        dangerousLabel.text = "• \(asteroid.isPotentiallyHazardous ?? "")"
+        absoluteMagnitudeLabel.text = "• Magnitude absolue : \(asteroid.absoluteMagnitude ?? 0)"
     }
     
     @IBAction func didTapUrl() {

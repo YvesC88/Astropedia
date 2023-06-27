@@ -13,7 +13,6 @@ class SettingsTableViewController: UITableViewController {
     
     let themeKey = "preferredTheme"
     let switchKey = "switchState"
-    var currentLanguage = Bundle.main.preferredLocalizations.first
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,25 +44,8 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            if indexPath.row == 0 {
-                if currentLanguage != "fr" {
-                    showLanguageChangeAlert(forLanguage: "fr")
-                } else {
-                    self.showInfo(title: "La langue est déjà en français.")
-                }
-            }
-
             if indexPath.row == 1 {
-                if currentLanguage != "en" {
-                    showLanguageChangeAlert(forLanguage: "en")
-                } else {
-                    self.showInfo(title: "The language is already in english.")
-                }
-            }
-        }
-        if indexPath.section == 2 {
-            if indexPath.row == 1 {
-                showAlertDeleteFavorite(forLanguage: currentLanguage!)
+                showAlertDeleteFavorite(forLanguage: "fr")
             }
         }
     }

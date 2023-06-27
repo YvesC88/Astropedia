@@ -32,7 +32,7 @@
 /* Class = "UINavigationItem"; title = "Actualités"; ObjectID = "9sb-qc-Qzl"; */
 "9sb-qc-Qzl.title" = "News";
 
-/* Class = "UINavigationItem"; title = "Actualités"; ObjectID = "y5s-fz-86P"; */
+/* Class = "UINavigationItem"; title = "Plus"; ObjectID = "y5s-fz-86P"; */
 "y5s-fz-86P.title" = "More";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "El7-z0-ED7"; */
@@ -72,7 +72,7 @@
 "NrJ-pg-gnG.headerTitle" = "Privacy Policy";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Oh8-is-mQy"; */
-"Oh8-is-mQy.text" = "Your favorites list is empty\n\n\nClick on ❤️ to add your favorite images and articles and find them even without a connection.";
+"Oh8-is-mQy.text" = "Your favorites list is empty\n\n\nClick on ♥️ to add your favorite images and articles and find them even without a connection.";
 
 /* Class = "UILabel"; text = "Chargement..."; ObjectID = "RTz-GM-OIp"; */
 "RTz-GM-OIp.text" = "Loading...";
@@ -152,8 +152,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "liO-76-xaP"; */
 "liO-76-xaP.text" = "Label";
 
-/* Class = "UIButton"; normalTitle = "Plus de détails"; ObjectID = "mqF-5D-0WP"; */
-"mqF-5D-0WP.normalTitle" = "More";
+/* Class = "UIButton"; normalTitle = "Plus de détails"; ObjectID = "Npc-L6-Wvq"; */
+"Npc-L6-Wvq.normalTitle" = "More";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "mx8-y0-t2A"; */
 "mx8-y0-t2A.text" = "Label";

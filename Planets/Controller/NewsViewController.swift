@@ -19,8 +19,6 @@ class NewsViewController: UIViewController {
     
     let pictureService = PictureService()
     let spinner = UIActivityIndicatorView(style: .medium)
-    var language = LanguageSettings(language: BundleLanguage())
-//    let refreshControl = UIRefreshControl()
     
     private var picture: [APIApod] = [] {
         didSet {
@@ -41,8 +39,6 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-//        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-//        scrollView.addSubview(refreshControl)
     }
     
     private final func setupViews() {
@@ -53,17 +49,9 @@ class NewsViewController: UIViewController {
         fetchData()
     }
     
-//    @objc func refreshData() {
-//        loadArticle()
-//        fetchData()
-//        refreshControl.endRefreshing()
-//        articleTableView.reloadData()
-//        pictureTableView.reloadData()
-//    }
-    
     private final func loadArticle() {
         let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        service.fetchArticle(collectionID: language.collectionArticle) { article, error in
+        service.fetchArticle(collectionID: "article") { article, error in
             for data in article {
                 self.article.append(data)
             }
@@ -111,8 +99,9 @@ extension NewsViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell", for: indexPath) as? PictureTableViewCell else {
                 return UITableViewCell()
             }
-            guard indexPath.row < picture.count else { return cell }
-            let picture = picture[indexPath.row].toPicture()
+            let reverseIndex = picture.count - 1 - indexPath.row
+            guard reverseIndex >= 0 && reverseIndex < picture.count else { return cell }
+            let picture = picture[reverseIndex].toPicture()
             cell.configure(title: picture.title, image: picture.imageURL, mediaType: picture.mediaType)
             return cell
         case articleTableView:
@@ -135,8 +124,9 @@ extension NewsViewController: UITableViewDelegate {
         
         switch tableView {
         case pictureTableView:
-            guard indexPath.row < picture.count else { return }
-            let selectedPicture = picture[indexPath.row].toPicture()
+            let reverseIndex = picture.count - 1 - indexPath.row
+            guard reverseIndex >= 0 && reverseIndex < picture.count else { return }
+            let selectedPicture = picture[reverseIndex].toPicture()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as! DetailPictureViewController
             detailViewController.picture = selectedPicture

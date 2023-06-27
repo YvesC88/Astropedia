@@ -11,6 +11,7 @@ protocol FirebaseProtocol {
     func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ())
     func fetchArticle(collectionID: String, completion: @escaping ([FirebaseArticle]?, String?) -> ())
     func fetchPrivacyPolicy(collectionID: String, completion: @escaping ([FirebasePrivacyPolicy]?, String?) -> ())
+    func fetchQuestion(collectionID: String, completion: @escaping ([Question]?, String?) -> ())
 }
 
 class FirebaseWrapper: FirebaseProtocol {
@@ -87,5 +88,25 @@ class FirebaseWrapper: FirebaseProtocol {
                                                        privacyPolicyText: document["privacyPolicyText"] as? [String] ?? []))
         }
         return privacyPolicy
+    }
+    
+    func fetchQuestion(collectionID: String, completion: @escaping ([Question]?, String?) -> ()) {
+        let db = Firestore.firestore()
+        db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+                completion(self.buildQuestion(from: querySnapshot.documents), nil)
+            } else {
+                completion(nil, error?.localizedDescription)
+            }
+        }
+    }
+    
+    internal func buildQuestion(from documents: [QueryDocumentSnapshot]) -> [Question] {
+        var question = [Question]()
+        for document in documents {
+            question.append(Question(text: document["text"] as? String ?? "",
+                                             answer: document["answer"] as? Bool ?? false))
+        }
+        return question
     }
 }
