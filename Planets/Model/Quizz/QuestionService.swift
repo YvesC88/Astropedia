@@ -11,7 +11,7 @@ protocol QuestionDelegate {
     func showAnswerButton(isHidden: Bool)
     func showScoreLabel(isHidden: Bool)
     func updateQuestion(with question: Question)
-    func updateScore(number: Int)
+    func updateScore(correct: Int, incorrect: Int)
     func updateQuestionLabel(with text: String)
     func currentQuestion(number: Int, isHidden: Bool)
     func scoreChanged(isChanged: Bool, for answer: Bool)
@@ -33,7 +33,7 @@ class QuestionService {
     var questionsAnswered = 0
     var questionDelegate: QuestionDelegate?
     var numberOfQuestion: Int?
-    var numberToAnswer = 10
+    let numberToAnswer = 10
     var questions: [Question] = []
     
     func fetchQuestion(collectionID: String, completion: @escaping ([Question]?, String?) -> ()) {
@@ -50,7 +50,6 @@ class QuestionService {
     
     func checkAnswer(question: Question, userAnswer: Bool) {
         questionDelegate?.newGameEnabled(isEnabled: false)
-        numberToAnswer -= 1
         let isCorrectAnswer = (question.answer == userAnswer)
         updateScoreAndNotify(isCorrectAnswer: isCorrectAnswer, userAnswer: userAnswer)
     }
@@ -63,7 +62,7 @@ class QuestionService {
     }
     
     func goToNextQuestion() {
-        if numberToAnswer == 0 {
+        if questionsAnswered == 10 {
             showEndGame()
         } else {
             showNextQuestion()
@@ -75,8 +74,8 @@ class QuestionService {
         questionDelegate?.showAnswerButton(isHidden: true)
         questionDelegate?.showScoreLabel(isHidden: false)
         questionDelegate?.newGameEnabled(isEnabled: true)
-        questionDelegate?.updateTitleGameButton(title: "Refaire un nouveau quizz")
-        questionDelegate?.updateScore(number: score)
+        questionDelegate?.updateTitleGameButton(title: "Recommencer")
+        questionDelegate?.updateScore(correct: score, incorrect: numberToAnswer - score )
         questionDelegate?.updateQuestionLabel(with: "Partie terminée.")
     }
     
@@ -85,7 +84,7 @@ class QuestionService {
         questionDelegate?.randomNumber(number: randomNumber!)
         questionsAnswered += 1
         questionDelegate?.updateQuestion(with: questions[randomNumber!])
-        questionDelegate?.currentQuestion(number: questionsAnswered + 1, isHidden: false)
+        questionDelegate?.currentQuestion(number: questionsAnswered, isHidden: false)
     }
     
     func newGame() {
@@ -93,13 +92,12 @@ class QuestionService {
         questionDelegate?.updateTitleGameButton(title: "Nouvelle partie")
         questionDelegate?.randomNumber(number: randomNumber!)
         questionDelegate?.updateQuestion(with: questions[randomNumber!])
-        questionDelegate?.updateScore(number: 0)
+        questionDelegate?.updateScore(correct: 0, incorrect: 0)
         questionDelegate?.showAnswerButton(isHidden: false)
         questionDelegate?.showScoreLabel(isHidden: true)
         questionDelegate?.currentQuestion(number: 1, isHidden: false)
         score = 0
-        questionsAnswered = 0
-        numberToAnswer = 10
+        questionsAnswered = 1
     }
     
     func random() -> Int { return Int.random(in: 0..<numberOfQuestion!)}

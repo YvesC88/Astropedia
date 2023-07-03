@@ -67,6 +67,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         if isFavorite {
             pictureService.unsaveRecipe(picture: picture)
             favoriteButton.isSelected = false
+            showInfo(title: "Supprimé")
         } else {
             pictureService.savePicture(title: picture.title,
                                        videoURL: picture.videoURL,
@@ -75,6 +76,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
                                        copyright: picture.copyright,
                                        explanation: picture.explanation)
             favoriteButton.isSelected = true
+            showInfo(title: "Sauvegardé")
         }
     }
 }

@@ -52,6 +52,7 @@ final class DetailArticleViewController: UIViewController {
         if isFavorite {
             articleService.unsaveArticle(article: article)
             favoriteButton.isSelected = false
+            showInfo(title: "Supprimé")
         } else {
             articleService.saveArticle(title: article.title,
                                        subtitle: article.subtitle,
@@ -60,6 +61,7 @@ final class DetailArticleViewController: UIViewController {
                                        articleText: article.articleText,
                                        id: article.id)
             favoriteButton.isSelected = true
+            showInfo(title: "Sauvegardé")
         }
     }
 }
@@ -69,7 +71,7 @@ extension DetailArticleViewController: UIScrollViewDelegate {
     internal final func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         if offsetY < 0 {
-            let zoomFactor = 1 + abs(offsetY) / 1000
+            let zoomFactor = 1 + abs(offsetY) / 200
             let scaleTransform = CGAffineTransform(scaleX: zoomFactor, y: zoomFactor)
             let translationTransform = CGAffineTransform(translationX: 0, y: offsetY)
             articleImageView.transform = scaleTransform.concatenating(translationTransform)

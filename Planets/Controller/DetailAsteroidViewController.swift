@@ -19,7 +19,7 @@ class DetailAsteroidViewController: UIViewController {
     @IBOutlet weak var dangerousLabel: UILabel!
     @IBOutlet weak var absoluteMagnitudeLabel: UILabel!
     @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var legendView: UIView!
+    @IBOutlet weak var globalInfoView: UIView!
     
     var asteroid: Asteroid!
     
@@ -29,7 +29,8 @@ class DetailAsteroidViewController: UIViewController {
         let gradientTitleLabel = self.getGradientLayer(bounds: asteroidNameLabel.bounds)
         asteroidNameLabel.textColor = self.gradientColor(bounds: asteroidNameLabel.bounds, gradientLayer: gradientTitleLabel)
         setData()
-        setUIView(view: [infoView, legendView])
+        setUIView(view: [infoView, globalInfoView])
+        setUIButton(button: [urlButton])
     }
     
     func setData() {

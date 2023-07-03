@@ -45,7 +45,12 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 1 {
-                showAlertDeleteFavorite(forLanguage: "fr")
+                showAlertDeleteFavorite(title: "Suppression des favoris",
+                                        message: "Êtes-vous sûr de vouloir supprimer vos favoris ?",
+                                        cancel: "Annuler",
+                                        delete: "Effacer",
+                                        confirm: "Supprimé",
+                                        isEmpty: "Votre liste de favoris est vide. Cliquez sur ♥️ pour en ajouter !")
             }
         }
     }

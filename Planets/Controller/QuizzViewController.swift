@@ -28,6 +28,7 @@ class QuizzViewController: UIViewController {
     @IBOutlet weak var questionView: UIView!
     @IBOutlet weak var numberOfQuestionView: UIView!
     @IBOutlet weak var scoreView: UIView!
+    @IBOutlet weak var questionAnsweredLabel: UILabel!
     
     let questionService = QuestionService(wrapper: FirebaseWrapper())
     var questions: [Question] = []
@@ -134,16 +135,14 @@ extension QuizzViewController: QuestionDelegate {
     }
     
     func showScoreLabel(isHidden: Bool) {
-        correctAnswerLabel.isHidden = isHidden
-        incorrectAnswerLabel.isHidden = isHidden
-//        newGameButton.isHidden = isHidden
+//        correctAnswerLabel.isHidden = isHidden
+//        incorrectAnswerLabel.isHidden = isHidden
     }
     
     func showAnswerButton(isHidden: Bool) {
         trueButton.isHidden = isHidden
         falseButton.isHidden = isHidden
         nextQuestionButton.isHidden = isHidden
-//        numberOfQuestionView.isHidden = isHidden
     }
     
     func updateQuestion(with question: Question) {
@@ -159,8 +158,8 @@ extension QuizzViewController: QuestionDelegate {
         questionLabel.text = text
     }
     
-    func updateScore(number: Int) {
-        correctAnswerLabel.text = "\(number) bonnes"
-        incorrectAnswerLabel.text = "\(10 - number) fausses"
+    func updateScore(correct: Int, incorrect: Int) {
+        correctAnswerLabel.text = "\(correct)"
+        incorrectAnswerLabel.text = "\(incorrect)"
     }
 }

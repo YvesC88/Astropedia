@@ -19,6 +19,8 @@ final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var diameterTextLabel: UILabel!
     @IBOutlet weak var satTextLabel: UILabel!
     @IBOutlet weak var satLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var distanceTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

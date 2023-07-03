@@ -105,7 +105,7 @@ class FirebaseWrapper: FirebaseProtocol {
         var question = [Question]()
         for document in documents {
             question.append(Question(text: document["text"] as? String ?? "",
-                                             answer: document["answer"] as? Bool ?? false))
+                                     answer: document["answer"] as? Bool ?? false))
         }
         return question
     }
