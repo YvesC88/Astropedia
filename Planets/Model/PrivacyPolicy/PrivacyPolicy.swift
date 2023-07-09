@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct FirebasePrivacyPolicy: Codable {
+struct PrivacyPolicy: Codable {
     
     let title, date: String
     let privacyPolicyText: [String]

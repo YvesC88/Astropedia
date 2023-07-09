@@ -1,20 +1,14 @@
 //
-//  Article.swift
+//  FirebaseArticle.swift
 //  Planets
 //
-//  Created by Yves Charpentier on 16/05/2023.
+//  Created by Yves Charpentier on 09/05/2023.
 //
 
-import Foundation
+import UIKit
 
-struct Article {
+struct Article: Codable {
     
-    // MARK: - Properties
-    
-    var title: String?
-    var subtitle: String?
-    var image: String?
-    var articleText: [String]?
-    var source: String?
-    var id: String?
+    let title, image, source, subtitle, id: String?
+    let articleText: [String]?
 }

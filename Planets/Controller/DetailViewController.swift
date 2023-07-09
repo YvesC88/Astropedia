@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    var data: FirebaseData!
+    var solarSystem: SolarSystem!
     
     // MARK: - Lifecycle Methods
     
@@ -39,10 +39,10 @@ class DetailViewController: UIViewController {
     // MARK: - Private Methods
     
     private func configureData() {
-        objectImageView.sd_setImage(with: URL(string: data.image))
-        titleLabel.text = data.name
-        statisticsTextView.text = data.statistics.map { "• \($0)" }.joined(separator: "\n\n")
-        sourceLabel.text = data.source
+        objectImageView.sd_setImage(with: URL(string: solarSystem.image))
+        titleLabel.text = solarSystem.name
+        statisticsTextView.text = solarSystem.statistics.map { "• \($0)" }.joined(separator: "\n\n")
+        sourceLabel.text = solarSystem.source
     }
     
     private func configureUI() {
@@ -56,7 +56,7 @@ class DetailViewController: UIViewController {
         let action1 = UIAction(title: "Galerie", image: UIImage(systemName: "photo.fill.on.rectangle.fill")) { action in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let detailVC = storyboard.instantiateViewController(withIdentifier: "GalleryViewController") as? GalleryViewController else { return }
-            detailVC.data = self.data
+            detailVC.solarSystem = self.solarSystem
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
         let action2 = UIAction(title: "Partager", image: UIImage(systemName: "square.and.arrow.up")) { action in
@@ -80,10 +80,10 @@ extension DetailViewController: UIScrollViewDelegate {
         let contentOffsetY = globalScrollView.contentOffset.y
         let frame = globalScrollView.convert(titleLabel.frame, to: view)
         guard titleLabelMaxY < contentOffsetY || frame.origin.y < view.safeAreaInsets.bottom else {
-            titleLabel.text = data.name
+            titleLabel.text = solarSystem.name
             navigationItem.title = nil
             return
         }
-        navigationItem.title = data.name
+        navigationItem.title = solarSystem.name
     }
 }

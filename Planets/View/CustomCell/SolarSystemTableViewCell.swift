@@ -41,7 +41,7 @@ final class SolarSystemTableViewCell: UITableViewCell {
         let gradient = getGradientLayer(bounds: objectLabel.bounds)
         objectLabel.textColor = gradientColor(bounds: objectLabel.bounds, gradientLayer: gradient)
         membershipLabel.text = membership
-        diameterLabel.text = "\(diameter) m"
+        diameterLabel.text = "\(diameter) km"
         typeLabel.text = type
         satTextLabel.isHidden = sat == 0
         satLabel.isHidden = sat == 0

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FirebaseData: Codable {
+struct SolarSystem: Codable {
     // MARK: - Properties
     
     let name, image, tempMoy, source, membership, type: String

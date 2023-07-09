@@ -14,7 +14,8 @@ class PrivacyPolicyViewController: UIViewController {
     @IBOutlet private weak var dateEffectLabel: UILabel!
     @IBOutlet private weak var privacyPolicyTextView: UITextView!
     
-    private var data: [FirebasePrivacyPolicy] = []
+    private var privacyPolicy: [PrivacyPolicy] = []
+    let privacyPolicyService = PrivacyPolicyService(wrapper: FirebaseWrapper())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,9 @@ class PrivacyPolicyViewController: UIViewController {
     }
     
     private final func loadPrivacyPolicy() {
-        let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        service.fetchPrivacyPolicy(collectionID: "privacyPolicy") { privacyPolicy, error in
+        privacyPolicyService.fetchPrivacyPolicy(collectionID: "privacyPolicy") { privacyPolicy, error in
             for data in privacyPolicy {
-                self.data = privacyPolicy
+                self.privacyPolicy = privacyPolicy
                 self.titleLabel.text = data.title
                 self.dateEffectLabel.text = data.date
                 let privacyPolicyText = data.privacyPolicyText.joined(separator: "\n\n")
@@ -34,7 +34,6 @@ class PrivacyPolicyViewController: UIViewController {
             }
         }
     }
-
     
     @IBAction func closePrivacyPolicyVC() {
         dismiss(animated: true)
@@ -48,10 +47,10 @@ extension PrivacyPolicyViewController: UIScrollViewDelegate {
         let contentOffsetY = scrollView.contentOffset.y
         let frame = scrollView.convert(titleLabel.frame, to: view)
         guard titleLabelMinY < contentOffsetY || frame.origin.y < view.safeAreaInsets.bottom else {
-            titleLabel.text = data.first?.title
+            titleLabel.text = privacyPolicy.first?.title
             navigationItem.title = nil
             return
         }
-        navigationItem.title = data.first?.title
+        navigationItem.title = privacyPolicy.first?.title
     }
 }

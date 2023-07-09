@@ -11,7 +11,7 @@ class GalleryViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
     
-    var data: FirebaseData!
+    var solarSystem: SolarSystem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,13 +21,13 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data.galleries.count
+        solarSystem.galleries.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! GalleryCollectionViewCell
         
-        let item = data.galleries[indexPath.row]
+        let item = solarSystem.galleries[indexPath.row]
         cell.configure(image: item)
         return cell
     }
@@ -36,7 +36,7 @@ extension GalleryViewController: UICollectionViewDataSource {
 extension GalleryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedImage = data.galleries[indexPath.row]
+        let selectedImage = solarSystem.galleries[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let detailGalleryVC = storyboard.instantiateViewController(withIdentifier: "DetailGalleryViewController") as? DetailGalleryViewController else { return }
         detailGalleryVC.image = selectedImage

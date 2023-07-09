@@ -17,7 +17,7 @@ final class DetailArticleViewController: UIViewController {
     @IBOutlet weak private var favoriteButton: UIButton!
     
     var article: Article!
-    private let articleService = ArticleService()
+    private let articleService = ArticleService(wrapper: FirebaseWrapper())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,25 +26,13 @@ final class DetailArticleViewController: UIViewController {
     }
     
     private final func setUI() {
-        if articleService.isFavoriteArticle(article: article) {
-            favoriteButton.isSelected = true
-        } else {
-            favoriteButton.isSelected = false
-        }
         if let imageURL = article.image {
             articleImageView.sd_setImage(with: URL(string: imageURL))
         }
+        favoriteButton.isSelected = articleService.isFavoriteArticle(article: article)
         articleTitleLabel.text = article.title
         subtitleTextView.text = article.subtitle
-        if let articleTextArray = article.articleText {
-            var articleText: String = ""
-            for text in articleTextArray {
-                articleText += "\(text)\n \n"
-            }
-            articleTextView.text = articleText
-        } else {
-            articleTextView.text = "Chargement..."
-        }
+        articleTextView.text = article.articleText?.joined(separator: "\n \n")
     }
     
     @IBAction private final func didTappedFavorite() {

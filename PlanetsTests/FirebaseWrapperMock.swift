@@ -9,7 +9,7 @@
 
 final class FirebaseWrapperMock: FirebaseProtocol {
 
-    var dataResult: [FirebaseData]?
+    var dataResult: [FirebaseSolarSystem]?
     var articleRestult: [FirebaseArticle]?
     var privacyPolicyResult: [FirebasePrivacyPolicy]?
     var dataError: String?
@@ -19,7 +19,7 @@ final class FirebaseWrapperMock: FirebaseProtocol {
     var isFetchArticleCalled: Bool = false
     var isFetchPrivacyCalled: Bool = false
 
-    func fetch(collectionID: String, completion: @escaping ([FirebaseData]?, String?) -> ()) {
+    func fetch(collectionID: String, completion: @escaping ([FirebaseSolarSystem]?, String?) -> ()) {
         isFetchDataCalled = true
         completion(dataResult, dataError)
     }

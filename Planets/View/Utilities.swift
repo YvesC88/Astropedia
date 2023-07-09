@@ -9,7 +9,6 @@ import UIKit
 
 extension UIViewController {
     
-    static let service = FirebaseDataService(wrapper: FirebaseWrapper())
     static let searchController = UISearchController()
     
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {

@@ -8,8 +8,27 @@
 import UIKit
 import CoreData
 
-class ArticleService {
+protocol ArticleDelegate {
+    func reloadArticleTableView()
+}
 
+class ArticleService {
+    
+    // MARK: - Properties
+    let firebaseWrapper: FirebaseProtocol
+    var articleDelegate: ArticleDelegate?
+    
+    var article: [Article] = [] {
+        didSet {
+            articleDelegate?.reloadArticleTableView()
+        }
+    }
+    
+    init(wrapper: FirebaseProtocol) {
+        self.firebaseWrapper = wrapper
+    }
+    
+    // MARK: - Methods
     func saveArticle(title: String?, subtitle: String?, image: String?, source: String?, articleText: [String]?, id: String?)
     {
         let coreDataStack = CoreDataStack()
@@ -24,7 +43,7 @@ class ArticleService {
         do {
             try context.save()
         } catch {
-            print("Erreor \(error)")
+            print("Error \(error)")
         }
     }
     
@@ -43,4 +62,21 @@ class ArticleService {
         return ((try? context.count(for: fetchRequest)) ?? 0) > 0
     }
     
+    func fetchArticle(collectionID: String, completion: @escaping ([Article], String?) -> ()) {
+        firebaseWrapper.fetchArticle(collectionID: collectionID) { article, error in
+            if let article = article {
+                completion(article, nil)
+            } else {
+                completion([], error)
+            }
+        }
+    }
+    
+    final func loadArticle() {
+        fetchArticle(collectionID: "article") { article, error in
+            for data in article {
+                self.article.append(data)
+            }
+        }
+    }
 }

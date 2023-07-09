@@ -28,12 +28,9 @@ class QuizzViewController: UIViewController {
     @IBOutlet weak var questionView: UIView!
     @IBOutlet weak var numberOfQuestionView: UIView!
     @IBOutlet weak var scoreView: UIView!
-    @IBOutlet weak var questionAnsweredLabel: UILabel!
     
     let questionService = QuestionService(wrapper: FirebaseWrapper())
     var questions: [Question] = []
-    var scoreChanged: Bool?
-    var randomNumber: Int?
     var buttonState: ButtonState = .none
     var buttonPressed: Bool?
     
@@ -54,29 +51,17 @@ class QuizzViewController: UIViewController {
         }
     }
     
-    @IBAction func didTappedTrue() {
-        if buttonState == .truePressed {
+    @IBAction func didTappedButton(_ sender: UIButton) {
+        let isTrueButton = sender == trueButton
+        if buttonState == (isTrueButton ? .truePressed : .falsePressed) {
             buttonState = .none
             nextQuestionButton.isEnabled = false
-            resetSelectedButton(buttons: [trueButton])
+            resetSelectedButton(buttons: [sender])
         } else {
-            buttonState = .truePressed
+            buttonState = isTrueButton ? .truePressed : .falsePressed
             nextQuestionButton.isEnabled = true
-            colorSelectedButton(button: trueButton)
-            resetSelectedButton(buttons: [falseButton])
-        }
-    }
-    
-    @IBAction func didTappedFalse() {
-        if buttonState == .falsePressed {
-            buttonState = .none
-            nextQuestionButton.isEnabled = false
-            resetSelectedButton(buttons: [falseButton])
-        } else {
-            buttonState = .falsePressed
-            nextQuestionButton.isEnabled = true
-            colorSelectedButton(button: falseButton)
-            resetSelectedButton(buttons: [trueButton])
+            colorSelectedButton(button: sender)
+            resetSelectedButton(buttons: [isTrueButton ? falseButton : trueButton])
         }
     }
     
@@ -90,13 +75,11 @@ class QuizzViewController: UIViewController {
             trueButton.isEnabled = true
             falseButton.isEnabled = true
         } else {
-            questionService.checkAnswer(question: questions[randomNumber!], userAnswer: buttonState == .truePressed)
-            if let scoreChanged = scoreChanged, let buttonPressed = buttonPressed {
-                if scoreChanged {
-                    correctColorButton(button: buttonPressed ? trueButton : falseButton)
-                } else {
-                    incorrectColorButton(button: buttonPressed ? falseButton : trueButton)
-                }
+            questionService.checkAnswer(question: questions[questionService.randomNumber], userAnswer: buttonState == .truePressed)
+            if questionService.isCorrect {
+                correctColorButton(button: buttonPressed! ? trueButton : falseButton)
+            } else {
+                incorrectColorButton(button: buttonPressed! ? falseButton : trueButton)
             }
             nextQuestionButton.setTitle("Suivant", for: .normal)
             buttonState = .submitPressed
@@ -117,6 +100,10 @@ class QuizzViewController: UIViewController {
 }
 
 extension QuizzViewController: QuestionDelegate {
+    func updateQuestion(with text: String) {
+        questionLabel.text = text
+    }
+    
     func updateTitleGameButton(title: String) {
         newGameButton.setTitle(title, for: .normal)
     }
@@ -125,18 +112,8 @@ extension QuizzViewController: QuestionDelegate {
         newGameButton.isEnabled = isEnabled
     }
     
-    func scoreChanged(isChanged: Bool, for answer: Bool) {
-        scoreChanged = isChanged
+    func scoreChanged(for answer: Bool) {
         self.buttonPressed = answer
-    }
-    
-    func randomNumber(number: Int) {
-        self.randomNumber = number
-    }
-    
-    func showScoreLabel(isHidden: Bool) {
-//        correctAnswerLabel.isHidden = isHidden
-//        incorrectAnswerLabel.isHidden = isHidden
     }
     
     func showAnswerButton(isHidden: Bool) {
@@ -145,17 +122,9 @@ extension QuizzViewController: QuestionDelegate {
         nextQuestionButton.isHidden = isHidden
     }
     
-    func updateQuestion(with question: Question) {
-        questionLabel.text = question.text
-    }
-    
     func currentQuestion(number: Int, isHidden: Bool) {
         currentQuestionLabel.text = ("Question \(number) / 10").uppercased()
         currentQuestionLabel.isHidden = isHidden
-    }
-    
-    func updateQuestionLabel(with text: String) {
-        questionLabel.text = text
     }
     
     func updateScore(correct: Int, incorrect: Int) {

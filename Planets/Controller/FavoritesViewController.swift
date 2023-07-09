@@ -13,52 +13,19 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favoriteLabel: UILabel!
     
-    private var favoritePicture: [LocalPicture] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
-    private var favoriteArticle: [LocalArticle] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
-    private var favorites: [(category: String, data: [Any])] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private let favoriteService = FavoriteService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
-        showLabel()
+        favoriteService.favoriteDelegate = self
+        favoriteService.fetchFavoriteData()
+        favoriteService.showIsEmpty()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchData()
-        showLabel()
-    }
-    
-    private func showLabel() {
-        let isEmpty = favoriteArticle.isEmpty && favoritePicture.isEmpty
-        tableView.isHidden = isEmpty
-        favoriteLabel.isHidden = !isEmpty
-    }
-    
-    private func fetchData() {
-        let pictureRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
-        let articleRequest: NSFetchRequest<LocalArticle> = LocalArticle.fetchRequest()
-        guard let picture = try? CoreDataStack.share.viewContext.fetch(pictureRequest) else { return }
-        favoritePicture = picture
-        guard let article = try? CoreDataStack.share.viewContext.fetch(articleRequest) else { return }
-        favoriteArticle = article
-        favorites = [
-            (category: "Mes images", data: favoritePicture),
-            (category: "Mes articles", data: favoriteArticle)]
+        favoriteService.fetchFavoriteData()
+        favoriteService.showIsEmpty()
     }
     
     @IBAction func dismissFavoritesVC() {
@@ -69,25 +36,25 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return favorites.count
+        return favoriteService.favorites.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return favorites[section].category
+        return favoriteService.favorites[section].category
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favorites[section].data.count
+        return favoriteService.favorites[section].data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell", for: indexPath) as? FavoritesTableViewCell else {
             return UITableViewCell()
         }
-        let data = favorites[indexPath.section].data
+        let data = favoriteService.favorites[indexPath.section].data
         
         if let picture = data[indexPath.row] as? LocalPicture {
-            let pictureData = picture.toPicture()
+            let pictureData = picture
             cell.configure(title: pictureData.title, image: pictureData.imageURL, mediaType: pictureData.mediaType)
         } else if let article = data[indexPath.row] as? LocalArticle {
             let articleData = article.toArticle()
@@ -106,22 +73,22 @@ extension FavoritesViewController: UITableViewDelegate {
         let categoryIndex = indexPath.section
         let itemIndex = indexPath.row
         
-        var categoryData = favorites[categoryIndex].data
+        var categoryData = favoriteService.favorites[categoryIndex].data
         
         if let picture = categoryData[itemIndex] as? LocalPicture {
             context.delete(picture)
-            favoritePicture = favoritePicture.filter { $0 != picture }
+            favoriteService.favoritePicture = favoriteService.favoritePicture.filter { $0 != picture }
         } else if let article = categoryData[itemIndex] as? LocalArticle {
             context.delete(article)
-            favoriteArticle = favoriteArticle.filter { $0 != article }
+            favoriteService.favoriteArticle = favoriteService.favoriteArticle.filter { $0 != article }
         }
         
         categoryData.remove(at: itemIndex)
-        favorites[categoryIndex].data = categoryData
+        favoriteService.favorites[categoryIndex].data = categoryData
         
         do {
             try context.save()
-            showLabel()
+            favoriteService.showIsEmpty()
         } catch {
             print("Error")
         }
@@ -131,24 +98,39 @@ extension FavoritesViewController: UITableViewDelegate {
         let categoryIndex = indexPath.section
         let dataIndex = indexPath.row
         
-        guard categoryIndex < favorites.count else { return }
+        guard categoryIndex < favoriteService.favorites.count else { return }
         
         if categoryIndex == 0 {
             // Picture selected
-            guard dataIndex < favoritePicture.count else { return }
-            let picture = favoritePicture[dataIndex].toPicture()
+            guard dataIndex < favoriteService.favoritePicture.count else { return }
+            let picture = favoriteService.favoritePicture[dataIndex].toPicture()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let detailPictureVC = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as! DetailPictureViewController
             detailPictureVC.picture = picture
             self.navigationController?.pushViewController(detailPictureVC, animated: true)
         } else if categoryIndex == 1 {
             // Article selected
-            guard dataIndex < favoriteArticle.count else { return }
-            let article = favoriteArticle[dataIndex].toArticle()
+            guard dataIndex < favoriteService.favoriteArticle.count else { return }
+            let article = favoriteService.favoriteArticle[dataIndex].toArticle()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as? DetailArticleViewController else { return }
             detailArticleVC.article = article
             self.navigationController?.pushViewController(detailArticleVC, animated: true)
+        }
+    }
+}
+
+extension FavoritesViewController: FavoriteDelegate {
+    
+    func showEmptyLabel(isHidden: Bool) {
+        tableView.isHidden = isHidden
+        favoriteLabel.isHidden = !isHidden
+    }
+    
+    
+    func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 }

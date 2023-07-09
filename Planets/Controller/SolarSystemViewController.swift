@@ -12,12 +12,13 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak private var tableView: UITableView!
     
-    var collection = FirebaseCollection()
+    var solarSystemCollection = SolarSystemCollection()
+    let solarSystemService = SolarSystemService(wrapper: FirebaseWrapper())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
-        loadData()
+        loadSolarSystem()
     }
     
     private final func setupSearchController() {
@@ -28,99 +29,81 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         definesPresentationContext = true
     }
     
-    private final func loadData() {
-        SolarSystemViewController.service.fetchData(collectionID: "planets") { [weak self] planet, error in
-            guard let self = self else { return }
-            if let error = error {
-                print("Erreur lors du chargement des planètes:", error)
-            } else {
-                collection.planets = planet
+    private final func loadSolarSystem() {
+        solarSystemService.fetchSolarSystem(collectionID: "planets") { planet, error in
+            if let planet = planet {
+                self.solarSystemCollection.planets = planet
                 self.updateSolarSystem()
+            } else {
+                self.presentAlert(title: "Erreur", message: String(error!))
             }
         }
         
-        SolarSystemViewController.service.fetchData(collectionID: "dwarfPlanets") { [weak self] dwarfPlanets, error in
-            guard let self = self else { return }
-            if let error = error {
-                print("Erreur lors du chargement des planètes naines", error)
-            } else {
-                collection.dwarfPlanets = dwarfPlanets
+        solarSystemService.fetchSolarSystem(collectionID: "dwarfPlanets") { dwarfPlanets, error in
+            if let dwarfPlanets = dwarfPlanets {
+                self.solarSystemCollection.dwarfPlanets = dwarfPlanets
                 self.updateSolarSystem()
+            } else {
+                self.presentAlert(title: "Erreur", message: String(error!))
             }
         }
-        SolarSystemViewController.service.fetchData(collectionID: "moons") { [weak self] moon, error in
-            guard let self = self else { return }
-            if let error = error {
-                print("Erreur lors du chargement des lunes:", error)
-            } else {
-                collection.moons = moon
+        
+        solarSystemService.fetchSolarSystem(collectionID: "moons") { moon, error in
+            if let moon = moon {
+                self.solarSystemCollection.moons = moon
                 self.updateSolarSystem()
+            } else {
+                self.presentAlert(title: "Erreur", message: String(error!))
             }
         }
-        SolarSystemViewController.service.fetchData(collectionID: "stars") { [weak self] star, error in
-            guard let self = self else { return }
-            if let error = error {
-                print("Erreur lors du chargement des étoiles:", error)
-            } else {
-                collection.stars = star
+        
+        solarSystemService.fetchSolarSystem(collectionID: "stars") { star, error in
+            if let star = star {
+                self.solarSystemCollection.stars = star
                 self.updateSolarSystem()
+            } else {
+                self.presentAlert(title: "Erreur", message: String(error!))
             }
-        }
-    }
-    
-    func filterData() {
-        if isFiltering() {
-            let searchText = SolarSystemViewController.searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).uppercased() ?? ""
-            collection.filteredPlanets = collection.planets.filter { $0.name.uppercased().hasPrefix(searchText) }
-            collection.filteredMoons = collection.moons.filter { $0.name.uppercased().hasPrefix(searchText) }
-            collection.filteredStars = collection.stars.filter { $0.name.uppercased().hasPrefix(searchText) }
-            collection.filteredDwarfPlanets = collection.dwarfPlanets.filter { $0.name.uppercased().hasPrefix(searchText) }
         }
     }
     
     private final func updateSolarSystem() {
-        guard !collection.planets.isEmpty, !collection.moons.isEmpty, !collection.stars.isEmpty, !collection.dwarfPlanets.isEmpty else {
-            return
+        if solarSystemCollection.planets.isEmpty, solarSystemCollection.moons.isEmpty, solarSystemCollection.stars.isEmpty, solarSystemCollection.dwarfPlanets.isEmpty {
+            presentAlert(title: "Erreur", message: "Une erreur est survenue lors du chargement.")
+        } else {
+            solarSystemService.filterSolarSystem()
+            solarSystemCollection.solarSystem = [
+                (category: solarSystemCollection.categories[0], data: solarSystemCollection.stars),
+                (category: solarSystemCollection.categories[1], data: solarSystemCollection.planets),
+                (category: solarSystemCollection.categories[2], data: solarSystemCollection.dwarfPlanets),
+                (category: solarSystemCollection.categories[3], data: solarSystemCollection.moons)
+            ]
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        filterData()
-        collection.solarSystem = [
-            (category: collection.categories[0], data: isFiltering() ? collection.filteredStars : collection.stars),
-            (category: collection.categories[1], data: isFiltering() ? collection.filteredPlanets : collection.planets),
-            (category: collection.categories[2], data: isFiltering() ? collection.filteredDwarfPlanets : collection.dwarfPlanets),
-            (category: collection.categories[3], data: isFiltering() ? collection.filteredMoons : collection.moons)
-        ]
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    private final func isFiltering() -> Bool {
-        return isSearchBarEmpty(SolarSystemViewController.searchController.searchBar)
-    }
-    
-    private final func isSearchBarEmpty(_ searchBar: UISearchBar) -> Bool {
-        return searchBar.text?.isEmpty ?? true
     }
 }
 
 extension SolarSystemViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return collection.solarSystem.count
+        return solarSystemCollection.solarSystem.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return collection.solarSystem[section].category
+        return solarSystemCollection.solarSystem[section].category
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return collection.solarSystem[section].data.count
+        return solarSystemCollection.solarSystem[section].data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SolarSystemCell", for: indexPath) as? SolarSystemTableViewCell else {
             return UITableViewCell()
         }
-        let data = collection.solarSystem[indexPath.section].data[indexPath.row]
+        let data = solarSystemCollection.solarSystem[indexPath.section].data[indexPath.row]
         cell.configure(name: data.name, image: data.image, tempMoy: data.tempMoy, sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
         return cell
     }
@@ -129,10 +112,10 @@ extension SolarSystemViewController: UITableViewDataSource {
 extension SolarSystemViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = collection.solarSystem[indexPath.section].data[indexPath.row]
+        let solarSystem = solarSystemCollection.solarSystem[indexPath.section].data[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
-        detailVC.data = data
+        detailVC.solarSystem = solarSystem
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -140,21 +123,19 @@ extension SolarSystemViewController: UITableViewDelegate {
 extension SolarSystemViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        
-        let filterClosure: (FirebaseData) -> Bool = { data in
-            return data.name.uppercased().hasPrefix(searchText.uppercased())
+        let filterClosure: (SolarSystem) -> Bool = { data in
+            return data.name.uppercased().hasPrefix(self.solarSystemCollection.searchText.uppercased())
         }
-        let filteredPlanets = collection.planets.filter(filterClosure)
-        let filteredMoons = collection.moons.filter(filterClosure)
-        let filteredStars = collection.stars.filter(filterClosure)
-        let filteredDwarfPlanets = collection.dwarfPlanets.filter(filterClosure)
+        let filteredPlanets = solarSystemCollection.planets.filter(filterClosure)
+        let filteredMoons = solarSystemCollection.moons.filter(filterClosure)
+        let filteredStars = solarSystemCollection.stars.filter(filterClosure)
+        let filteredDwarfPlanets = solarSystemCollection.dwarfPlanets.filter(filterClosure)
         
-        collection.solarSystem = [
-            (category: collection.categories[0], data: filteredStars),
-            (category: collection.categories[1], data: filteredPlanets),
-            (category: collection.categories[2], data: filteredDwarfPlanets),
-            (category: collection.categories[3], data: filteredMoons)
+        solarSystemCollection.solarSystem = [
+            (category: solarSystemCollection.categories[0], data: filteredStars),
+            (category: solarSystemCollection.categories[1], data: filteredPlanets),
+            (category: solarSystemCollection.categories[2], data: filteredDwarfPlanets),
+            (category: solarSystemCollection.categories[3], data: filteredMoons)
         ]
         
         DispatchQueue.main.async {

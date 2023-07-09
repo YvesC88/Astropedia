@@ -15,7 +15,12 @@ extension LocalArticle {
     // MARK: - Properties
     
     func toArticle() -> Article {
-        return Article(title: title, subtitle: subtitle, image: image, articleText: articleText, source: source, id: id)
+        return Article(title: title,
+                               image: image,
+                               source: source,
+                               subtitle: subtitle,
+                               id: id,
+                               articleText: articleText)
     }
     
 }

@@ -8,6 +8,7 @@
 import UIKit
 
 class NewsViewController: UIViewController {
+    
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var pictureTableView: UITableView!
     @IBOutlet weak private var articleTableView: UITableView!
@@ -17,66 +18,23 @@ class NewsViewController: UIViewController {
     @IBOutlet weak private var lastPictureView: UIView!
     @IBOutlet weak private var errorLabel: UILabel!
     
-    let pictureService = PictureService()
-    let spinner = UIActivityIndicatorView(style: .medium)
-    
-    private var picture: [APIApod] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.pictureTableView.reloadData()
-            }
-        }
-    }
-    
-    private var article: [FirebaseArticle] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.articleTableView.reloadData()
-            }
-        }
-    }
+    private let pictureService = PictureService(wrapper: FirebaseWrapper())
+    private let articleService = ArticleService(wrapper: FirebaseWrapper())
+    private let spinner = UIActivityIndicatorView(style: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        articleService.articleDelegate = self
+        pictureService.pictureDelegate = self
         setupViews()
     }
     
     private final func setupViews() {
         articleLabel.text = articleLabel.text?.uppercased()
         lastPictureLabel.text = lastPictureLabel.text?.uppercased()
-        self.setUIView(view: [articleView, lastPictureView])
-        loadArticle()
-        fetchData()
-    }
-    
-    private final func loadArticle() {
-        let service = FirebaseDataService(wrapper: FirebaseWrapper())
-        service.fetchArticle(collectionID: "article") { article, error in
-            for data in article {
-                self.article.append(data)
-            }
-        }
-    }
-    
-    private final func fetchData() {
-        errorLabel.isHidden = true
-        spinner.startAnimating()
-        pictureTableView.backgroundView = spinner
-        let date = Date()
-        let dateFormat = "yyyy-MM-dd"
-        let calendar = Calendar.current
-        let start = calendar.date(byAdding: .day, value: -1, to: date)
-        let startDate = self.getFormattedDate(date: start ?? Date(), dateFormat: dateFormat)
-        let newDate = calendar.date(byAdding: .day, value: -7, to: date)
-        let endDate = self.getFormattedDate(date: newDate ?? Date(), dateFormat: dateFormat)
-        pictureService.getPicture(startDate: endDate, endDate: startDate) { picture in
-            if let picture = picture {
-                self.picture = picture
-            } else {
-                self.errorLabel.isHidden = false
-            }
-            self.spinner.stopAnimating()
-        }
+        setUIView(view: [articleView, lastPictureView])
+        articleService.loadArticle()
+        pictureService.loadPicture()
     }
 }
 
@@ -85,9 +43,9 @@ extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case pictureTableView:
-            return picture.count
+            return pictureService.picture.count
         case articleTableView:
-            return article.count
+            return articleService.article.count
         default:
             return 0
         }
@@ -99,18 +57,18 @@ extension NewsViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell", for: indexPath) as? PictureTableViewCell else {
                 return UITableViewCell()
             }
-            let reverseIndex = picture.count - 1 - indexPath.row
-            guard reverseIndex >= 0 && reverseIndex < picture.count else { return cell }
-            let picture = picture[reverseIndex].toPicture()
+            let reverseIndex = pictureService.picture.count - 1 - indexPath.row
+            guard reverseIndex >= 0 && reverseIndex < pictureService.picture.count else { return cell }
+            let picture = pictureService.picture[reverseIndex].toPicture()
             cell.configure(title: picture.title, image: picture.imageURL, mediaType: picture.mediaType)
             return cell
         case articleTableView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else {
                 return UITableViewCell()
             }
-            guard indexPath.row < article.count else { return cell }
-            let article = article[indexPath.row]
-            cell.configure(title: article.title, subtitle: article.subTitle, image: article.image)
+            guard indexPath.row < articleService.article.count else { return cell }
+            let article = articleService.article[indexPath.row]
+            cell.configure(title: article.title, subtitle: article.subtitle, image: article.image)
             return cell
         default:
             return UITableViewCell()
@@ -124,16 +82,16 @@ extension NewsViewController: UITableViewDelegate {
         
         switch tableView {
         case pictureTableView:
-            let reverseIndex = picture.count - 1 - indexPath.row
-            guard reverseIndex >= 0 && reverseIndex < picture.count else { return }
-            let selectedPicture = picture[reverseIndex].toPicture()
+            let reverseIndex = pictureService.picture.count - 1 - indexPath.row
+            guard reverseIndex >= 0 && reverseIndex < pictureService.picture.count else { return }
+            let selectedPicture = pictureService.picture[reverseIndex].toPicture()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as! DetailPictureViewController
+            guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as? DetailPictureViewController else { return }
             detailViewController.picture = selectedPicture
             self.navigationController?.pushViewController(detailViewController, animated: true)
         case articleTableView:
-            guard indexPath.row < article.count else { return }
-            let selectedArticle = article[indexPath.row].toArticle()
+            guard indexPath.row < articleService.article.count else { return }
+            let selectedArticle = articleService.article[indexPath.row]
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as? DetailArticleViewController else { return }
             detailArticleVC.article = selectedArticle
@@ -141,5 +99,36 @@ extension NewsViewController: UITableViewDelegate {
         default:
             break
         }
+    }
+}
+
+extension NewsViewController: ArticleDelegate {
+    func reloadArticleTableView() {
+        DispatchQueue.main.async {
+            self.articleTableView.reloadData()
+        }
+    }
+}
+
+extension NewsViewController: PictureDelegate {
+    
+    func startAnimating() {
+        spinner.startAnimating()
+        pictureTableView.backgroundView = spinner
+    }
+    
+    func stopAnimating() {
+        spinner.stopAnimating()
+    }
+    
+    func reloadPictureTableView() {
+        DispatchQueue.main.async {
+            self.pictureTableView.reloadData()
+        }
+    }
+    
+    func showErrorLoading(text: String, isHidden: Bool) {
+        errorLabel.isHidden = isHidden
+        errorLabel.text = text
     }
 }

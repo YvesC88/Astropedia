@@ -20,7 +20,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
     @IBOutlet weak private var videoWKWebView: WKWebView!
     
     var picture: Picture!
-    private let pictureService = PictureService()
+    private let pictureService = PictureService(wrapper: FirebaseWrapper())
     
     override func viewDidLoad() {
         super.viewDidLoad()

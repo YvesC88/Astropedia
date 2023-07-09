@@ -9,11 +9,32 @@ import Alamofire
 import Foundation
 import CoreData
 
+protocol PictureDelegate {
+    func reloadPictureTableView()
+    func showErrorLoading(text: String, isHidden: Bool)
+    func startAnimating()
+    func stopAnimating()
+}
+
 class PictureService {
     
     private var apiKey = ApiKeys()
+    var pictureDelegate: PictureDelegate?
     
-    func getPicture(startDate: String, endDate: String, callback: @escaping ([APIApod]?) -> Void) {
+    let firebaseWrapper: FirebaseProtocol
+    
+    init(wrapper: FirebaseProtocol) {
+        self.firebaseWrapper = wrapper
+    }
+    
+    
+    var picture: [APIApod] = [] {
+        didSet {
+            pictureDelegate?.reloadPictureTableView()
+        }
+    }
+    
+    final func getPicture(startDate: String, endDate: String, callback: @escaping ([APIApod]?) -> Void) {
         let url = "https://api.nasa.gov/planetary/apod"
         let parameters = [
             "api_key": apiKey.keyNasa ?? "",
@@ -31,7 +52,7 @@ class PictureService {
         }
     }
     
-    func savePicture(title: String?, videoURL: String?, imageURL: String?, mediaType: String?, copyright: String?, explanation: String?)
+    final func savePicture(title: String?, videoURL: String?, imageURL: String?, mediaType: String?, copyright: String?, explanation: String?)
     {
         let coreDataStack = CoreDataStack()
         let pictures = LocalPicture(context: coreDataStack.viewContext)
@@ -48,7 +69,7 @@ class PictureService {
         }
     }
     
-    func unsaveRecipe(picture: Picture) {
+    final func unsaveRecipe(picture: Picture) {
         do {
             try CoreDataStack.share.unsavePicture(picture: picture)
         } catch {
@@ -56,10 +77,36 @@ class PictureService {
         }
     }
     
-    func isFavorite(picture: Picture) -> Bool {
+    final func isFavorite(picture: Picture) -> Bool {
         let context = CoreDataStack.share.viewContext
         let fetchRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "title == %@", picture.title ?? "")
         return ((try? context.count(for: fetchRequest)) ?? 0) > 0
+    }
+    
+    final func getFormattedDate(date: Date, dateFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.string(from: date)
+    }
+    
+    final func loadPicture() {
+        pictureDelegate?.showErrorLoading(text: "", isHidden: true)
+        pictureDelegate?.startAnimating()
+        let date = Date()
+        let dateFormat = "yyyy-MM-dd"
+        let calendar = Calendar.current
+        let start = calendar.date(byAdding: .day, value: -1, to: date)
+        let startDate = getFormattedDate(date: start ?? Date(), dateFormat: dateFormat)
+        let newDate = calendar.date(byAdding: .day, value: -7, to: date)
+        let endDate = getFormattedDate(date: newDate ?? Date(), dateFormat: dateFormat)
+        getPicture(startDate: endDate, endDate: startDate) { picture in
+            if let picture = picture {
+                self.picture = picture
+            } else {
+                self.pictureDelegate?.showErrorLoading(text: "Erreur serveur", isHidden: false)
+            }
+            self.pictureDelegate?.stopAnimating()
+        }
     }
 }

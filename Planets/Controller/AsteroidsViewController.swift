@@ -90,7 +90,7 @@ class AsteroidsViewController: UIViewController {
             if let result = result {
                 self.numberOfAsteroidLabel.text = "\(result.elementCount)"
             }
-            guard let asteroids = result?.nearEarthObjects.values.flatMap( { $0 }) else {
+            guard let asteroids = result?.nearEarthObjects.values.flatMap( { $0 } ) else {
                 print("Échec")
                 return
             }

@@ -17,7 +17,7 @@ final class DataServiceTest: XCTestCase {
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
         let firebaseDataService = FirebaseDataService(wrapper: firebaseMock)
-        firebaseMock.dataResult = [FirebaseData(name: "Terre",
+        firebaseMock.dataResult = [FirebaseSolarSystem(name: "Terre",
                                                  image: "",
                                                  tempMoy: "",
                                                  source: "",
@@ -29,7 +29,7 @@ final class DataServiceTest: XCTestCase {
                                                  galleries: [])]
         firebaseMock.dataError = nil
         
-        var resultData: [FirebaseData]?
+        var resultData: [FirebaseSolarSystem]?
         var resultError: String?
         // When
         firebaseDataService.fetchData(collectionID: "test") { data, error in

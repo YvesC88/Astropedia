@@ -8,9 +8,9 @@
 import Foundation
 
 struct Picture {
-    
+
     // MARK: - Properties
-    
+
     var title: String?
     var videoURL: String?
     var imageURL: String?
