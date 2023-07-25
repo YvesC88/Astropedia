@@ -12,6 +12,7 @@ class AsteroidsViewController: UIViewController {
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var numberOfAsteroidLabel: UILabel!
     @IBOutlet weak private var datePicker: UIDatePicker!
+    @IBOutlet weak private var sortButton: UIButton!
     
     private let asteroidService = AsteroidService()
     private let refreshControl = UIRefreshControl()
@@ -49,19 +50,12 @@ class AsteroidsViewController: UIViewController {
         tableView.reloadData()
     }
     
-    private final func fetchData() {
-        let date = Date()
-        let dateFormat = "yyyy-MM-dd"
-        let startDate = self.getFormattedDate(date: date, dateFormat: dateFormat)
-        let daysToAdd = 1
-        let calendar = Calendar.current
-        let newDate = calendar.date(byAdding: .day, value: daysToAdd, to: date)
-        let endDate = self.getFormattedDate(date: newDate!, dateFormat: dateFormat)
+    private final func fetchAsteroid(startDate: String, endDate: String) {
         asteroidService.getValue(startDate: startDate, endDate: endDate) { result in
             if let result = result {
                 self.numberOfAsteroidLabel.text = "\(result.elementCount)"
             }
-            guard let asteroids = result?.nearEarthObjects.values.flatMap( { $0 }) else {
+            guard let asteroids = result?.nearEarthObjects.values.flatMap({ $0 }) else {
                 self.presentAlert(title: "Erreur", message: "Erreur réseau")
                 return
             }
@@ -70,43 +64,40 @@ class AsteroidsViewController: UIViewController {
         }
     }
     
+    private final func fetchData() {
+        let startDate = getFormattedDate(date: Date(), dateFormat: "yyyy-MM-dd")
+        let endDate = getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: "yyyy-MM-dd")
+        self.fetchAsteroid(startDate: startDate, endDate: endDate)
+        sortButton.isSelected = false
+    }
+    
     @IBAction private final func datePickerValueChanged(_ sender: UIDatePicker) {
         loadingData()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let selectedDate = dateFormatter.string(from: sender.date)
-        let calendar = Calendar.current
-        let nextDay = calendar.date(byAdding: .day, value: 1, to: sender.date)
-        let endDate = self.getFormattedDate(date: nextDay!, dateFormat: "yyyy-MM-dd")
-        self.asteroidService.getValue(startDate: selectedDate, endDate: endDate) { result in
-            if let result = result {
-                self.numberOfAsteroidLabel.text = "\(result.elementCount)"
-            }
-            guard let asteroids = result?.nearEarthObjects.values.flatMap( { $0 } ) else {
-                print("Échec")
-                return
-            }
-            self.result = asteroids
-            self.setRefreshControl()
-        }
+        let selectedDate = getFormattedDate(date: sender.date, dateFormat: "yyyy-MM-dd")
+        let endDate = getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: sender.date)!, dateFormat: "yyyy-MM-dd")
+        fetchAsteroid(startDate: selectedDate, endDate: endDate)
+        sortButton.isSelected = false
     }
     
     @IBAction private final func categoryChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             result.sort { ($0.toAsteroid().estimatedDiameter ?? 0) < ($1.toAsteroid().estimatedDiameter ?? 0) }
+            sortButton.isSelected = false
         case 1:
             result.sort { ($0.toAsteroid().missDistance ?? 0) < ($1.toAsteroid().missDistance ?? 0) }
+            sortButton.isSelected = false
         case 2:
             result.sort { ($0.toAsteroid().relativeVelocity ?? 0) < ($1.toAsteroid().relativeVelocity ?? 0) }
+            sortButton.isSelected = false
         default:
             break
         }
         tableView.reloadData()
     }
     
-    @IBAction func sortResult(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+    @IBAction func sortResult() {
+        sortButton.isSelected = !sortButton.isSelected
         result = result.reversed()
     }
 }

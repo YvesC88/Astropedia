@@ -260,19 +260,16 @@
 		FB15CB1C2975732C00FEE718 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FB1073BD2A0A552600BC73BD /* NewsViewController.swift */,
-				FB15CADA297566D800FEE718 /* SolarSystemViewController.swift */,
-				FB15CB292976935000FEE718 /* DetailViewController.swift */,
-				FBC8305C2A3471970004C79B /* GalleryViewController.swift */,
-				FBC830622A3482D90004C79B /* DetailGalleryViewController.swift */,
-				FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */,
-				FB849A4B29DD7A5200ACABA6 /* DetailAsteroidViewController.swift */,
-				FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */,
-				FB6922292A095ED50034A65B /* DetailPictureViewController.swift */,
-				FB40AE642A14C6B90067FCAC /* DetailArticleViewController.swift */,
-				FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */,
-				FB9D31B92A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift */,
-				FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */,
+				FBC2CC092A6FD81200F2DD8D /* News */,
+				FBC2CC082A6FD80000F2DD8D /* SolarSystem */,
+				FBC2CC0A2A6FD82900F2DD8D /* Gallery */,
+				FBC2CC072A6FD7EE00F2DD8D /* Favorite */,
+				FBC2CC032A6FD76D00F2DD8D /* Asteroids */,
+				FBC2CC062A6FD7E100F2DD8D /* Picture */,
+				FBC2CC042A6FD7C900F2DD8D /* Article */,
+				FBC2CC0D2A6FD85700F2DD8D /* Settings */,
+				FBC2CC0C2A6FD84700F2DD8D /* PrivacyPolicy */,
+				FBC2CC0B2A6FD83F00F2DD8D /* Quizz */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -311,6 +308,89 @@
 				FBB009022A5B027500EC890D /* FavoriteService.swift */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		FBC2CC032A6FD76D00F2DD8D /* Asteroids */ = {
+			isa = PBXGroup;
+			children = (
+				FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */,
+				FB849A4B29DD7A5200ACABA6 /* DetailAsteroidViewController.swift */,
+			);
+			path = Asteroids;
+			sourceTree = "<group>";
+		};
+		FBC2CC042A6FD7C900F2DD8D /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				FB40AE642A14C6B90067FCAC /* DetailArticleViewController.swift */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
+		FBC2CC062A6FD7E100F2DD8D /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				FB6922292A095ED50034A65B /* DetailPictureViewController.swift */,
+			);
+			path = Picture;
+			sourceTree = "<group>";
+		};
+		FBC2CC072A6FD7EE00F2DD8D /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				FBF8656F29FD0DD700646278 /* FavoritesViewController.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		FBC2CC082A6FD80000F2DD8D /* SolarSystem */ = {
+			isa = PBXGroup;
+			children = (
+				FB15CADA297566D800FEE718 /* SolarSystemViewController.swift */,
+				FB15CB292976935000FEE718 /* DetailViewController.swift */,
+			);
+			path = SolarSystem;
+			sourceTree = "<group>";
+		};
+		FBC2CC092A6FD81200F2DD8D /* News */ = {
+			isa = PBXGroup;
+			children = (
+				FB1073BD2A0A552600BC73BD /* NewsViewController.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		FBC2CC0A2A6FD82900F2DD8D /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				FBC8305C2A3471970004C79B /* GalleryViewController.swift */,
+				FBC830622A3482D90004C79B /* DetailGalleryViewController.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		FBC2CC0B2A6FD83F00F2DD8D /* Quizz */ = {
+			isa = PBXGroup;
+			children = (
+				FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */,
+			);
+			path = Quizz;
+			sourceTree = "<group>";
+		};
+		FBC2CC0C2A6FD84700F2DD8D /* PrivacyPolicy */ = {
+			isa = PBXGroup;
+			children = (
+				FB9D31B92A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift */,
+			);
+			path = PrivacyPolicy;
+			sourceTree = "<group>";
+		};
+		FBC2CC0D2A6FD85700F2DD8D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		FBEC43E72A3F66CF00D76790 /* Quizz */ = {
