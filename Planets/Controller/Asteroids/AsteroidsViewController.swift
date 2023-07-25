@@ -9,7 +9,7 @@ import UIKit
 
 class AsteroidsViewController: UIViewController {
     
-    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var asteroidTableView: UITableView!
     @IBOutlet weak private var numberOfAsteroidLabel: UILabel!
     @IBOutlet weak private var datePicker: UIDatePicker!
     @IBOutlet weak private var sortButton: UIButton!
@@ -18,102 +18,81 @@ class AsteroidsViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private let spinner = UIActivityIndicatorView(style: .medium)
     
-    private var result: [APIAsteroid] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingData()
+        asteroidService.asteroidDelegate = self
+        loadingSpinner()
         fetchData()
         setRefreshControl()
     }
     
-    private final func loadingData() {
+    private final func loadingSpinner() {
         spinner.startAnimating()
-        tableView.backgroundView = spinner
+        asteroidTableView.backgroundView = spinner
     }
     
     private final func setRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
-        tableView.addSubview(refreshControl)
+        asteroidTableView.addSubview(refreshControl)
     }
     
     @objc private final func refreshTableView() {
         fetchData()
         datePicker.date = Date()
         refreshControl.endRefreshing()
-        tableView.reloadData()
-    }
-    
-    private final func fetchAsteroid(startDate: String, endDate: String) {
-        asteroidService.getValue(startDate: startDate, endDate: endDate) { result in
-            if let result = result {
-                self.numberOfAsteroidLabel.text = "\(result.elementCount)"
-            }
-            guard let asteroids = result?.nearEarthObjects.values.flatMap({ $0 }) else {
-                self.presentAlert(title: "Erreur", message: "Erreur réseau")
-                return
-            }
-            self.result = asteroids
-            self.spinner.stopAnimating()
-        }
+        asteroidTableView.reloadData()
     }
     
     private final func fetchData() {
         let startDate = getFormattedDate(date: Date(), dateFormat: "yyyy-MM-dd")
         let endDate = getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: "yyyy-MM-dd")
-        self.fetchAsteroid(startDate: startDate, endDate: endDate)
+        asteroidService.fetchAsteroid(startDate: startDate, endDate: endDate)
         sortButton.isSelected = false
     }
     
     @IBAction private final func datePickerValueChanged(_ sender: UIDatePicker) {
-        loadingData()
+        loadingSpinner()
         let selectedDate = getFormattedDate(date: sender.date, dateFormat: "yyyy-MM-dd")
         let endDate = getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: sender.date)!, dateFormat: "yyyy-MM-dd")
-        fetchAsteroid(startDate: selectedDate, endDate: endDate)
+        asteroidService.fetchAsteroid(startDate: selectedDate, endDate: endDate)
         sortButton.isSelected = false
     }
     
     @IBAction private final func categoryChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            result.sort { ($0.toAsteroid().estimatedDiameter ?? 0) < ($1.toAsteroid().estimatedDiameter ?? 0) }
+            asteroidService.result.sort { ($0.toAsteroid().estimatedDiameter ?? 0) < ($1.toAsteroid().estimatedDiameter ?? 0) }
             sortButton.isSelected = false
         case 1:
-            result.sort { ($0.toAsteroid().missDistance ?? 0) < ($1.toAsteroid().missDistance ?? 0) }
+            asteroidService.result.sort { ($0.toAsteroid().missDistance ?? 0) < ($1.toAsteroid().missDistance ?? 0) }
             sortButton.isSelected = false
         case 2:
-            result.sort { ($0.toAsteroid().relativeVelocity ?? 0) < ($1.toAsteroid().relativeVelocity ?? 0) }
+            asteroidService.result.sort { ($0.toAsteroid().relativeVelocity ?? 0) < ($1.toAsteroid().relativeVelocity ?? 0) }
             sortButton.isSelected = false
         default:
             break
         }
-        tableView.reloadData()
+        asteroidTableView.reloadData()
     }
     
     @IBAction func sortResult() {
         sortButton.isSelected = !sortButton.isSelected
-        result = result.reversed()
+        asteroidService.result = asteroidService.result.reversed()
     }
 }
 
 extension AsteroidsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return result.count
+        return asteroidService.result.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AsteroidTableViewCell else {
             return UITableViewCell()
         }
-        guard indexPath.row < result.count else { return cell }
-        let asteroid = result[indexPath.row].toAsteroid()
+        guard indexPath.row < asteroidService.result.count else { return cell }
+        let asteroid = asteroidService.result[indexPath.row].toAsteroid()
         cell.configure(name: asteroid.name,
                        size: asteroid.estimatedDiameter,
                        isPotentiallyHazardous: asteroid.isPotentiallyHazardous)
@@ -128,8 +107,8 @@ extension AsteroidsViewController: UITableViewDataSource {
 extension AsteroidsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row < result.count {
-            let asteroid = result[indexPath.row].toAsteroid()
+        if indexPath.row < asteroidService.result.count {
+            let asteroid = asteroidService.result[indexPath.row].toAsteroid()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailAsteroidViewController") as! DetailAsteroidViewController
             customViewController.asteroid = asteroid
@@ -137,3 +116,39 @@ extension AsteroidsViewController: UITableViewDelegate {
         }
     }
 }
+
+extension AsteroidsViewController: AsteroidDelegate {
+    func animatingSpinner() {
+        spinner.stopAnimating()
+    }
+    
+    func presentMessage(title: String, message: String) {
+        presentAlert(title: title, message: message)
+    }
+    
+    func reloadAsteroidTableView() {
+        DispatchQueue.main.async {
+            self.asteroidTableView.reloadData()
+        }
+    }
+    
+    func numberAsteroids(value: Int) {
+        numberOfAsteroidLabel.text = "\(value)"
+    }
+}
+
+
+/*
+ func getValue(startDate: String, endDate: String) async throws -> ResultAsteroid {
+     let url = "https://api.nasa.gov/neo/rest/v1/feed"
+     let parameters = [
+         "api_key": apiKey.keyNasa ?? "",
+         "start_date": startDate,
+         "end_date": endDate,
+     ] as [String : Any]
+     
+     return try await AF.request(url, method: .get, parameters: parameters).serializingDecodable(ResultAsteroid.self).value
+ }
+ 
+ 
+ */

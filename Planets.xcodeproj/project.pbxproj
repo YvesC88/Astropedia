@@ -199,13 +199,10 @@
 		FB15CAD5297566D800FEE718 /* Planets */ = {
 			isa = PBXGroup;
 			children = (
-				FB15CAD6297566D800FEE718 /* AppDelegate.swift */,
-				FB15CAD8297566D800FEE718 /* SceneDelegate.swift */,
+				FBC2CC0E2A701B6C00F2DD8D /* Ressources */,
 				FB15CB1A2975731100FEE718 /* Model */,
 				FB15CB1B2975731D00FEE718 /* View */,
 				FB15CB1C2975732C00FEE718 /* Controller */,
-				FB15CADF297566DA00FEE718 /* Assets.xcassets */,
-				FB15CAE4297566DA00FEE718 /* Info.plist */,
 			);
 			path = Planets;
 			sourceTree = "<group>";
@@ -391,6 +388,17 @@
 				FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		FBC2CC0E2A701B6C00F2DD8D /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				FB15CAD6297566D800FEE718 /* AppDelegate.swift */,
+				FB15CAD8297566D800FEE718 /* SceneDelegate.swift */,
+				FB15CADF297566DA00FEE718 /* Assets.xcassets */,
+				FB15CAE4297566DA00FEE718 /* Info.plist */,
+			);
+			path = Ressources;
 			sourceTree = "<group>";
 		};
 		FBEC43E72A3F66CF00D76790 /* Quizz */ = {
@@ -768,6 +776,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -825,6 +834,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -847,7 +857,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8ZV67K9B93;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Planets/Info.plist;
+				INFOPLIST_FILE = Planets/Ressources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Astropédia";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -883,7 +893,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8ZV67K9B93;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Planets/Info.plist;
+				INFOPLIST_FILE = Planets/Ressources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Astropédia";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

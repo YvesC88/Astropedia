@@ -1908,10 +1908,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Astéroïdes" id="4JH-2r-pPq"/>
                     <connections>
+                        <outlet property="asteroidTableView" destination="yYf-oT-zck" id="JKV-WI-nux"/>
                         <outlet property="datePicker" destination="Fty-cK-F6o" id="gdP-cL-h5V"/>
                         <outlet property="numberOfAsteroidLabel" destination="KV1-c1-fYh" id="MDL-w4-xBt"/>
                         <outlet property="sortButton" destination="hNA-dx-cPc" id="wTT-sS-nxb"/>
-                        <outlet property="tableView" destination="yYf-oT-zck" id="JKV-WI-nux"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCC-9A-C2G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
