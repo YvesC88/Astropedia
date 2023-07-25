@@ -14,25 +14,13 @@ class PrivacyPolicyViewController: UIViewController {
     @IBOutlet private weak var dateEffectLabel: UILabel!
     @IBOutlet private weak var privacyPolicyTextView: UITextView!
     
-    private var privacyPolicy: [PrivacyPolicy] = []
     let privacyPolicyService = PrivacyPolicyService(wrapper: FirebaseWrapper())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
-        loadPrivacyPolicy()
-    }
-    
-    private final func loadPrivacyPolicy() {
-        privacyPolicyService.fetchPrivacyPolicy(collectionID: "privacyPolicy") { privacyPolicy, error in
-            for data in privacyPolicy {
-                self.privacyPolicy = privacyPolicy
-                self.titleLabel.text = data.title
-                self.dateEffectLabel.text = data.date
-                let privacyPolicyText = data.privacyPolicyText.joined(separator: "\n\n")
-                self.privacyPolicyTextView.text = privacyPolicyText
-            }
-        }
+        privacyPolicyService.privacyPolicyDelegate = self
+        privacyPolicyService.loadPrivacyPolicy()
     }
     
     @IBAction func closePrivacyPolicyVC() {
@@ -47,10 +35,19 @@ extension PrivacyPolicyViewController: UIScrollViewDelegate {
         let contentOffsetY = scrollView.contentOffset.y
         let frame = scrollView.convert(titleLabel.frame, to: view)
         guard titleLabelMinY < contentOffsetY || frame.origin.y < view.safeAreaInsets.bottom else {
-            titleLabel.text = privacyPolicy.first?.title
+            titleLabel.text = privacyPolicyService.privacyPolicy.first?.title
             navigationItem.title = nil
             return
         }
-        navigationItem.title = privacyPolicy.first?.title
+        navigationItem.title = privacyPolicyService.privacyPolicy.first?.title
+    }
+}
+
+extension PrivacyPolicyViewController: PrivacyPolicyDelegate {
+    
+    func displayPrivacyPolicy(title: String, date: String, text: String) {
+        titleLabel.text = title
+        dateEffectLabel.text = date
+        privacyPolicyTextView.text = text
     }
 }

@@ -24,6 +24,7 @@ class DetailViewController: UIViewController {
     // MARK: - Properties
     
     var solarSystem: SolarSystem!
+    let solarSystemService = SolarSystemService(wrapper: FirebaseWrapper())
     
     // MARK: - Lifecycle Methods
     
@@ -33,12 +34,12 @@ class DetailViewController: UIViewController {
         globalScrollView.delegate = self
         setupBarButtonItem()
         configureUI()
-        configureData()
+        displayDetail()
     }
     
     // MARK: - Private Methods
     
-    private func configureData() {
+    private func displayDetail() {
         objectImageView.sd_setImage(with: URL(string: solarSystem.image))
         titleLabel.text = solarSystem.name
         statisticsTextView.text = solarSystem.statistics.map { "• \($0)" }.joined(separator: "\n\n")

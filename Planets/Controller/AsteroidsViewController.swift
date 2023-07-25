@@ -17,9 +17,6 @@ class AsteroidsViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private let spinner = UIActivityIndicatorView(style: .medium)
     
-    private var selectedCategory = 0
-    private let datePickerViewController = UIViewController()
-    
     private var result: [APIAsteroid] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -40,12 +37,6 @@ class AsteroidsViewController: UIViewController {
         tableView.backgroundView = spinner
     }
     
-    private final func setDatePicker() {
-        datePicker.datePickerMode = .date
-        datePicker.locale = Locale(identifier: "fr_FR")
-        datePicker.minimumDate = Date()
-    }
-    
     private final func setRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -53,6 +44,7 @@ class AsteroidsViewController: UIViewController {
     
     @objc private final func refreshTableView() {
         fetchData()
+        datePicker.date = Date()
         refreshControl.endRefreshing()
         tableView.reloadData()
     }
@@ -100,8 +92,7 @@ class AsteroidsViewController: UIViewController {
     }
     
     @IBAction private final func categoryChanged(_ sender: UISegmentedControl) {
-        selectedCategory = sender.selectedSegmentIndex
-        switch selectedCategory {
+        switch sender.selectedSegmentIndex {
         case 0:
             result.sort { ($0.toAsteroid().estimatedDiameter ?? 0) < ($1.toAsteroid().estimatedDiameter ?? 0) }
         case 1:
@@ -109,9 +100,14 @@ class AsteroidsViewController: UIViewController {
         case 2:
             result.sort { ($0.toAsteroid().relativeVelocity ?? 0) < ($1.toAsteroid().relativeVelocity ?? 0) }
         default:
-            tableView.reloadData()
+            break
         }
         tableView.reloadData()
+    }
+    
+    @IBAction func sortResult(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        result = result.reversed()
     }
 }
 
