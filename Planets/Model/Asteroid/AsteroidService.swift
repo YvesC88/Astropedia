@@ -8,52 +8,27 @@
 import Alamofire
 import Foundation
 
-protocol AsteroidDelegate {
-    func numberAsteroids(value: Int)
-    func reloadAsteroidTableView()
-    func presentMessage(title: String, message: String)
-    func animatingSpinner()
+enum ResultError: Error {
+    case invalidUrl, invalidResponse, invalidResult
 }
 
 class AsteroidService {
     
     private var apiKey = ApiKeys()
-    var result: [APIAsteroid] = [] {
-        didSet {
-            asteroidDelegate?.reloadAsteroidTableView()
-        }
-    }
-    var asteroidDelegate: AsteroidDelegate?
     
-    final func getValue(startDate: String, endDate: String, callback: @escaping (ResultAsteroid?) -> Void) {
-        let url = "https://api.nasa.gov/neo/rest/v1/feed"
-        let parameters = [
-            "api_key": apiKey.keyNasa ?? "",
-            "start_date": startDate,
-            "end_date": endDate,
-        ] as [String : Any]
-        
-        AF.request(url, method: .get, parameters: parameters).response { response in
-            guard let data = response.data else {
-                callback(nil)
-                return
-            }
-            let response = try? JSONDecoder().decode(ResultAsteroid.self, from: data)
-            callback(response)
+    func getValue(startDate: String, endDate: String) async throws -> ResultAsteroid {
+        let endPoint = "https://api.nasa.gov/neo/rest/v1/feed?api_key=\(apiKey.keyNasa ?? "")&start_date=\(startDate)&end_date=\(endDate)"
+        guard let url = URL(string: endPoint) else {
+            throw ResultError.invalidUrl
         }
-    }
-    
-    final func fetchAsteroid(startDate: String, endDate: String) {
-        getValue(startDate: startDate, endDate: endDate) { result in
-            if let result = result {
-                self.asteroidDelegate?.numberAsteroids(value: result.elementCount)
-            }
-            guard let asteroids = result?.nearEarthObjects.values.flatMap({ $0 }) else {
-                self.asteroidDelegate?.presentMessage(title: "Erreur", message: "Erreur réseau")
-                return
-            }
-            self.result = asteroids
-            self.asteroidDelegate?.animatingSpinner()
+        let (result, response) = try await URLSession.shared.data(from: url)
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw ResultError.invalidResponse
+        }
+        do {
+            return try JSONDecoder().decode(ResultAsteroid.self, from: result)
+        } catch {
+            throw ResultError.invalidResult
         }
     }
 }
