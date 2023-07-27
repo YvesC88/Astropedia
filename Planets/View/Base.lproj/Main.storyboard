@@ -1019,7 +1019,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="i05-j9-bgM">
-                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1284,7 +1284,7 @@
                     <tabBarItem key="tabBarItem" title="Actualités" image="newspaper.fill" catalog="system" id="IzA-Iw-ePw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dcG-Pc-4up">
-                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1569,7 +1569,7 @@
                     <tabBarItem key="tabBarItem" title="Système Solaire" image="asteroidSymbol" id="p38-T8-c8Z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="F5w-fV-xuF">
-                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1906,11 +1906,8 @@
                                 <state key="normal">
                                     <imageReference key="image" image="line.3.horizontal.decrease" catalog="system" symbolScale="large"/>
                                 </state>
-                                <state key="selected">
-                                    <imageReference key="image" image="arrow.down" catalog="system" symbolScale="large"/>
-                                </state>
                                 <connections>
-                                    <action selector="sortResult" destination="MwB-v1-cCn" eventType="touchUpInside" id="7XK-KX-1ok"/>
+                                    <action selector="sortResult:" destination="MwB-v1-cCn" eventType="touchUpInside" id="bVJ-t7-hfU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1952,7 +1949,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="gYp-jH-Gcp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="57x-gU-OCm">
-                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2293,7 +2290,6 @@
     </scenes>
     <resources>
         <image name="arrow.backward.to.line.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="arrow.down" catalog="system" width="118" height="128"/>
         <image name="arrow.left.and.right.circle.fill" catalog="system" width="128" height="123"/>
         <image name="asteroidSymbol" width="14" height="13"/>
         <image name="chart.bar.doc.horizontal.fill" catalog="system" width="115" height="128"/>

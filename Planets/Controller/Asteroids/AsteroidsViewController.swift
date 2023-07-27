@@ -101,20 +101,18 @@ class AsteroidsViewController: UIViewController {
     }
     
     @IBAction private final func categoryChanged(_ sender: UISegmentedControl) {
+        sortButton.transform = .identity
+        sortButton.isSelected = false
         switch sender.selectedSegmentIndex {
         case 0:
-            result.sort { ($0.toAsteroid().estimatedDiameter ?? 0) < ($1.toAsteroid().estimatedDiameter ?? 0) }
-            sortButton.isSelected = false
+            result.sort { ($0.toAsteroid().estimatedDiameter ?? 0) > ($1.toAsteroid().estimatedDiameter ?? 0) }
         case 1:
-            result.sort { ($0.toAsteroid().missDistance ?? 0) < ($1.toAsteroid().missDistance ?? 0) }
-            sortButton.isSelected = false
+            result.sort { ($0.toAsteroid().missDistance ?? 0) > ($1.toAsteroid().missDistance ?? 0) }
         case 2:
-            result.sort { ($0.toAsteroid().relativeVelocity ?? 0) < ($1.toAsteroid().relativeVelocity ?? 0) }
-            sortButton.isSelected = false
+            result.sort { ($0.toAsteroid().relativeVelocity ?? 0) > ($1.toAsteroid().relativeVelocity ?? 0) }
         default:
             break
         }
-        asteroidTableView.reloadData()
         
         if let visibleIndexPaths = asteroidTableView.indexPathsForVisibleRows {
                 for indexPath in visibleIndexPaths {
@@ -125,8 +123,14 @@ class AsteroidsViewController: UIViewController {
             }
     }
     
-    @IBAction func sortResult() {
-        sortButton.isSelected = !sortButton.isSelected
+    @IBAction func sortResult(_ sender: UIButton) {
+        if sender.isSelected {
+            sortButton.transform = .identity
+            sortButton.isHidden = false
+        } else {
+            sortButton.transform = CGAffineTransform(scaleX: -1, y: -1)
+            sortButton.isSelected = true
+        }
         result = result.reversed()
     }
 }
