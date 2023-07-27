@@ -27,11 +27,13 @@ class AsteroidsViewController: UIViewController {
         }
     }
     
+    let dateFormat = "yyyy-MM-dd"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadingSpinner()
         Task {
-            await fetchData()
+            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: dateFormat))
         }
         setRefreshControl()
     }
@@ -48,16 +50,14 @@ class AsteroidsViewController: UIViewController {
     
     @objc private final func refreshTableView() {
         Task {
-            await fetchData()
+            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: dateFormat))
         }
         datePicker.date = Date()
         refreshControl.endRefreshing()
         asteroidTableView.reloadData()
     }
     
-    private final func fetchData() async -> Result<[APIAsteroid], Error> {
-        let startDate = getFormattedDate(date: Date(), dateFormat: "yyyy-MM-dd")
-        let endDate = getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: "yyyy-MM-dd")
+    private final func fetchData(startDate: String, endDate: String) async -> Result<[APIAsteroid], Error> {
         do {
             let asteroids = try await asteroidService.getValue(startDate: startDate, endDate: endDate).nearEarthObjects.flatMap { $0.value }
             sortButton.isSelected = false

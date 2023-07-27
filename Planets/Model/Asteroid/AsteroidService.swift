@@ -16,7 +16,7 @@ class AsteroidService {
     
     private var apiKey = ApiKeys()
     
-    func getValue(startDate: String, endDate: String) async throws -> ResultAsteroid {
+    final func getValue(startDate: String, endDate: String) async throws -> ResultAsteroid {
         let endPoint = "https://api.nasa.gov/neo/rest/v1/feed?api_key=\(apiKey.keyNasa ?? "")&start_date=\(startDate)&end_date=\(endDate)"
         guard let url = URL(string: endPoint) else {
             throw ResultError.invalidUrl
