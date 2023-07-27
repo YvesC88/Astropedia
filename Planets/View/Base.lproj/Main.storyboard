@@ -632,7 +632,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ho5-bX-sDx">
-                                <rect key="frame" x="0.0" y="163.33333333333331" width="430" height="685.66666666666674"/>
+                                <rect key="frame" x="0.0" y="155" width="430" height="694"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pictureCell" rowHeight="150" id="JgB-YA-KcO" customClass="FavoritesTableViewCell" customModule="Planets" customModuleProvider="target">
@@ -1284,7 +1284,7 @@
                     <tabBarItem key="tabBarItem" title="Actualités" image="newspaper.fill" catalog="system" id="IzA-Iw-ePw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dcG-Pc-4up">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1789,7 +1789,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yYf-oT-zck">
-                                <rect key="frame" x="0.0" y="335" width="430" height="514"/>
+                                <rect key="frame" x="0.0" y="332.66666666666669" width="430" height="516.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" systemColor="systemGrayColor"/>
                                 <prototypes>
@@ -1807,17 +1807,27 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="68"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bNu-ye-mnZ">
-                                                                    <rect key="frame" x="0.0" y="-3" width="30" height="22.666666666666668"/>
+                                                                    <rect key="frame" x="0.0" y="-3" width="30" height="12.333333333333334"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <imageReference key="image" image="chart.bar.doc.horizontal.fill" catalog="system" symbolScale="large"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-Be-NLU">
-                                                                    <rect key="frame" x="0.0" y="23.666666666666661" width="30" height="21.333333333333339"/>
+                                                                    <rect key="frame" x="0.0" y="13.333333333333334" width="30" height="11.000000000000002"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <imageReference key="image" image="arrow.left.and.right.circle.fill" catalog="system" symbolScale="large"/>
                                                                 </imageView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eGu-b5-35u">
+                                                                    <rect key="frame" x="0.0" y="29" width="30" height="10.666666666666671"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <imageReference key="image" image="arrow.backward.to.line.circle.fill" catalog="system" symbolScale="large"/>
+                                                                </imageView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wah-KU-xPw">
+                                                                    <rect key="frame" x="0.0" y="44.333333333333329" width="30" height="11.000000000000007"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <imageReference key="image" image="speedometer" catalog="system" symbolScale="large"/>
+                                                                </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="huD-zr-jyx">
-                                                                    <rect key="frame" x="0.0" y="49.666666666666657" width="30" height="21.333333333333343"/>
+                                                                    <rect key="frame" x="0.0" y="60" width="30" height="11"/>
                                                                     <color key="tintColor" systemColor="systemYellowColor"/>
                                                                     <imageReference key="image" image="exclamationmark.circle.fill" catalog="system" symbolScale="large"/>
                                                                 </imageView>
@@ -1830,19 +1840,31 @@
                                                             <rect key="frame" x="40" y="0.0" width="291.66666666666669" height="68"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O36-MY-TLv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="291.66666666666669" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="291.66666666666669" height="5.666666666666667"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                     <color key="textColor" systemColor="systemBrownColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GyX-XB-hIO">
-                                                                    <rect key="frame" x="0.0" y="26" width="291.66666666666669" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="15.666666666666666" width="291.66666666666669" height="5.6666666666666661"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPh-fx-Gaz">
+                                                                    <rect key="frame" x="0.0" y="31.333333333333332" width="291.66666666666669" height="5.3333333333333321"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6m-LZ-OOx">
+                                                                    <rect key="frame" x="0.0" y="46.666666666666664" width="291.66666666666669" height="5.6666666666666643"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKP-WH-j1c">
-                                                                    <rect key="frame" x="0.0" y="52" width="291.66666666666669" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="62.333333333333321" width="291.66666666666669" height="5.6666666666666643"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -1862,9 +1884,14 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="customPlanetTableViewColor"/>
                                         <connections>
-                                            <outlet property="estimatedDiameterLabel" destination="GyX-XB-hIO" id="9GG-UG-QiX"/>
                                             <outlet property="isPotentiallyHazardousLabel" destination="nKP-WH-j1c" id="E6G-nn-i16"/>
+                                            <outlet property="missDistanceImageView" destination="eGu-b5-35u" id="3QZ-lx-vuc"/>
+                                            <outlet property="missDistanceLabel" destination="kPh-fx-Gaz" id="1AY-fi-eMJ"/>
                                             <outlet property="nameLabel" destination="O36-MY-TLv" id="k2x-C1-zWs"/>
+                                            <outlet property="sizeImageView" destination="cCO-Be-NLU" id="7xz-eK-Lkw"/>
+                                            <outlet property="sizeLabel" destination="GyX-XB-hIO" id="9GG-UG-QiX"/>
+                                            <outlet property="velocityImageView" destination="Wah-KU-xPw" id="c3S-Wq-nBH"/>
+                                            <outlet property="velocityLabel" destination="l6m-LZ-OOx" id="raG-Bc-EN1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1874,10 +1901,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNA-dx-cPc">
-                                <rect key="frame" x="204.33333333333334" y="305.66666666666669" width="21.666666666666657" height="24.333333333333314"/>
+                                <rect key="frame" x="201.66666666666666" y="305.66666666666669" width="27" height="22"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">
-                                    <imageReference key="image" image="arrow.up" catalog="system" symbolScale="large"/>
+                                    <imageReference key="image" image="line.3.horizontal.decrease" catalog="system" symbolScale="large"/>
                                 </state>
                                 <state key="selected">
                                     <imageReference key="image" image="arrow.down" catalog="system" symbolScale="large"/>
@@ -1925,7 +1952,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="gYp-jH-Gcp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="57x-gU-OCm">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2265,9 +2292,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.backward.to.line.circle.fill" catalog="system" width="128" height="123"/>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
         <image name="arrow.left.and.right.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="arrow.up" catalog="system" width="118" height="128"/>
         <image name="asteroidSymbol" width="14" height="13"/>
         <image name="chart.bar.doc.horizontal.fill" catalog="system" width="115" height="128"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
@@ -2276,11 +2303,13 @@
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="heartSquareSymbol" width="12" height="12"/>
+        <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
         <image name="lock.shield.fill" catalog="system" width="128" height="119"/>
         <image name="moon.circle.fill" catalog="system" width="128" height="123"/>
         <image name="newspaper.fill" catalog="system" width="128" height="112"/>
         <image name="questionmark" catalog="system" width="94" height="128"/>
         <image name="sparkles" catalog="system" width="115" height="128"/>
+        <image name="speedometer" catalog="system" width="128" height="123"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="customPlanetTableViewColor">

@@ -9,10 +9,7 @@ import Foundation
 import UIKit
 
 enum ButtonState {
-    case none
-    case truePressed
-    case falsePressed
-    case submitPressed
+    case none, truePressed, falsePressed, submitPressed
 }
 
 class QuizzViewController: UIViewController {
@@ -30,25 +27,16 @@ class QuizzViewController: UIViewController {
     @IBOutlet weak var scoreView: UIView!
     
     let questionService = QuestionService(wrapper: FirebaseWrapper())
-    var questions: [Question] = []
     var buttonState: ButtonState = .none
     var buttonPressed: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchQuestion()
+        questionService.fetchQuestion(collectionID: "questions")
         numberOfQuestionView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.4)
         questionService.questionDelegate = self
         setUIButton(button: [newGameButton, nextQuestionButton])
         setUIView(view: [questionView, scoreView])
-    }
-    
-    func fetchQuestion() {
-        questionService.fetchQuestion(collectionID: "questions") { question, error in
-            if let question = question {
-                self.questions = question
-            }
-        }
     }
     
     @IBAction func didTappedButton(_ sender: UIButton) {
@@ -75,7 +63,7 @@ class QuizzViewController: UIViewController {
             trueButton.isEnabled = true
             falseButton.isEnabled = true
         } else {
-            questionService.checkAnswer(question: questions[questionService.randomNumber], userAnswer: buttonState == .truePressed)
+            questionService.checkAnswer(question: questionService.random!, userAnswer: buttonState == .truePressed)
             if questionService.isCorrect {
                 correctColorButton(button: buttonPressed! ? trueButton : falseButton)
             } else {

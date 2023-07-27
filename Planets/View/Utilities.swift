@@ -106,10 +106,6 @@ extension UIViewController {
         }
     }
     
-    func updateColorAfterCheck(button: UIButton, color: CGColor) {
-        button.layer.borderColor = color
-    }
-    
     func setUIView(view: [UIView]) {
         let views = view
         for view in views {

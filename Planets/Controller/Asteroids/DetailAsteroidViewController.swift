@@ -36,7 +36,7 @@ class DetailAsteroidViewController: UIViewController {
     func setData() {
         sizeLabel.text = String(format: "%.1f", asteroid.estimatedDiameter ?? "")
         velocityLabel.text = "\(asteroid.relativeVelocity ?? 0)"
-        distanceLabel.text = String(format: "%.1fx", asteroid.missDistance ?? 0)
+        distanceLabel.text = String(format: "%.1f×", asteroid.missDistance ?? 0)
         asteroidNameLabel.text = asteroid.name ?? ""
         closeLabel.text = "• Au plus proche de la Terre le \(asteroid.closeApproachDate ?? "")"
         dangerousLabel.text = "• \(asteroid.isPotentiallyHazardous ?? "")"

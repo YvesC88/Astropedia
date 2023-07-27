@@ -27,21 +27,29 @@ class QuestionService {
     }
     
     var score = 0
-    var randomNumber: Int = 0
+    var random: Question?
     var questionsAnswered = 0
-    var numberOfQuestion: Int = 0
     let numberToAnswer = 10
     var questions: [Question] = []
     var isCorrect: Bool = false
     
-    func fetchQuestion(collectionID: String, completion: @escaping ([Question]?, String?) -> ()) {
+//    final func getQuestion(collectionID: String, completion: @escaping ([Question]?, String?) -> ()) {
+//        firebaseWrapper.fetchQuestion(collectionID: collectionID) { question, error in
+//            if let question = question {
+//                completion(question, nil)
+//                self.questions = question
+//            } else {
+//                completion([], error)
+//            }
+//        }
+//    }
+    
+    func fetchQuestion(collectionID: String) {
         firebaseWrapper.fetchQuestion(collectionID: collectionID) { question, error in
             if let question = question {
-                completion(question, nil)
-                self.numberOfQuestion = question.count
                 self.questions = question
             } else {
-                completion([], error)
+                print("error")
             }
         }
     }
@@ -58,15 +66,15 @@ class QuestionService {
         questionDelegate?.scoreChanged(for: userAnswer)
     }
     
-    func goToNextQuestion() {
-        if questionsAnswered == 10 {
+    final func goToNextQuestion() {
+        if questionsAnswered == numberToAnswer {
             showEndGame()
         } else {
             showNextQuestion()
         }
     }
     
-    private func showEndGame() {
+    private final func showEndGame() {
         questionDelegate?.currentQuestion(number: questionsAnswered, isHidden: false)
         questionDelegate?.showAnswerButton(isHidden: true)
         questionDelegate?.newGameEnabled(isEnabled: true)
@@ -76,22 +84,22 @@ class QuestionService {
     }
     
     private func showNextQuestion() {
-        randomNumber = random()
+        random = randomQuestion()
         questionsAnswered += 1
-        questionDelegate?.updateQuestion(with: questions[randomNumber].text)
+        questionDelegate?.updateQuestion(with: random?.text ?? "")
         questionDelegate?.currentQuestion(number: questionsAnswered, isHidden: false)
     }
     
     func newGame() {
-        randomNumber = random()
+        random = randomQuestion()
         score = 0
         questionsAnswered = 1
         questionDelegate?.updateTitleGameButton(title: "Nouvelle partie")
-        questionDelegate?.updateQuestion(with: questions[randomNumber].text)
+        questionDelegate?.updateQuestion(with: random?.text ?? "")
         questionDelegate?.updateScore(correct: 0, incorrect: 0)
         questionDelegate?.showAnswerButton(isHidden: false)
         questionDelegate?.currentQuestion(number: questionsAnswered, isHidden: false)
     }
     
-    func random() -> Int { return Int.random(in: 0..<numberOfQuestion) }
+    func randomQuestion() -> Question { return questions.randomElement() ?? Question(text: "Pas de question", answer: false)}
 }

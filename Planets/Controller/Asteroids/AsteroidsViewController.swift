@@ -115,6 +115,14 @@ class AsteroidsViewController: UIViewController {
             break
         }
         asteroidTableView.reloadData()
+        
+        if let visibleIndexPaths = asteroidTableView.indexPathsForVisibleRows {
+                for indexPath in visibleIndexPaths {
+                    if let cell = asteroidTableView.cellForRow(at: indexPath) as? AsteroidTableViewCell {
+                        cell.selectedIndex = sender.selectedSegmentIndex
+                    }
+                }
+            }
     }
     
     @IBAction func sortResult() {
@@ -135,7 +143,7 @@ extension AsteroidsViewController: UITableViewDataSource {
         }
         guard indexPath.row < result.count else { return cell }
         let asteroid = result[indexPath.row].toAsteroid()
-        cell.configure(name: asteroid.name, size: asteroid.estimatedDiameter, isPotentiallyHazardous: asteroid.isPotentiallyHazardous)
+        cell.configure(name: asteroid.name, size: asteroid.estimatedDiameter, missDistance: asteroid.missDistance ?? 0, velocity: "\(asteroid.relativeVelocity ?? 0)", isPotentiallyHazardous: asteroid.isPotentiallyHazardous)
         let info = UIImage(systemName: "info.circle.fill")
         cell.accessoryType = .detailButton
         cell.accessoryView = UIImageView(image: info)
