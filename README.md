@@ -1,1 +1,1 @@
-# Astrop-dia
+# Astropedia
