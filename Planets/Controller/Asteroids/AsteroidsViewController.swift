@@ -61,7 +61,7 @@ class AsteroidsViewController: UIViewController {
         do {
             let asteroids = try await asteroidService.getValue(startDate: startDate, endDate: endDate).nearEarthObjects.flatMap { $0.value }
             sortButton.isSelected = false
-            self.result = asteroids
+            self.result = asteroids.sorted { ($0.toAsteroid().estimatedDiameter ?? 0) > ($1.toAsteroid().estimatedDiameter ?? 0) }
             numberOfAsteroidLabel.text = "\(asteroids.count)"
             spinner.stopAnimating()
             return .success(asteroids)
@@ -113,14 +113,6 @@ class AsteroidsViewController: UIViewController {
         default:
             break
         }
-        
-        if let visibleIndexPaths = asteroidTableView.indexPathsForVisibleRows {
-                for indexPath in visibleIndexPaths {
-                    if let cell = asteroidTableView.cellForRow(at: indexPath) as? AsteroidTableViewCell {
-                        cell.selectedIndex = sender.selectedSegmentIndex
-                    }
-                }
-            }
     }
     
     @IBAction func sortResult(_ sender: UIButton) {

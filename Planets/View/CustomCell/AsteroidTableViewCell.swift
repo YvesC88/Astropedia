@@ -7,12 +7,6 @@
 
 import UIKit
 
-enum SelectedIndex: Int {
-    case size = 0
-    case missDistance = 1
-    case velocity = 2
-}
-
 class AsteroidTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
@@ -23,8 +17,6 @@ class AsteroidTableViewCell: UITableViewCell {
     @IBOutlet weak var velocityImageView: UIImageView!
     @IBOutlet weak var isPotentiallyHazardousLabel: UILabel!
     
-    var selectedIndex: Int = 0
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -34,31 +26,6 @@ class AsteroidTableViewCell: UITableViewCell {
     }
     
     func configure(name: String?, size: Double?, missDistance: Double, velocity: String, isPotentiallyHazardous: String?) {
-        switch SelectedIndex(rawValue: selectedIndex) {
-        case .size:
-            sizeLabel.isHidden = false
-            sizeImageView.isHidden = false
-            missDistanceLabel.isHidden = true
-            missDistanceImageView.isHidden = true
-            velocityLabel.isHidden = true
-            velocityImageView.isHidden = true
-        case .missDistance:
-            sizeLabel.isHidden = true
-            sizeImageView.isHidden = true
-            missDistanceLabel.isHidden = false
-            missDistanceImageView.isHidden = false
-            velocityLabel.isHidden = true
-            velocityImageView.isHidden = true
-        case .velocity:
-            sizeLabel.isHidden = true
-            sizeImageView.isHidden = true
-            missDistanceLabel.isHidden = true
-            missDistanceImageView.isHidden = true
-            velocityLabel.isHidden = false
-            velocityImageView.isHidden = false
-            case .none:
-                break
-        }
         if isPotentiallyHazardous == "Potentiellement dangereux" {
             isPotentiallyHazardousLabel.textColor = UIColor.systemRed
         } else {

@@ -1788,46 +1788,46 @@
                                     </segmentedControl>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yYf-oT-zck">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yYf-oT-zck">
                                 <rect key="frame" x="0.0" y="332.66666666666669" width="430" height="516.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" systemColor="systemGrayColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="100" id="bkZ-c2-agC" customClass="AsteroidTableViewCell" customModule="Planets" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="55.333332061767578" width="390" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="150" id="bkZ-c2-agC" customClass="AsteroidTableViewCell" customModule="Planets" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="390" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bkZ-c2-agC" id="V4V-Bs-wgZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5E1-ja-ah1">
-                                                    <rect key="frame" x="20" y="16" width="331.66666666666669" height="68"/>
+                                                    <rect key="frame" x="20" y="16" width="331.66666666666669" height="118"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cx0-Pl-mc9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="68"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="118"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bNu-ye-mnZ">
-                                                                    <rect key="frame" x="0.0" y="-3" width="30" height="12.333333333333334"/>
+                                                                    <rect key="frame" x="0.0" y="-3" width="30" height="22.333333333333332"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <imageReference key="image" image="chart.bar.doc.horizontal.fill" catalog="system" symbolScale="large"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-Be-NLU">
-                                                                    <rect key="frame" x="0.0" y="13.333333333333334" width="30" height="11.000000000000002"/>
+                                                                    <rect key="frame" x="0.0" y="23.333333333333329" width="30" height="21"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <imageReference key="image" image="arrow.left.and.right.circle.fill" catalog="system" symbolScale="large"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eGu-b5-35u">
-                                                                    <rect key="frame" x="0.0" y="29" width="30" height="10.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="48.999999999999993" width="30" height="20.666666666666664"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <imageReference key="image" image="arrow.backward.to.line.circle.fill" catalog="system" symbolScale="large"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wah-KU-xPw">
-                                                                    <rect key="frame" x="0.0" y="44.333333333333329" width="30" height="11.000000000000007"/>
+                                                                    <rect key="frame" x="0.0" y="74.333333333333343" width="30" height="21"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <imageReference key="image" image="speedometer" catalog="system" symbolScale="large"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="huD-zr-jyx">
-                                                                    <rect key="frame" x="0.0" y="60" width="30" height="11"/>
+                                                                    <rect key="frame" x="0.0" y="100" width="30" height="21"/>
                                                                     <color key="tintColor" systemColor="systemYellowColor"/>
                                                                     <imageReference key="image" image="exclamationmark.circle.fill" catalog="system" symbolScale="large"/>
                                                                 </imageView>
@@ -1837,34 +1837,34 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Dk-Kh-WqK">
-                                                            <rect key="frame" x="40" y="0.0" width="291.66666666666669" height="68"/>
+                                                            <rect key="frame" x="40" y="0.0" width="291.66666666666669" height="118"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O36-MY-TLv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="291.66666666666669" height="5.666666666666667"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="291.66666666666669" height="15.666666666666666"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                     <color key="textColor" systemColor="systemBrownColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GyX-XB-hIO">
-                                                                    <rect key="frame" x="0.0" y="15.666666666666666" width="291.66666666666669" height="5.6666666666666661"/>
+                                                                    <rect key="frame" x="0.0" y="25.666666666666668" width="291.66666666666669" height="15.666666666666668"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPh-fx-Gaz">
-                                                                    <rect key="frame" x="0.0" y="31.333333333333332" width="291.66666666666669" height="5.3333333333333321"/>
+                                                                    <rect key="frame" x="0.0" y="51.333333333333329" width="291.66666666666669" height="15.333333333333329"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6m-LZ-OOx">
-                                                                    <rect key="frame" x="0.0" y="46.666666666666664" width="291.66666666666669" height="5.6666666666666643"/>
+                                                                    <rect key="frame" x="0.0" y="76.666666666666671" width="291.66666666666669" height="15.666666666666671"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKP-WH-j1c">
-                                                                    <rect key="frame" x="0.0" y="62.333333333333321" width="291.66666666666669" height="5.6666666666666643"/>
+                                                                    <rect key="frame" x="0.0" y="102.33333333333333" width="291.66666666666669" height="15.666666666666671"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -1949,7 +1949,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="gYp-jH-Gcp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="57x-gU-OCm">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
