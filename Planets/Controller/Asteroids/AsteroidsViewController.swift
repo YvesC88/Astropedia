@@ -80,6 +80,8 @@ class AsteroidsViewController: UIViewController {
     }
     
     @IBAction private final func datePickerValueChanged(_ sender: UIDatePicker) {
+        sortButton.transform = .identity
+        sortButton.isSelected = false
         Task { @MainActor in
             loadingSpinner()
             let selectedDate = getFormattedDate(date: sender.date, dateFormat: "yyyy-MM-dd")
@@ -101,8 +103,6 @@ class AsteroidsViewController: UIViewController {
     }
     
     @IBAction private final func categoryChanged(_ sender: UISegmentedControl) {
-        sortButton.transform = .identity
-        sortButton.isSelected = false
         switch sender.selectedSegmentIndex {
         case 0:
             asteroid.sort { ($0.toAsteroid().estimatedDiameter ?? 0) > ($1.toAsteroid().estimatedDiameter ?? 0) }
@@ -118,12 +118,12 @@ class AsteroidsViewController: UIViewController {
     @IBAction func sortResult(_ sender: UIButton) {
         if sender.isSelected {
             sortButton.transform = .identity
-            sortButton.isHidden = false
+            sortButton.isSelected = false
         } else {
             sortButton.transform = CGAffineTransform(scaleX: -1, y: -1)
             sortButton.isSelected = true
         }
-        asteroid = asteroid.reversed()
+        asteroid.reverse()
     }
 }
 

@@ -1569,7 +1569,7 @@
                     <tabBarItem key="tabBarItem" title="Système Solaire" image="asteroidSymbol" id="p38-T8-c8Z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="F5w-fV-xuF">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1901,9 +1901,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNA-dx-cPc">
-                                <rect key="frame" x="201.66666666666666" y="305.66666666666669" width="27" height="22"/>
+                                <rect key="frame" x="194.66666666666666" y="305.66666666666669" width="41" height="22"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal">
+                                <state key="normal" title="↓">
+                                    <color key="titleColor" systemColor="labelColor"/>
                                     <imageReference key="image" image="line.3.horizontal.decrease" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
