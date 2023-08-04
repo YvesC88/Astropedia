@@ -14,13 +14,9 @@ final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var objectImageView: UIImageView!
     @IBOutlet weak var diameterLabel: UILabel!
-    @IBOutlet weak var memberTextLabel: UILabel!
-    @IBOutlet weak var typeTextLabel: UILabel!
     @IBOutlet weak var diameterTextLabel: UILabel!
     @IBOutlet weak var satTextLabel: UILabel!
     @IBOutlet weak var satLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var distanceTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,11 +26,7 @@ final class SolarSystemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(name: String, image: String, tempMoy: String, sat: Int, membership: String, type: String, diameter: Double) {
-        memberTextLabel.text = memberTextLabel.text?.uppercased()
-        typeTextLabel.text = typeTextLabel.text?.uppercased()
-        diameterTextLabel.text = diameterTextLabel.text?.uppercased()
-        satTextLabel.text = satTextLabel.text?.uppercased()
+    func configure(name: String, image: String, sat: Int, membership: String, type: String, diameter: Double) {
         objectImageView.sd_setImage(with: URL(string: image))
         objectLabel.text = name
         objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 100)

@@ -33,18 +33,7 @@ class QuestionService {
     var questions: [Question] = []
     var isCorrect: Bool = false
     
-//    final func getQuestion(collectionID: String, completion: @escaping ([Question]?, String?) -> ()) {
-//        firebaseWrapper.fetchQuestion(collectionID: collectionID) { question, error in
-//            if let question = question {
-//                completion(question, nil)
-//                self.questions = question
-//            } else {
-//                completion([], error)
-//            }
-//        }
-//    }
-    
-    func fetchQuestion(collectionID: String) {
+    final func fetchQuestion(collectionID: String) {
         firebaseWrapper.fetchQuestion(collectionID: collectionID) { question, error in
             if let question = question {
                 self.questions = question
@@ -54,9 +43,10 @@ class QuestionService {
         }
     }
     
+    func randomQuestion() -> Question { return questions.randomElement() ?? Question(text: "Pas de question", answer: false)}
+    
     func checkAnswer(question: Question, userAnswer: Bool) {
         questionDelegate?.newGameEnabled(isEnabled: false)
-        print(question)
         if question.answer == userAnswer {
             isCorrect = true
             score += 1
@@ -75,31 +65,32 @@ class QuestionService {
     }
     
     private final func showEndGame() {
-        questionDelegate?.currentQuestion(number: questionsAnswered, isHidden: false)
+        updateCurrentQuestion(question: random ?? Question(text: "Erreur", answer: false), isHidden: false)
         questionDelegate?.showAnswerButton(isHidden: true)
         questionDelegate?.newGameEnabled(isEnabled: true)
         questionDelegate?.updateTitleGameButton(title: "Recommencer")
         questionDelegate?.updateScore(correct: score, incorrect: numberToAnswer - score)
-        questionDelegate?.updateQuestion(with: "Partie terminé.")
+        questionDelegate?.updateQuestion(with: "Quizz terminé.")
+    }
+    
+    private final func updateCurrentQuestion(question: Question, isHidden: Bool) {
+        questionDelegate?.updateQuestion(with: question.text)
+        questionDelegate?.currentQuestion(number: questionsAnswered, isHidden: isHidden)
     }
     
     private func showNextQuestion() {
         random = randomQuestion()
         questionsAnswered += 1
-        questionDelegate?.updateQuestion(with: random?.text ?? "")
-        questionDelegate?.currentQuestion(number: questionsAnswered, isHidden: false)
+        updateCurrentQuestion(question: random ?? Question(text: "Erreur", answer: false), isHidden: false)
     }
     
     func newGame() {
         random = randomQuestion()
         score = 0
         questionsAnswered = 1
-        questionDelegate?.updateTitleGameButton(title: "Nouvelle partie")
-        questionDelegate?.updateQuestion(with: random?.text ?? "")
+        updateCurrentQuestion(question: random ?? Question(text: "Erreur", answer: false), isHidden: false)
+        questionDelegate?.updateTitleGameButton(title: "Démarrer")
         questionDelegate?.updateScore(correct: 0, incorrect: 0)
         questionDelegate?.showAnswerButton(isHidden: false)
-        questionDelegate?.currentQuestion(number: questionsAnswered, isHidden: false)
     }
-    
-    func randomQuestion() -> Question { return questions.randomElement() ?? Question(text: "Pas de question", answer: false)}
 }

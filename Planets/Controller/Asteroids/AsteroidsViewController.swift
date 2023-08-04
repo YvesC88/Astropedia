@@ -27,13 +27,11 @@ class AsteroidsViewController: UIViewController {
         }
     }
     
-    let dateFormat = "yyyy-MM-dd"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadingSpinner()
         Task {
-            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: dateFormat))
+            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: AsteroidsViewController.dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: AsteroidsViewController.dateFormat))
         }
         setRefreshControl()
     }
@@ -50,7 +48,7 @@ class AsteroidsViewController: UIViewController {
     
     @objc private final func refreshTableView() {
         Task {
-            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: dateFormat))
+            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: AsteroidsViewController.dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: AsteroidsViewController.dateFormat))
         }
         datePicker.date = Date()
         refreshControl.endRefreshing()
@@ -103,6 +101,8 @@ class AsteroidsViewController: UIViewController {
     }
     
     @IBAction private final func categoryChanged(_ sender: UISegmentedControl) {
+        sortButton.transform = .identity
+        sortButton.isSelected = false
         switch sender.selectedSegmentIndex {
         case 0:
             asteroid.sort { ($0.toAsteroid().estimatedDiameter ?? 0) > ($1.toAsteroid().estimatedDiameter ?? 0) }
@@ -124,6 +124,10 @@ class AsteroidsViewController: UIViewController {
             sortButton.isSelected = true
         }
         asteroid.reverse()
+    }
+    
+    func sortResult(order: Bool) {
+        
     }
 }
 

@@ -36,6 +36,11 @@ class NewsViewController: UIViewController {
         articleService.loadArticle()
         pictureService.loadPicture()
     }
+    
+    @IBAction func reloadPicture() {
+        pictureService.loadPicture()
+        pictureTableView.reloadData()
+    }
 }
 
 
@@ -60,7 +65,7 @@ extension NewsViewController: UITableViewDataSource {
             let reverseIndex = pictureService.picture.count - 1 - indexPath.row
             guard reverseIndex >= 0 && reverseIndex < pictureService.picture.count else { return cell }
             let picture = pictureService.picture[reverseIndex].toPicture()
-            cell.configure(title: picture.title, image: picture.imageURL, mediaType: picture.mediaType)
+            cell.configure(title: picture.title, image: picture.imageURL, mediaType: picture.mediaType, date: picture.date)
             return cell
         case articleTableView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else {

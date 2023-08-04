@@ -35,8 +35,6 @@
 		FB605C892A1543E400622E94 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB605C882A1543E400622E94 /* ArticleTableViewCell.swift */; };
 		FB6922282A094C400034A65B /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922272A094C400034A65B /* FavoritesTableViewCell.swift */; };
 		FB69222A2A095ED50034A65B /* DetailPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922292A095ED50034A65B /* DetailPictureViewController.swift */; };
-		FB77A8C82A4E487A00BE5EE4 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FB77A8C72A4E487A00BE5EE4 /* SDWebImage */; };
-		FB77A8CA2A4E487A00BE5EE4 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB77A8C92A4E487A00BE5EE4 /* SDWebImageMapKit */; };
 		FB849A3129D6E8A700ACABA6 /* AsteroidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */; };
 		FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */; };
 		FB849A3729D6EB1900ACABA6 /* ResultAsteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3629D6EB1900ACABA6 /* ResultAsteroid.swift */; };
@@ -51,13 +49,14 @@
 		FBB009032A5B027500EC890D /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB009022A5B027500EC890D /* FavoriteService.swift */; };
 		FBBB05802A4B2EEB0033B090 /* SolarSystemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB057F2A4B2EEB0033B090 /* SolarSystemCollection.swift */; };
 		FBC473452A1FBCBC00E70C4A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */; };
-		FBC8304E2A33210F0004C79B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FBC8304D2A33210F0004C79B /* Alamofire */; };
-		FBC830512A3321520004C79B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBC830502A3321520004C79B /* FirebaseAnalytics */; };
-		FBC830532A3321520004C79B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBC830522A3321520004C79B /* FirebaseCrashlytics */; };
-		FBC830552A3321520004C79B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FBC830542A3321520004C79B /* FirebaseFirestore */; };
 		FBC8305D2A3471970004C79B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8305C2A3471970004C79B /* GalleryViewController.swift */; };
 		FBC830612A347B8B0004C79B /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC830602A347B8B0004C79B /* GalleryCollectionViewCell.swift */; };
 		FBC830632A3482D90004C79B /* DetailGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC830622A3482D90004C79B /* DetailGalleryViewController.swift */; };
+		FBCBFAAA2A7D50E6005149FC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAA92A7D50E6005149FC /* SDWebImage */; };
+		FBCBFAAD2A7D50FB005149FC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAAC2A7D50FB005149FC /* Alamofire */; };
+		FBCBFAB02A7D5158005149FC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAAF2A7D5158005149FC /* FirebaseAnalytics */; };
+		FBCBFAB22A7D5158005149FC /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAB12A7D5158005149FC /* FirebaseCrashlytics */; };
+		FBCBFAB42A7D5158005149FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAB32A7D5158005149FC /* FirebaseFirestore */; };
 		FBEC43EB2A3F674A00D76790 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EA2A3F674A00D76790 /* QuestionService.swift */; };
 		FBEC43ED2A3F6CB700D76790 /* QuizzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */; };
 		FBEC43EF2A3F96CD00D76790 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EE2A3F96CD00D76790 /* Question.swift */; };
@@ -150,12 +149,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBC830532A3321520004C79B /* FirebaseCrashlytics in Frameworks */,
-				FBC830552A3321520004C79B /* FirebaseFirestore in Frameworks */,
-				FBC830512A3321520004C79B /* FirebaseAnalytics in Frameworks */,
-				FBC8304E2A33210F0004C79B /* Alamofire in Frameworks */,
-				FB77A8CA2A4E487A00BE5EE4 /* SDWebImageMapKit in Frameworks */,
-				FB77A8C82A4E487A00BE5EE4 /* SDWebImage in Frameworks */,
+				FBCBFAAA2A7D50E6005149FC /* SDWebImage in Frameworks */,
+				FBCBFAB22A7D5158005149FC /* FirebaseCrashlytics in Frameworks */,
+				FBCBFAAD2A7D50FB005149FC /* Alamofire in Frameworks */,
+				FBCBFAB42A7D5158005149FC /* FirebaseFirestore in Frameworks */,
+				FBCBFAB02A7D5158005149FC /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,12 +470,11 @@
 			);
 			name = Planets;
 			packageProductDependencies = (
-				FBC8304D2A33210F0004C79B /* Alamofire */,
-				FBC830502A3321520004C79B /* FirebaseAnalytics */,
-				FBC830522A3321520004C79B /* FirebaseCrashlytics */,
-				FBC830542A3321520004C79B /* FirebaseFirestore */,
-				FB77A8C72A4E487A00BE5EE4 /* SDWebImage */,
-				FB77A8C92A4E487A00BE5EE4 /* SDWebImageMapKit */,
+				FBCBFAA92A7D50E6005149FC /* SDWebImage */,
+				FBCBFAAC2A7D50FB005149FC /* Alamofire */,
+				FBCBFAAF2A7D5158005149FC /* FirebaseAnalytics */,
+				FBCBFAB12A7D5158005149FC /* FirebaseCrashlytics */,
+				FBCBFAB32A7D5158005149FC /* FirebaseFirestore */,
 			);
 			productName = Planets;
 			productReference = FB15CAD3297566D800FEE718 /* Planets.app */;
@@ -552,9 +549,9 @@
 			);
 			mainGroup = FB15CACA297566D800FEE718;
 			packageReferences = (
-				FBC8304C2A33210F0004C79B /* XCRemoteSwiftPackageReference "Alamofire" */,
-				FBC8304F2A3321520004C79B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				FB77A8C62A4E487A00BE5EE4 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				FBCBFAA82A7D50E6005149FC /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				FBCBFAAB2A7D50FB005149FC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				FBCBFAAE2A7D5158005149FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FB15CAD4297566D800FEE718 /* Products */;
 			projectDirPath = "";
@@ -1044,15 +1041,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FB77A8C62A4E487A00BE5EE4 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		FBCBFAA82A7D50E6005149FC /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.16.0;
+				minimumVersion = 5.0.0;
 			};
 		};
-		FBC8304C2A33210F0004C79B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		FBCBFAAB2A7D50FB005149FC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1060,7 +1057,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		FBC8304F2A3321520004C79B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		FBCBFAAE2A7D5158005149FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1071,34 +1068,29 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FB77A8C72A4E487A00BE5EE4 /* SDWebImage */ = {
+		FBCBFAA92A7D50E6005149FC /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FB77A8C62A4E487A00BE5EE4 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = FBCBFAA82A7D50E6005149FC /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
-		FB77A8C92A4E487A00BE5EE4 /* SDWebImageMapKit */ = {
+		FBCBFAAC2A7D50FB005149FC /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FB77A8C62A4E487A00BE5EE4 /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImageMapKit;
-		};
-		FBC8304D2A33210F0004C79B /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FBC8304C2A33210F0004C79B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = FBCBFAAB2A7D50FB005149FC /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		FBC830502A3321520004C79B /* FirebaseAnalytics */ = {
+		FBCBFAAF2A7D5158005149FC /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FBC8304F2A3321520004C79B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = FBCBFAAE2A7D5158005149FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		FBC830522A3321520004C79B /* FirebaseCrashlytics */ = {
+		FBCBFAB12A7D5158005149FC /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FBC8304F2A3321520004C79B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = FBCBFAAE2A7D5158005149FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
-		FBC830542A3321520004C79B /* FirebaseFirestore */ = {
+		FBCBFAB32A7D5158005149FC /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FBC8304F2A3321520004C79B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = FBCBFAAE2A7D5158005149FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */

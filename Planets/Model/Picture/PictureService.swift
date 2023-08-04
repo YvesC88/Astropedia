@@ -27,7 +27,6 @@ class PictureService {
         self.firebaseWrapper = wrapper
     }
     
-    
     var picture: [APIApod] = [] {
         didSet {
             pictureDelegate?.reloadPictureTableView()

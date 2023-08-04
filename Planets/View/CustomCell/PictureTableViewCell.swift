@@ -12,6 +12,7 @@ class PictureTableViewCell: UITableViewCell {
     
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +24,9 @@ class PictureTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(title: String?, image: String?, mediaType: String?) {
+    func configure(title: String?, image: String?, mediaType: String?, date: String?) {
         titleLabel.text = title
+        dateLabel.text = date
         if mediaType == "image" {
             pictureImageView.sd_setImage(with: URL(string: image ?? ""))
         } else {

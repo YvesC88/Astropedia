@@ -10,6 +10,7 @@ import UIKit
 extension UIViewController {
     
     static let searchController = UISearchController()
+    static let dateFormat = "yyyy-MM-dd"
     
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {
         let gradient = CAGradientLayer()

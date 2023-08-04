@@ -26,7 +26,16 @@ struct APIApod: Codable {
 extension APIApod {
     
     func toPicture() -> Picture {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = Locale(identifier: "us_US")
+        let date = dateFormatter.date(from: self.date)
+        dateFormatter.dateStyle = .full
+        dateFormatter.dateFormat = "dd MM yyyy"
+        dateFormatter.locale = Locale(identifier: "fr_FR")
+        let finalDate = dateFormatter.string(from: date ?? Date())
         return Picture(title: self.title,
+                       date: finalDate,
                        videoURL: self.url,
                        imageURL: self.hdurl,
                        mediaType: self.mediaType,
