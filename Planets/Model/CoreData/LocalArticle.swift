@@ -16,11 +16,11 @@ extension LocalArticle {
     
     func toArticle() -> Article {
         return Article(title: title,
-                               image: image,
-                               source: source,
-                               subtitle: subtitle,
-                               id: id,
-                               articleText: articleText)
+                       image: image,
+                       source: source,
+                       subtitle: subtitle,
+                       id: id,
+                       articleText: articleText)
     }
     
 }

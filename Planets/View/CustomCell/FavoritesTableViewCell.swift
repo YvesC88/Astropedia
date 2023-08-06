@@ -12,6 +12,7 @@ class FavoritesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dayImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +24,10 @@ class FavoritesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(title: String?, image: String?, mediaType: String?) {
+    func configure(title: String?, image: String?, mediaType: String?, date: String?) {
         titleLabel.text = title
+        dateLabel.text = date
+        dateLabel.isHidden = date == ""
         if mediaType == "image" {
             dayImageView.sd_setImage(with: URL(string: image ?? ""))
         } else {

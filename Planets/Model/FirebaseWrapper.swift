@@ -31,16 +31,16 @@ class FirebaseWrapper: FirebaseProtocol {
         var object = [SolarSystem]()
         for document in documents {
             object.append(SolarSystem(name: document["name"] as? String ?? "",
-                                       image: document["image"] as? String ?? "",
-                                       tempMoy: document["tempMoy"] as? String ?? "",
-                                       source: document["source"] as? String ?? "",
-                                       membership: document["membership"] as? String ?? "",
-                                       type: document["type"] as? String ?? "",
-                                       sat: document["sat"] as? Int ?? 0,
-                                       gravity: document["gravity"] as? Double ?? 0,
-                                       diameter: document["diameter"] as? Double ?? 0,
-                                       statistics: document["statistics"] as? [String] ?? [],
-                                       galleries: document["galleries"] as? [String] ?? []))
+                                      image: document["image"] as? String ?? "",
+                                      tempMoy: document["tempMoy"] as? String ?? "",
+                                      source: document["source"] as? String ?? "",
+                                      membership: document["membership"] as? String ?? "",
+                                      type: document["type"] as? String ?? "",
+                                      sat: document["sat"] as? Int ?? 0,
+                                      gravity: document["gravity"] as? Double ?? 0,
+                                      diameter: document["diameter"] as? Double ?? 0,
+                                      statistics: document["statistics"] as? [String] ?? [],
+                                      galleries: document["galleries"] as? [String] ?? []))
         }
         return object
     }
@@ -60,11 +60,11 @@ class FirebaseWrapper: FirebaseProtocol {
         var articles = [Article]()
         for document in documents {
             articles.append(Article(title: document["title"] as? String ?? "",
-                                            image: document["image"] as? String ?? "",
-                                            source: document["source"] as? String ?? "",
-                                            subtitle: document["subTitle"] as? String ?? "",
-                                            id: document["id"] as? String ?? "",
-                                            articleText: document["articleText"] as? [String] ?? []))
+                                    image: document["image"] as? String ?? "",
+                                    source: document["source"] as? String ?? "",
+                                    subtitle: document["subTitle"] as? String ?? "",
+                                    id: document["id"] as? String ?? "",
+                                    articleText: document["articleText"] as? [String] ?? []))
         }
         return articles
     }
@@ -84,8 +84,8 @@ class FirebaseWrapper: FirebaseProtocol {
         var privacyPolicy = [PrivacyPolicy]()
         for document in documents {
             privacyPolicy.append(PrivacyPolicy(title: document["title"] as? String ?? "",
-                                                       date: document["date"] as? String ?? "",
-                                                       privacyPolicyText: document["privacyPolicyText"] as? [String] ?? []))
+                                               date: document["date"] as? String ?? "",
+                                               privacyPolicyText: document["privacyPolicyText"] as? [String] ?? []))
         }
         return privacyPolicy
     }

@@ -72,6 +72,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
             pictureService.savePicture(title: picture.title,
                                        videoURL: picture.videoURL,
                                        imageURL: picture.imageURL,
+                                       date: picture.date,
                                        mediaType: picture.mediaType,
                                        copyright: picture.copyright,
                                        explanation: picture.explanation)

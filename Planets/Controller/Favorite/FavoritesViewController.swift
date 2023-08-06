@@ -55,10 +55,10 @@ extension FavoritesViewController: UITableViewDataSource {
         
         if let picture = data[indexPath.row] as? LocalPicture {
             let pictureData = picture
-            cell.configure(title: pictureData.title, image: pictureData.imageURL, mediaType: pictureData.mediaType)
+            cell.configure(title: pictureData.title, image: pictureData.imageURL, mediaType: pictureData.mediaType, date: pictureData.date)
         } else if let article = data[indexPath.row] as? LocalArticle {
             let articleData = article.toArticle()
-            cell.configure(title: articleData.title, image: articleData.image, mediaType: "image")
+            cell.configure(title: articleData.title, image: articleData.image, mediaType: "image", date: "")
         }
         return cell
     }
