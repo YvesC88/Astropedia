@@ -125,10 +125,6 @@ class AsteroidsViewController: UIViewController {
         }
         asteroid.reverse()
     }
-    
-    func sortResult(order: Bool) {
-        
-    }
 }
 
 extension AsteroidsViewController: UITableViewDataSource {
