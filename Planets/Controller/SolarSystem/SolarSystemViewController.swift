@@ -115,7 +115,7 @@ extension SolarSystemViewController: UITableViewDelegate {
         let solarSystem = solarSystemCollection.solarSystem[indexPath.section].data[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
-        detailVC.solarSystem = solarSystem
+        detailVC.celestObject = solarSystem
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }

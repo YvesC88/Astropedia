@@ -16,14 +16,13 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var objectImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var statisticsTextView: UITextView!
-    @IBOutlet private weak var sourceLabel: UILabel!
     @IBOutlet private weak var scrollImageView: UIScrollView!
     @IBOutlet private weak var containView: UIView!
     @IBOutlet private weak var globalScrollView: UIScrollView!
     
     // MARK: - Properties
     
-    var solarSystem: SolarSystem!
+    var celestObject: SolarSystem!
     let solarSystemService = SolarSystemService(wrapper: FirebaseWrapper())
     
     // MARK: - Lifecycle Methods
@@ -40,10 +39,9 @@ class DetailViewController: UIViewController {
     // MARK: - Private Methods
     
     private func displayDetail() {
-        objectImageView.sd_setImage(with: URL(string: solarSystem.image))
-        titleLabel.text = solarSystem.name
-        statisticsTextView.text = solarSystem.statistics.map { "• \($0)" }.joined(separator: "\n\n")
-        sourceLabel.text = solarSystem.source
+        objectImageView.sd_setImage(with: URL(string: celestObject.image))
+        titleLabel.text = celestObject.name
+        statisticsTextView.text = celestObject.statistics.map { "• \($0)" }.joined(separator: "\n\n")
     }
     
     private func configureUI() {
@@ -57,7 +55,7 @@ class DetailViewController: UIViewController {
         let action1 = UIAction(title: "Galerie", image: UIImage(systemName: "photo.fill.on.rectangle.fill")) { action in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let detailVC = storyboard.instantiateViewController(withIdentifier: "GalleryViewController") as? GalleryViewController else { return }
-            detailVC.solarSystem = self.solarSystem
+            detailVC.solarSystem = self.celestObject
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
         let action2 = UIAction(title: "Partager", image: UIImage(systemName: "square.and.arrow.up")) { action in
@@ -81,10 +79,10 @@ extension DetailViewController: UIScrollViewDelegate {
         let contentOffsetY = globalScrollView.contentOffset.y
         let frame = globalScrollView.convert(titleLabel.frame, to: view)
         guard titleLabelMaxY < contentOffsetY || frame.origin.y < view.safeAreaInsets.bottom else {
-            titleLabel.text = solarSystem.name
+            titleLabel.text = celestObject.name
             navigationItem.title = nil
             return
         }
-        navigationItem.title = solarSystem.name
+        navigationItem.title = celestObject.name
     }
 }
