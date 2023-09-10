@@ -68,16 +68,17 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     }
     
     private final func updateSolarSystem() {
-        if solarSystemCollection.planets.isEmpty, solarSystemCollection.moons.isEmpty, solarSystemCollection.stars.isEmpty, solarSystemCollection.dwarfPlanets.isEmpty {
-            presentAlert(title: "Erreur", message: "Une erreur est survenue lors du chargement.")
+        if solarSystemCollection.planets.isEmpty, solarSystemCollection.stars.isEmpty, solarSystemCollection.moons.isEmpty, solarSystemCollection.dwarfPlanets.isEmpty {
+            presentAlert(title: "Erreur", message: "Une erreur est survenue lors du chargement")
         } else {
             solarSystemService.filterSolarSystem()
-            solarSystemCollection.solarSystem = [
-                (category: solarSystemCollection.categories[0], data: solarSystemCollection.stars),
-                (category: solarSystemCollection.categories[1], data: solarSystemCollection.planets),
-                (category: solarSystemCollection.categories[2], data: solarSystemCollection.dwarfPlanets),
-                (category: solarSystemCollection.categories[3], data: solarSystemCollection.moons)
-            ]
+            let starsCategories = SolarSystemCategory(name: solarSystemCollection.categories[0], data: solarSystemCollection.stars)
+            let planetsCategories = SolarSystemCategory(name: solarSystemCollection.categories[1], data: solarSystemCollection.planets)
+            let dwarfsPlanetsCategories = SolarSystemCategory(name: solarSystemCollection.categories[2], data: solarSystemCollection.dwarfPlanets)
+            let moonsCategories = SolarSystemCategory(name: solarSystemCollection.categories[3], data: solarSystemCollection.moons)
+            
+            solarSystemCollection.solarSystem = [starsCategories, planetsCategories, dwarfsPlanetsCategories, moonsCategories]
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -92,7 +93,7 @@ extension SolarSystemViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return solarSystemCollection.solarSystem[section].category
+        return solarSystemCollection.solarSystem[section].name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,8 +104,8 @@ extension SolarSystemViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SolarSystemCell", for: indexPath) as? SolarSystemTableViewCell else {
             return UITableViewCell()
         }
-        let data = solarSystemCollection.solarSystem[indexPath.section].data[indexPath.row]
-        cell.configure(name: data.name, image: data.image, sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
+        let testData = solarSystemCollection.solarSystem[indexPath.section].data[indexPath.row]
+        cell.configure(name: testData.name, image: testData.image, sat: testData.sat, membership: testData.membership, type: testData.type, diameter: testData.diameter)
         return cell
     }
 }
@@ -132,11 +133,11 @@ extension SolarSystemViewController: UISearchResultsUpdating {
         let filteredDwarfPlanets = solarSystemCollection.dwarfPlanets.filter(filterClosure)
         
         solarSystemCollection.solarSystem = [
-            (category: solarSystemCollection.categories[0], data: filteredStars),
-            (category: solarSystemCollection.categories[1], data: filteredPlanets),
-            (category: solarSystemCollection.categories[2], data: filteredDwarfPlanets),
-            (category: solarSystemCollection.categories[3], data: filteredMoons)
-        ]
+            SolarSystemCategory(name: solarSystemCollection.categories[0], data: filteredStars),
+            SolarSystemCategory(name: solarSystemCollection.categories[1], data: filteredPlanets),
+            SolarSystemCategory(name: solarSystemCollection.categories[2], data: filteredDwarfPlanets),
+            SolarSystemCategory(name: solarSystemCollection.categories[3], data: filteredMoons)
+            ]
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

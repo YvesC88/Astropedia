@@ -53,5 +53,23 @@ class SettingsTableViewController: UITableViewController {
                                         isEmpty: "Votre liste de favoris est vide. Cliquez sur ♥️ pour en ajouter !")
             }
         }
+        if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                if let appUrl = URL(string: "https://apps.apple.com/fr/app/astrop%C3%A9dia/id1668668756") {
+                    UIApplication.shared.open(appUrl)
+                }
+                
+            }
+            if indexPath.row == 1 {
+                if let appUrl = URL(string: "https://apps.apple.com/fr/app/astrop%C3%A9dia/id1668668756") {
+                    shareItems([appUrl])
+                }
+            }
+            if indexPath.row == 2 {
+                if let moreAppUrl = URL(string: "https://apps.apple.com/us/developer/yves-charpentier/id1654705165") {
+                    UIApplication.shared.open(moreAppUrl)
+                }
+            }
+        }
     }
 }

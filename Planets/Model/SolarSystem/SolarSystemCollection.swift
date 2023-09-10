@@ -10,7 +10,7 @@ import Foundation
 struct SolarSystemCollection {
     
     let categories = ["Étoile", "Planètes", "Planètes naines", "Lunes"]
-    var solarSystem: [(category: String, data: [SolarSystem])] = []
+    var solarSystem: [SolarSystemCategory] = []
     
     // MARK: - Properties Collections
     var planets: [SolarSystem] = []

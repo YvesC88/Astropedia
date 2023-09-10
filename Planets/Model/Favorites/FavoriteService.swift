@@ -13,6 +13,16 @@ protocol FavoriteDelegate {
     func showEmptyLabel(isHidden: Bool)
 }
 
+enum CategoryType {
+    case picture, article
+}
+
+struct FavoriteCategory {
+    var name: String
+    var type: CategoryType
+    var data: [Any]
+}
+
 class FavoriteService {
     
     var favoriteDelegate: FavoriteDelegate?
@@ -29,7 +39,13 @@ class FavoriteService {
         }
     }
     
-    var favorites: [(category: String, data: [Any])] = [] {
+    var favorites: [FavoriteCategory] = [] {
+        didSet {
+            favoriteDelegate?.reloadTableView()
+        }
+    }
+    
+    var filteredFavorites: [FavoriteCategory] = [] {
         didSet {
             favoriteDelegate?.reloadTableView()
         }
@@ -43,8 +59,10 @@ class FavoriteService {
         guard let article = try? CoreDataStack.share.viewContext.fetch(articleRequest) else { return }
         favoriteArticle = article
         favorites = [
-            (category: "Mes images", data: favoritePicture),
-            (category: "Mes articles", data: favoriteArticle)]
+            FavoriteCategory(name: "Mes images", type: .picture, data: favoritePicture),
+            FavoriteCategory(name: "Mes articles", type: .article, data: favoriteArticle)
+            ]
+        filteredFavorites = favorites
     }
     
     func showIsEmpty() {

@@ -15,3 +15,8 @@ struct SolarSystem: Codable {
     let gravity, diameter: Double
     let statistics, galleries: [String]
 }
+
+struct SolarSystemCategory {
+    var name: String
+    var data: [SolarSystem]
+}
