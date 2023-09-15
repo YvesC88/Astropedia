@@ -87,7 +87,7 @@
 
 /* Begin PBXFileReference section */
 		FB1073BD2A0A552600BC73BD /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		FB15CAD3297566D800FEE718 /* Planets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planets.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB15CAD3297566D800FEE718 /* Astropedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astropedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB15CAD6297566D800FEE718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB15CAD8297566D800FEE718 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FB15CADA297566D800FEE718 /* SolarSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemViewController.swift; sourceTree = "<group>"; };
@@ -95,8 +95,8 @@
 		FB15CADF297566DA00FEE718 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB15CAE2297566DA00FEE718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB15CAE4297566DA00FEE718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB15CAE9297566DB00FEE718 /* PlanetsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanetsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB15CAF3297566DB00FEE718 /* PlanetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB15CAE9297566DB00FEE718 /* AstropediaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstropediaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB15CAF3297566DB00FEE718 /* AstropediaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstropediaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB15CAF7297566DB00FEE718 /* PlanetsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsUITests.swift; sourceTree = "<group>"; };
 		FB15CAF9297566DB00FEE718 /* PlanetsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FB15CB0629756AD600FEE718 /* SolarSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystem.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 		FB15CACA297566D800FEE718 = {
 			isa = PBXGroup;
 			children = (
-				FB15CAD5297566D800FEE718 /* Planets */,
+				FB15CAD5297566D800FEE718 /* Astropedia */,
 				FB15CAEC297566DB00FEE718 /* PlanetsTests */,
 				FB15CAF6297566DB00FEE718 /* PlanetsUITests */,
 				FB15CAD4297566D800FEE718 /* Products */,
@@ -187,14 +187,14 @@
 		FB15CAD4297566D800FEE718 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FB15CAD3297566D800FEE718 /* Planets.app */,
-				FB15CAE9297566DB00FEE718 /* PlanetsTests.xctest */,
-				FB15CAF3297566DB00FEE718 /* PlanetsUITests.xctest */,
+				FB15CAD3297566D800FEE718 /* Astropedia.app */,
+				FB15CAE9297566DB00FEE718 /* AstropediaTests.xctest */,
+				FB15CAF3297566DB00FEE718 /* AstropediaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FB15CAD5297566D800FEE718 /* Planets */ = {
+		FB15CAD5297566D800FEE718 /* Astropedia */ = {
 			isa = PBXGroup;
 			children = (
 				FBC2CC0E2A701B6C00F2DD8D /* Ressources */,
@@ -202,7 +202,7 @@
 				FB15CB1B2975731D00FEE718 /* View */,
 				FB15CB1C2975732C00FEE718 /* Controller */,
 			);
-			path = Planets;
+			path = Astropedia;
 			sourceTree = "<group>";
 		};
 		FB15CAEC297566DB00FEE718 /* PlanetsTests */ = {
@@ -455,9 +455,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FB15CAD2297566D800FEE718 /* Planets */ = {
+		FB15CAD2297566D800FEE718 /* Astropedia */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FB15CAFD297566DB00FEE718 /* Build configuration list for PBXNativeTarget "Planets" */;
+			buildConfigurationList = FB15CAFD297566DB00FEE718 /* Build configuration list for PBXNativeTarget "Astropedia" */;
 			buildPhases = (
 				FB15CACF297566D800FEE718 /* Sources */,
 				FB15CAD0297566D800FEE718 /* Frameworks */,
@@ -468,7 +468,7 @@
 			);
 			dependencies = (
 			);
-			name = Planets;
+			name = Astropedia;
 			packageProductDependencies = (
 				FBCBFAA92A7D50E6005149FC /* SDWebImage */,
 				FBCBFAAC2A7D50FB005149FC /* Alamofire */,
@@ -477,12 +477,12 @@
 				FBCBFAB32A7D5158005149FC /* FirebaseFirestore */,
 			);
 			productName = Planets;
-			productReference = FB15CAD3297566D800FEE718 /* Planets.app */;
+			productReference = FB15CAD3297566D800FEE718 /* Astropedia.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FB15CAE8297566DB00FEE718 /* PlanetsTests */ = {
+		FB15CAE8297566DB00FEE718 /* AstropediaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FB15CB00297566DB00FEE718 /* Build configuration list for PBXNativeTarget "PlanetsTests" */;
+			buildConfigurationList = FB15CB00297566DB00FEE718 /* Build configuration list for PBXNativeTarget "AstropediaTests" */;
 			buildPhases = (
 				FB15CAE5297566DB00FEE718 /* Sources */,
 				FB15CAE6297566DB00FEE718 /* Frameworks */,
@@ -493,14 +493,14 @@
 			dependencies = (
 				FB15CAEB297566DB00FEE718 /* PBXTargetDependency */,
 			);
-			name = PlanetsTests;
+			name = AstropediaTests;
 			productName = PlanetsTests;
-			productReference = FB15CAE9297566DB00FEE718 /* PlanetsTests.xctest */;
+			productReference = FB15CAE9297566DB00FEE718 /* AstropediaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FB15CAF2297566DB00FEE718 /* PlanetsUITests */ = {
+		FB15CAF2297566DB00FEE718 /* AstropediaUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FB15CB03297566DB00FEE718 /* Build configuration list for PBXNativeTarget "PlanetsUITests" */;
+			buildConfigurationList = FB15CB03297566DB00FEE718 /* Build configuration list for PBXNativeTarget "AstropediaUITests" */;
 			buildPhases = (
 				FB15CAEF297566DB00FEE718 /* Sources */,
 				FB15CAF0297566DB00FEE718 /* Frameworks */,
@@ -511,9 +511,9 @@
 			dependencies = (
 				FB15CAF5297566DB00FEE718 /* PBXTargetDependency */,
 			);
-			name = PlanetsUITests;
+			name = AstropediaUITests;
 			productName = PlanetsUITests;
-			productReference = FB15CAF3297566DB00FEE718 /* PlanetsUITests.xctest */;
+			productReference = FB15CAF3297566DB00FEE718 /* AstropediaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -539,7 +539,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FB15CACE297566D800FEE718 /* Build configuration list for PBXProject "Planets" */;
+			buildConfigurationList = FB15CACE297566D800FEE718 /* Build configuration list for PBXProject "Astropedia" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -557,9 +557,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FB15CAD2297566D800FEE718 /* Planets */,
-				FB15CAE8297566DB00FEE718 /* PlanetsTests */,
-				FB15CAF2297566DB00FEE718 /* PlanetsUITests */,
+				FB15CAD2297566D800FEE718 /* Astropedia */,
+				FB15CAE8297566DB00FEE718 /* AstropediaTests */,
+				FB15CAF2297566DB00FEE718 /* AstropediaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -692,12 +692,12 @@
 /* Begin PBXTargetDependency section */
 		FB15CAEB297566DB00FEE718 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FB15CAD2297566D800FEE718 /* Planets */;
+			target = FB15CAD2297566D800FEE718 /* Astropedia */;
 			targetProxy = FB15CAEA297566DB00FEE718 /* PBXContainerItemProxy */;
 		};
 		FB15CAF5297566DB00FEE718 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FB15CAD2297566D800FEE718 /* Planets */;
+			target = FB15CAD2297566D800FEE718 /* Astropedia */;
 			targetProxy = FB15CAF4297566DB00FEE718 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -869,7 +869,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -905,7 +905,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -936,7 +936,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planets.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Planets";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astropedia.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Astropedia";
 			};
 			name = Debug;
 		};
@@ -959,7 +959,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planets.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Planets";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astropedia.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Astropedia";
 			};
 			name = Release;
 		};
@@ -1002,7 +1002,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FB15CACE297566D800FEE718 /* Build configuration list for PBXProject "Planets" */ = {
+		FB15CACE297566D800FEE718 /* Build configuration list for PBXProject "Astropedia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FB15CAFB297566DB00FEE718 /* Debug */,
@@ -1011,7 +1011,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FB15CAFD297566DB00FEE718 /* Build configuration list for PBXNativeTarget "Planets" */ = {
+		FB15CAFD297566DB00FEE718 /* Build configuration list for PBXNativeTarget "Astropedia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FB15CAFE297566DB00FEE718 /* Debug */,
@@ -1020,7 +1020,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FB15CB00297566DB00FEE718 /* Build configuration list for PBXNativeTarget "PlanetsTests" */ = {
+		FB15CB00297566DB00FEE718 /* Build configuration list for PBXNativeTarget "AstropediaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FB15CB01297566DB00FEE718 /* Debug */,
@@ -1029,7 +1029,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FB15CB03297566DB00FEE718 /* Build configuration list for PBXNativeTarget "PlanetsUITests" */ = {
+		FB15CB03297566DB00FEE718 /* Build configuration list for PBXNativeTarget "AstropediaUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FB15CB04297566DB00FEE718 /* Debug */,

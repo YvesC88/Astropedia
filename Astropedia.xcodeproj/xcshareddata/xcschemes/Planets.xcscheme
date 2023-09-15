@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FB15CAD2297566D800FEE718"
-               BuildableName = "Planets.app"
-               BlueprintName = "Planets"
-               ReferencedContainer = "container:Planets.xcodeproj">
+               BuildableName = "Astropedia.app"
+               BlueprintName = "Astropedia"
+               ReferencedContainer = "container:Astropedia.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,9 +35,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FB15CAE8297566DB00FEE718"
-               BuildableName = "PlanetsTests.xctest"
-               BlueprintName = "PlanetsTests"
-               ReferencedContainer = "container:Planets.xcodeproj">
+               BuildableName = "AstropediaTests.xctest"
+               BlueprintName = "AstropediaTests"
+               ReferencedContainer = "container:Astropedia.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -46,9 +46,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FB15CAF2297566DB00FEE718"
-               BuildableName = "PlanetsUITests.xctest"
-               BlueprintName = "PlanetsUITests"
-               ReferencedContainer = "container:Planets.xcodeproj">
+               BuildableName = "AstropediaUITests.xctest"
+               BlueprintName = "AstropediaUITests"
+               ReferencedContainer = "container:Astropedia.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -68,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FB15CAD2297566D800FEE718"
-            BuildableName = "Planets.app"
-            BlueprintName = "Planets"
-            ReferencedContainer = "container:Planets.xcodeproj">
+            BuildableName = "Astropedia.app"
+            BlueprintName = "Astropedia"
+            ReferencedContainer = "container:Astropedia.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FB15CAD2297566D800FEE718"
-            BuildableName = "Planets.app"
-            BlueprintName = "Planets"
-            ReferencedContainer = "container:Planets.xcodeproj">
+            BuildableName = "Astropedia.app"
+            BlueprintName = "Astropedia"
+            ReferencedContainer = "container:Astropedia.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
