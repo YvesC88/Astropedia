@@ -26,9 +26,9 @@ extension UIViewController {
     func gradientColor(bounds: CGRect, gradientLayer: CAGradientLayer) -> UIColor? {
         UIGraphicsBeginImageContext(gradientLayer.bounds.size)
         gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return UIColor() }
         UIGraphicsEndImageContext()
-        return UIColor(patternImage: image!)
+        return UIColor(patternImage: image)
     }
     
     func getFormattedDate(date: Date, dateFormat: String) -> String {
@@ -43,7 +43,7 @@ extension UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
-    func showInfo(title: String) {
+    func quickAlert(title: String) {
         let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
         present(alertController, animated: true, completion: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -60,7 +60,7 @@ extension UIViewController {
                 // element in CoreData
                 do {
                     try CoreDataStack.share.deleteAllData()
-                    self.showInfo(title: confirm)
+                    self.quickAlert(title: confirm)
                 } catch {
                     self.presentAlert(title: "Error", message: "Une erreur est survenue lors de la suppression des favoris. Veuillez réessayer.")
                 }

@@ -49,7 +49,6 @@ class NewsViewModel {
         }
     }
     
-    
     final func loadPicture() {
         pictureDelegate?.showErrorLoading(text: "", isHidden: true)
         pictureDelegate?.startAnimating()

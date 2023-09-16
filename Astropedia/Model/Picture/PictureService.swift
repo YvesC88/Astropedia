@@ -9,6 +9,10 @@ import Alamofire
 import Foundation
 import CoreData
 
+enum PictureError: Error {
+    case failSave
+}
+
 class PictureService {
     
     private var apiKey = ApiKeys()

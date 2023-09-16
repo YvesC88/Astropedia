@@ -26,7 +26,6 @@ extension GalleryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! GalleryCollectionViewCell
-        
         let item = solarSystem.galleries[indexPath.row]
         cell.configure(image: item)
         return cell
@@ -41,6 +40,5 @@ extension GalleryViewController: UICollectionViewDelegate {
         guard let detailGalleryVC = storyboard.instantiateViewController(withIdentifier: "DetailGalleryViewController") as? DetailGalleryViewController else { return }
         detailGalleryVC.image = selectedImage
         self.present(detailGalleryVC, animated: true)
-//        self.navigationController?.pushViewController(detailGalleryVC, animated: true)
     }
 }

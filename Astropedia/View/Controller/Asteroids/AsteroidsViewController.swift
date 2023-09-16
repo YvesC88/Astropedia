@@ -31,7 +31,7 @@ class AsteroidsViewController: UIViewController {
         super.viewDidLoad()
         loadingSpinner()
         Task {
-            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: AsteroidsViewController.dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: AsteroidsViewController.dateFormat))
+            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: AsteroidsViewController.dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date(), dateFormat: AsteroidsViewController.dateFormat))
         }
         setRefreshControl()
     }
@@ -48,7 +48,7 @@ class AsteroidsViewController: UIViewController {
     
     @objc private final func refreshTableView() {
         Task {
-            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: AsteroidsViewController.dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, dateFormat: AsteroidsViewController.dateFormat))
+            await fetchData(startDate: getFormattedDate(date: Date(), dateFormat: AsteroidsViewController.dateFormat), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date(), dateFormat: AsteroidsViewController.dateFormat))
         }
         datePicker.date = Date()
         refreshControl.endRefreshing()
@@ -83,7 +83,7 @@ class AsteroidsViewController: UIViewController {
         Task { @MainActor in
             loadingSpinner()
             let selectedDate = getFormattedDate(date: sender.date, dateFormat: "yyyy-MM-dd")
-            let endDate = getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: sender.date)!, dateFormat: "yyyy-MM-dd")
+            let endDate = getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: sender.date) ?? Date(), dateFormat: "yyyy-MM-dd")
             do {
                 let asteroids = try await asteroidService.getValue(startDate: selectedDate, endDate: endDate).nearEarthObjects.flatMap { $0.value }
                 sortButton.isSelected = false
@@ -154,7 +154,7 @@ extension AsteroidsViewController: UITableViewDelegate {
         if indexPath.row < asteroid.count {
             let asteroid = asteroid[indexPath.row].toAsteroid()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailAsteroidViewController") as! DetailAsteroidViewController
+            guard let customViewController = storyboard.instantiateViewController(withIdentifier: "DetailAsteroidViewController") as? DetailAsteroidViewController else { return }
             customViewController.asteroid = asteroid
             self.navigationController?.pushViewController(customViewController, animated: true)
         }

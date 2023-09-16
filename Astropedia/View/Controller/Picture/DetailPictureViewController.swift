@@ -44,7 +44,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
             imageView.sd_setImage(with: URL(string: picture.imageURL ?? ""))
         } else {
             uiView.isHidden = true
-            if let url = URL(string: picture.videoURL!) {
+            if let url = URL(string: picture.videoURL ?? "") {
                 let request = URLRequest(url: url)
                 videoWKWebView.navigationDelegate = self
                 videoWKWebView.load(request)
@@ -67,7 +67,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         if isFavorite {
             pictureService.unsaveRecipe(picture: picture)
             favoriteButton.isSelected = false
-            showInfo(title: "Supprimé")
+            quickAlert(title: "Supprimé")
         } else {
             pictureService.savePicture(title: picture.title,
                                        videoURL: picture.videoURL,
@@ -77,7 +77,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
                                        copyright: picture.copyright,
                                        explanation: picture.explanation)
             favoriteButton.isSelected = true
-            showInfo(title: "Sauvegardé")
+            quickAlert(title: "Sauvegardé")
         }
     }
 }

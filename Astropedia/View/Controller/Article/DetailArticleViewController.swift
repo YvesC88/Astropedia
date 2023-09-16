@@ -40,7 +40,7 @@ final class DetailArticleViewController: UIViewController {
         if isFavorite {
             articleService.unsaveArticle(article: article)
             favoriteButton.isSelected = false
-            showInfo(title: "Supprimé")
+            quickAlert(title: "Supprimé")
         } else {
             articleService.saveArticle(title: article.title,
                                        subtitle: article.subtitle,
@@ -49,7 +49,7 @@ final class DetailArticleViewController: UIViewController {
                                        articleText: article.articleText,
                                        id: article.id)
             favoriteButton.isSelected = true
-            showInfo(title: "Sauvegardé")
+            quickAlert(title: "Sauvegardé")
         }
     }
 }

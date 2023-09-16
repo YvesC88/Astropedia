@@ -108,7 +108,7 @@ extension FavoritesViewController: UITableViewDelegate {
         case .picture:
             guard let picture = selectedItem as? LocalPicture else { return }
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let detailPictureVC = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as! DetailPictureViewController
+            guard let detailPictureVC = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as? DetailPictureViewController else { return }
             detailPictureVC.picture = picture.toPicture()
             self.navigationController?.pushViewController(detailPictureVC, animated: true)
             
@@ -128,10 +128,10 @@ extension FavoritesViewController: UISearchResultsUpdating {
         if let searchText = searchController.searchBar.text?.lowercased(), !searchText.isEmpty {
             let filteredFavorites: [FavoriteCategory] = favoriteService.favorites.compactMap { favorite in
                 let filteredData = favorite.data.filter { data in
-                    if let picture = data as? LocalPicture {
-                        return picture.title!.lowercased().hasPrefix(searchText)
-                    } else if let article = data as? LocalArticle {
-                        return article.title!.lowercased().hasPrefix(searchText)
+                    if let picture = data as? LocalPicture, let pictureTitle = picture.title {
+                        return pictureTitle.lowercased().hasPrefix(searchText)
+                    } else if let article = data as? LocalArticle, let articleTitle = article.title {
+                        return articleTitle.lowercased().hasPrefix(searchText)
                     }
                     return false
                 }

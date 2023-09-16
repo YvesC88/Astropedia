@@ -44,8 +44,8 @@ class DetailAsteroidViewController: UIViewController {
     }
     
     @IBAction func didTapUrl() {
-        if asteroid.url != nil {
-            UIApplication.shared.open(asteroid.url!)
+        if let asteroidURL = asteroid.url {
+            UIApplication.shared.open(asteroidURL)
         } else {
             self.presentAlert(title: "Erreur", message: "Le lien ne fonctionne pas.")
         }

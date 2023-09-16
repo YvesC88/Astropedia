@@ -63,11 +63,11 @@ class QuizzViewController: UIViewController {
             trueButton.isEnabled = true
             falseButton.isEnabled = true
         } else {
-            questionService.checkAnswer(question: questionService.random!, userAnswer: buttonState == .truePressed)
+            questionService.checkAnswer(question: questionService.random ?? Question(text: "Erreur", answer: true), userAnswer: buttonState == .truePressed)
             if questionService.isCorrect {
-                correctColorButton(button: buttonPressed! ? trueButton : falseButton)
+                correctColorButton(button: buttonPressed ?? false ? trueButton : falseButton)
             } else {
-                incorrectColorButton(button: buttonPressed! ? falseButton : trueButton)
+                incorrectColorButton(button: buttonPressed ?? false ? falseButton : trueButton)
             }
             nextQuestionButton.setTitle("Suivant", for: .normal)
             buttonState = .submitPressed
