@@ -1,6 +1,6 @@
 //
 //  Asteroid.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 03/04/2023.
 //

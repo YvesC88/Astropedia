@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 16/01/2023.
 //

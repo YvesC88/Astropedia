@@ -1,6 +1,6 @@
 //
 //  SettingsTableViewController.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 25/05/2023.
 //

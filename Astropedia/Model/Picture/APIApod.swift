@@ -1,6 +1,6 @@
 //
 //  APIApod.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 23/04/2023.
 //

@@ -1,6 +1,6 @@
 //
 //  PictureService.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 23/04/2023.
 //
@@ -9,28 +9,14 @@ import Alamofire
 import Foundation
 import CoreData
 
-protocol PictureDelegate {
-    func reloadPictureTableView()
-    func showErrorLoading(text: String, isHidden: Bool)
-    func startAnimating()
-    func stopAnimating()
-}
-
 class PictureService {
     
     private var apiKey = ApiKeys()
-    var pictureDelegate: PictureDelegate?
     
     let firebaseWrapper: FirebaseProtocol
     
     init(wrapper: FirebaseProtocol) {
         self.firebaseWrapper = wrapper
-    }
-    
-    var picture: [APIApod] = [] {
-        didSet {
-            pictureDelegate?.reloadPictureTableView()
-        }
     }
     
     final func getPicture(startDate: String, endDate: String, callback: @escaping ([APIApod]?) -> Void) {
@@ -82,31 +68,5 @@ class PictureService {
         let fetchRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "title == %@", picture.title ?? "")
         return ((try? context.count(for: fetchRequest)) ?? 0) > 0
-    }
-    
-    final func getFormattedDate(date: Date, dateFormat: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat
-        return dateFormatter.string(from: date)
-    }
-    
-    final func loadPicture() {
-        pictureDelegate?.showErrorLoading(text: "", isHidden: true)
-        pictureDelegate?.startAnimating()
-        let date = Date()
-        let dateFormat = "yyyy-MM-dd"
-        let calendar = Calendar.current
-        let start = calendar.date(byAdding: .day, value: -1, to: date)
-        let startDate = getFormattedDate(date: start ?? Date(), dateFormat: dateFormat)
-        let newDate = calendar.date(byAdding: .day, value: -7, to: date)
-        let endDate = getFormattedDate(date: newDate ?? Date(), dateFormat: dateFormat)
-        getPicture(startDate: endDate, endDate: startDate) { picture in
-            if let picture = picture {
-                self.picture = picture
-            } else {
-                self.pictureDelegate?.showErrorLoading(text: "Erreur serveur", isHidden: false)
-            }
-            self.pictureDelegate?.stopAnimating()
-        }
     }
 }

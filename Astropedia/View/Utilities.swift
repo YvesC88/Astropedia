@@ -1,6 +1,6 @@
 //
 //  Utilities.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 21/01/2023.
 //
@@ -25,11 +25,9 @@ extension UIViewController {
     
     func gradientColor(bounds: CGRect, gradientLayer: CAGradientLayer) -> UIColor? {
         UIGraphicsBeginImageContext(gradientLayer.bounds.size)
-        //create UIImage by rendering gradient layer.
         gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        //get gradient UIcolor from gradient UIImage
         return UIColor(patternImage: image!)
     }
     
@@ -123,5 +121,14 @@ extension UIViewController {
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion: nil)
+    }
+}
+
+extension NewsViewModel {
+    
+    final func getFormattedDate(date: Date, dateFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.string(from: date)
     }
 }

@@ -1,6 +1,6 @@
 //
 //  DetailAsteroidViewController.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 05/04/2023.
 //

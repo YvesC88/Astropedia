@@ -1,6 +1,6 @@
 //
 //  FirebaseArticle.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 09/05/2023.
 //

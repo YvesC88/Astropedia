@@ -32,6 +32,7 @@
 		FB47667D2A556D8B0014C098 /* SolarSystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47667C2A556D8B0014C098 /* SolarSystemService.swift */; };
 		FB5DE7BF297C073B00F60C92 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE7BE297C073A00F60C92 /* Utilities.swift */; };
 		FB5DE80A297FCA4100F60C92 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */; };
+		FB5F394D2AB5A8EE0018A9BA /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F394C2AB5A8EE0018A9BA /* NewsViewModel.swift */; };
 		FB605C892A1543E400622E94 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB605C882A1543E400622E94 /* ArticleTableViewCell.swift */; };
 		FB6922282A094C400034A65B /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922272A094C400034A65B /* FavoritesTableViewCell.swift */; };
 		FB69222A2A095ED50034A65B /* DetailPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922292A095ED50034A65B /* DetailPictureViewController.swift */; };
@@ -113,6 +114,7 @@
 		FB47667C2A556D8B0014C098 /* SolarSystemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemService.swift; sourceTree = "<group>"; };
 		FB5DE7BE297C073A00F60C92 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FB5DE809297FCA4000F60C92 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		FB5F394C2AB5A8EE0018A9BA /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		FB605C882A1543E400622E94 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		FB6922272A094C400034A65B /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		FB6922292A095ED50034A65B /* DetailPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPictureViewController.swift; sourceTree = "<group>"; };
@@ -200,7 +202,7 @@
 				FBC2CC0E2A701B6C00F2DD8D /* Ressources */,
 				FB15CB1A2975731100FEE718 /* Model */,
 				FB15CB1B2975731D00FEE718 /* View */,
-				FB15CB1C2975732C00FEE718 /* Controller */,
+				FB5F39492AB4AB240018A9BA /* ViewModels */,
 			);
 			path = Astropedia;
 			sourceTree = "<group>";
@@ -244,6 +246,7 @@
 		FB15CB1B2975731D00FEE718 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FB15CB1C2975732C00FEE718 /* Controller */,
 				FB15CADC297566D800FEE718 /* Main.storyboard */,
 				FB15CAE1297566DA00FEE718 /* LaunchScreen.storyboard */,
 				FBFFD8A62A27A8DE009D9679 /* CustomCell */,
@@ -295,6 +298,14 @@
 				FB47667A2A556C440014C098 /* PrivacyPolicyService.swift */,
 			);
 			path = PrivacyPolicy;
+			sourceTree = "<group>";
+		};
+		FB5F39492AB4AB240018A9BA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FB5F394C2AB5A8EE0018A9BA /* NewsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FBB009012A5B025B00EC890D /* Favorites */ = {
@@ -636,6 +647,7 @@
 				FB605C892A1543E400622E94 /* ArticleTableViewCell.swift in Sources */,
 				FB15CADB297566D800FEE718 /* SolarSystemViewController.swift in Sources */,
 				FB15CB212975745200FEE718 /* FirebaseWrapper.swift in Sources */,
+				FB5F394D2AB5A8EE0018A9BA /* NewsViewModel.swift in Sources */,
 				FBBB05802A4B2EEB0033B090 /* SolarSystemCollection.swift in Sources */,
 				FB40AE612A13D1700067FCAC /* LocalArticle.swift in Sources */,
 				FB849A4829DB126600ACABA6 /* AsteroidTableViewCell.swift in Sources */,
@@ -854,7 +866,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8ZV67K9B93;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Planets/Ressources/Info.plist;
+				INFOPLIST_FILE = Astropedia/Ressources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Astropédia";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -870,7 +882,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
+				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Astropedia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -890,7 +902,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8ZV67K9B93;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Planets/Ressources/Info.plist;
+				INFOPLIST_FILE = Astropedia/Ressources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Astropédia";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -906,7 +918,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
+				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Astropedia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

@@ -1,6 +1,6 @@
 //
 //  ArticleService.swift
-//  Planets
+//  Astropedia
 //
 //  Created by Yves Charpentier on 16/05/2023.
 //
@@ -8,21 +8,10 @@
 import UIKit
 import CoreData
 
-protocol ArticleDelegate {
-    func reloadArticleTableView()
-}
-
 class ArticleService {
     
     // MARK: - Properties
     let firebaseWrapper: FirebaseProtocol
-    var articleDelegate: ArticleDelegate?
-    
-    var article: [Article] = [] {
-        didSet {
-            articleDelegate?.reloadArticleTableView()
-        }
-    }
     
     init(wrapper: FirebaseProtocol) {
         self.firebaseWrapper = wrapper
@@ -68,14 +57,6 @@ class ArticleService {
                 completion(article, nil)
             } else {
                 completion([], error)
-            }
-        }
-    }
-    
-    final func loadArticle() {
-        fetchArticle(collectionID: "article") { article, error in
-            for data in article {
-                self.article.append(data)
             }
         }
     }

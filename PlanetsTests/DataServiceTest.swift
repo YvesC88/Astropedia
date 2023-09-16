@@ -1,12 +1,12 @@
 //
 //  DataServiceTest.swift
-//  PlanetsTests
+//  AstropediaTests
 //
 //  Created by Yves Charpentier on 24/01/2023.
 //
 
 import XCTest
-@testable import Planets
+@testable import Astropedia
 
 final class DataServiceTest: XCTestCase {
     
