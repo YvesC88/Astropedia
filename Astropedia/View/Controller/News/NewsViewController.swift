@@ -36,7 +36,6 @@ class NewsViewController: UIViewController {
         lastPictureLabel.text = lastPictureLabel.text?.uppercased()
         setUIView(view: [articleView, lastPictureView])
         newsViewModel.loadArticle()
-        newsViewModel.loadPicture()
     }
     
     @IBAction func reloadPicture() {

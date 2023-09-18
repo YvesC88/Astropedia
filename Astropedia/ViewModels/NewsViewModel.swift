@@ -18,7 +18,7 @@ protocol PictureDelegate {
     func stopAnimating()
 }
 
-class NewsViewModel {
+class NewsViewModel: NSObject {
     
     // MARK: - Article
     
@@ -43,10 +43,17 @@ class NewsViewModel {
     
     var pictureDelegate: PictureDelegate?
     var pictureService = PictureService(wrapper: FirebaseWrapper())
+    var testService: PictureService!
     var picture: [APIApod] = [] {
         didSet {
             pictureDelegate?.reloadPictureTableView()
         }
+    }
+    
+    override init() {
+        super.init()
+        self.testService = PictureService(wrapper: FirebaseWrapper())
+        loadPicture()
     }
     
     final func loadPicture() {
