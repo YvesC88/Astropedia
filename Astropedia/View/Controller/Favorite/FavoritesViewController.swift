@@ -24,6 +24,11 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate {
         favoriteService.showIsEmpty()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        favoriteService.fetchFavoriteData()
+//    }
+//
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         favoriteService.fetchFavoriteData()
@@ -62,11 +67,9 @@ extension FavoritesViewController: UITableViewDataSource {
         }
         let favoriteData = favoriteService.filteredFavorites[indexPath.section].data
         if let picture = favoriteData[indexPath.row] as? LocalPicture {
-            let pictureData = picture
-            cell.configure(title: pictureData.title, image: pictureData.imageURL, mediaType: pictureData.mediaType, date: pictureData.date)
+            cell.configure(title: picture.title, image: picture.imageURL, mediaType: picture.mediaType, date: picture.date)
         } else if let article = favoriteData[indexPath.row] as? LocalArticle {
-            let articleData = article.toArticle()
-            cell.configure(title: articleData.title, image: articleData.image, mediaType: "image", date: "")
+            cell.configure(title: article.title, image: article.image, mediaType: "image", date: "")
         }
         return cell
     }
@@ -77,18 +80,16 @@ extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let context = CoreDataStack.share.viewContext
-        let categoryIndex = indexPath.section
-        let itemIndex = indexPath.row
-        var categoryData = favoriteService.favorites[categoryIndex].data
-        if let picture = categoryData[itemIndex] as? LocalPicture {
+        var categoryData = favoriteService.filteredFavorites[indexPath.section].data
+        if let picture = categoryData[indexPath.row] as? LocalPicture {
             context.delete(picture)
             favoriteService.favoritePicture = favoriteService.favoritePicture.filter { $0 != picture }
-        } else if let article = categoryData[itemIndex] as? LocalArticle {
+        } else if let article = categoryData[indexPath.row] as? LocalArticle {
             context.delete(article)
             favoriteService.favoriteArticle = favoriteService.favoriteArticle.filter { $0 != article }
         }
-        categoryData.remove(at: itemIndex)
-        favoriteService.favorites[categoryIndex].data = categoryData
+        categoryData.remove(at: indexPath.row)
+        favoriteService.filteredFavorites[indexPath.section].data = categoryData
         do {
             try context.save()
             favoriteService.showIsEmpty()
@@ -98,12 +99,10 @@ extension FavoritesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let categoryIndex = indexPath.section
-        let dataIndex = indexPath.row
-        guard categoryIndex < favoriteService.filteredFavorites.count else { return }
-        let favoriteCategory = favoriteService.filteredFavorites[categoryIndex]
-        guard dataIndex < favoriteCategory.data.count else { return }
-        let selectedItem = favoriteCategory.data[dataIndex]
+        guard indexPath.section < favoriteService.filteredFavorites.count else { return }
+        let favoriteCategory = favoriteService.filteredFavorites[indexPath.section]
+        guard indexPath.row < favoriteCategory.data.count else { return }
+        let selectedItem = favoriteCategory.data[indexPath.row]
         switch favoriteCategory.type {
         case .picture:
             guard let picture = selectedItem as? LocalPicture else { return }
@@ -123,7 +122,7 @@ extension FavoritesViewController: UITableViewDelegate {
 }
 
 extension FavoritesViewController: UISearchResultsUpdating {
-    
+
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text?.lowercased(), !searchText.isEmpty {
             let filteredFavorites: [FavoriteCategory] = favoriteService.favorites.compactMap { favorite in
@@ -158,7 +157,6 @@ extension FavoritesViewController: FavoriteDelegate {
         tableView.isHidden = isHidden
         favoriteLabel.isHidden = !isHidden
     }
-    
     
     func reloadTableView() {
         DispatchQueue.main.async {
