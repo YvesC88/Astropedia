@@ -24,11 +24,6 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate {
         favoriteService.showIsEmpty()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        favoriteService.fetchFavoriteData()
-//    }
-//
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         favoriteService.fetchFavoriteData()
