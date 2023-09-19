@@ -9,10 +9,6 @@ import Alamofire
 import Foundation
 import CoreData
 
-enum PictureError: Error {
-    case failSave
-}
-
 class PictureService {
     
     private var apiKey = ApiKeys()
@@ -22,6 +18,20 @@ class PictureService {
     init(wrapper: FirebaseProtocol) {
         self.firebaseWrapper = wrapper
     }
+    
+//    final func getPicture(startDate: String, endDate: String) async throws -> APIApod {
+//        let endPoint = "https://api.nasa.gov/planetary/apod?api_key=\(apiKey.keyNasa)&start_date=\(startDate)&end_date=\(endDate)"
+//        guard let url = URL(string: endPoint) else { throw ResultError.invalidUrl }
+//        let (result, response) = try await URLSession.shared.data(from: url)
+//        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+//            throw ResultError.invalidResponse
+//        }
+//        do {
+//            return try JSONDecoder().decode(APIApod.self, from: result)
+//        } catch {
+//            throw ResultError.invalidResult
+//        }
+//    }
     
     final func getPicture(startDate: String, endDate: String, callback: @escaping ([APIApod]?) -> Void) {
         let url = "https://api.nasa.gov/planetary/apod"
