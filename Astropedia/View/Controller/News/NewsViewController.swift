@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class NewsViewController: UIViewController {
     
@@ -16,18 +17,28 @@ class NewsViewController: UIViewController {
     @IBOutlet weak private var lastPictureLabel: UILabel!
     @IBOutlet weak private var articleView: UIView!
     @IBOutlet weak private var lastPictureView: UIView!
-    @IBOutlet weak private var errorLabel: UILabel!
     
-    private let pictureService = PictureService(wrapper: FirebaseWrapper())
-    private let articleService = ArticleService(wrapper: FirebaseWrapper())
-    private var newsViewModel: NewsViewModel!
+    private var newsViewModel = NewsViewModel()
+    private var cancellables: Set<AnyCancellable> = []
     private let spinner = UIActivityIndicatorView(style: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.newsViewModel = NewsViewModel()
-        newsViewModel.articleDelegate = self
-        newsViewModel.pictureDelegate = self
+        newsViewModel.$article
+            .sink { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.articleTableView.reloadData()
+                }
+            }
+            .store(in: &cancellables)
+        
+        newsViewModel.$picture
+            .sink { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.pictureTableView.reloadData()
+                }
+            }
+            .store(in: &cancellables)
         setUI()
     }
     
@@ -35,7 +46,6 @@ class NewsViewController: UIViewController {
         articleLabel.text = articleLabel.text?.uppercased()
         lastPictureLabel.text = lastPictureLabel.text?.uppercased()
         setUIView(view: [articleView, lastPictureView])
-        newsViewModel.loadArticle()
     }
     
     @IBAction func reloadPicture() {
@@ -105,36 +115,5 @@ extension NewsViewController: UITableViewDelegate {
         default:
             break
         }
-    }
-}
-
-extension NewsViewController: ArticleDelegate {
-    func reloadArticleTableView() {
-        DispatchQueue.main.async {
-            self.articleTableView.reloadData()
-        }
-    }
-}
-
-extension NewsViewController: PictureDelegate {
-    
-    func startAnimating() {
-        spinner.startAnimating()
-        pictureTableView.backgroundView = spinner
-    }
-    
-    func stopAnimating() {
-        spinner.stopAnimating()
-    }
-    
-    func reloadPictureTableView() {
-        DispatchQueue.main.async {
-            self.pictureTableView.reloadData()
-        }
-    }
-    
-    func showErrorLoading(text: String, isHidden: Bool) {
-        errorLabel.isHidden = isHidden
-        errorLabel.text = text
     }
 }

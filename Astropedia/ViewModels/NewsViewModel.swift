@@ -6,32 +6,36 @@
 //
 
 import Foundation
-
-protocol ArticleDelegate {
-    func reloadArticleTableView()
-}
-
-protocol PictureDelegate {
-    func reloadPictureTableView()
-    func showErrorLoading(text: String, isHidden: Bool)
-    func startAnimating()
-    func stopAnimating()
-}
+import Combine
 
 class NewsViewModel: NSObject {
     
-    // MARK: - Article
+    private var cancellables: Set<AnyCancellable> = []
     
-    var articleDelegate: ArticleDelegate?
-    var articleService = ArticleService(wrapper: FirebaseWrapper())
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
     
-    var article: [Article] = [] {
-        didSet {
-            articleDelegate?.reloadArticleTableView()
-        }
+    func testFormatter(date: Date) -> String {
+        return dateFormatter.string(from: date)
     }
     
-    final func loadArticle() {
+    
+    var articleService = ArticleService(wrapper: FirebaseWrapper())
+    var pictureService = PictureService(wrapper: FirebaseWrapper())
+    
+    @Published var article: [Article] = []
+    @Published var picture: [APIApod] = []
+    
+    override init() {
+        super.init()
+        loadPicture()
+        loadArticle()
+    }
+    
+    func loadArticle() {
         articleService.fetchArticle(collectionID: "article") { article, error in
             for data in article {
                 self.article.append(data)
@@ -39,40 +43,17 @@ class NewsViewModel: NSObject {
         }
     }
     
-    // MARK: - Piture
-    
-    var pictureDelegate: PictureDelegate?
-    var pictureService = PictureService(wrapper: FirebaseWrapper())
-    var testService: PictureService!
-    var picture: [APIApod] = [] {
-        didSet {
-            pictureDelegate?.reloadPictureTableView()
-        }
-    }
-    
-    override init() {
-        super.init()
-        self.testService = PictureService(wrapper: FirebaseWrapper())
-        loadPicture()
-    }
-    
-    final func loadPicture() {
-        pictureDelegate?.showErrorLoading(text: "", isHidden: true)
-        pictureDelegate?.startAnimating()
-        let date = Date()
-        let dateFormat = "yyyy-MM-dd"
-        let calendar = Calendar.current
-        let start = calendar.date(byAdding: .day, value: -1, to: date)
-        let startDate = getFormattedDate(date: start ?? Date(), dateFormat: dateFormat)
-        let newDate = calendar.date(byAdding: .day, value: -7, to: date)
-        let endDate = getFormattedDate(date: newDate ?? Date(), dateFormat: dateFormat)
-        pictureService.getPicture(startDate: endDate, endDate: startDate) { picture in
+    func loadPicture() {
+        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+        
+        let startDateString = testFormatter(date: startDate!)
+        let endDateString = testFormatter(date: endDate!)
+        
+        pictureService.getPicture(startDate: startDateString, endDate: endDateString) { picture in
             if let picture = picture {
                 self.picture = picture
-            } else {
-                self.pictureDelegate?.showErrorLoading(text: "Erreur serveur", isHidden: false)
             }
-            self.pictureDelegate?.stopAnimating()
         }
     }
 }
