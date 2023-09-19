@@ -18,11 +18,6 @@ class NewsViewModel: NSObject {
         return formatter
     }()
     
-    func testFormatter(date: Date) -> String {
-        return dateFormatter.string(from: date)
-    }
-    
-    
     var articleService = ArticleService(wrapper: FirebaseWrapper())
     var pictureService = PictureService(wrapper: FirebaseWrapper())
     
@@ -35,7 +30,11 @@ class NewsViewModel: NSObject {
         loadArticle()
     }
     
-    func loadArticle() {
+    func formatDate(date: Date) -> String {
+        return dateFormatter.string(from: date)
+    }
+    
+    final func loadArticle() {
         articleService.fetchArticle(collectionID: "article") { article, error in
             for data in article {
                 self.article.append(data)
@@ -43,14 +42,10 @@ class NewsViewModel: NSObject {
         }
     }
     
-    func loadPicture() {
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())
-        let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-        
-        let startDateString = testFormatter(date: startDate!)
-        let endDateString = testFormatter(date: endDate!)
-        
-        pictureService.getPicture(startDate: startDateString, endDate: endDateString) { picture in
+    final func loadPicture() {
+        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
+        let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
+        pictureService.getPicture(startDate: formatDate(date: startDate), endDate: formatDate(date: endDate)) { picture in
             if let picture = picture {
                 self.picture = picture
             }

@@ -26,7 +26,7 @@ class PictureService {
     final func getPicture(startDate: String, endDate: String, callback: @escaping ([APIApod]?) -> Void) {
         let url = "https://api.nasa.gov/planetary/apod"
         let parameters = [
-            "api_key": apiKey.keyNasa ?? "",
+            "api_key": apiKey.keyNasa,
             "start_date": startDate,
             "end_date": endDate,
         ] as [String : Any]

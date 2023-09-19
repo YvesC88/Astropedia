@@ -24,6 +24,10 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.hidesWhenStopped = true
+        spinner.center = pictureTableView.center
+        pictureTableView.addSubview(spinner)
+        
         newsViewModel.$article
             .sink { [weak self] _ in
                 DispatchQueue.main.async {
@@ -49,8 +53,13 @@ class NewsViewController: UIViewController {
     }
     
     @IBAction func reloadPicture() {
-        newsViewModel.loadPicture()
-        pictureTableView.reloadData()
+        newsViewModel.$picture
+            .sink { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.pictureTableView.reloadData()
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -73,9 +82,9 @@ extension NewsViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell", for: indexPath) as? PictureTableViewCell else {
                 return UITableViewCell()
             }
-            let reverseIndex = newsViewModel.picture.count - 1 - indexPath.row
-            guard reverseIndex >= 0 && reverseIndex < newsViewModel.picture.count else { return cell }
-            let picture = newsViewModel.picture[reverseIndex].toPicture()
+            let reverseCollection = newsViewModel.picture.reversed()
+            guard indexPath.row >= 0 && indexPath.row < reverseCollection.count else { return cell}
+            let picture = reverseCollection[reverseCollection.index(reverseCollection.startIndex, offsetBy: indexPath.row)].toPicture()
             cell.configure(title: picture.title, image: picture.imageURL, mediaType: picture.mediaType, date: picture.date)
             return cell
         case articleTableView:
@@ -98,9 +107,9 @@ extension NewsViewController: UITableViewDelegate {
         
         switch tableView {
         case pictureTableView:
-            let reverseIndex = newsViewModel.picture.count - 1 - indexPath.row
-            guard reverseIndex >= 0 && reverseIndex < newsViewModel.picture.count else { return }
-            let selectedPicture = newsViewModel.picture[reverseIndex].toPicture()
+            let reverseCollection = newsViewModel.picture.reversed()
+            guard indexPath.row >= 0 && indexPath.row < reverseCollection.count else { return }
+            let selectedPicture = reverseCollection[reverseCollection.index(reverseCollection.startIndex, offsetBy: indexPath.row)].toPicture()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as? DetailPictureViewController else { return }
             detailViewController.picture = selectedPicture
