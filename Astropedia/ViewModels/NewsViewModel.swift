@@ -21,6 +21,7 @@ class NewsViewModel: NSObject {
     
     @Published var article: [Article] = []
     @Published var picture: [APIApod] = []
+    @Published var isLoading: Bool?
     
     override init() {
         super.init()
@@ -41,12 +42,14 @@ class NewsViewModel: NSObject {
     }
     
     final func loadPicture() {
+        isLoading = true
         let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
         pictureService.getPicture(startDate: formatDate(date: startDate), endDate: formatDate(date: endDate)) { picture in
             if let picture = picture {
                 self.picture = picture
             }
+            self.isLoading = false
         }
     }
 }

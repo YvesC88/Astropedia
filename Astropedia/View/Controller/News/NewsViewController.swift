@@ -28,6 +28,17 @@ class NewsViewController: UIViewController {
         spinner.center = pictureTableView.center
         pictureTableView.addSubview(spinner)
         
+        newsViewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                if self?.newsViewModel.isLoading == true {
+                    self?.spinner.startAnimating()
+                } else {
+                    self?.spinner.stopAnimating()
+                }
+            }
+            .store(in: &cancellables)
+        
         newsViewModel.$article
             .sink { [weak self] _ in
                 DispatchQueue.main.async {
