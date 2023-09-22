@@ -16,8 +16,8 @@ class NewsViewModel: NSObject {
         return formatter
     }()
     
-    var articleService = ArticleService(wrapper: FirebaseWrapper())
-    var pictureService = PictureService(wrapper: FirebaseWrapper())
+    let articleService = ArticleService(wrapper: FirebaseWrapper())
+    let pictureService = PictureService(wrapper: FirebaseWrapper())
     
     @Published var article: [Article] = []
     @Published var picture: [APIApod] = []
@@ -25,15 +25,15 @@ class NewsViewModel: NSObject {
     
     override init() {
         super.init()
-        loadPicture()
-        loadArticle()
+        fetchPictures()
+        fetchArticles()
     }
     
     func formatDate(date: Date) -> String {
         return dateFormatter.string(from: date)
     }
     
-    final func loadArticle() {
+    private final func fetchArticles() {
         articleService.fetchArticle(collectionID: "article") { article, error in
             for data in article {
                 self.article.append(data)
@@ -41,7 +41,7 @@ class NewsViewModel: NSObject {
         }
     }
     
-    final func loadPicture() {
+    private final func fetchPictures() {
         isLoading = true
         let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()

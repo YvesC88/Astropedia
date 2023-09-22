@@ -77,7 +77,7 @@ extension UIViewController {
     func setUIButton(button: [UIButton]) {
         let buttons = button
         for button in buttons {
-            button.layer.borderColor = UIColor.systemPurple.withAlphaComponent(0.5).cgColor
+            button.layer.borderColor = UIColor.systemBlue.withAlphaComponent(0.5).cgColor
             button.layer.borderWidth = 2
             button.layer.cornerRadius = 20
         }

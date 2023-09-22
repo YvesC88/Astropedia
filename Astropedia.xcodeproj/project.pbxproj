@@ -35,6 +35,7 @@
 		FB605C892A1543E400622E94 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB605C882A1543E400622E94 /* ArticleTableViewCell.swift */; };
 		FB6922282A094C400034A65B /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922272A094C400034A65B /* FavoritesTableViewCell.swift */; };
 		FB69222A2A095ED50034A65B /* DetailPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6922292A095ED50034A65B /* DetailPictureViewController.swift */; };
+		FB6DC30F2ABB053F00F68E38 /* SolarSystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6DC30E2ABB053E00F68E38 /* SolarSystemViewModel.swift */; };
 		FB849A3129D6E8A700ACABA6 /* AsteroidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */; };
 		FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */; };
 		FB849A3729D6EB1900ACABA6 /* ResultAsteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB849A3629D6EB1900ACABA6 /* ResultAsteroid.swift */; };
@@ -48,6 +49,7 @@
 		FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78FB29F56464009DFF86 /* APIApod.swift */; };
 		FBB009032A5B027500EC890D /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB009022A5B027500EC890D /* FavoriteService.swift */; };
 		FBBB05802A4B2EEB0033B090 /* SolarSystemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB057F2A4B2EEB0033B090 /* SolarSystemCollection.swift */; };
+		FBBB1B9E2ABB193E00D0F445 /* AsteroidsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB1B9D2ABB193E00D0F445 /* AsteroidsViewModel.swift */; };
 		FBC473452A1FBCBC00E70C4A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */; };
 		FBC8305D2A3471970004C79B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8305C2A3471970004C79B /* GalleryViewController.swift */; };
 		FBC830612A347B8B0004C79B /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC830602A347B8B0004C79B /* GalleryCollectionViewCell.swift */; };
@@ -117,6 +119,7 @@
 		FB605C882A1543E400622E94 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		FB6922272A094C400034A65B /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		FB6922292A095ED50034A65B /* DetailPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPictureViewController.swift; sourceTree = "<group>"; };
+		FB6DC30E2ABB053E00F68E38 /* SolarSystemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemViewModel.swift; sourceTree = "<group>"; };
 		FB849A3029D6E8A700ACABA6 /* AsteroidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidsViewController.swift; sourceTree = "<group>"; };
 		FB849A3229D6EADF00ACABA6 /* AsteroidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidService.swift; sourceTree = "<group>"; };
 		FB849A3629D6EB1900ACABA6 /* ResultAsteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultAsteroid.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 		FBAC78FB29F56464009DFF86 /* APIApod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIApod.swift; sourceTree = "<group>"; };
 		FBB009022A5B027500EC890D /* FavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteService.swift; sourceTree = "<group>"; };
 		FBBB057F2A4B2EEB0033B090 /* SolarSystemCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemCollection.swift; sourceTree = "<group>"; };
+		FBBB1B9D2ABB193E00D0F445 /* AsteroidsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidsViewModel.swift; sourceTree = "<group>"; };
 		FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		FBC8305C2A3471970004C79B /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		FBC830602A347B8B0004C79B /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 			isa = PBXGroup;
 			children = (
 				FB5F394C2AB5A8EE0018A9BA /* NewsViewModel.swift */,
+				FB6DC30E2ABB053E00F68E38 /* SolarSystemViewModel.swift */,
+				FBBB1B9D2ABB193E00D0F445 /* AsteroidsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -630,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBBB1B9E2ABB193E00D0F445 /* AsteroidsViewModel.swift in Sources */,
 				FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */,
 				FBC830612A347B8B0004C79B /* GalleryCollectionViewCell.swift in Sources */,
 				FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */,
@@ -673,6 +680,7 @@
 				FBAB2A7929F6D75500B31C6D /* Picture.swift in Sources */,
 				FB849A3729D6EB1900ACABA6 /* ResultAsteroid.swift in Sources */,
 				FBEC43EB2A3F674A00D76790 /* QuestionService.swift in Sources */,
+				FB6DC30F2ABB053F00F68E38 /* SolarSystemViewModel.swift in Sources */,
 				FBAC78FA29F563AB009DFF86 /* PictureService.swift in Sources */,
 				FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */,
 			);

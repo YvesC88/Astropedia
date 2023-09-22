@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 import WebKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     // MARK: - Outlets
     

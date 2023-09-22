@@ -819,8 +819,9 @@
                                                         </constraints>
                                                     </stackView>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4t-JM-nnt">
-                                                        <rect key="frame" x="40" y="350" width="310" height="40"/>
+                                                        <rect key="frame" x="120" y="350" width="150" height="40"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Ii5-O8-Bkc"/>
                                                             <constraint firstAttribute="height" constant="40" id="hYC-gF-5yu"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -835,7 +836,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="wHd-6V-edW" secondAttribute="trailing" constant="50" id="1Fk-lP-f8C"/>
                                                     <constraint firstItem="g4t-JM-nnt" firstAttribute="top" secondItem="wHd-6V-edW" secondAttribute="bottom" constant="30" id="3HO-ba-SVF"/>
-                                                    <constraint firstAttribute="trailing" secondItem="g4t-JM-nnt" secondAttribute="trailing" constant="40" id="FVO-rx-82M"/>
                                                     <constraint firstItem="wHd-6V-edW" firstAttribute="centerX" secondItem="fgE-5O-15p" secondAttribute="centerX" id="Fpw-Gf-X9K"/>
                                                     <constraint firstItem="jol-Uu-dlI" firstAttribute="leading" secondItem="fgE-5O-15p" secondAttribute="leading" id="GIK-fz-z0U"/>
                                                     <constraint firstItem="HlB-sj-Iop" firstAttribute="top" secondItem="jol-Uu-dlI" secondAttribute="bottom" constant="20" id="GjR-Ui-tAr"/>
@@ -843,11 +843,11 @@
                                                     <constraint firstItem="wHd-6V-edW" firstAttribute="top" secondItem="HlB-sj-Iop" secondAttribute="bottom" constant="20" id="RVh-9r-La8"/>
                                                     <constraint firstAttribute="trailing" secondItem="jol-Uu-dlI" secondAttribute="trailing" id="RdI-L5-EiF"/>
                                                     <constraint firstItem="jol-Uu-dlI" firstAttribute="top" secondItem="fgE-5O-15p" secondAttribute="top" id="aPQ-ZN-0wD"/>
+                                                    <constraint firstItem="g4t-JM-nnt" firstAttribute="centerX" secondItem="fgE-5O-15p" secondAttribute="centerX" id="cN1-MT-sbP"/>
                                                     <constraint firstAttribute="trailing" secondItem="HlB-sj-Iop" secondAttribute="trailing" constant="20" id="fLV-10-am7"/>
                                                     <constraint firstItem="HlB-sj-Iop" firstAttribute="leading" secondItem="fgE-5O-15p" secondAttribute="leading" constant="20" id="nBx-qx-N2z"/>
                                                     <constraint firstItem="wHd-6V-edW" firstAttribute="leading" secondItem="fgE-5O-15p" secondAttribute="leading" constant="50" id="nKN-86-U5x"/>
                                                     <constraint firstAttribute="height" constant="400" id="uRw-0A-vSZ"/>
-                                                    <constraint firstItem="g4t-JM-nnt" firstAttribute="leading" secondItem="fgE-5O-15p" secondAttribute="leading" constant="40" id="xFY-Mo-4VQ"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="64U-4V-kDM">
@@ -1721,7 +1721,7 @@
                     <tabBarItem key="tabBarItem" title="Système Solaire" image="asteroidSymbol" id="p38-T8-c8Z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="F5w-fV-xuF">
-                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2105,7 +2105,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="gYp-jH-Gcp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="57x-gU-OCm">
-                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

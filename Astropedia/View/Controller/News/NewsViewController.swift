@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class NewsViewController: UIViewController {
+final class NewsViewController: UIViewController {
     
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var pictureTableView: UITableView!
@@ -24,10 +24,7 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        spinner.hidesWhenStopped = true
-        spinner.center = pictureTableView.center
-        pictureTableView.addSubview(spinner)
-        
+        setUI()
         newsViewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -38,39 +35,30 @@ class NewsViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
-        newsViewModel.$article
-            .sink { [weak self] _ in
-                DispatchQueue.main.async {
-                    self?.articleTableView.reloadData()
-                }
-            }
-            .store(in: &cancellables)
-        
-        newsViewModel.$picture
-            .sink { [weak self] _ in
-                DispatchQueue.main.async {
-                    self?.pictureTableView.reloadData()
-                }
-            }
-            .store(in: &cancellables)
-        setUI()
+        updateUI(data: newsViewModel.$article, tableView: articleTableView)
+        updateUI(data: newsViewModel.$picture, tableView: pictureTableView)
     }
     
-    func setUI() {
+    private final func setUI() {
         articleLabel.text = articleLabel.text?.uppercased()
         lastPictureLabel.text = lastPictureLabel.text?.uppercased()
         setUIView(view: [articleView, lastPictureView])
+        spinner.hidesWhenStopped = true
+        spinner.center = pictureTableView.center
+        pictureTableView.addSubview(spinner)
+    }
+    
+    private final func updateUI<T>(data: Published<[T]>.Publisher, tableView: UITableView) {
+        data
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
     
     @IBAction func reloadPicture() {
-        newsViewModel.$picture
-            .sink { [weak self] _ in
-                DispatchQueue.main.async {
-                    self?.pictureTableView.reloadData()
-                }
-            }
-            .store(in: &cancellables)
+        updateUI(data: newsViewModel.$picture, tableView: pictureTableView)
     }
 }
 
