@@ -11,7 +11,6 @@ final class SolarSystemService {
     
     // MARK: - Properties
     let firebaseWrapper: FirebaseProtocol
-    var solarSystemCollection = SolarSystemCollection()
     
     init(wrapper: FirebaseProtocol) {
         self.firebaseWrapper = wrapper
@@ -25,15 +24,6 @@ final class SolarSystemService {
             } else {
                 completion([], error)
             }
-        }
-    }
-    
-    final func filterSolarSystem() {
-        if solarSystemCollection.isFiltering {
-            solarSystemCollection.filteredPlanets = solarSystemCollection.updatePlanets.filter { $0.name.uppercased().hasPrefix(solarSystemCollection.searchText) }
-            solarSystemCollection.filteredMoons = solarSystemCollection.updateMoons.filter { $0.name.uppercased().hasPrefix(solarSystemCollection.searchText) }
-            solarSystemCollection.filteredStars = solarSystemCollection.updateStars.filter { $0.name.uppercased().hasPrefix(solarSystemCollection.searchText) }
-            solarSystemCollection.filteredDwarfPlanets = solarSystemCollection.updateDwarfPlanets.filter { $0.name.uppercased().hasPrefix(solarSystemCollection.searchText) }
         }
     }
 }

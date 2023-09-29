@@ -19,7 +19,6 @@ class SolarSystemViewModel: NSObject {
     @Published var stars: [SolarSystem] = []
     @Published var dwarfPlanets: [SolarSystem] = []
     
-    
     override init() {
         super.init()
         loadSolarSystem()
@@ -59,14 +58,13 @@ class SolarSystemViewModel: NSObject {
         if planets.isEmpty, stars.isEmpty, moons.isEmpty, dwarfPlanets.isEmpty {
 //            presentAlert(title: "Erreur", message: "Une erreur est survenue lors du chargement")
         } else {
-            solarSystemService.filterSolarSystem()
+//            solarSystemService.filterSolarSystem()
             let starsCategories = SolarSystemCategory(name: categories[0], data: stars)
             let planetsCategories = SolarSystemCategory(name: categories[1], data: planets)
             let dwarfsPlanetsCategories = SolarSystemCategory(name: categories[2], data: dwarfPlanets)
             let moonsCategories = SolarSystemCategory(name: categories[3], data: moons)
             
             solarSystem = [starsCategories, planetsCategories, dwarfsPlanetsCategories, moonsCategories]
-            // reloadTableView
         }
     }
 }

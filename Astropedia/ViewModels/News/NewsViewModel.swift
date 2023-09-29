@@ -10,14 +10,14 @@ import Combine
 
 class NewsViewModel: NSObject {
     
-    let dateFormatter: DateFormatter = {
+    private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
     
-    let articleService = ArticleService(wrapper: FirebaseWrapper())
-    let pictureService = PictureService(wrapper: FirebaseWrapper())
+    private let articleService = ArticleService(wrapper: FirebaseWrapper())
+    private let pictureService = PictureService(wrapper: FirebaseWrapper())
     
     @Published var article: [Article] = []
     @Published var picture: [APIApod] = []
@@ -29,7 +29,7 @@ class NewsViewModel: NSObject {
         fetchArticles()
     }
     
-    func formatDate(date: Date) -> String {
+    private final func formatDate(date: Date) -> String {
         return dateFormatter.string(from: date)
     }
     
@@ -52,4 +52,18 @@ class NewsViewModel: NSObject {
             self.isLoading = false
         }
     }
+    
+    final func isFavoriteArticle(article: Article) -> Bool {
+        return articleService.isFavoriteArticle(article: article)
+    }
+    
+    final func unsaveArticle(article: Article) {
+        articleService.unsaveArticle(article: article)
+    }
+    
+    final func saveArticle(article: Article) {
+        articleService.saveArticle(title: article.title, subtitle: article.subtitle, image: article.image, source: article.source, articleText: article.articleText, id: article.id)
+    }
+    
+    
 }

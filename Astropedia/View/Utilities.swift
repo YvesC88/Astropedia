@@ -9,7 +9,6 @@ import UIKit
 
 extension UIViewController {
     
-    static let searchController = UISearchController()
     static let dateFormat = "yyyy-MM-dd"
     
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {
@@ -121,14 +120,5 @@ extension UIViewController {
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion: nil)
-    }
-}
-
-extension NewsViewModel {
-    
-    final func getFormattedDate(date: Date, dateFormat: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat
-        return dateFormatter.string(from: date)
     }
 }

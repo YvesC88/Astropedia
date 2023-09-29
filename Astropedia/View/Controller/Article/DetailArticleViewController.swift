@@ -17,7 +17,7 @@ final class DetailArticleViewController: UIViewController {
     @IBOutlet weak private var favoriteButton: UIButton!
     
     var article: Article!
-    private let articleService = ArticleService(wrapper: FirebaseWrapper())
+    private var newsViewModel = NewsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,25 +29,19 @@ final class DetailArticleViewController: UIViewController {
         if let imageURL = article.image {
             articleImageView.sd_setImage(with: URL(string: imageURL))
         }
-        favoriteButton.isSelected = articleService.isFavoriteArticle(article: article)
+        favoriteButton.isSelected = newsViewModel.isFavoriteArticle(article: article)
         articleTitleLabel.text = article.title
         subtitleTextView.text = article.subtitle
         articleTextView.text = article.articleText?.joined(separator: "\n \n")
     }
     
     @IBAction private final func didTappedFavorite() {
-        let isFavorite: Bool = articleService.isFavoriteArticle(article: article)
-        if isFavorite {
-            articleService.unsaveArticle(article: article)
+        if newsViewModel.isFavoriteArticle(article: article) {
+            newsViewModel.unsaveArticle(article: article)
             favoriteButton.isSelected = false
             quickAlert(title: "Supprimé")
         } else {
-            articleService.saveArticle(title: article.title,
-                                       subtitle: article.subtitle,
-                                       image: article.image,
-                                       source: article.source,
-                                       articleText: article.articleText,
-                                       id: article.id)
+            newsViewModel.saveArticle(article: article)
             favoriteButton.isSelected = true
             quickAlert(title: "Sauvegardé")
         }

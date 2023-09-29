@@ -47,8 +47,7 @@
 		FBAB2A7929F6D75500B31C6D /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB2A7829F6D75500B31C6D /* Picture.swift */; };
 		FBAC78FA29F563AB009DFF86 /* PictureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78F929F563AB009DFF86 /* PictureService.swift */; };
 		FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAC78FB29F56464009DFF86 /* APIApod.swift */; };
-		FBB009032A5B027500EC890D /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB009022A5B027500EC890D /* FavoriteService.swift */; };
-		FBBB05802A4B2EEB0033B090 /* SolarSystemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB057F2A4B2EEB0033B090 /* SolarSystemCollection.swift */; };
+		FBB009032A5B027500EC890D /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB009022A5B027500EC890D /* Favorite.swift */; };
 		FBBB1B9E2ABB193E00D0F445 /* AsteroidsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB1B9D2ABB193E00D0F445 /* AsteroidsViewModel.swift */; };
 		FBC473452A1FBCBC00E70C4A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */; };
 		FBC8305D2A3471970004C79B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8305C2A3471970004C79B /* GalleryViewController.swift */; };
@@ -59,6 +58,7 @@
 		FBCBFAB02A7D5158005149FC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAAF2A7D5158005149FC /* FirebaseAnalytics */; };
 		FBCBFAB22A7D5158005149FC /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAB12A7D5158005149FC /* FirebaseCrashlytics */; };
 		FBCBFAB42A7D5158005149FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAB32A7D5158005149FC /* FirebaseFirestore */; };
+		FBDC54382AC02A7700C05A17 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDC54372AC02A7700C05A17 /* FavoritesViewModel.swift */; };
 		FBEC43EB2A3F674A00D76790 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EA2A3F674A00D76790 /* QuestionService.swift */; };
 		FBEC43ED2A3F6CB700D76790 /* QuizzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */; };
 		FBEC43EF2A3F96CD00D76790 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC43EE2A3F96CD00D76790 /* Question.swift */; };
@@ -131,13 +131,13 @@
 		FBAB2A7829F6D75500B31C6D /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		FBAC78F929F563AB009DFF86 /* PictureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureService.swift; sourceTree = "<group>"; };
 		FBAC78FB29F56464009DFF86 /* APIApod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIApod.swift; sourceTree = "<group>"; };
-		FBB009022A5B027500EC890D /* FavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteService.swift; sourceTree = "<group>"; };
-		FBBB057F2A4B2EEB0033B090 /* SolarSystemCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemCollection.swift; sourceTree = "<group>"; };
+		FBB009022A5B027500EC890D /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		FBBB1B9D2ABB193E00D0F445 /* AsteroidsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidsViewModel.swift; sourceTree = "<group>"; };
 		FBC473442A1FBCBC00E70C4A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		FBC8305C2A3471970004C79B /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		FBC830602A347B8B0004C79B /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		FBC830622A3482D90004C79B /* DetailGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGalleryViewController.swift; sourceTree = "<group>"; };
+		FBDC54372AC02A7700C05A17 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		FBEC43EA2A3F674A00D76790 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
 		FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzViewController.swift; sourceTree = "<group>"; };
 		FBEC43EE2A3F96CD00D76790 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -288,7 +288,6 @@
 			children = (
 				FB15CB0629756AD600FEE718 /* SolarSystem.swift */,
 				FB47667C2A556D8B0014C098 /* SolarSystemService.swift */,
-				FBBB057F2A4B2EEB0033B090 /* SolarSystemCollection.swift */,
 			);
 			path = SolarSystem;
 			sourceTree = "<group>";
@@ -305,9 +304,10 @@
 		FB5F39492AB4AB240018A9BA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FB5F394C2AB5A8EE0018A9BA /* NewsViewModel.swift */,
-				FB6DC30E2ABB053E00F68E38 /* SolarSystemViewModel.swift */,
-				FBBB1B9D2ABB193E00D0F445 /* AsteroidsViewModel.swift */,
+				FBDC543C2AC02A9E00C05A17 /* SolarSystem */,
+				FBDC543B2AC02A9400C05A17 /* Asteroids */,
+				FBDC543A2AC02A8800C05A17 /* News */,
+				FBDC54392AC02A7B00C05A17 /* Favorites */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -315,7 +315,7 @@
 		FBB009012A5B025B00EC890D /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				FBB009022A5B027500EC890D /* FavoriteService.swift */,
+				FBB009022A5B027500EC890D /* Favorite.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -413,6 +413,38 @@
 				FB15CAE4297566DA00FEE718 /* Info.plist */,
 			);
 			path = Ressources;
+			sourceTree = "<group>";
+		};
+		FBDC54392AC02A7B00C05A17 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				FBDC54372AC02A7700C05A17 /* FavoritesViewModel.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		FBDC543A2AC02A8800C05A17 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				FB5F394C2AB5A8EE0018A9BA /* NewsViewModel.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		FBDC543B2AC02A9400C05A17 /* Asteroids */ = {
+			isa = PBXGroup;
+			children = (
+				FBBB1B9D2ABB193E00D0F445 /* AsteroidsViewModel.swift */,
+			);
+			path = Asteroids;
+			sourceTree = "<group>";
+		};
+		FBDC543C2AC02A9E00C05A17 /* SolarSystem */ = {
+			isa = PBXGroup;
+			children = (
+				FB6DC30E2ABB053E00F68E38 /* SolarSystemViewModel.swift */,
+			);
+			path = SolarSystem;
 			sourceTree = "<group>";
 		};
 		FBEC43E72A3F66CF00D76790 /* Quizz */ = {
@@ -653,7 +685,6 @@
 				FB15CADB297566D800FEE718 /* SolarSystemViewController.swift in Sources */,
 				FB15CB212975745200FEE718 /* FirebaseWrapper.swift in Sources */,
 				FB5F394D2AB5A8EE0018A9BA /* NewsViewModel.swift in Sources */,
-				FBBB05802A4B2EEB0033B090 /* SolarSystemCollection.swift in Sources */,
 				FB40AE612A13D1700067FCAC /* LocalArticle.swift in Sources */,
 				FB849A4829DB126600ACABA6 /* AsteroidTableViewCell.swift in Sources */,
 				FB40AE652A14C6B90067FCAC /* DetailArticleViewController.swift in Sources */,
@@ -663,7 +694,7 @@
 				FBEC43EF2A3F96CD00D76790 /* Question.swift in Sources */,
 				FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */,
 				FBF937852A0A6E1D008235E6 /* PictureTableViewCell.swift in Sources */,
-				FBB009032A5B027500EC890D /* FavoriteService.swift in Sources */,
+				FBB009032A5B027500EC890D /* Favorite.swift in Sources */,
 				FB1881AE2A12DC5100B6EBCC /* ApiKeys.swift in Sources */,
 				FB9D31BA2A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift in Sources */,
 				FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */,
@@ -674,6 +705,7 @@
 				FB15CB0729756AD600FEE718 /* SolarSystem.swift in Sources */,
 				FB47667D2A556D8B0014C098 /* SolarSystemService.swift in Sources */,
 				FBF8657D29FD17C200646278 /* LocalPicture.swift in Sources */,
+				FBDC54382AC02A7700C05A17 /* FavoritesViewModel.swift in Sources */,
 				FB849A3129D6E8A700ACABA6 /* AsteroidsViewController.swift in Sources */,
 				FBF8657029FD0DD700646278 /* FavoritesViewController.swift in Sources */,
 				FBC8305D2A3471970004C79B /* GalleryViewController.swift in Sources */,
