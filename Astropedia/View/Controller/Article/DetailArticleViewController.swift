@@ -35,7 +35,7 @@ final class DetailArticleViewController: UIViewController {
         articleTextView.text = article.articleText?.joined(separator: "\n \n")
     }
     
-    @IBAction private final func didTappedFavorite() {
+    private final func toggleFavoriteStatus() {
         if newsViewModel.isFavoriteArticle(article: article) {
             newsViewModel.unsaveArticle(article: article)
             favoriteButton.isSelected = false
@@ -45,6 +45,15 @@ final class DetailArticleViewController: UIViewController {
             favoriteButton.isSelected = true
             quickAlert(title: "Sauvegardé")
         }
+
+    }
+    
+    @IBAction private final func didDoubleTapFavorite() {
+        toggleFavoriteStatus()
+    }
+    
+    @IBAction private final func didTappedFavorite() {
+        toggleFavoriteStatus()
     }
 }
 

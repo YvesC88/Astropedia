@@ -52,17 +52,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         }
     }
     
-    @IBAction private final func didSharedImage() {
-        if picture.mediaType == "image" {
-            guard let image = self.imageView.image else { return }
-            shareItems([image])
-        } else {
-            guard let videoURLString = picture.videoURL, let videoURL = URL(string: videoURLString) else { return }
-            shareItems([videoURL])
-        }
-    }
-    
-    @IBAction private final func didTappedFavorite() {
+    private final func toggleFavoriteStatus() {
         let isFavorite = pictureService.isFavorite(picture: picture)
         if isFavorite {
             pictureService.unsaveRecipe(picture: picture)
@@ -79,6 +69,24 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
             favoriteButton.isSelected = true
             quickAlert(title: "Sauvegardé")
         }
+    }
+    
+    @IBAction private final func didSharedImage() {
+        if picture.mediaType == "image" {
+            guard let image = self.imageView.image else { return }
+            shareItems([image])
+        } else {
+            guard let videoURLString = picture.videoURL, let videoURL = URL(string: videoURLString) else { return }
+            shareItems([videoURL])
+        }
+    }
+    
+    @IBAction func doubleTapFavorite() {
+        toggleFavoriteStatus()
+    }
+    
+    @IBAction private final func didTappedFavorite() {
+        toggleFavoriteStatus()
     }
 }
 
