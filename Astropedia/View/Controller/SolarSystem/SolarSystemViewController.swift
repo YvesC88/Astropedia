@@ -95,9 +95,6 @@ extension SolarSystemViewController: UISearchResultsUpdating {
             SolarSystemCategory(name: solarSystemViewModel.categories[2], data: filteredDwarfPlanets),
             SolarSystemCategory(name: solarSystemViewModel.categories[3], data: filteredMoons)
             ]
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
 }

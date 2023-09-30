@@ -34,6 +34,24 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate {
             .store(in: &cancellables)
     }
     
+    func navigateToDetailViewController<T>(item: T) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        switch item {
+        case let picture as LocalPicture:
+            guard let detailPictureVC = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as? DetailPictureViewController else { return }
+            detailPictureVC.picture = picture.toPicture()
+            self.navigationController?.pushViewController(detailPictureVC, animated: true)
+            
+        case let article as LocalArticle:
+            guard let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as? DetailArticleViewController else { return }
+            detailArticleVC.article = article.toArticle()
+            self.navigationController?.pushViewController(detailArticleVC, animated: true)
+            
+        default:
+            return
+        }
+    }
+    
     private final func setupSearchController() {
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
@@ -107,53 +125,44 @@ extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section < favoritesViewModel.filteredFavorites.count else { return }
-        let favoriteCategory = favoritesViewModel.filteredFavorites[indexPath.section]
-        guard indexPath.row < favoriteCategory.data.count else { return }
-        let selectedItem = favoriteCategory.data[indexPath.row]
-        switch favoriteCategory.type {
-        case .picture:
-            guard let picture = selectedItem as? LocalPicture else { return }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let detailPictureVC = storyboard.instantiateViewController(withIdentifier: "DetailPictureViewController") as? DetailPictureViewController else { return }
-            detailPictureVC.picture = picture.toPicture()
-            self.navigationController?.pushViewController(detailPictureVC, animated: true)
-            
-        case .article:
-            guard let article = selectedItem as? LocalArticle else { return }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as? DetailArticleViewController else { return }
-            detailArticleVC.article = article.toArticle()
-            self.navigationController?.pushViewController(detailArticleVC, animated: true)
-        }
+        guard indexPath.row < favoritesViewModel.filteredFavorites[indexPath.section].data.count else { return }
+        let item = favoritesViewModel.filteredFavorites[indexPath.section].data[indexPath.row]
+        navigateToDetailViewController(item: item)
     }
 }
 
 extension FavoritesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text?.lowercased(), !searchText.isEmpty {
-            let filteredFavorites: [Favorite] = favoritesViewModel.favorites.compactMap { favorite in
-                let filteredData = favorite.data.filter { data in
-                    if let picture = data as? LocalPicture, let pictureTitle = picture.title {
-                        return pictureTitle.lowercased().contains(searchText)
-                    } else if let article = data as? LocalArticle, let articleTitle = article.title {
-                        return articleTitle.lowercased().contains(searchText)
+        let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        if searchText.isEmpty {
+            favoritesViewModel.filteredFavorites = favoritesViewModel.favorites
+        } else {
+            let filteredFavorites: [Favorite] = favoritesViewModel.favorites.map { favorite in
+                let filteredData: [Any]
+                switch favorite.type {
+                case .picture:
+                    let pictures = favorite.data.compactMap { $0 as? LocalPicture }
+                    filteredData = pictures.filter { picture in
+                        return picture.title!.localizedStandardContains(searchText)
                     }
-                    return false
+                case .article:
+                    let articles = favorite.data.compactMap { $0 as? LocalArticle }
+                    filteredData = articles.filter { article in
+                        return article.title!.localizedCaseInsensitiveContains(searchText)
+                    }
                 }
-                if !filteredData.isEmpty {
-                    var favoriteCopy = favorite
-                    favoriteCopy.data = filteredData
-                    return favoriteCopy
-                }
-                return nil
+                return Favorite(name: favorite.name, type: favorite.type, data: filteredData)
             }
             favoritesViewModel.filteredFavorites = filteredFavorites
-        } else {
-            favoritesViewModel.filteredFavorites = favoritesViewModel.favorites
         }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        favoritesViewModel.fetchFavorite()
+        favoritesViewModel.filteredFavorites = favoritesViewModel.favorites
+        tableView.reloadData()
+    }
+
 }

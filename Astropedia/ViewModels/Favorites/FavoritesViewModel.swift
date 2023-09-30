@@ -20,7 +20,7 @@ class FavoritesViewModel: NSObject {
         isEmpty()
     }
     
-    private final func fetchFavorite() {
+    final func fetchFavorite() {
         let pictureRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
         let articleRequest: NSFetchRequest<LocalArticle> = LocalArticle.fetchRequest()
         guard let picture = try? CoreDataStack.share.viewContext.fetch(pictureRequest) else { return }
@@ -34,6 +34,5 @@ class FavoritesViewModel: NSObject {
     
     final func isEmpty() {
         isEmptyFavorite = favorites.allSatisfy { $0.data.isEmpty }
-//        isEmptyFavorite = filteredFavorites.allSatisfy { $0.data.isEmpty }
     }
 }
