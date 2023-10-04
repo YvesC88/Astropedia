@@ -603,7 +603,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euw-71-ZhZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="8qw-5H-Kxb">
                     <connections>
-                        <action selector="didTapFavorite:" destination="pDF-CE-S5q" id="Pzm-Br-reu"/>
+                        <action selector="doubleTapFavorite" destination="pDF-CE-S5q" id="bqI-GW-QLb"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1302,7 +1302,7 @@
                     <tabBarItem key="tabBarItem" title="Actualités" image="newspaper.fill" catalog="system" id="IzA-Iw-ePw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dcG-Pc-4up">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1729,7 +1729,7 @@
                     <tabBarItem key="tabBarItem" title="Système Solaire" image="asteroidSymbol" id="p38-T8-c8Z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="F5w-fV-xuF">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

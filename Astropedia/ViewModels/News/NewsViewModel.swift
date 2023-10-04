@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UserNotifications
 
 class NewsViewModel: NSObject {
     
@@ -27,6 +28,7 @@ class NewsViewModel: NSObject {
         super.init()
         fetchPictures()
         fetchArticles()
+        scheduleDailyNotification()
     }
     
     private final func formatDate(date: Date) -> String {
@@ -41,7 +43,7 @@ class NewsViewModel: NSObject {
         }
     }
     
-    private final func fetchPictures() {
+    final func fetchPictures() {
         isLoading = true
         let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
@@ -50,6 +52,26 @@ class NewsViewModel: NSObject {
                 self.picture = picture
             }
             self.isLoading = false
+        }
+    }
+    
+    func scheduleDailyNotification() {
+        DispatchQueue.main.async {
+            let content = UNMutableNotificationContent()
+            content.title = "Nouvelle image disponible !"
+            content.body = "\(self.picture.last?.toPicture().explanation ?? "")"
+            let dateComponents = DateComponents(hour: 11, minute: 23)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            
+            let request = UNNotificationRequest(identifier: "dailyNotification", content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request) { (error) in
+                if let error = error {
+                    print("Erreur lors de la planification de la notification : \(error.localizedDescription)")
+                } else {
+                    print("Notification planifiée avec succès pour 9 heures du matin chaque jour.")
+                }
+            }
         }
     }
     
@@ -64,6 +86,4 @@ class NewsViewModel: NSObject {
     final func saveArticle(article: Article) {
         articleService.saveArticle(title: article.title, subtitle: article.subtitle, image: article.image, source: article.source, articleText: article.articleText, id: article.id)
     }
-    
-    
 }

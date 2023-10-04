@@ -81,6 +81,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         }
     }
     
+    
     @IBAction func doubleTapFavorite() {
         toggleFavoriteStatus()
     }

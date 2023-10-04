@@ -11,6 +11,7 @@ import Combine
 class SolarSystemViewModel: NSObject {
     
     let solarSystemService = SolarSystemService(wrapper: FirebaseWrapper())
+    private let dispatchGroup = DispatchGroup()
     var solarSystem: [SolarSystemCategory] = []
     let categories = ["Étoile", "Planètes", "Planètes naines", "Lunes"]
     
