@@ -4,7 +4,7 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>com.Astropedia-dailyNotificationPicture</string>
+		<string>com.Astropedia.dailyFetchPicture</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -25,10 +25,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-		<string>processing</string>
-	</array>
 </dict>
 </plist>

@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import UserNotifications
+import BackgroundTasks
 
 class NewsViewModel: NSObject {
     
@@ -28,7 +29,6 @@ class NewsViewModel: NSObject {
         super.init()
         fetchPictures()
         fetchArticles()
-        scheduleDailyNotification()
     }
     
     private final func formatDate(date: Date) -> String {
@@ -52,25 +52,26 @@ class NewsViewModel: NSObject {
                 self.picture = picture
             }
             self.isLoading = false
+            self.scheduleDailyNotification()
         }
     }
     
-    func scheduleDailyNotification() {
-        DispatchQueue.main.async {
-            let content = UNMutableNotificationContent()
-            content.title = "Nouvelle image disponible !"
-            content.body = "\(self.picture.last?.toPicture().explanation ?? "")"
-            let dateComponents = DateComponents(hour: 11, minute: 23)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-            
-            let request = UNNotificationRequest(identifier: "dailyNotification", content: content, trigger: trigger)
-            
-            UNUserNotificationCenter.current().add(request) { (error) in
-                if let error = error {
-                    print("Erreur lors de la planification de la notification : \(error.localizedDescription)")
-                } else {
-                    print("Notification planifiée avec succès pour 9 heures du matin chaque jour.")
-                }
+    private final func scheduleDailyNotification() {
+        let lastPicture = self.picture.last?.toPicture()
+        let content = UNMutableNotificationContent()
+        content.title = "Nouvelle image disponible !"
+        content.subtitle = lastPicture?.title ?? ""
+        content.body = lastPicture?.explanation ?? ""
+        let dateComponents = DateComponents(hour: 12, minute: 00)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: "dailyNotification", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error {
+                print("Erreur lors de la planification de la notification : \(error.localizedDescription)")
+            } else {
+                print("Notification planifiée avec succès pour 13 heures chaque jour.")
             }
         }
     }
