@@ -17,6 +17,7 @@ final class NewsViewController: UIViewController {
     @IBOutlet weak private var lastPictureLabel: UILabel!
     @IBOutlet weak private var articleView: UIView!
     @IBOutlet weak private var lastPictureView: UIView!
+    @IBOutlet weak private var globalView: UIView!
     
     private var newsViewModel = NewsViewModel()
     private var cancellables: Set<AnyCancellable> = []
@@ -40,14 +41,22 @@ final class NewsViewController: UIViewController {
     }
     
     private final func setUI() {
-        articleLabel.text = articleLabel.text?.uppercased()
-        lastPictureLabel.text = lastPictureLabel.text?.uppercased()
+        
+        // MARK: - Background Image
+        let image: UIImage = UIImage(named: "BGNews")!
+        let imageView: UIImageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.image = image
+        imageView.frame.size = globalView.frame.size
+        globalView.insertSubview(imageView, at: 0)
+        
         setUIView(view: [articleView, lastPictureView])
         spinner.hidesWhenStopped = true
         spinner.center = pictureTableView.center
         pictureTableView.addSubview(spinner)
     }
     
+    // MARK: - To refresh tableView and update picture or article with Combine
     private final func updateUI<T>(data: Published<[T]>.Publisher, tableView: UITableView) {
         data
             .receive(on: DispatchQueue.main)

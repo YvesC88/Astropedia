@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        // MARK: - Task register
+        // MARK: - Task register in background
         
         let taskIdentifier = "com.Astropedia.dailyFetchPicture"
         let calendar = Calendar.current
