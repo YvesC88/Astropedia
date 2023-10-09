@@ -14,8 +14,6 @@ final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var objectImageView: UIImageView!
     @IBOutlet weak var diameterLabel: UILabel!
-    @IBOutlet weak var diameterTextLabel: UILabel!
-    @IBOutlet weak var satTextLabel: UILabel!
     @IBOutlet weak var satLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
     
@@ -36,12 +34,17 @@ final class SolarSystemTableViewCell: UITableViewCell {
         membershipLabel.text = membership
         diameterLabel.text = "\(diameter) km"
         typeLabel.text = type
-        satTextLabel.isHidden = sat == 0
         satLabel.isHidden = sat == 0
-        satLabel.text = sat == 0 ? "" : "\(sat)"
+        if sat <= 1 {
+            satLabel.text = sat == 0 ? "" : "\(sat) Lune"
+        } else {
+            satLabel.text = sat == 0 ? "" : "\(sat) Lunes"
+        }
+        
     }
     
     func blurEffect() {
+        // Remove blurEffect if is already applied
         for subview in cellView.subviews {
             if subview is UIVisualEffectView {
                 subview.removeFromSuperview()
@@ -58,21 +61,17 @@ final class SolarSystemTableViewCell: UITableViewCell {
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
-        //order of gradient colors
-        gradient.colors = [UIColor.orange.cgColor, UIColor.blue.cgColor, UIColor.blue.cgColor, UIColor.white.cgColor]
-        // start and end points
+        gradient.colors = [UIColor.black.cgColor, UIColor.orange.cgColor, UIColor.white.cgColor, UIColor.white.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
         return gradient
     }
     
     func gradientColor(bounds: CGRect, gradientLayer: CAGradientLayer) -> UIColor? {
         UIGraphicsBeginImageContext(gradientLayer.bounds.size)
-        //create UIImage by rendering gradient layer.
         gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        //get gradient UIcolor from gradient UIImage
         return UIColor(patternImage: image!)
     }
 }

@@ -47,10 +47,9 @@ extension UIViewController {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
         //order of gradient colors
-        gradient.colors = [UIColor.orange.cgColor, UIColor.purple.cgColor]
-        // start and end points
+        gradient.colors = [UIColor.black.cgColor, UIColor.orange.cgColor, UIColor.white.cgColor, UIColor.white.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
         return gradient
     }
     
@@ -137,8 +136,7 @@ extension UIViewController {
     }
     
     func setUIView(view: [UIView]) {
-        let views = view
-        for view in views {
+        view.forEach { view in
             view.layer.cornerRadius = 15
             view.layer.shadowColor = UIColor.black.cgColor
             view.layer.shadowOpacity = 0.2
@@ -146,6 +144,15 @@ extension UIViewController {
             view.layer.shadowOffset = CGSize.zero
             view.layer.shadowRadius = 15
         }
+    }
+    
+    func applyBlurEffect(to view: UIView, withCornerRadius cornerRadius: CGFloat) {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.layer.cornerRadius = cornerRadius
+        blurEffectView.clipsToBounds = true
+        blurEffectView.frame = view.bounds
+        view.insertSubview(blurEffectView, at: 0)
     }
     
     final func shareItems(_ items: [Any]) {

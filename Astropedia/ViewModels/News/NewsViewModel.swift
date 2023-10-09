@@ -43,7 +43,7 @@ class NewsViewModel: NSObject {
         }
     }
     
-    final func fetchPictures() {
+    private final func fetchPictures() {
         isLoading = true
         let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
@@ -71,7 +71,7 @@ class NewsViewModel: NSObject {
             if let error = error {
                 print("Erreur lors de la planification de la notification : \(error.localizedDescription)")
             } else {
-                print("Notification planifiée avec succès pour 13 heures chaque jour.")
+                print("Notification planifiée avec succès pour 12 heures chaque jour.")
             }
         }
     }

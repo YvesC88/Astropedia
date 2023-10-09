@@ -18,6 +18,7 @@ final class NewsViewController: UIViewController {
     @IBOutlet weak private var articleView: UIView!
     @IBOutlet weak private var lastPictureView: UIView!
     @IBOutlet weak private var globalView: UIView!
+    @IBOutlet weak var newsView: UIView!
     
     private var newsViewModel = NewsViewModel()
     private var cancellables: Set<AnyCancellable> = []
@@ -48,7 +49,10 @@ final class NewsViewController: UIViewController {
         backgroundView.frame.size = globalView.frame.size
         globalView.insertSubview(backgroundView, at: 0)
         
-        setUIView(view: [articleView, lastPictureView])
+        // MARK: - BlurEffect
+        applyBlurEffect(to: articleView, withCornerRadius: 20)
+        applyBlurEffect(to: lastPictureView, withCornerRadius: 20)
+        
         spinner.hidesWhenStopped = true
         spinner.center = pictureTableView.center
         pictureTableView.addSubview(spinner)
