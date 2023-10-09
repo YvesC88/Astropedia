@@ -11,6 +11,7 @@ import Combine
 final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var solarSystemView: UIView!
     
     private let searchController = UISearchController()
     private var solarSystemViewModel = SolarSystemViewModel()
@@ -18,6 +19,12 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // MARK: - Background Image
+        let backgroundView = UIImageView(image: UIImage(named: "BGSolarSystem"))
+        backgroundView.contentMode = .scaleAspectFill
+        backgroundView.frame.size = solarSystemView.frame.size
+        tableView.backgroundView = backgroundView
+        
         setupSearchController()
         updateUI(data: solarSystemViewModel.$planets, tableView: tableView)
         updateUI(data: solarSystemViewModel.$stars, tableView: tableView)
@@ -29,7 +36,8 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Rechercher dans le Système Solaire"
+        searchController.searchBar.tintColor = .white
+        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Rechercher dans le Système Solaire", attributes: [.foregroundColor: UIColor.white])
         definesPresentationContext = true
     }
     
@@ -49,9 +57,21 @@ extension SolarSystemViewController: UITableViewDataSource {
         return solarSystemViewModel.solarSystem.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return solarSystemViewModel.solarSystem[section].name
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let titleLabel = UILabel()
+        titleLabel.text = solarSystemViewModel.solarSystem[section].name
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerView.addSubview(titleLabel)
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
+            titleLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+        ])
+        return headerView
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return solarSystemViewModel.solarSystem[section].data.count
@@ -62,7 +82,10 @@ extension SolarSystemViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let data = solarSystemViewModel.solarSystem[indexPath.section].data[indexPath.row]
-        cell.configure(name: data.name, image: data.image, sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
+        if let planetimage = SolarSystemViewController.celestObjects[data.name] {
+            cell.configure(name: data.name, image: planetimage, sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
+        }
+        cell.blurEffect()
         return cell
     }
 }
@@ -94,7 +117,7 @@ extension SolarSystemViewController: UISearchResultsUpdating {
             SolarSystemCategory(name: solarSystemViewModel.categories[1], data: filteredPlanets),
             SolarSystemCategory(name: solarSystemViewModel.categories[2], data: filteredDwarfPlanets),
             SolarSystemCategory(name: solarSystemViewModel.categories[3], data: filteredMoons)
-            ]
+        ]
         tableView.reloadData()
     }
 }

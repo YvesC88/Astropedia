@@ -17,6 +17,7 @@ final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var diameterTextLabel: UILabel!
     @IBOutlet weak var satTextLabel: UILabel!
     @IBOutlet weak var satLabel: UILabel!
+    @IBOutlet weak var cellView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,8 +27,8 @@ final class SolarSystemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(name: String, image: String, sat: Int, membership: String, type: String, diameter: Double) {
-        objectImageView.sd_setImage(with: URL(string: image))
+    func configure(name: String, image: UIImage, sat: Int, membership: String, type: String, diameter: Double) {
+        objectImageView.image = image
         objectLabel.text = name
         objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
         let gradient = getGradientLayer(bounds: objectLabel.bounds)
@@ -38,6 +39,20 @@ final class SolarSystemTableViewCell: UITableViewCell {
         satTextLabel.isHidden = sat == 0
         satLabel.isHidden = sat == 0
         satLabel.text = sat == 0 ? "" : "\(sat)"
+    }
+    
+    func blurEffect() {
+        for subview in cellView.subviews {
+            if subview is UIVisualEffectView {
+                subview.removeFromSuperview()
+            }
+        }
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.layer.cornerRadius = 20
+        blurEffectView.clipsToBounds = true
+        blurEffectView.frame = cellView.bounds
+        cellView.insertSubview(blurEffectView, at: 0)
     }
     
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {

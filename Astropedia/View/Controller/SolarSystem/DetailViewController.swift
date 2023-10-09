@@ -39,7 +39,7 @@ final class DetailViewController: UIViewController {
     // MARK: - Private Methods
     
     private func displayDetail() {
-        objectImageView.sd_setImage(with: URL(string: celestObject.image))
+        objectImageView.image = UIImage(named: celestObject.name)
         titleLabel.text = celestObject.name
         statisticsTextView.text = celestObject.statistics.map { "• \($0)" }.joined(separator: "\n\n")
     }

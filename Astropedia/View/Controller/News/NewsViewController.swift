@@ -43,12 +43,10 @@ final class NewsViewController: UIViewController {
     private final func setUI() {
         
         // MARK: - Background Image
-        let image: UIImage = UIImage(named: "BGNews")!
-        let imageView: UIImageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.image = image
-        imageView.frame.size = globalView.frame.size
-        globalView.insertSubview(imageView, at: 0)
+        let backgroundView = UIImageView(image: UIImage(named: "BGNews"))
+        backgroundView.contentMode = .scaleAspectFill
+        backgroundView.frame.size = globalView.frame.size
+        globalView.insertSubview(backgroundView, at: 0)
         
         setUIView(view: [articleView, lastPictureView])
         spinner.hidesWhenStopped = true
