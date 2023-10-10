@@ -23,6 +23,12 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate {
         setupSearchController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        favoritesViewModel.fetchFavorite()
+        favoritesViewModel.isEmpty()
+    }
+    
     private final func updateUI(data: Published<[Favorite]>.Publisher, isFavoriteEmpty: Published<Bool?>.Publisher, favorite: UILabel, tableView: UITableView) {
         Publishers.CombineLatest(data, isFavoriteEmpty)
             .receive(on: DispatchQueue.main)

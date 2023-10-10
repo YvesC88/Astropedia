@@ -48,11 +48,11 @@ final class DetailArticleViewController: UIViewController {
 
     }
     
-    @IBAction private final func didDoubleTapFavorite() {
+    @IBAction private final func didDoubleTapToFavorite() {
         toggleFavoriteStatus()
     }
     
-    @IBAction private final func didTappedFavorite() {
+    @IBAction private final func didTapFavoriteButton() {
         toggleFavoriteStatus()
     }
 }

@@ -20,7 +20,7 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // MARK: - Background Image
-        let backgroundView = UIImageView(image: UIImage(named: "BGSolarSystem"))
+        let backgroundView = UIImageView(image: UIImage(named: "BGNews"))
         backgroundView.contentMode = .scaleAspectFill
         backgroundView.frame.size = solarSystemView.frame.size
         tableView.backgroundView = backgroundView
