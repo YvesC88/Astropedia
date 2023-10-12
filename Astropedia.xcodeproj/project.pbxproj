@@ -53,6 +53,7 @@
 		FBC8305D2A3471970004C79B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC8305C2A3471970004C79B /* GalleryViewController.swift */; };
 		FBC830612A347B8B0004C79B /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC830602A347B8B0004C79B /* GalleryCollectionViewCell.swift */; };
 		FBC830632A3482D90004C79B /* DetailGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC830622A3482D90004C79B /* DetailGalleryViewController.swift */; };
+		FBC90ACE2AD743E700779FB5 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC90ACD2AD743E700779FB5 /* TipsViewController.swift */; };
 		FBCBFAAA2A7D50E6005149FC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAA92A7D50E6005149FC /* SDWebImage */; };
 		FBCBFAAD2A7D50FB005149FC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAAC2A7D50FB005149FC /* Alamofire */; };
 		FBCBFAB02A7D5158005149FC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FBCBFAAF2A7D5158005149FC /* FirebaseAnalytics */; };
@@ -137,6 +138,7 @@
 		FBC8305C2A3471970004C79B /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		FBC830602A347B8B0004C79B /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		FBC830622A3482D90004C79B /* DetailGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGalleryViewController.swift; sourceTree = "<group>"; };
+		FBC90ACD2AD743E700779FB5 /* TipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
 		FBDC54372AC02A7700C05A17 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		FBEC43EA2A3F674A00D76790 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
 		FBEC43EC2A3F6CB700D76790 /* QuizzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				FBC2CC0B2A6FD83F00F2DD8D /* Quizz */,
 				FBC2CC0D2A6FD85700F2DD8D /* Settings */,
 				FBC2CC082A6FD80000F2DD8D /* SolarSystem */,
+				FBC90ACC2AD743C800779FB5 /* Tips */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -413,6 +416,14 @@
 				FB15CAE4297566DA00FEE718 /* Info.plist */,
 			);
 			path = Ressources;
+			sourceTree = "<group>";
+		};
+		FBC90ACC2AD743C800779FB5 /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				FBC90ACD2AD743E700779FB5 /* TipsViewController.swift */,
+			);
+			path = Tips;
 			sourceTree = "<group>";
 		};
 		FBDC54392AC02A7B00C05A17 /* Favorites */ = {
@@ -670,6 +681,7 @@
 			files = (
 				FBBB1B9E2ABB193E00D0F445 /* AsteroidsViewModel.swift in Sources */,
 				FBAC78FC29F56464009DFF86 /* APIApod.swift in Sources */,
+				FBC90ACE2AD743E700779FB5 /* TipsViewController.swift in Sources */,
 				FBC830612A347B8B0004C79B /* GalleryCollectionViewCell.swift in Sources */,
 				FB849A3329D6EADF00ACABA6 /* AsteroidService.swift in Sources */,
 				FB6922282A094C400034A65B /* FavoritesTableViewCell.swift in Sources */,

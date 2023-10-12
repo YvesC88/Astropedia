@@ -26,8 +26,8 @@ class DetailAsteroidViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
-        let gradientTitleLabel = self.getGradientLayer(bounds: asteroidNameLabel.bounds)
-        asteroidNameLabel.textColor = self.gradientColor(bounds: asteroidNameLabel.bounds, gradientLayer: gradientTitleLabel)
+        let gradientTitleLabel = getGradientLayer(bounds: asteroidNameLabel.bounds, colors: [UIColor.black, UIColor.orange, UIColor.white, UIColor.white])
+        asteroidNameLabel.textColor = gradientColor(bounds: asteroidNameLabel.bounds, gradientLayer: gradientTitleLabel)
         setData()
         setUIView(view: [infoView, globalInfoView])
         setUIButton(button: [urlButton])

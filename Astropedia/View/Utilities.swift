@@ -43,13 +43,13 @@ extension UIViewController {
         "Hypérion": UIImage(named: "Hypérion")!
     ]
     
-    func getGradientLayer(bounds: CGRect) -> CAGradientLayer {
+    func getGradientLayer(bounds: CGRect, colors: [UIColor]) -> CAGradientLayer {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
         //order of gradient colors
-        gradient.colors = [UIColor.black.cgColor, UIColor.orange.cgColor, UIColor.white.cgColor, UIColor.white.cgColor]
-        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
+        gradient.colors = colors.map { $0.cgColor }
+        gradient.startPoint = CGPoint(x: 0, y: 1)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
         return gradient
     }
     
@@ -149,7 +149,7 @@ extension UIViewController {
     func applyBlurEffect(to view: UIView, withCornerRadius cornerRadius: CGFloat) {
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.layer.cornerRadius = cornerRadius
+        view.layer.cornerRadius = cornerRadius
         blurEffectView.clipsToBounds = true
         blurEffectView.frame = view.bounds
         view.insertSubview(blurEffectView, at: 0)

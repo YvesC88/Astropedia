@@ -17,17 +17,15 @@ final class NewsViewController: UIViewController {
     @IBOutlet weak private var pictureLabel: UILabel!
     @IBOutlet weak private var articleView: UIView!
     @IBOutlet weak private var pictureView: UIView!
-    @IBOutlet weak private var globalView: UIView!
+    @IBOutlet weak private var newsView: UIView!
     
     private var newsViewModel = NewsViewModel()
     private var cancellables: Set<AnyCancellable> = []
-    private var lastContentOffset: CGFloat = 0.0
     private let spinner = UIActivityIndicatorView(style: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        scrollView.delegate = self
         newsViewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -47,8 +45,8 @@ final class NewsViewController: UIViewController {
         // MARK: - Background Image
         let backgroundView = UIImageView(image: UIImage(named: "BGNews"))
         backgroundView.contentMode = .scaleAspectFill
-        backgroundView.frame.size = globalView.frame.size
-        globalView.insertSubview(backgroundView, at: 0)
+        backgroundView.frame = newsView.bounds
+        newsView.insertSubview(backgroundView, at: 0)
         
         // MARK: - BlurEffect
         applyBlurEffect(to: articleView, withCornerRadius: 20)
@@ -135,20 +133,5 @@ extension NewsViewController: UITableViewDelegate {
         default:
             break
         }
-    }
-}
-
-extension NewsViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentOffset = scrollView.contentOffset.y
-        if currentOffset > lastContentOffset && currentOffset > 0 {
-            UIView.animate(withDuration: 0.5) {
-                self.tabBarController?.tabBar.alpha = 0
-            }
-        } else if currentOffset < lastContentOffset || currentOffset == 0 {
-            self.tabBarController?.tabBar.alpha = 1
-        }
-        lastContentOffset = currentOffset
     }
 }

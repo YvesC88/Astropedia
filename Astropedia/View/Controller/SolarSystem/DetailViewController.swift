@@ -47,7 +47,7 @@ final class DetailViewController: UIViewController {
     private func configureUI() {
         titleLabel.layer.masksToBounds = true
         titleLabel.layer.cornerRadius = 25
-        let gradientTitleLabel = self.getGradientLayer(bounds: titleLabel.bounds)
+        let gradientTitleLabel = self.getGradientLayer(bounds: titleLabel.bounds, colors: [UIColor.black, UIColor.orange, UIColor.white, UIColor.white])
         titleLabel.textColor = self.gradientColor(bounds: titleLabel.bounds, gradientLayer: gradientTitleLabel)
     }
     

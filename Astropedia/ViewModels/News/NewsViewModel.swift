@@ -52,11 +52,10 @@ class NewsViewModel: NSObject {
                 self.picture = picture
             }
             self.isLoading = false
-            self.scheduleDailyNotification()
         }
     }
     
-    private final func scheduleDailyNotification() {
+    final func scheduleDailyNotification() {
         let lastPicture = self.picture.last?.toPicture()
         let content = UNMutableNotificationContent()
         content.title = "Nouvelle image disponible !"

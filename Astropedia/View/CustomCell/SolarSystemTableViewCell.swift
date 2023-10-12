@@ -29,7 +29,7 @@ final class SolarSystemTableViewCell: UITableViewCell {
         objectImageView.image = image
         objectLabel.text = name
         objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
-        let gradient = getGradientLayer(bounds: objectLabel.bounds)
+        let gradient = getGradientLayer(bounds: objectLabel.bounds, colors: [UIColor(red: 39/255, green: 55/255, blue: 74/255, alpha: 1), UIColor.orange, UIColor.white])
         objectLabel.textColor = gradientColor(bounds: objectLabel.bounds, gradientLayer: gradient)
         membershipLabel.text = membership
         diameterLabel.text = "\(diameter) km"
@@ -58,10 +58,10 @@ final class SolarSystemTableViewCell: UITableViewCell {
         cellView.insertSubview(blurEffectView, at: 0)
     }
     
-    func getGradientLayer(bounds: CGRect) -> CAGradientLayer {
+    func getGradientLayer(bounds: CGRect, colors: [UIColor]) -> CAGradientLayer {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
-        gradient.colors = [UIColor.black.cgColor, UIColor.orange.cgColor, UIColor.white.cgColor, UIColor.white.cgColor]
+        gradient.colors = colors.map { $0.cgColor }
         gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
         gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
         return gradient

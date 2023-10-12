@@ -81,8 +81,17 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         }
     }
     
+    @IBAction private final func saveImage() {
+        if picture.mediaType == "image" {
+            guard let image = self.imageView.image else { return }
+            shareItems([image])
+        } else {
+            guard let videoURLString = picture.videoURL, let videoURL = URL(string: videoURLString) else { return }
+            shareItems([videoURL])
+        }
+    }
     
-    @IBAction func doubleTapFavorite() {
+    @IBAction private final func doubleTapFavorite() {
         toggleFavoriteStatus()
     }
     

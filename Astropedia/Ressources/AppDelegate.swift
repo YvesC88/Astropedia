@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 import UserNotifications
-import BackgroundTasks
+//import BackgroundTasks
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,33 +19,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // MARK: - User request notifications
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if granted {
-                print("Notifications are allowed")
-            } else {
-                print("Noticiations are not allowed")
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            if settings.authorizationStatus == .notDetermined {
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                    if granted {
+                        let newsViewModel = NewsViewModel()
+                        newsViewModel.scheduleDailyNotification()
+                    }
+                    UserDefaults.standard.set(granted, forKey: "isAllowed")
+                }
             }
         }
         
         // MARK: - Task register in background
         
-//        let taskIdentifier = "com.Astropedia.dailyFetchPicture"
-//        let calendar = Calendar.current
-//        
-//        let dateComponents = DateComponents(hour: 11, minute: 00)
-//        let request = BGAppRefreshTaskRequest(identifier: taskIdentifier)
-//        request.earliestBeginDate = calendar.nextDate(after: Date(), matching: dateComponents, matchingPolicy: .nextTime)
-//        BGTaskScheduler.shared.register(forTaskWithIdentifier: taskIdentifier, using: nil) { task in
-//            let newsViewModel = NewsViewModel()
-//            newsViewModel.fetchPictures()
-//            task.setTaskCompleted(success: true)
-//        }
-//        do {
-//            try BGTaskScheduler.shared.submit(request)
-//            print("Task submitted in background")
-//        } catch {
-//            print("Error submitted task : \(error)")
-//        }
+        //        let taskIdentifier = "com.Astropedia.dailyFetchPicture"
+        //        let calendar = Calendar.current
+        //
+        //        let dateComponents = DateComponents(hour: 11, minute: 00)
+        //        let request = BGAppRefreshTaskRequest(identifier: taskIdentifier)
+        //        request.earliestBeginDate = calendar.nextDate(after: Date(), matching: dateComponents, matchingPolicy: .nextTime)
+        //        BGTaskScheduler.shared.register(forTaskWithIdentifier: taskIdentifier, using: nil) { task in
+        //            let newsViewModel = NewsViewModel()
+        //            newsViewModel.fetchPictures()
+        //            task.setTaskCompleted(success: true)
+        //        }
+        //        do {
+        //            try BGTaskScheduler.shared.submit(request)
+        //            print("Task submitted in background")
+        //        } catch {
+        //            print("Error submitted task : \(error)")
+        //        }
         
         
         // MARK: - Firebase configuration
