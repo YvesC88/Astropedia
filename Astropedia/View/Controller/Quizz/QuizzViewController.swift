@@ -14,32 +14,48 @@ enum ButtonState {
 
 class QuizzViewController: UIViewController {
     
-    @IBOutlet weak var correctAnswerLabel: UILabel!
-    @IBOutlet weak var incorrectAnswerLabel: UILabel!
-    @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
-    @IBOutlet weak var newGameButton: UIButton!
-    @IBOutlet weak var currentQuestionLabel: UILabel!
-    @IBOutlet weak var nextQuestionButton: UIButton!
-    @IBOutlet weak var questionView: UIView!
-    @IBOutlet weak var numberOfQuestionView: UIView!
-    @IBOutlet weak var scoreView: UIView!
+    @IBOutlet private weak var correctAnswerLabel: UILabel!
+    @IBOutlet private weak var incorrectAnswerLabel: UILabel!
+    @IBOutlet private weak var questionLabel: UILabel!
+    @IBOutlet private weak var trueButton: UIButton!
+    @IBOutlet private weak var falseButton: UIButton!
+    @IBOutlet private weak var newGameButton: UIButton!
+    @IBOutlet private weak var currentQuestionLabel: UILabel!
+    @IBOutlet private weak var nextQuestionButton: UIButton!
+    @IBOutlet private weak var questionView: UIView!
+    @IBOutlet private weak var numberOfQuestionView: UIView!
+    @IBOutlet private weak var scoreView: UIView!
     
-    let questionService = QuestionService(wrapper: FirebaseWrapper())
-    var buttonState: ButtonState = .none
-    var buttonPressed: Bool?
+    private let questionService = QuestionService(wrapper: FirebaseWrapper())
+    private var buttonState: ButtonState = .none
+    private var buttonPressed: Bool?
+    
+    private lazy var gradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        gradient.colors = [
+            UIColor(red: 39/255, green: 55/255, blue: 74/255, alpha: 1).cgColor,
+            UIColor.black.cgColor
+        ]
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 0, y: 1)
+        return gradient
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gradient.frame = view.bounds
+        view.layer.insertSublayer(gradient, at: 0)
+        
         questionService.fetchQuestion(collectionID: "questions")
-        numberOfQuestionView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.4)
         questionService.questionDelegate = self
         setUIButton(button: [newGameButton, nextQuestionButton])
-        setUIView(view: [questionView, scoreView])
+        
+        applyBlurEffect(to: questionView, withCornerRadius: 20)
+        applyBlurEffect(to: scoreView, withCornerRadius: 20)
     }
     
-    @IBAction func didTappedButton(_ sender: UIButton) {
+    @IBAction private final func didTappedButton(_ sender: UIButton) {
         let isTrueButton = sender == trueButton
         if buttonState == (isTrueButton ? .truePressed : .falsePressed) {
             buttonState = .none
@@ -48,12 +64,12 @@ class QuizzViewController: UIViewController {
         } else {
             buttonState = isTrueButton ? .truePressed : .falsePressed
             nextQuestionButton.isEnabled = true
-            colorSelectedButton(button: sender)
+            setButtonBorderColor(button: sender, color: UIColor.white)
             resetSelectedButton(buttons: [isTrueButton ? falseButton : trueButton])
         }
     }
     
-    @IBAction func didTappedSubmit() {
+    @IBAction private final func didTappedSubmit() {
         if buttonState == .submitPressed {
             questionService.goToNextQuestion()
             buttonState = .none
@@ -65,9 +81,9 @@ class QuizzViewController: UIViewController {
         } else {
             questionService.checkAnswer(question: questionService.random ?? Question(text: "Erreur", answer: true), userAnswer: buttonState == .truePressed)
             if questionService.isCorrect {
-                correctColorButton(button: buttonPressed ?? false ? trueButton : falseButton)
+                setButtonBorderColor(button: buttonPressed ?? false ? trueButton : falseButton, color: UIColor.systemGreen)
             } else {
-                incorrectColorButton(button: buttonPressed ?? false ? falseButton : trueButton)
+                setButtonBorderColor(button: buttonPressed ?? false ? falseButton : trueButton, color: UIColor.systemRed)
             }
             nextQuestionButton.setTitle("Suivant", for: .normal)
             buttonState = .submitPressed
@@ -76,7 +92,7 @@ class QuizzViewController: UIViewController {
         }
     }
     
-    @IBAction func didTappedNewGame() {
+    @IBAction private final func didTappedNewGame() {
         questionService.newGame()
         buttonState = .none
         resetSelectedButton(buttons: [trueButton, falseButton])
@@ -111,7 +127,7 @@ extension QuizzViewController: QuestionDelegate {
     }
     
     func currentQuestion(number: Int, isHidden: Bool) {
-        currentQuestionLabel.text = ("Question \(number) / 10").uppercased()
+        currentQuestionLabel.text = "Question \(number) / 10"
         currentQuestionLabel.isHidden = isHidden
     }
     

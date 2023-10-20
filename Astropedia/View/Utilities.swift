@@ -10,6 +10,7 @@ import UIKit
 extension UIViewController {
     
     static let dateFormat = "yyyy-MM-dd"
+    static let coreDataStack = CoreDataStack()
     
     static let celestObjects = [
         "Soleil": UIImage(named: "Soleil")!,
@@ -86,10 +87,10 @@ extension UIViewController {
         let confirmAction = UIAlertAction(title: cancel, style: .default)
         alertVC.addAction(confirmAction)
         let cancelAction = UIAlertAction(title: delete, style: .destructive) { action in
-            if CoreDataStack.share.hasData() {
+            if UIViewController.coreDataStack.hasData() {
                 // element in CoreData
                 do {
-                    try CoreDataStack.share.deleteAllData()
+                    try UIViewController.coreDataStack.deleteAllData()
                     self.quickAlert(title: confirm)
                 } catch {
                     self.presentAlert(title: "Error", message: "Une erreur est survenue lors de la suppression des favoris. Veuillez réessayer.")
@@ -107,24 +108,12 @@ extension UIViewController {
     func setUIButton(button: [UIButton]) {
         let buttons = button
         for button in buttons {
-            button.layer.borderColor = UIColor.systemBlue.withAlphaComponent(0.5).cgColor
-            button.layer.borderWidth = 2
             button.layer.cornerRadius = 20
         }
     }
     
-    func colorSelectedButton(button: UIButton) {
-        button.layer.borderColor = UIColor.systemBlue.cgColor
-        button.layer.borderWidth = 2
-    }
-    
-    func correctColorButton(button: UIButton) {
-        button.layer.borderColor = UIColor.systemGreen.cgColor
-        button.layer.borderWidth = 2
-    }
-    
-    func incorrectColorButton(button: UIButton) {
-        button.layer.borderColor = UIColor.systemRed.cgColor
+    func setButtonBorderColor(button: UIButton, color: UIColor) {
+        button.layer.borderColor = color.cgColor
         button.layer.borderWidth = 2
     }
     

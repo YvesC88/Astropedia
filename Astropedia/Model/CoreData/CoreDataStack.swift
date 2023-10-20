@@ -18,21 +18,21 @@ open class CoreDataStack: CoreDataStackProtocol {
     
     // MARK: - Properties
     
-    let persistentContainerName = "Astropedia"
+    private let persistentContainerName = "Astropedia"
     
-    static let share = CoreDataStack()
+//    static let share = CoreDataStack()
     
     var viewContext: NSManagedObjectContext {
-        return CoreDataStack.share.persistentContainer.viewContext
+        return persistentContainer.viewContext
+//        return CoreDataStack.share.persistentContainer.viewContext
     }
     
-    init() {}
+//    init() {}
     
     public lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: persistentContainerName)
         container.loadPersistentStores(completionHandler: { storeDescritpion, error in
             if let error = error as NSError? {
-                
                 fatalError("Unresolved error \(error), \(error.userInfo) for : \(storeDescritpion.description)")
             }
         })
@@ -43,11 +43,8 @@ open class CoreDataStack: CoreDataStackProtocol {
     // MARK: - Methods
     
     func save() throws {
-        do {
-            try viewContext.save()
-        } catch {
-            print("Error")
-        }
+        do { try viewContext.save() }
+        catch { print("Error") }
     }
 
     func unsavePicture(picture: Picture) throws {
@@ -57,11 +54,8 @@ open class CoreDataStack: CoreDataStackProtocol {
         let result = try? viewContext.fetch(fetchRequest)
         if let localPicture = result?.first {
             viewContext.delete(localPicture)
-            do {
-                try save()
-            } catch {
-                print("Error")
-            }
+            do { try save() }
+            catch { print("Error") }
         }
     }
     
@@ -72,11 +66,8 @@ open class CoreDataStack: CoreDataStackProtocol {
         let result = try? viewContext.fetch(fetchRequest)
         if let localArticle = result?.first {
             viewContext.delete(localArticle)
-            do {
-                try save()
-            } catch {
-                print("Error")
-            }
+            do { try save() }
+            catch { print("Error") }
         }
     }
     

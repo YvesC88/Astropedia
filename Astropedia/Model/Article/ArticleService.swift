@@ -12,6 +12,7 @@ class ArticleService {
     
     // MARK: - Properties
     let firebaseWrapper: FirebaseProtocol
+    private let coreDataStack = CoreDataStack()
     
     init(wrapper: FirebaseProtocol) {
         self.firebaseWrapper = wrapper
@@ -48,14 +49,14 @@ class ArticleService {
     
     func unsaveArticle(article: Article) {
         do {
-            try CoreDataStack.share.unsaveArticle(article: article)
+            try coreDataStack.unsaveArticle(article: article)
         } catch {
             print("Error : \(error)")
         }
     }
     
     func isFavoriteArticle(article: Article) -> Bool {
-        let context = CoreDataStack.share.viewContext
+        let context = coreDataStack.viewContext
         let fetchRequest: NSFetchRequest<LocalArticle> = LocalArticle.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", article.id ?? "")
         return ((try? context.count(for: fetchRequest)) ?? 0) > 0

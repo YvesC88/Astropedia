@@ -14,6 +14,7 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var favoriteLabel: UILabel!
     
     private let favoritesViewModel = FavoritesViewModel()
+    private let coreDataStack = CoreDataStack()
     private var cancellables: Set<AnyCancellable> = []
     private let searchController = UISearchController()
     
@@ -103,7 +104,7 @@ extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        let context = CoreDataStack.share.viewContext
+        let context = coreDataStack.viewContext
         var categoryData = favoritesViewModel.filteredFavorites[indexPath.section].data
         if let picture = categoryData[indexPath.row] as? LocalPicture {
             context.delete(picture)

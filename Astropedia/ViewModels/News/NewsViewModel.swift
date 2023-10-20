@@ -17,6 +17,8 @@ class NewsViewModel: NSObject {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
+    private let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
+    private let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
     
     private let articleService = ArticleService(wrapper: FirebaseWrapper())
     private let pictureService = PictureService(wrapper: FirebaseWrapper())
@@ -27,7 +29,9 @@ class NewsViewModel: NSObject {
     
     override init() {
         super.init()
-        fetchPictures()
+        Task {
+            await fetchPictures(startDate: formatDate(date: startDate), endDate: formatDate(date: endDate))
+        }
         fetchArticles()
     }
     
@@ -43,15 +47,15 @@ class NewsViewModel: NSObject {
         }
     }
     
-    private final func fetchPictures() {
+    private final func fetchPictures(startDate: String, endDate: String) async -> Result<[APIApod], Error> {
         isLoading = true
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
-        let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
-        pictureService.getPicture(startDate: formatDate(date: startDate), endDate: formatDate(date: endDate)) { picture in
-            if let picture = picture {
-                self.picture = picture
-            }
+        do {
+            let pictures = try await pictureService.getPicture(startDate: startDate, endDate: endDate)
+            self.picture = pictures
             self.isLoading = false
+            return .success(pictures)
+        } catch {
+            return .failure(error)
         }
     }
     

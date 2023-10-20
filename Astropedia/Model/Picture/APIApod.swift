@@ -27,9 +27,9 @@ extension APIApod {
     
     func toPicture() -> Picture {
         let dateFormatter = DateFormatter()
+        let date = dateFormatter.date(from: self.date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "us_US")
-        let date = dateFormatter.date(from: self.date)
         dateFormatter.dateStyle = .full
         dateFormatter.dateFormat = "dd MM yyyy"
         dateFormatter.locale = Locale(identifier: "fr_FR")

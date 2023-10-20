@@ -10,6 +10,8 @@ import CoreData
 
 class FavoritesViewModel: NSObject {
     
+    private let coreDataStack = CoreDataStack()
+    
     @Published var favorites: [Favorite] = []
     @Published var filteredFavorites: [Favorite] = []
     @Published var isEmptyFavorite: Bool?
@@ -23,8 +25,8 @@ class FavoritesViewModel: NSObject {
     final func fetchFavorite() {
         let pictureRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
         let articleRequest: NSFetchRequest<LocalArticle> = LocalArticle.fetchRequest()
-        guard let picture = try? CoreDataStack.share.viewContext.fetch(pictureRequest) else { return }
-        guard let article = try? CoreDataStack.share.viewContext.fetch(articleRequest) else { return }
+        guard let picture = try? coreDataStack.viewContext.fetch(pictureRequest) else { return }
+        guard let article = try? coreDataStack.viewContext.fetch(articleRequest) else { return }
         favorites = [
             Favorite(name: "Mes images", type: .picture, data: picture),
             Favorite(name: "Mes articles", type: .article, data: article)

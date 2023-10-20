@@ -98,7 +98,7 @@ iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-**/ApiKeys.swift
+**/Constant.swift
 **/GoogleService-Info.plist
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode

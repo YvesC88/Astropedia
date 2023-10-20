@@ -22,7 +22,7 @@
 		FB15CB272975958A00FEE718 /* SolarSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* SolarSystemTableViewCell.swift */; };
 		FB15CB282975958A00FEE718 /* SolarSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB262975958A00FEE718 /* SolarSystemTableViewCell.swift */; };
 		FB15CB2A2976935100FEE718 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CB292976935000FEE718 /* DetailViewController.swift */; };
-		FB1881AE2A12DC5100B6EBCC /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1881AD2A12DC5100B6EBCC /* ApiKeys.swift */; };
+		FB1881AE2A12DC5100B6EBCC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1881AD2A12DC5100B6EBCC /* Constant.swift */; };
 		FB1919EF2A24A207003DA575 /* FirebaseWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1919EE2A24A207003DA575 /* FirebaseWrapperMock.swift */; };
 		FB40AE5F2A13D14A0067FCAC /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB40AE5E2A13D14A0067FCAC /* ArticleService.swift */; };
 		FB40AE612A13D1700067FCAC /* LocalArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB40AE602A13D1700067FCAC /* LocalArticle.swift */; };
@@ -107,7 +107,7 @@
 		FB15CB202975745200FEE718 /* FirebaseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapper.swift; sourceTree = "<group>"; };
 		FB15CB262975958A00FEE718 /* SolarSystemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystemTableViewCell.swift; sourceTree = "<group>"; };
 		FB15CB292976935000FEE718 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		FB1881AD2A12DC5100B6EBCC /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
+		FB1881AD2A12DC5100B6EBCC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		FB1919EE2A24A207003DA575 /* FirebaseWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapperMock.swift; sourceTree = "<group>"; };
 		FB24B71E2AD88CA6005270E0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		FB24B71F2AD88CA6005270E0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 				FB4766792A5567E90014C098 /* PrivacyPolicy */,
 				FBEC43E72A3F66CF00D76790 /* Quizz */,
 				FB4766782A5567B70014C098 /* SolarSystem */,
-				FB1881AD2A12DC5100B6EBCC /* ApiKeys.swift */,
+				FB1881AD2A12DC5100B6EBCC /* Constant.swift */,
 				FB15CB202975745200FEE718 /* FirebaseWrapper.swift */,
 			);
 			path = Model;
@@ -585,7 +585,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					FB15CAD2297566D800FEE718 = {
 						CreatedOnToolsVersion = 14.2;
@@ -710,7 +710,7 @@
 				FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */,
 				FBF937852A0A6E1D008235E6 /* PictureTableViewCell.swift in Sources */,
 				FBB009032A5B027500EC890D /* Favorite.swift in Sources */,
-				FB1881AE2A12DC5100B6EBCC /* ApiKeys.swift in Sources */,
+				FB1881AE2A12DC5100B6EBCC /* Constant.swift in Sources */,
 				FB9D31BA2A215F9F00CCC8D9 /* PrivacyPolicyViewController.swift in Sources */,
 				FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */,
 				FB849A4A29DB69AB00ACABA6 /* Asteroid.swift in Sources */,
