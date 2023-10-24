@@ -40,19 +40,13 @@ class ArticleService {
         articles.source = source
         articles.articleText = articleText
         articles.id = id
-        do {
-            try context.save()
-        } catch {
-            print("Error \(error)")
-        }
+        do { try context.save() }
+        catch { print("Error \(error)") }
     }
     
     func unsaveArticle(article: Article) {
-        do {
-            try coreDataStack.unsaveArticle(article: article)
-        } catch {
-            print("Error : \(error)")
-        }
+        do { try coreDataStack.unsaveArticle(article: article) }
+        catch { print("Error : \(error)") }
     }
     
     func isFavoriteArticle(article: Article) -> Bool {

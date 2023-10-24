@@ -18,7 +18,7 @@ class PictureService {
     }
     
     final func getPicture(startDate: String, endDate:String) async throws -> [APIApod] {
-        let endPoint = Constant.baseUrl + Constant.apiPicture + "?api_key=" + Constant.apiKey + Constant.startDate + "\(startDate)" + Constant.endDate + "\(endDate)"
+        let endPoint = Constant.baseUrl + Constant.apiPicture + Constant.apiKey + Constant.startDate + "\(startDate)" + Constant.endDate + "\(endDate)"
         guard let url = URL(string: endPoint) else { throw ResultError.invalidUrl }
         let (result, response) = try await URLSession.shared.data(from: url)
         guard let response = response as? HTTPURLResponse,

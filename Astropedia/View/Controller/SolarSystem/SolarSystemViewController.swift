@@ -85,7 +85,7 @@ extension SolarSystemViewController: UITableViewDataSource {
         }
         let data = solarSystemViewModel.solarSystem[indexPath.section].data[indexPath.row]
         if let planetimage = SolarSystemViewController.celestObjects[data.name] {
-            cell.configure(name: data.name, image: planetimage, sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
+            cell.configure(name: data.name, image: planetimage ?? UIImage(), sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
         }
         cell.blurEffect()
         return cell
