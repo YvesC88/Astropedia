@@ -22,9 +22,14 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         // MARK: - Background Image
+        //        let backgroundView = UIImageView(image: UIImage(named: "BGSolarSystem"))
+        //        backgroundView.contentMode = .scaleAspectFill
+        //        backgroundView.frame.size = solarSystemView.frame.size
+        //        tableView.backgroundView = backgroundView
+        
         let backgroundView = UIImageView(image: UIImage(named: "BGSolarSystem"))
         backgroundView.contentMode = .scaleAspectFill
-        backgroundView.frame.size = solarSystemView.frame.size
+        backgroundView.frame = view.bounds
         tableView.backgroundView = backgroundView
         
         setupSearchController()
@@ -128,16 +133,16 @@ extension SolarSystemViewController: UISearchResultsUpdating {
 extension SolarSystemViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            let currentOffset = scrollView.contentOffset.y
-            if currentOffset > lastContentOffset && currentOffset > 0 {
-                UIView.animate(withDuration: 0.5) {
-                    self.tabBarController?.tabBar.alpha = 0
-                }
-            } else {
-                UIView.animate(withDuration: 0.2) {
-                    self.tabBarController?.tabBar.alpha = 1
-                }
+        let currentOffset = scrollView.contentOffset.y
+        if currentOffset > lastContentOffset && currentOffset > 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.tabBarController?.tabBar.alpha = 0
             }
-            lastContentOffset = currentOffset
+        } else {
+            UIView.animate(withDuration: 0.2) {
+                self.tabBarController?.tabBar.alpha = 1
+            }
         }
+        lastContentOffset = currentOffset
+    }
 }

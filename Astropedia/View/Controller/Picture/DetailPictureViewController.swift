@@ -44,11 +44,10 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
             imageView.sd_setImage(with: URL(string: picture.imageURL ?? ""))
         } else {
             uiView.isHidden = true
-            if let url = URL(string: picture.videoURL ?? "") {
-                let request = URLRequest(url: url)
-                videoWKWebView.navigationDelegate = self
-                videoWKWebView.load(request)
-            }
+            guard let url = URL(string: picture.videoURL ?? "") else { return }
+            let request = URLRequest(url: url)
+            videoWKWebView.navigationDelegate = self
+            videoWKWebView.load(request)
         }
     }
     
@@ -71,7 +70,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         }
     }
     
-    @IBAction private final func didSharedImage() {
+    private final func toShare() {
         if picture.mediaType == "image" {
             guard let image = self.imageView.image else { return }
             shareItems([image])
@@ -81,14 +80,12 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         }
     }
     
+    @IBAction private final func didSharedImage() {
+        toShare()
+    }
+    
     @IBAction private final func saveImage() {
-        if picture.mediaType == "image" {
-            guard let image = self.imageView.image else { return }
-            shareItems([image])
-        } else {
-            guard let videoURLString = picture.videoURL, let videoURL = URL(string: videoURLString) else { return }
-            shareItems([videoURL])
-        }
+        toShare()
     }
     
     @IBAction private final func doubleTapFavorite() {

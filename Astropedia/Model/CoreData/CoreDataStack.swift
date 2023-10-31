@@ -10,7 +10,6 @@ import CoreData
 
 protocol CoreDataStackProtocol {
     func save() throws
-//    func unSave(uri: String) throws
 }
 
 open class CoreDataStack: CoreDataStackProtocol {
@@ -20,14 +19,13 @@ open class CoreDataStack: CoreDataStackProtocol {
     
     private let persistentContainerName = "Astropedia"
     
-//    static let share = CoreDataStack()
+    static let share = CoreDataStack()
     
     var viewContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
-//        return CoreDataStack.share.persistentContainer.viewContext
+        return CoreDataStack.share.persistentContainer.viewContext
     }
     
-//    init() {}
+    init() {}
     
     public lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: persistentContainerName)
