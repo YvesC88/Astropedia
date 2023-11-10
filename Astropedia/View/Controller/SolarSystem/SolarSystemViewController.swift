@@ -22,10 +22,6 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         // MARK: - Background Image
-        //        let backgroundView = UIImageView(image: UIImage(named: "BGSolarSystem"))
-        //        backgroundView.contentMode = .scaleAspectFill
-        //        backgroundView.frame.size = solarSystemView.frame.size
-        //        tableView.backgroundView = backgroundView
         
         let backgroundView = UIImageView(image: UIImage(named: "BGSolarSystem"))
         backgroundView.contentMode = .scaleAspectFill

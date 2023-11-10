@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-class FavoritesViewController: UIViewController, UISearchBarDelegate {
+class FavoritesViewController: UIViewController, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favoriteLabel: UILabel!
     
@@ -52,7 +52,10 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate {
         case let article as LocalArticle:
             guard let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as? DetailArticleViewController else { return }
             detailArticleVC.article = article.toArticle()
-            self.navigationController?.pushViewController(detailArticleVC, animated: true)
+            let navController = UINavigationController(rootViewController: detailArticleVC)
+//            navController.modalPresentationStyle = .fullScreen
+//            navController.transitioningDelegate = self
+            self.present(navController, animated: true)
             
         default:
             return

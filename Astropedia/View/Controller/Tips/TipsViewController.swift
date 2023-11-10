@@ -34,8 +34,4 @@ class TipsViewController: UIViewController {
         applyBlurEffect(to: tips2View, withCornerRadius: 20)
         applyBlurEffect(to: tips3View, withCornerRadius: 20)
     }
-    
-    @IBAction private final func dismissTipsVC() {
-        dismiss(animated: true)
-    }
 }

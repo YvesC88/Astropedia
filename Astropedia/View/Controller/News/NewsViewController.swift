@@ -8,31 +8,7 @@
 import UIKit
 import Combine
 
-class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.7
-    }
-    
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let toView = transitionContext.view(forKey: .to) else {
-            transitionContext.completeTransition(false)
-            return
-        }
-        
-        let containerView = transitionContext.containerView
-        let containerViewCenter = CGPoint(x: containerView.bounds.midX, y: containerView.bounds.midY)
-        toView.center = containerViewCenter
-        toView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-        containerView.addSubview(toView)
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-            toView.transform = .identity
-        }, completion: { (finished) in
-            transitionContext.completeTransition(finished)
-        })
-    }
-}
-
-final class NewsViewController: UIViewController, UINavigationControllerDelegate {
+final class NewsViewController: UIViewController {
     
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var pictureTableView: UITableView!
@@ -44,18 +20,6 @@ final class NewsViewController: UIViewController, UINavigationControllerDelegate
     private var newsViewModel = NewsViewModel()
     private var cancellables: Set<AnyCancellable> = []
     private let spinner = UIActivityIndicatorView(style: .medium)
-    
-    private lazy var gradient: CAGradientLayer = {
-        let gradient = CAGradientLayer()
-        gradient.type = .axial
-        gradient.colors = [
-            UIColor(red: 39/255, green: 55/255, blue: 74/255, alpha: 1).cgColor,
-            UIColor.black.cgColor
-        ]
-        gradient.startPoint = CGPoint(x: 0, y: 1)
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        return gradient
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,12 +46,18 @@ final class NewsViewController: UIViewController, UINavigationControllerDelegate
     private final func setUI() {
         
         // MARK: - Background Image
-        
-        gradient.frame = view.bounds
-        view.layer.insertSublayer(gradient, at: 0)
+        let backgroundView = UIImageView(image: UIImage(named: "BGNews"))
+        backgroundView.contentMode = .scaleAspectFill
+        backgroundView.frame = view.bounds
+        view.insertSubview(backgroundView, at: 0)
         
         // MARK: - BlurEffect
         applyBlurEffect(to: pictureView, withCornerRadius: 20)
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        blurEffectView.frame = CGRect(x: 0, y: -statusBarHeight, width: view.frame.width, height: statusBarHeight + 8)
+        navigationController?.navigationBar.insertSubview(blurEffectView, at: 0)
         
         spinner.hidesWhenStopped = true
         spinner.center = pictureTableView.center
@@ -187,9 +157,3 @@ extension NewsViewController: UIViewControllerTransitioningDelegate {
         return nil
     }
 }
-
-
-//        let backgroundView = UIImageView(image: UIImage(named: "BGNews"))
-//        backgroundView.contentMode = .scaleAspectFill
-//        backgroundView.frame = view.bounds
-//        view.insertSubview(backgroundView, at: 0)

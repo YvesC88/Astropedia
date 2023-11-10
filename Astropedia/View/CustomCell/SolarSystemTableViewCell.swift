@@ -50,7 +50,7 @@ final class SolarSystemTableViewCell: UITableViewCell {
                 subview.removeFromSuperview()
             }
         }
-        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.layer.cornerRadius = 20
         blurEffectView.clipsToBounds = true

@@ -18,8 +18,10 @@ class ArticleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        articleImageView.layer.cornerRadius = 15
-        setButtonBorderColor(button: articleImageView, color: UIColor.white)
+        customImage(image: articleImageView,
+                    borderWidth: 0.3,
+                    color: UIColor.white,
+                    cornerRadius: 15)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,9 +37,10 @@ class ArticleTableViewCell: UITableViewCell {
         favoriteButton.isSelected = isFavorite
     }
     
-    func setButtonBorderColor(button: UIImageView, color: UIColor) {
-        button.layer.borderColor = color.cgColor
-        button.layer.borderWidth = 0.2
+    private final func customImage(image: UIImageView, borderWidth: CGFloat, color: UIColor, cornerRadius: CGFloat) {
+        image.layer.borderColor = color.cgColor
+        image.layer.borderWidth = borderWidth
+        image.layer.cornerRadius = cornerRadius
     }
     
     @IBAction final func favoriteButtonTapped() {

@@ -82,31 +82,38 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            if indexPath.row == 1 {
+            switch indexPath.row {
+            case 0:
+                toPushVC(with: "FavoritesViewController")
+            case 1:
                 showAlertDeleteFavorite(title: "Suppression des favoris",
                                         message: "Êtes-vous sûr de vouloir supprimer vos favoris ?",
                                         cancel: "Annuler",
                                         delete: "Effacer",
                                         confirm: "Supprimé",
                                         isEmpty: "Votre liste de favoris est vide. Cliquez sur ♥️ pour en ajouter !")
+            default:
+                break
             }
         }
         if indexPath.section == 3 {
-            if indexPath.row == 1 {
+            switch indexPath.row {
+            case 0:
+                toPushVC(with: "TipsViewController")
+            case 1:
                 if let appUrl = URL(string: "https://apps.apple.com/fr/app/astrop%C3%A9dia/id1668668756") {
                     UIApplication.shared.open(appUrl)
                 }
-                
-            }
-            if indexPath.row == 2 {
+            case 2:
                 if let appUrl = URL(string: "https://apps.apple.com/fr/app/astrop%C3%A9dia/id1668668756") {
                     shareItems([appUrl])
                 }
-            }
-            if indexPath.row == 3 {
+            case 3:
                 if let moreAppUrl = URL(string: "https://apps.apple.com/us/developer/yves-charpentier/id1654705165") {
                     UIApplication.shared.open(moreAppUrl)
                 }
+            default:
+                break
             }
         }
     }

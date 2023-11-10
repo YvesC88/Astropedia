@@ -54,6 +54,11 @@ extension UIViewController {
         return gradient
     }
     
+    func toPushVC(with identifier: String) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        self.navigationController?.pushViewController(storyboard.instantiateViewController(withIdentifier: identifier), animated: true)
+    }
+    
     func gradientColor(bounds: CGRect, gradientLayer: CAGradientLayer) -> UIColor? {
         UIGraphicsBeginImageContext(gradientLayer.bounds.size)
         gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
@@ -138,7 +143,7 @@ extension UIViewController {
     }
     
     func applyBlurEffect(to view: UIView, withCornerRadius cornerRadius: CGFloat) {
-        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         view.layer.cornerRadius = cornerRadius
         blurEffectView.clipsToBounds = true

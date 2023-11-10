@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB0657102AB9E009002B80F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB06570F2AB9E009002B80F5 /* GoogleService-Info.plist */; };
+		FB0E17A92AFB979B009CCCA8 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E17A82AFB979B009CCCA8 /* TransitionManager.swift */; };
 		FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1073BD2A0A552600BC73BD /* NewsViewController.swift */; };
 		FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAD6297566D800FEE718 /* AppDelegate.swift */; };
 		FB15CAD9297566D800FEE718 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15CAD8297566D800FEE718 /* SceneDelegate.swift */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		FB06570F2AB9E009002B80F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Astropedia/Model/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FB0E17A82AFB979B009CCCA8 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		FB1073BD2A0A552600BC73BD /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		FB15CAD3297566D800FEE718 /* Astropedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astropedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB15CAD6297566D800FEE718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				FB4766782A5567B70014C098 /* SolarSystem */,
 				FB1881AD2A12DC5100B6EBCC /* Constant.swift */,
 				FB15CB202975745200FEE718 /* FirebaseWrapper.swift */,
+				FB0E17A82AFB979B009CCCA8 /* TransitionManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				FB40AE652A14C6B90067FCAC /* DetailArticleViewController.swift in Sources */,
 				FBF8657629FD0F4700646278 /* Astropedia.xcdatamodeld in Sources */,
 				FBEC43ED2A3F6CB700D76790 /* QuizzViewController.swift in Sources */,
+				FB0E17A92AFB979B009CCCA8 /* TransitionManager.swift in Sources */,
 				FB15CAD7297566D800FEE718 /* AppDelegate.swift in Sources */,
 				FBEC43EF2A3F96CD00D76790 /* Question.swift in Sources */,
 				FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */,
@@ -938,7 +942,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -977,7 +981,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = yves.charpentier.Planets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
