@@ -27,13 +27,12 @@ extension APIApod {
     
     func toPicture() -> Picture {
         let dateFormatter = DateFormatter()
-        let date = dateFormatter.date(from: self.date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "us_US")
-        dateFormatter.dateStyle = .full
+        let date = dateFormatter.date(from: self.date) ?? Date()
         dateFormatter.dateFormat = "dd MM yyyy"
         dateFormatter.locale = Locale(identifier: "fr_FR")
-        let finalDate = dateFormatter.string(from: date ?? Date())
+        let finalDate = dateFormatter.string(from: date)
         return Picture(title: self.title,
                        date: finalDate,
                        videoURL: self.url,

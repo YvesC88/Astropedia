@@ -30,32 +30,14 @@ class QuizzViewController: UIViewController {
     private var buttonState: ButtonState = .none
     private var buttonPressed: Bool?
     
-    private lazy var gradient: CAGradientLayer = {
-        let gradient = CAGradientLayer()
-        gradient.type = .axial
-        gradient.colors = [
-            UIColor(red: 39/255, green: 55/255, blue: 74/255, alpha: 1).cgColor,
-            UIColor.black.cgColor
-        ]
-        gradient.startPoint = CGPoint(x: 0, y: 0)
-        gradient.endPoint = CGPoint(x: 0, y: 1)
-        return gradient
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        gradient.frame = view.bounds
-        view.layer.insertSublayer(gradient, at: 0)
-        
         let maskLayer = CAShapeLayer()
         maskLayer.path = UIBezierPath(roundedRect: numberOfQuestionView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 15, height: 15)).cgPath
         
         questionService.fetchQuestion(collectionID: "questions")
         questionService.questionDelegate = self
         setUIButton(button: [newGameButton, nextQuestionButton], color: UIColor.white)
-        
-        applyBlurEffect(to: questionView, withCornerRadius: 20)
-        applyBlurEffect(to: scoreView, withCornerRadius: 20)
     }
     
     @IBAction private final func didTappedButton(_ sender: UIButton) {

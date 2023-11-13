@@ -19,9 +19,9 @@ class ArticleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         customImage(image: articleImageView,
-                    borderWidth: 0.3,
+                    borderWidth: 0.8,
                     color: UIColor.white,
-                    cornerRadius: 15)
+                    cornerRadius: 8)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

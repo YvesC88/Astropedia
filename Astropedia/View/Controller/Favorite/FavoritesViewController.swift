@@ -37,6 +37,7 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UIViewCont
                 self?.tableView.reloadData()
                 favorite.isHidden = !(isEmpty ?? true)
                 tableView.isHidden = isEmpty ?? true
+                self?.searchController.searchBar.isHidden = isEmpty ?? true
             }
             .store(in: &cancellables)
     }
@@ -53,8 +54,7 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UIViewCont
             guard let detailArticleVC = storyboard.instantiateViewController(withIdentifier: "DetailArticleViewController") as? DetailArticleViewController else { return }
             detailArticleVC.article = article.toArticle()
             let navController = UINavigationController(rootViewController: detailArticleVC)
-//            navController.modalPresentationStyle = .fullScreen
-//            navController.transitioningDelegate = self
+            navController.modalPresentationStyle = .fullScreen
             self.present(navController, animated: true)
             
         default:

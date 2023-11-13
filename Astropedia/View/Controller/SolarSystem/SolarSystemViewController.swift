@@ -16,7 +16,7 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     private let searchController = UISearchController()
     private var solarSystemViewModel = SolarSystemViewModel()
     private var cancellables: Set<AnyCancellable> = []
-    private var lastContentOffset: CGFloat = 0.0
+//    private var lastContentOffset: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,21 +124,21 @@ extension SolarSystemViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
 }
-
-
-extension SolarSystemViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentOffset = scrollView.contentOffset.y
-        if currentOffset > lastContentOffset && currentOffset > 0 {
-            UIView.animate(withDuration: 0.5) {
-                self.tabBarController?.tabBar.alpha = 0
-            }
-        } else {
-            UIView.animate(withDuration: 0.2) {
-                self.tabBarController?.tabBar.alpha = 1
-            }
-        }
-        lastContentOffset = currentOffset
-    }
-}
+//
+//
+//extension SolarSystemViewController: UIScrollViewDelegate {
+//    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let currentOffset = scrollView.contentOffset.y
+//        if currentOffset > lastContentOffset && currentOffset > 0 {
+//            UIView.animate(withDuration: 0.5) {
+//                self.tabBarController?.tabBar.alpha = 0
+//            }
+//        } else {
+//            UIView.animate(withDuration: 0.2) {
+//                self.tabBarController?.tabBar.alpha = 1
+//            }
+//        }
+//        lastContentOffset = currentOffset
+//    }
+//}
