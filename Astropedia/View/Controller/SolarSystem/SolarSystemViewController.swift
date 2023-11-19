@@ -16,17 +16,16 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
     private let searchController = UISearchController()
     private var solarSystemViewModel = SolarSystemViewModel()
     private var cancellables: Set<AnyCancellable> = []
-//    private var lastContentOffset: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        setupBlurEffectForTabBar()
         // MARK: - Background Image
         
-        let backgroundView = UIImageView(image: UIImage(named: "BGSolarSystem"))
-        backgroundView.contentMode = .scaleAspectFill
-        backgroundView.frame = view.bounds
-        tableView.backgroundView = backgroundView
+//        let backgroundView = UIImageView(image: UIImage(named: "BGSolarSystem"))
+//        backgroundView.contentMode = .scaleAspectFill
+//        backgroundView.frame = view.bounds
+//        tableView.backgroundView = backgroundView
         
         setupSearchController()
         updateUI(data: solarSystemViewModel.$planets, tableView: tableView)
@@ -42,6 +41,26 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         searchController.searchBar.tintColor = .white
         searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Rechercher dans le Système Solaire", attributes: [.foregroundColor: UIColor.white])
         definesPresentationContext = true
+    }
+    
+    private func setupBlurEffectForTabBar() {
+        // Créez un effet de flou avec le style souhaité
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
+
+        // Créez une vue visuelle avec l'effet de flou
+        let tabBarBlurView = UIVisualEffectView(effect: blurEffect)
+
+        // Ajustez le masque de redimensionnement automatique de la vue visuelle
+        tabBarBlurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        // Obtenez la frame de la tabBar
+        let tabBarFrame = self.tabBarController?.tabBar.frame
+
+        // Ajustez la frame de la vue visuelle pour couvrir la tabBar
+        tabBarBlurView.frame = tabBarFrame ?? CGRect.zero
+
+        // Ajoutez la vue visuelle à la vue principale
+        self.view.addSubview(tabBarBlurView)
     }
     
     private final func updateUI<T>(data: Published<[T]>.Publisher, tableView: UITableView) {

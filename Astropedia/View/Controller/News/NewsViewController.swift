@@ -24,6 +24,8 @@ final class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setup()
+        setupBlurEffectForTabBar()
         newsViewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -43,6 +45,38 @@ final class NewsViewController: UIViewController {
         articleTableView.reloadData()
     }
     
+    private func setup() {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        if let statusBarFrame = windowScene?.statusBarManager?.statusBarFrame {
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
+            let statusBarView = UIVisualEffectView(effect: blurEffect)
+            statusBarView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            statusBarView.frame = statusBarFrame
+            self.view.addSubview(statusBarView)
+        }
+    }
+    
+    private func setupBlurEffectForTabBar() {
+        // Créez un effet de flou avec le style souhaité
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
+
+        // Créez une vue visuelle avec l'effet de flou
+        let tabBarBlurView = UIVisualEffectView(effect: blurEffect)
+
+        // Ajustez le masque de redimensionnement automatique de la vue visuelle
+        tabBarBlurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        // Obtenez la frame de la tabBar
+        let tabBarFrame = self.tabBarController?.tabBar.frame
+
+        // Ajustez la frame de la vue visuelle pour couvrir la tabBar
+        tabBarBlurView.frame = tabBarFrame ?? CGRect.zero
+
+        // Ajoutez la vue visuelle à la vue principale
+        self.view.addSubview(tabBarBlurView)
+    }
+
+    
     private final func setUI() {
         
         // MARK: - Background Image
@@ -53,11 +87,6 @@ final class NewsViewController: UIViewController {
         
         // MARK: - BlurEffect
         applyBlurEffect(to: pictureView, withCornerRadius: 20)
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        blurEffectView.frame = CGRect(x: 0, y: -statusBarHeight, width: view.frame.width, height: statusBarHeight + 8)
-        navigationController?.navigationBar.insertSubview(blurEffectView, at: 0)
         
         spinner.hidesWhenStopped = true
         spinner.center = pictureTableView.center

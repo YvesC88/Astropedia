@@ -9,13 +9,11 @@ import UIKit
 import WebKit
 
 final class DetailPictureViewController: UIViewController, WKNavigationDelegate {
-    @IBOutlet weak private var uiView: UIView!
     @IBOutlet weak private var titleLabel: UILabel!
-    @IBOutlet weak private var imageView: UIImageView!
+    @IBOutlet weak private var pictureImageView: UIImageView!
     @IBOutlet weak private var explanationTextView: UITextView!
     @IBOutlet weak private var copyrightLabel: UILabel!
     @IBOutlet weak private var scrollView: UIScrollView!
-    @IBOutlet weak private var scrollImageView: UIScrollView!
     @IBOutlet weak private var favoriteButton: UIButton!
     @IBOutlet weak private var videoWKWebView: WKWebView!
     
@@ -25,12 +23,6 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        scrollImageView.delegate = self
-        scrollView.delegate = self
-        uiView.layer.cornerRadius = 15
-        uiView.clipsToBounds = true
-        imageView.layer.cornerRadius = 15
-        imageView.clipsToBounds = true
     }
     
     private final func setUI() {
@@ -41,9 +33,9 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         copyrightLabel.text = picture.copyright ?? "Pas d'auteur"
         if picture.mediaType == "image" {
             videoWKWebView.isHidden = true
-            imageView.sd_setImage(with: URL(string: picture.imageURL ?? ""))
+            pictureImageView.sd_setImage(with: URL(string: picture.imageURL ?? ""))
         } else {
-            uiView.isHidden = true
+            pictureImageView.isHidden = true
             guard let url = URL(string: picture.videoURL ?? "") else { return }
             let request = URLRequest(url: url)
             videoWKWebView.navigationDelegate = self
@@ -72,7 +64,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
     
     private final func toShare() {
         if picture.mediaType == "image" {
-            guard let image = self.imageView.image else { return }
+            guard let image = self.pictureImageView.image else { return }
             shareItems([image])
         } else {
             guard let videoURLString = picture.videoURL, let videoURL = URL(string: videoURLString) else { return }
@@ -95,11 +87,43 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
     @IBAction private final func didTappedFavorite() {
         toggleFavoriteStatus()
     }
+    
+    
+    @IBAction func didTapImage(_ sender: UITapGestureRecognizer) {
+        let zoomScrollView = UIScrollView(frame: UIScreen.main.bounds)
+        zoomScrollView.backgroundColor = .black
+        zoomScrollView.minimumZoomScale = 1.0
+        zoomScrollView.maximumZoomScale = 5.0
+        zoomScrollView.delegate = self
+        
+        let fullScreenImageView = UIImageView(image: pictureImageView.image)
+        fullScreenImageView.contentMode = .scaleAspectFit
+        fullScreenImageView.frame = zoomScrollView.bounds
+        
+        zoomScrollView.addSubview(fullScreenImageView)
+        let closeGesture = UITapGestureRecognizer(target: self, action: #selector(closeFullScreenImage))
+        zoomScrollView.addGestureRecognizer(closeGesture)
+        
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+        self.view.addSubview(zoomScrollView)
+    }
+    
+    @objc func closeFullScreenImage(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
+    }
 }
 
 extension DetailPictureViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
+        for view in scrollView.subviews {
+            if view is UIImageView {
+                return view
+            }
+        }
+        return nil
     }
 }
