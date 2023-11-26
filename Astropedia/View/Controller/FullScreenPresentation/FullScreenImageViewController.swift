@@ -10,7 +10,7 @@ import TinyConstraints
 
 class FullScreenImageViewController: UIViewController {
     
-    private let scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.bouncesZoom = true
         scrollView.bounces = true
@@ -21,13 +21,13 @@ class FullScreenImageViewController: UIViewController {
         return scrollView
     }()
     
-    private let wrapperView: UIView = {
+    private lazy var wrapperView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
         return view
     }()
     
-    let imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.setHugging(.defaultHigh, for: .horizontal)

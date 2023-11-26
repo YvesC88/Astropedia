@@ -39,10 +39,17 @@ final class FullScreenPresentationController: UIPresentationController {
         return blurVisualEffectView
     }()
     
-    private let blurEffect = UIBlurEffect(style: .systemThinMaterial)
+    private let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
     
     @objc private func closeButtonTapped(_ button: UIButton) {
-        presentedViewController.dismiss(animated: true)
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.presentedViewController.view.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+            self.closeButtonContainer.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+            self.backgroundView.effect = nil
+            self.backgroundView.alpha = 0
+        }) { _ in
+            self.presentedViewController.dismiss(animated: false)
+        }
     }
 }
 
@@ -82,6 +89,9 @@ extension FullScreenPresentationController {
             guard let self = self else { return }
             self.backgroundView.effect = nil
             self.closeButtonContainer.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+        }, completion: { [weak self] _ in
+            self?.backgroundView.removeFromSuperview()
+            self?.closeButtonContainer.removeFromSuperview()
         })
     }
     

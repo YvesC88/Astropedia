@@ -10,7 +10,7 @@ import UIKit
 class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.7
+        return 0.5
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -24,7 +24,7 @@ class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
         toView.center = containerViewCenter
         toView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         containerView.addSubview(toView)
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             toView.transform = .identity
         }, completion: { (finished) in
             transitionContext.completeTransition(finished)
