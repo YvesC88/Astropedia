@@ -9,20 +9,18 @@ import Combine
 import UIKit
 
 enum ButtonState {
-    case none, truePressed, falsePressed, submitPressed
+    case none, truePressed, falsePressed
 }
 
 class QuizzViewController: UIViewController {
     
     @IBOutlet private weak var correctAnswerLabel: UILabel!
     @IBOutlet private weak var incorrectAnswerLabel: UILabel!
-    @IBOutlet private weak var questionLabel: UILabel!
+    @IBOutlet private weak var questionTextView: UITextView!
     @IBOutlet private weak var trueButton: UIButton!
     @IBOutlet private weak var falseButton: UIButton!
     @IBOutlet private weak var newGameButton: UIButton!
-    @IBOutlet private weak var nextQuestionButton: UIButton!
-    @IBOutlet private weak var numberOfQuestionView: UIView!
-    @IBOutlet weak var questionProgressView: UIProgressView!
+    @IBOutlet private weak var questionProgressView: UIProgressView!
     
     private let questionViewModel = QuizzViewModel(wrapper: FirebaseWrapper())
     private var cancellables: Set<AnyCancellable> = []
@@ -32,7 +30,7 @@ class QuizzViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUIForGameState()
+        setUIButton(button: [trueButton, falseButton], borderColor: .clear)
         
         questionViewModel.$trueScore
             .combineLatest(questionViewModel.$falseScore)
@@ -44,21 +42,15 @@ class QuizzViewController: UIViewController {
         
         questionViewModel.$random
             .sink { question in
-                self.questionLabel.text = question.text
+                self.questionTextView.text = question.text
             }
             .store(in: &cancellables)
         
         questionViewModel.$isShowedButton
-            .sink { isHidden in
-                self.trueButton.isHidden = isHidden
-                self.falseButton.isHidden = isHidden
-                self.nextQuestionButton.isHidden = isHidden
-            }
-            .store(in: &cancellables)
-        
-        questionViewModel.$isGameEnabled
-            .sink { isAvailble in
-                self.newGameButton.isEnabled = isAvailble
+            .sink { isAvailable in
+                self.trueButton.isHidden = isAvailable
+                self.falseButton.isHidden = isAvailable
+                self.newGameButton.isEnabled = isAvailable
             }
             .store(in: &cancellables)
         
@@ -80,63 +72,27 @@ class QuizzViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = UIBezierPath(roundedRect: numberOfQuestionView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 15, height: 15)).cgPath
-        setUIButton(button: [newGameButton, nextQuestionButton], color: UIColor.white)
-    }
-    
-    private func updateUIForGameState() {
-        switch gameState {
-        case .notStarted:
-            nextQuestionButton.isEnabled = false
-            trueButton.isEnabled = false
-            falseButton.isEnabled = false
-        case .inProgress:
-            nextQuestionButton.isEnabled = false
-            trueButton.isEnabled = true
-            falseButton.isEnabled = true
-        case .ended:
-            nextQuestionButton.isEnabled = false
-            trueButton.isEnabled = false
-            falseButton.isEnabled = false
-        }
+        questionViewModel.$isButtonEnabled
+            .sink { isEnabled in
+                self.trueButton.isEnabled = isEnabled
+                self.falseButton.isEnabled = isEnabled
+            }
+            .store(in: &cancellables)
     }
     
     @IBAction private final func didTappedButton(_ sender: UIButton) {
-        let isTrueButton = sender == trueButton
-        if buttonState == (isTrueButton ? .truePressed : .falsePressed) {
-            buttonState = .none
-            nextQuestionButton.isEnabled = false
-            resetSelectedButton(buttons: [sender])
+        let userAnswer = sender == trueButton
+        buttonState = userAnswer ? .truePressed : .falsePressed
+        questionViewModel.checkAnswer(question: questionViewModel.random, userAnswer: userAnswer)
+        if questionViewModel.isCorrect {
+            setUIButton(button: [sender], borderColor: .systemGreen)
         } else {
-            buttonState = isTrueButton ? .truePressed : .falsePressed
-            nextQuestionButton.isEnabled = true
-            setUIButton(button: [sender], color: UIColor.white)
-            resetSelectedButton(buttons: [isTrueButton ? falseButton : trueButton])
+            setUIButton(button: [sender], borderColor: .systemRed)
         }
-    }
-    
-    @IBAction private final func didTappedSubmit() {
-//        questionProgressView.setProgress(questionViewModel.getProgess(), animated: true)
-        if buttonState == .submitPressed {
-            questionViewModel.goToNextQuestion()
-            buttonState = .none
-            nextQuestionButton.setTitle("Soumettre", for: .normal)
-            resetSelectedButton(buttons: [trueButton, falseButton])
-            nextQuestionButton.isEnabled = false
-            trueButton.isEnabled = true
-            falseButton.isEnabled = true
-        } else {
-            questionViewModel.checkAnswer(question: questionViewModel.random, userAnswer: buttonState == .truePressed)
-            if questionViewModel.isCorrect {
-                setButtonBorderColor(button: buttonPressed ?? false ? trueButton : falseButton, color: UIColor.systemGreen)
-            } else {
-                setButtonBorderColor(button: buttonPressed ?? false ? falseButton : trueButton, color: UIColor.systemRed)
-            }
-            nextQuestionButton.setTitle("Suivant", for: .normal)
-            buttonState = .submitPressed
-            trueButton.isEnabled = false
-            falseButton.isEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.questionViewModel.goToNextQuestion()
+            self.buttonState = .none
+            self.resetSelectedButton(buttons: [sender])
         }
     }
     
@@ -145,6 +101,5 @@ class QuizzViewController: UIViewController {
         gameState = .inProgress
         buttonState = .none
         resetSelectedButton(buttons: [trueButton, falseButton])
-        updateUIForGameState()
     }
 }

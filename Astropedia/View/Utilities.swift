@@ -110,18 +110,13 @@ extension UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
-    func setUIButton(button: [UIButton], color: UIColor) {
+    func setUIButton(button: [UIButton], borderColor: UIColor) {
         let buttons = button
         for button in buttons {
-            button.layer.cornerRadius = 20
-            button.layer.borderColor = color.cgColor
-            button.layer.borderWidth = 2
+            button.layer.cornerRadius = 15
+            button.layer.borderColor = borderColor.cgColor
+            button.layer.borderWidth = 5
         }
-    }
-    
-    func setButtonBorderColor(button: UIButton, color: UIColor) {
-        button.layer.borderColor = color.cgColor
-        button.layer.borderWidth = 2
     }
     
     func resetSelectedButton(buttons: [UIButton]) {

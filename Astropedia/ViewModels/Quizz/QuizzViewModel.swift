@@ -22,9 +22,9 @@ final class QuizzViewModel: NSObject {
     @Published var trueScore: Int = 0
     @Published var falseScore: Int = 0
     @Published var isShowedButton: Bool = true
-    @Published var isGameEnabled: Bool = true
     @Published var isScoreChanged: Bool = false
     @Published var titleButton: String = "Démarrer"
+    @Published var isButtonEnabled: Bool = true
     
     init(wrapper: FirebaseProtocol) {
         self.firebaseWrapper = wrapper
@@ -48,7 +48,7 @@ final class QuizzViewModel: NSObject {
     }
     
     final func checkAnswer(question: Question, userAnswer: Bool) {
-        isGameEnabled = false
+        isButtonEnabled = false
         isCorrect = question.answer == userAnswer
         isScoreChanged = userAnswer
         if isCorrect {
@@ -69,7 +69,6 @@ final class QuizzViewModel: NSObject {
     private final func showEndGame() {
         gameState = .ended
         isShowedButton = true
-        isGameEnabled = true
         random = Question(text: "Quizz terminé.", answer: true)
         titleButton = "Recommencer"
         questionAnswered = 0
@@ -77,12 +76,14 @@ final class QuizzViewModel: NSObject {
     
     private final func showNextQuestion() {
         gameState = .inProgress
+        isButtonEnabled = true
         random = randomQuestion()
         questionAnswered += 1
     }
     
     final func newGame() {
         gameState = .inProgress
+        isButtonEnabled = true
         random = randomQuestion()
         trueScore = 0
         falseScore = 0

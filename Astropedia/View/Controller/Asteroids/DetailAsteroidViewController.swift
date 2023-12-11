@@ -30,7 +30,7 @@ class DetailAsteroidViewController: UIViewController {
         asteroidNameLabel.textColor = gradientColor(bounds: asteroidNameLabel.bounds, gradientLayer: gradientTitleLabel)
         setData()
         setUIView(view: [infoView, globalInfoView])
-        setUIButton(button: [urlButton], color: UIColor.white)
+        setUIButton(button: [urlButton], borderColor: .clear)
     }
     
     func setData() {
