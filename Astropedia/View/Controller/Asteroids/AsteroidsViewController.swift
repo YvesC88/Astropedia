@@ -56,19 +56,6 @@ class AsteroidsViewController: UIViewController {
         asteroidTableView.addSubview(spinner)
     }
     
-    private final func updateSpinner() {
-        asteroidsViewModel.$isLoading
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                if self?.asteroidsViewModel.isLoading == true {
-                    self?.spinner.startAnimating()
-                } else {
-                    self?.spinner.stopAnimating()
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
     private final func setRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         asteroidTableView.addSubview(refreshControl)

@@ -172,7 +172,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKh-hX-8oX">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="845"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="925"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chargement..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTz-GM-OIp">
                                                 <rect key="frame" x="20" y="0.0" width="390" height="36"/>
@@ -181,7 +181,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chargement..." textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hba-RY-cf6">
-                                                <rect key="frame" x="20" y="807" width="390" height="18"/>
+                                                <rect key="frame" x="20" y="797" width="390" height="18"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                 <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
@@ -226,6 +226,23 @@
                                                     <outletCollection property="gestureRecognizers" destination="bfP-ry-CGB" appends="YES" id="shH-nO-NZw"/>
                                                 </connections>
                                             </imageView>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76Y-ua-QaQ">
+                                                <rect key="frame" x="128.66666666666669" y="845" width="172.66666666666669" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Ker-Oy-uyd"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" title="Partager l'image"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="30"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didSharedImage" destination="pDF-CE-S5q" eventType="touchUpInside" id="nIG-0Q-ERT"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="customTableViewColor"/>
                                         <gestureRecognizers/>
@@ -233,7 +250,8 @@
                                             <constraint firstItem="hky-8Y-SDd" firstAttribute="top" secondItem="w0D-vS-IsN" secondAttribute="bottom" constant="20" id="1hy-Jp-Uvz"/>
                                             <constraint firstItem="RTz-GM-OIp" firstAttribute="top" secondItem="bKh-hX-8oX" secondAttribute="top" id="AYm-hN-vUc"/>
                                             <constraint firstItem="jhF-E3-8M7" firstAttribute="top" secondItem="RTz-GM-OIp" secondAttribute="bottom" constant="20" id="Aut-tW-MGi"/>
-                                            <constraint firstItem="Hba-RY-cf6" firstAttribute="top" secondItem="hky-8Y-SDd" secondAttribute="bottom" constant="20" id="IkK-bh-4FF"/>
+                                            <constraint firstItem="Hba-RY-cf6" firstAttribute="top" secondItem="hky-8Y-SDd" secondAttribute="bottom" constant="10" id="IkK-bh-4FF"/>
+                                            <constraint firstItem="76Y-ua-QaQ" firstAttribute="top" secondItem="Hba-RY-cf6" secondAttribute="bottom" constant="30" id="RqB-9F-Wek"/>
                                             <constraint firstItem="hky-8Y-SDd" firstAttribute="leading" secondItem="bKh-hX-8oX" secondAttribute="leading" constant="20" id="SPe-d1-9bD"/>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="2000" id="Twm-bT-Uvx"/>
                                             <constraint firstItem="RTz-GM-OIp" firstAttribute="leading" secondItem="bKh-hX-8oX" secondAttribute="leading" constant="20" id="Vqb-v8-JNu"/>
@@ -243,9 +261,10 @@
                                             <constraint firstItem="RTz-GM-OIp" firstAttribute="top" secondItem="bKh-hX-8oX" secondAttribute="top" id="bpZ-Vb-K1w"/>
                                             <constraint firstItem="w0D-vS-IsN" firstAttribute="top" secondItem="RTz-GM-OIp" secondAttribute="bottom" constant="20" id="dLA-96-wfM"/>
                                             <constraint firstItem="jhF-E3-8M7" firstAttribute="leading" secondItem="bKh-hX-8oX" secondAttribute="leading" id="dMi-Gm-LJZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="76Y-ua-QaQ" secondAttribute="bottom" constant="20" id="mkV-cP-UD2"/>
                                             <constraint firstItem="hky-8Y-SDd" firstAttribute="top" secondItem="jhF-E3-8M7" secondAttribute="bottom" constant="20" id="ndI-aK-DXb"/>
-                                            <constraint firstAttribute="bottom" secondItem="Hba-RY-cf6" secondAttribute="bottom" constant="20" id="ops-L2-UQw"/>
                                             <constraint firstItem="w0D-vS-IsN" firstAttribute="leading" secondItem="bKh-hX-8oX" secondAttribute="leading" id="q98-lI-lha"/>
+                                            <constraint firstItem="76Y-ua-QaQ" firstAttribute="centerX" secondItem="bKh-hX-8oX" secondAttribute="centerX" id="so7-MV-GPp"/>
                                             <constraint firstAttribute="trailing" secondItem="Hba-RY-cf6" secondAttribute="trailing" constant="20" id="txh-OE-TFo"/>
                                             <constraint firstItem="Hba-RY-cf6" firstAttribute="leading" secondItem="bKh-hX-8oX" secondAttribute="leading" constant="20" id="veg-a5-sRl"/>
                                             <constraint firstAttribute="trailing" secondItem="hky-8Y-SDd" secondAttribute="trailing" constant="20" id="vkW-Tf-NH7"/>
@@ -275,39 +294,24 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Nfd-XU-p2F">
-                        <rightBarButtonItems>
-                            <barButtonItem style="done" id="qGr-PJ-rxu">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4P6-T5-su3">
-                                    <rect key="frame" x="385.66666666666669" y="7" width="24.333333333333314" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="tintColor" systemColor="tintColor"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal">
-                                        <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="didSharedImage" destination="pDF-CE-S5q" eventType="touchUpInside" id="vwa-uH-tMq"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem style="done" id="fiw-jy-D7r">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kYI-oY-hbg">
-                                    <rect key="frame" x="351" y="10" width="26.666666666666686" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="tintColor" red="0.90000000000000002" green="0.22379306090000001" blue="0.35999999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal">
-                                        <imageReference key="image" image="heart" catalog="system" symbolScale="large" variableValue="0.0"/>
-                                    </state>
-                                    <state key="selected">
-                                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="didTappedFavorite" destination="pDF-CE-S5q" eventType="touchUpInside" id="Amf-pm-8P9"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="fiw-jy-D7r">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kYI-oY-hbg">
+                                <rect key="frame" x="383.33333333333331" y="10" width="26.666666666666686" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.90000000000000002" green="0.22379306090000001" blue="0.35999999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="heart" catalog="system" symbolScale="large" variableValue="0.0"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                </state>
+                                <state key="selected">
+                                    <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTappedFavorite" destination="pDF-CE-S5q" eventType="touchUpInside" id="Amf-pm-8P9"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -316,6 +320,7 @@
                         <outlet property="favoriteButton" destination="kYI-oY-hbg" id="I7v-eA-ZhE"/>
                         <outlet property="pictureImageView" destination="w0D-vS-IsN" id="yyJ-9i-Qfu"/>
                         <outlet property="scrollView" destination="sl6-7s-uDC" id="7e4-fa-4l6"/>
+                        <outlet property="sharedButton" destination="76Y-ua-QaQ" id="ETJ-Eo-ub9"/>
                         <outlet property="titleLabel" destination="RTz-GM-OIp" id="APj-tC-ngn"/>
                         <outlet property="videoWKWebView" destination="jhF-E3-8M7" id="5Ro-kh-FTk"/>
                     </connections>
@@ -740,7 +745,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="i05-j9-bgM">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1242,7 +1247,7 @@
                     <tabBarItem key="tabBarItem" title="Système Solaire" image="asteroidSymbol" id="p38-T8-c8Z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="F5w-fV-xuF">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1432,7 +1437,7 @@
                                 <rect key="frame" x="0.0" y="103" width="430" height="829"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R21-JF-Hs1">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="871"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="971"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jr-3k-Rte">
                                                 <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
@@ -1462,6 +1467,23 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zr-MS-I6l">
+                                                <rect key="frame" x="140.33333333333331" y="881" width="149.33333333333331" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="iIU-75-6UF"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" title="Partager ceci"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="30"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapShareButton" destination="WjM-PT-IC9" eventType="touchUpInside" id="GWY-xC-EUz"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="customTableViewColor"/>
                                         <gestureRecognizers/>
@@ -1472,11 +1494,13 @@
                                             <constraint firstItem="DpN-8X-lhe" firstAttribute="top" secondItem="kwr-Wu-aWo" secondAttribute="bottom" constant="30" id="OVI-wj-FL5"/>
                                             <constraint firstItem="kwr-Wu-aWo" firstAttribute="top" secondItem="ry6-CR-kLQ" secondAttribute="bottom" constant="20" id="SfH-oG-tsv"/>
                                             <constraint firstItem="4jr-3k-Rte" firstAttribute="leading" secondItem="R21-JF-Hs1" secondAttribute="leading" id="UJJ-l9-5GC"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Zr-MS-I6l" secondAttribute="bottom" constant="30" id="WhJ-TL-1xt"/>
                                             <constraint firstItem="DpN-8X-lhe" firstAttribute="leading" secondItem="kwr-Wu-aWo" secondAttribute="leading" id="XPo-oQ-oKD"/>
+                                            <constraint firstItem="6Zr-MS-I6l" firstAttribute="centerX" secondItem="R21-JF-Hs1" secondAttribute="centerX" id="ZFL-N9-YKI"/>
                                             <constraint firstItem="4jr-3k-Rte" firstAttribute="top" secondItem="R21-JF-Hs1" secondAttribute="top" id="bpW-91-8g5"/>
                                             <constraint firstAttribute="trailing" secondItem="DpN-8X-lhe" secondAttribute="trailing" constant="15" id="fif-Of-wGb"/>
                                             <constraint firstItem="DpN-8X-lhe" firstAttribute="trailing" secondItem="kwr-Wu-aWo" secondAttribute="trailing" id="ikd-eC-BEa"/>
-                                            <constraint firstAttribute="bottom" secondItem="DpN-8X-lhe" secondAttribute="bottom" constant="20" id="pi7-dT-Y1o"/>
+                                            <constraint firstItem="6Zr-MS-I6l" firstAttribute="top" secondItem="DpN-8X-lhe" secondAttribute="bottom" constant="30" id="iyr-IC-ZEr"/>
                                             <constraint firstItem="ry6-CR-kLQ" firstAttribute="top" secondItem="4jr-3k-Rte" secondAttribute="bottom" constant="20" id="qgy-Up-imd"/>
                                             <constraint firstItem="DpN-8X-lhe" firstAttribute="leading" secondItem="ry6-CR-kLQ" secondAttribute="leading" id="rHm-cc-j0V"/>
                                         </constraints>
@@ -1513,6 +1537,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">
                                     <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
                                 </state>
                                 <state key="selected">
                                     <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
@@ -1523,15 +1548,11 @@
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" id="FuP-cc-wn8">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GQQ-4P-sm7">
-                                <rect key="frame" x="379.66666666666669" y="6.9999999999999982" width="30.333333333333314" height="30.333333333333329"/>
+                            <button key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" id="GQQ-4P-sm7">
+                                <rect key="frame" x="374" y="5" width="36" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
-                                </state>
                                 <connections>
                                     <action selector="dismissDetailVC" destination="WjM-PT-IC9" eventType="touchUpInside" id="jQU-Bc-fvS"/>
                                 </connections>
@@ -1543,8 +1564,10 @@
                         <outlet property="articleImageView" destination="4jr-3k-Rte" id="IfT-78-UrH"/>
                         <outlet property="articleTextView" destination="DpN-8X-lhe" id="LrC-nz-hzO"/>
                         <outlet property="articleTitleLabel" destination="ry6-CR-kLQ" id="r7g-6y-Zz3"/>
+                        <outlet property="dismissButton" destination="GQQ-4P-sm7" id="V2c-W7-Alg"/>
                         <outlet property="favoriteButton" destination="g3z-Cf-pOS" id="xV8-SR-Qjj"/>
                         <outlet property="scrollView" destination="3Dw-FW-AOJ" id="9H7-jG-WGu"/>
+                        <outlet property="shareButton" destination="6Zr-MS-I6l" id="8B4-tz-6g4"/>
                         <outlet property="subtitleTextView" destination="kwr-Wu-aWo" id="Cqh-Cc-e0B"/>
                     </connections>
                 </viewController>
@@ -2158,11 +2181,12 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ev6-Qf-lo3">
-                                                                            <rect key="frame" x="338.66666666666669" y="30" width="26.666666666666686" height="23.666666666666671"/>
+                                                                            <rect key="frame" x="333.66666666666669" y="30" width="31.666666666666686" height="27.666666666666671"/>
                                                                             <color key="tintColor" red="0.90000000000000002" green="0.22379306090000001" blue="0.35999999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             <state key="normal">
                                                                                 <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
                                                                             </state>
                                                                             <state key="selected">
                                                                                 <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
@@ -2636,6 +2660,9 @@
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

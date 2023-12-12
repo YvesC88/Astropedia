@@ -15,6 +15,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
     @IBOutlet weak private var copyrightLabel: UILabel!
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var favoriteButton: UIButton!
+    @IBOutlet weak private var sharedButton: UIButton!
     @IBOutlet weak private var videoWKWebView: WKWebView!
     
     var picture: Picture!
@@ -34,7 +35,9 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
         if picture.mediaType == "image" {
             videoWKWebView.isHidden = true
             pictureImageView.sd_setImage(with: URL(string: picture.imageURL ?? ""))
+            sharedButton.setTitle("Partager l'image", for: .normal)
         } else {
+            sharedButton.setTitle("Partager la vidéo", for: .normal)
             pictureImageView.isHidden = true
             guard let url = URL(string: picture.videoURL ?? "") else { return }
             let request = URLRequest(url: url)

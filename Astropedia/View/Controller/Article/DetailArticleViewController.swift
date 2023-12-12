@@ -15,6 +15,8 @@ final class DetailArticleViewController: UIViewController {
     @IBOutlet weak private var articleTextView: UITextView!
     @IBOutlet weak private var subtitleTextView: UITextView!
     @IBOutlet weak private var favoriteButton: UIButton!
+    @IBOutlet weak private var shareButton: UIButton!
+    @IBOutlet weak private var dismissButton: UIButton!
     
     var article: Article!
     private var newsViewModel = NewsViewModel()
@@ -53,6 +55,10 @@ final class DetailArticleViewController: UIViewController {
     
     @IBAction private final func didTapFavoriteButton() {
         toggleFavoriteStatus()
+    }
+    
+    @IBAction private final func didTapShareButton() {
+        shareItems([articleImageView.image ?? UIImage(), articleTitleLabel.text ?? "", subtitleTextView.text ?? "", articleTextView.text ?? ""])
     }
     
     @IBAction private final func dismissDetailVC() {

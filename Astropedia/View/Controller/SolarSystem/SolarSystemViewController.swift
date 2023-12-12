@@ -27,8 +27,6 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         backgroundView.frame = view.bounds
         tableView.backgroundView = backgroundView
         
-        applyBlurEffect(to: backgroundView, blurStyle: .light, blurAlpha: 0.0, withCornerRadius: 0)
-        
         setupSearchController()
         updateUI(data: solarSystemViewModel.$planets, tableView: tableView)
         updateUI(data: solarSystemViewModel.$stars, tableView: tableView)

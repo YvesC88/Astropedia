@@ -141,6 +141,7 @@ extension UIViewController {
         let blurEffect = UIBlurEffect(style: blurStyle)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         view.layer.cornerRadius = cornerRadius
+        view.clipsToBounds = true
         blurEffectView.clipsToBounds = true
         blurEffectView.frame = view.bounds
         blurEffectView.alpha = blurAlpha
@@ -149,7 +150,6 @@ extension UIViewController {
     
     final func shareItems(_ items: [Any]) {
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion: nil)
     }
 }
