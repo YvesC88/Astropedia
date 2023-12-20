@@ -24,13 +24,14 @@ final class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        
         newsViewModel.$isLoading
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                if self?.newsViewModel.isLoading == true {
-                    self?.spinner.startAnimating()
+            .sink { isLoading in
+                if isLoading ?? true {
+                    self.spinner.startAnimating()
                 } else {
-                    self?.spinner.stopAnimating()
+                    self.spinner.stopAnimating()
                 }
             }
             .store(in: &cancellables)

@@ -17,8 +17,6 @@ class NewsViewModel: NSObject {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
-    private let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
-    private let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
     
     private let articleService = ArticleService(wrapper: FirebaseWrapper())
     private let pictureService = PictureService(wrapper: FirebaseWrapper())
@@ -30,7 +28,7 @@ class NewsViewModel: NSObject {
     override init() {
         super.init()
         Task {
-            await fetchPictures(startDate: formatDate(date: startDate), endDate: formatDate(date: endDate))
+            await fetchPictures()
         }
         fetchArticles()
     }
@@ -47,16 +45,26 @@ class NewsViewModel: NSObject {
         }
     }
     
-    private final func fetchPictures(startDate: String, endDate: String) async -> Result<[APIApod], Error> {
+    private final func fetchPictures() async -> Result<[APIApod], Error> {
         isLoading = true
+        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
+        let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
         do {
-            let pictures = try await pictureService.getPicture(startDate: startDate, endDate: endDate)
+            let pictures = try await getPicture(startDate: formatDate(date: startDate), endDate: formatDate(date: endDate))
             self.picture = pictures
             self.isLoading = false
             return .success(pictures)
-        } catch {
-            return .failure(error)
-        }
+        } catch { return .failure(error) }
+    }
+    
+    private final func getPicture(startDate: String, endDate:String) async throws -> [APIApod] {
+        let endPoint = Constant.baseUrl + Constant.apiPicture + Constant.apiKey + Constant.startDate + "\(startDate)" + Constant.endDate + "\(endDate)"
+        guard let url = URL(string: endPoint) else { throw ResultError.invalidUrl }
+        let (result, response) = try await URLSession.shared.data(from: url)
+        guard let response = response as? HTTPURLResponse,
+              response.statusCode == 200 else { throw ResultError.invalidResponse }
+        do { return try JSONDecoder().decode([APIApod].self, from: result) }
+        catch { throw ResultError.invalidResult }
     }
     
     final func scheduleDailyNotification() {

@@ -199,7 +199,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
-                                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhF-E3-8M7">
+                                            <wkWebView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="jhF-E3-8M7">
                                                 <rect key="frame" x="0.0" y="56" width="430" height="400"/>
                                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -209,11 +209,6 @@
                                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                                     <wkPreferences key="preferences"/>
                                                 </wkWebViewConfiguration>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </wkWebView>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w0D-vS-IsN">
                                                 <rect key="frame" x="0.0" y="56" width="430" height="400"/>
@@ -296,7 +291,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Nfd-XU-p2F">
                         <barButtonItem key="rightBarButtonItem" style="done" id="fiw-jy-D7r">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kYI-oY-hbg">
-                                <rect key="frame" x="383.33333333333331" y="10" width="26.666666666666686" height="24"/>
+                                <rect key="frame" x="378.33333333333331" y="8.3333333333333339" width="31.666666666666686" height="27.666666666666664"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.90000000000000002" green="0.22379306090000001" blue="0.35999999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -537,14 +532,14 @@
                                                         </constraints>
                                                     </stackView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zct-vx-VcZ">
-                                                        <rect key="frame" x="10" y="30" width="370" height="8"/>
+                                                        <rect key="frame" x="10" y="30" width="370" height="5"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="8" id="VEv-S4-SZx"/>
+                                                            <constraint firstAttribute="height" constant="5" id="lXT-5p-0bJ"/>
                                                         </constraints>
                                                     </progressView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBp-jc-2hh">
-                                                        <rect key="frame" x="10" y="58" width="370" height="232"/>
+                                                        <rect key="frame" x="10" y="55" width="370" height="235"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -694,7 +689,7 @@
                                             <constraint firstAttribute="trailing" secondItem="fgE-5O-15p" secondAttribute="trailing" constant="20" id="N1S-R9-dve"/>
                                             <constraint firstItem="Dax-n7-jhX" firstAttribute="leading" secondItem="g9g-1g-4KZ" secondAttribute="leading" constant="20" id="OoA-H5-WUu"/>
                                             <constraint firstItem="64U-4V-kDM" firstAttribute="top" secondItem="fgE-5O-15p" secondAttribute="bottom" constant="30" id="SV8-0B-eiM"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="800" id="XU1-5g-0pZ"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1000" id="XU1-5g-0pZ"/>
                                             <constraint firstItem="fgE-5O-15p" firstAttribute="top" secondItem="g9g-1g-4KZ" secondAttribute="top" constant="20" id="XvZ-ld-7DZ"/>
                                             <constraint firstItem="Dax-n7-jhX" firstAttribute="top" secondItem="64U-4V-kDM" secondAttribute="bottom" constant="30" id="xBe-IH-mAX"/>
                                         </constraints>
@@ -1531,7 +1526,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Q2c-8r-UhR">
                         <barButtonItem key="leftBarButtonItem" style="done" id="GZ0-7i-afq">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="g3z-Cf-pOS">
-                                <rect key="frame" x="20" y="10" width="26.666666666666671" height="24"/>
+                                <rect key="frame" x="20" y="8.3333333333333339" width="31.666666666666671" height="27.666666666666664"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.90000000000000002" green="0.22379306090000001" blue="0.35999999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -2434,7 +2429,7 @@
                 <navigationController storyboardIdentifier="browser" automaticallyAdjustsScrollViewInsets="NO" id="f1I-dA-SOV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ij0-BM-kuG">
-                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

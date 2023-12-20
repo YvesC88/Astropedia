@@ -24,6 +24,9 @@ class AsteroidsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        
+        setRefreshControl()
+        
         asteroidsViewModel.$updateNumberAsteroid
             .receive(on: DispatchQueue.main)
             .sink { [weak self] number in

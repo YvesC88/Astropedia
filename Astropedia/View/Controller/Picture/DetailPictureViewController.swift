@@ -18,6 +18,7 @@ final class DetailPictureViewController: UIViewController, WKNavigationDelegate 
     @IBOutlet weak private var sharedButton: UIButton!
     @IBOutlet weak private var videoWKWebView: WKWebView!
     
+//    private let newsViewModel = NewsViewModel()
     var picture: Picture!
     private let pictureService = PictureService(wrapper: FirebaseWrapper())
     
