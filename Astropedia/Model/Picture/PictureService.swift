@@ -41,7 +41,6 @@ class PictureService {
         let context = coreDataStack.viewContext
         let fetchRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "explanation == %@", picture.explanation ?? "")
-//        fetchRequest.predicate = NSPredicate(format: "title == %@", picture.title ?? "")
         return ((try? context.count(for: fetchRequest)) ?? 0) > 0
     }
 }

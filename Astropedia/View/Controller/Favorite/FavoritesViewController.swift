@@ -154,12 +154,16 @@ extension FavoritesViewController: UISearchResultsUpdating {
                 case .picture:
                     let pictures = favorite.data.compactMap { $0 as? LocalPicture }
                     filteredData = pictures.filter { picture in
-                        return picture.title?.localizedStandardContains(searchText) ?? false
+                        let pictureTitle = picture.title?.localizedStandardContains(searchText) ?? false
+                        let pictureExplanation = picture.explanation?.localizedStandardContains(searchText) ?? false
+                        return pictureTitle || pictureExplanation
                     }
                 case .article:
                     let articles = favorite.data.compactMap { $0 as? LocalArticle }
                     filteredData = articles.filter { article in
-                        return article.title?.localizedCaseInsensitiveContains(searchText) ?? false
+                        let articleTitle = article.title?.localizedStandardContains(searchText) ?? false
+                        let articleText = article.articleText?.contains { $0.localizedStandardContains(searchText) } ?? false
+                        return articleTitle || articleText
                     }
                 }
                 return Favorite(name: favorite.name, type: favorite.type, data: filteredData)

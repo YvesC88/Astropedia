@@ -172,7 +172,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKh-hX-8oX">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="925"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="955"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chargement..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTz-GM-OIp">
                                                 <rect key="frame" x="20" y="0.0" width="390" height="36"/>
@@ -256,7 +256,7 @@
                                             <constraint firstItem="RTz-GM-OIp" firstAttribute="top" secondItem="bKh-hX-8oX" secondAttribute="top" id="bpZ-Vb-K1w"/>
                                             <constraint firstItem="w0D-vS-IsN" firstAttribute="top" secondItem="RTz-GM-OIp" secondAttribute="bottom" constant="20" id="dLA-96-wfM"/>
                                             <constraint firstItem="jhF-E3-8M7" firstAttribute="leading" secondItem="bKh-hX-8oX" secondAttribute="leading" id="dMi-Gm-LJZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="76Y-ua-QaQ" secondAttribute="bottom" constant="20" id="mkV-cP-UD2"/>
+                                            <constraint firstAttribute="bottom" secondItem="76Y-ua-QaQ" secondAttribute="bottom" constant="50" id="mkV-cP-UD2"/>
                                             <constraint firstItem="hky-8Y-SDd" firstAttribute="top" secondItem="jhF-E3-8M7" secondAttribute="bottom" constant="20" id="ndI-aK-DXb"/>
                                             <constraint firstItem="w0D-vS-IsN" firstAttribute="leading" secondItem="bKh-hX-8oX" secondAttribute="leading" id="q98-lI-lha"/>
                                             <constraint firstItem="76Y-ua-QaQ" firstAttribute="centerX" secondItem="bKh-hX-8oX" secondAttribute="centerX" id="so7-MV-GPp"/>
@@ -740,7 +740,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="i05-j9-bgM">
-                        <rect key="frame" x="0.0" y="59" width="430" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -854,7 +854,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="NcT-M2-Ls4">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" v2.0.9" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tp8-zs-wha">
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" v2.1.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tp8-zs-wha">
                             <rect key="frame" x="0.0" y="657.33333015441895" width="430" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
@@ -1432,7 +1432,7 @@
                                 <rect key="frame" x="0.0" y="103" width="430" height="829"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R21-JF-Hs1">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="971"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="991"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4jr-3k-Rte">
                                                 <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
@@ -1489,7 +1489,7 @@
                                             <constraint firstItem="DpN-8X-lhe" firstAttribute="top" secondItem="kwr-Wu-aWo" secondAttribute="bottom" constant="30" id="OVI-wj-FL5"/>
                                             <constraint firstItem="kwr-Wu-aWo" firstAttribute="top" secondItem="ry6-CR-kLQ" secondAttribute="bottom" constant="20" id="SfH-oG-tsv"/>
                                             <constraint firstItem="4jr-3k-Rte" firstAttribute="leading" secondItem="R21-JF-Hs1" secondAttribute="leading" id="UJJ-l9-5GC"/>
-                                            <constraint firstAttribute="bottom" secondItem="6Zr-MS-I6l" secondAttribute="bottom" constant="30" id="WhJ-TL-1xt"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Zr-MS-I6l" secondAttribute="bottom" constant="50" id="WhJ-TL-1xt"/>
                                             <constraint firstItem="DpN-8X-lhe" firstAttribute="leading" secondItem="kwr-Wu-aWo" secondAttribute="leading" id="XPo-oQ-oKD"/>
                                             <constraint firstItem="6Zr-MS-I6l" firstAttribute="centerX" secondItem="R21-JF-Hs1" secondAttribute="centerX" id="ZFL-N9-YKI"/>
                                             <constraint firstItem="4jr-3k-Rte" firstAttribute="top" secondItem="R21-JF-Hs1" secondAttribute="top" id="bpW-91-8g5"/>
