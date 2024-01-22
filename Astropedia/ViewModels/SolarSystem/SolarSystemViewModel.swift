@@ -8,11 +8,18 @@
 import Foundation
 import Combine
 
+enum CelestialCategory {
+    static let all = "Tout"
+    static let stars = "Étoiles"
+    static let planets = "Planètes"
+    static let dwarfPlanets = "Pl. naines"
+    static let moons = "Lunes"
+}
+
 class SolarSystemViewModel: NSObject {
     
     let solarSystemService = SolarSystemService(wrapper: FirebaseWrapper())
     var solarSystem: [SolarSystemCategory] = []
-    let categories = ["Étoile", "Planètes", "Planètes naines", "Lunes"]
     
     @Published var planets: [SolarSystem] = []
     @Published var moons: [SolarSystem] = []
@@ -58,10 +65,10 @@ class SolarSystemViewModel: NSObject {
         if planets.isEmpty, stars.isEmpty, moons.isEmpty, dwarfPlanets.isEmpty {
 //            presentAlert(title: "Erreur", message: "Une erreur est survenue lors du chargement")
         } else {
-            let starsCategories = SolarSystemCategory(name: categories[0], data: stars)
-            let planetsCategories = SolarSystemCategory(name: categories[1], data: planets)
-            let dwarfsPlanetsCategories = SolarSystemCategory(name: categories[2], data: dwarfPlanets)
-            let moonsCategories = SolarSystemCategory(name: categories[3], data: moons)
+            let starsCategories = SolarSystemCategory(name: CelestialCategory.stars, data: stars)
+            let planetsCategories = SolarSystemCategory(name: CelestialCategory.planets, data: planets)
+            let dwarfsPlanetsCategories = SolarSystemCategory(name: CelestialCategory.dwarfPlanets, data: dwarfPlanets)
+            let moonsCategories = SolarSystemCategory(name: CelestialCategory.moons, data: moons)
             
             solarSystem = [starsCategories, planetsCategories, dwarfsPlanetsCategories, moonsCategories]
         }
