@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-enum CelestialCategory {
+enum ScopeButtonCategories {
     static let all = "Tout"
     static let stars = "Étoiles"
     static let planets = "Planètes"
@@ -65,10 +65,10 @@ class SolarSystemViewModel: NSObject {
         if planets.isEmpty, stars.isEmpty, moons.isEmpty, dwarfPlanets.isEmpty {
 //            presentAlert(title: "Erreur", message: "Une erreur est survenue lors du chargement")
         } else {
-            let starsCategories = SolarSystemCategory(name: CelestialCategory.stars, data: stars)
-            let planetsCategories = SolarSystemCategory(name: CelestialCategory.planets, data: planets)
-            let dwarfsPlanetsCategories = SolarSystemCategory(name: CelestialCategory.dwarfPlanets, data: dwarfPlanets)
-            let moonsCategories = SolarSystemCategory(name: CelestialCategory.moons, data: moons)
+            let starsCategories = SolarSystemCategory(name: ScopeButtonCategories.stars, data: stars)
+            let planetsCategories = SolarSystemCategory(name: ScopeButtonCategories.planets, data: planets)
+            let dwarfsPlanetsCategories = SolarSystemCategory(name: ScopeButtonCategories.dwarfPlanets, data: dwarfPlanets)
+            let moonsCategories = SolarSystemCategory(name: ScopeButtonCategories.moons, data: moons)
             
             solarSystem = [starsCategories, planetsCategories, dwarfsPlanetsCategories, moonsCategories]
         }

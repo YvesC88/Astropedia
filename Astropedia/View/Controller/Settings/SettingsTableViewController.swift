@@ -9,7 +9,6 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    @IBOutlet private weak var darkModeSwitch: UISwitch!
     @IBOutlet private weak var notificationsSwitch: UISwitch!
     
     private var newsViewModel = NewsViewModel()
@@ -19,31 +18,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let savedTheme = UserDefaults.standard.string(forKey: keyTheme) {
-            applyTheme(theme: savedTheme)
-        }
-        darkModeSwitch.isOn = UserDefaults.standard.bool(forKey: keyAppearence)
         notificationsSwitch.isOn = UserDefaults.standard.bool(forKey: "isAllowed")
-    }
-    
-    func applyTheme(theme: String) {
-        UIApplication.shared.windows.forEach { window in
-            if theme == "light" {
-                window.overrideUserInterfaceStyle = .light
-            } else {
-                window.overrideUserInterfaceStyle = .dark
-            }
-        }
-        UserDefaults.standard.set(theme, forKey: keyTheme)
-    }
-    
-    @IBAction func switchAppearenceChanged(_ sender: UISwitch) {
-        if sender.isOn {
-            applyTheme(theme: "dark")
-        } else {
-            applyTheme(theme: "light")
-        }
-        UserDefaults.standard.set(sender.isOn, forKey: keyAppearence)
     }
     
     @IBAction func switchNotificationChanged(_ sender: UISwitch) {
@@ -81,7 +56,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
                 toPushVC(with: "FavoritesViewController")
@@ -96,7 +71,7 @@ class SettingsTableViewController: UITableViewController {
                 break
             }
         }
-        if indexPath.section == 3 {
+        if indexPath.section == 2 {
             switch indexPath.row {
             case 0:
                 toPushVC(with: "TipsViewController")

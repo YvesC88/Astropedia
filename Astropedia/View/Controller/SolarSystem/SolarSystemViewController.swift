@@ -28,6 +28,7 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         tableView.backgroundView = backgroundView
         
         initSearchController()
+        
         updateUI(data: solarSystemViewModel.$planets, tableView: tableView)
         updateUI(data: solarSystemViewModel.$stars, tableView: tableView)
         updateUI(data: solarSystemViewModel.$moons, tableView: tableView)
@@ -41,7 +42,7 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.scopeButtonTitles = [CelestialCategory.all, CelestialCategory.stars, CelestialCategory.planets, CelestialCategory.dwarfPlanets, CelestialCategory.moons]
+        searchController.searchBar.scopeButtonTitles = [ScopeButtonCategories.all, ScopeButtonCategories.stars, ScopeButtonCategories.planets, ScopeButtonCategories.dwarfPlanets, ScopeButtonCategories.moons]
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
@@ -72,12 +73,10 @@ extension SolarSystemViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SolarSystemCell", for: indexPath) as? SolarSystemTableViewCell else {
-            return UITableViewCell()
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SolarSystemCell", for: indexPath) as? SolarSystemTableViewCell else { return UITableViewCell() }
         let data = solarSystemViewModel.solarSystem[indexPath.section].data[indexPath.row]
-        if let planetimage = SolarSystemViewController.celestObjects[data.name] {
-            cell.configure(name: data.name, image: planetimage ?? UIImage(), sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
+        if let imagePlanet = CelestialObject.celestObjects[data.name] {
+            cell.configure(name: data.name, image: imagePlanet ?? UIImage(), sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
         }
         cell.blurEffect()
         return cell
@@ -105,7 +104,7 @@ extension SolarSystemViewController: UISearchResultsUpdating {
         filterForSearchTextAndScopeButton(searchText: searchText, scopeButton: scopeButton, searchController: searchController)
     }
     
-    func filterForSearchTextAndScopeButton(searchText: String, scopeButton: String = CelestialCategory.all, searchController: UISearchController) {
+    func filterForSearchTextAndScopeButton(searchText: String, scopeButton: String = ScopeButtonCategories.all, searchController: UISearchController) {
         let filterClosure: (SolarSystem) -> Bool = { data in
             return data.name.uppercased().hasPrefix((searchController.searchBar.text?.uppercased())!)
         }
@@ -113,7 +112,7 @@ extension SolarSystemViewController: UISearchResultsUpdating {
         var filteredData: [SolarSystemCategory] = []
         
         if searchText.isEmpty {
-            let categories = [CelestialCategory.all, CelestialCategory.stars, CelestialCategory.planets, CelestialCategory.dwarfPlanets, CelestialCategory.moons]
+            let categories = [ScopeButtonCategories.all, ScopeButtonCategories.stars, ScopeButtonCategories.planets, ScopeButtonCategories.dwarfPlanets, ScopeButtonCategories.moons]
             let allData = [solarSystemViewModel.stars, solarSystemViewModel.planets, solarSystemViewModel.dwarfPlanets, solarSystemViewModel.moons]
             
             filteredData = zip(categories, allData).map { SolarSystemCategory(name: $0, data: $1.filter(filterClosure)) }
@@ -124,21 +123,21 @@ extension SolarSystemViewController: UISearchResultsUpdating {
             let filteredDwarfPlanets = solarSystemViewModel.dwarfPlanets.filter(filterClosure)
             
             switch scopeButton {
-            case CelestialCategory.all:
+            case ScopeButtonCategories.all:
                 filteredData = [
-                    SolarSystemCategory(name: CelestialCategory.stars, data: filteredStars),
-                    SolarSystemCategory(name: CelestialCategory.planets, data: filteredPlanets),
-                    SolarSystemCategory(name: CelestialCategory.dwarfPlanets, data: filteredDwarfPlanets),
-                    SolarSystemCategory(name: CelestialCategory.moons, data: filteredMoons)
+                    SolarSystemCategory(name: ScopeButtonCategories.stars, data: filteredStars),
+                    SolarSystemCategory(name: ScopeButtonCategories.planets, data: filteredPlanets),
+                    SolarSystemCategory(name: ScopeButtonCategories.dwarfPlanets, data: filteredDwarfPlanets),
+                    SolarSystemCategory(name: ScopeButtonCategories.moons, data: filteredMoons)
                 ]
-            case CelestialCategory.stars:
-                filteredData = [SolarSystemCategory(name: CelestialCategory.stars, data: filteredStars)]
-            case CelestialCategory.planets:
-                filteredData = [SolarSystemCategory(name: CelestialCategory.planets, data: filteredPlanets)]
-            case CelestialCategory.dwarfPlanets:
-                filteredData = [SolarSystemCategory(name: CelestialCategory.dwarfPlanets, data: filteredDwarfPlanets)]
-            case CelestialCategory.moons:
-                filteredData = [SolarSystemCategory(name: CelestialCategory.moons, data: filteredMoons)]
+            case ScopeButtonCategories.stars:
+                filteredData = [SolarSystemCategory(name: ScopeButtonCategories.stars, data: filteredStars)]
+            case ScopeButtonCategories.planets:
+                filteredData = [SolarSystemCategory(name: ScopeButtonCategories.planets, data: filteredPlanets)]
+            case ScopeButtonCategories.dwarfPlanets:
+                filteredData = [SolarSystemCategory(name: ScopeButtonCategories.dwarfPlanets, data: filteredDwarfPlanets)]
+            case ScopeButtonCategories.moons:
+                filteredData = [SolarSystemCategory(name: ScopeButtonCategories.moons, data: filteredMoons)]
             default:
                 break
             }

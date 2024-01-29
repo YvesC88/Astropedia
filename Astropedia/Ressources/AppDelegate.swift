@@ -13,9 +13,6 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var orientationLock = UIInterfaceOrientationMask.portrait
-    var window: UIWindow?
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // MARK: - User request notifications
         
@@ -30,27 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
-        // MARK: - Task register in background
-        
-        //        let taskIdentifier = "com.Astropedia.dailyFetchPicture"
-        //        let calendar = Calendar.current
-        //
-        //        let dateComponents = DateComponents(hour: 11, minute: 00)
-        //        let request = BGAppRefreshTaskRequest(identifier: taskIdentifier)
-        //        request.earliestBeginDate = calendar.nextDate(after: Date(), matching: dateComponents, matchingPolicy: .nextTime)
-        //        BGTaskScheduler.shared.register(forTaskWithIdentifier: taskIdentifier, using: nil) { task in
-        //            let newsViewModel = NewsViewModel()
-        //            newsViewModel.fetchPictures()
-        //            task.setTaskCompleted(success: true)
-        //        }
-        //        do {
-        //            try BGTaskScheduler.shared.submit(request)
-        //            print("Task submitted in background")
-        //        } catch {
-        //            print("Error submitted task : \(error)")
-        //        }
-        
         
         // MARK: - Firebase configuration
         
