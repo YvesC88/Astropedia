@@ -35,7 +35,9 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         updateUI(data: solarSystemViewModel.$dwarfPlanets, tableView: tableView)
     }
     
-    private final func initSearchController() {
+    // Naming pas bon ici. A aucun moment on l'init. L'init est fait plus haut dans la definition de ton searchController ;)
+    // C'est du setup plutot ici
+    private func initSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.enablesReturnKeyAutomatically = false
         searchController.searchBar.returnKeyType = UIReturnKeyType.done
@@ -52,7 +54,8 @@ final class SolarSystemViewController: UIViewController, UISearchBarDelegate {
         definesPresentationContext = true
     }
     
-    private final func updateUI<T>(data: Published<[T]>.Publisher, tableView: UITableView) {
+    // Le naming n'est pas bon ici, idem que dans un autre VC, ici on update pas on souscrit a des publishers. Donc on est en alert au modification pour rafraichir la view. Mais potentiellement aucun update n'est fait a l'appel ni jamais. J'ai bien dit potentiellement ;)
+    private func updateUI<T>(data: Published<[T]>.Publisher, tableView: UITableView) {
         data
             .receive(on: DispatchQueue.main)
             .sink { _ in
@@ -76,7 +79,14 @@ extension SolarSystemViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SolarSystemCell", for: indexPath) as? SolarSystemTableViewCell else { return UITableViewCell() }
         let data = solarSystemViewModel.solarSystem[indexPath.section].data[indexPath.row]
         if let imagePlanet = CelestialObject.celestObjects[data.name] {
-            cell.configure(name: data.name, image: imagePlanet ?? UIImage(), sat: data.sat, membership: data.membership, type: data.type, diameter: data.diameter)
+            cell.configure(
+                name: data.name,
+                image: imagePlanet ?? UIImage(),
+                sat: data.sat,
+                membership: data.membership,
+                type: data.type,
+                diameter: data.diameter
+            )
         }
         cell.blurEffect()
         return cell

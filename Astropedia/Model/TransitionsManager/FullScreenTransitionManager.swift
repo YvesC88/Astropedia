@@ -47,7 +47,7 @@ final class FullScreenAnimationController: NSObject, UIViewControllerAnimatedTra
         let containerView = transitionContext.containerView
         let containerViewCenter = CGPoint(x: containerView.bounds.midX, y: containerView.bounds.midY)
         toView.center = containerViewCenter
-        toView.transform = CGAffineTransform(scaleX: 0.001, y: 00.01)
+        toView.transform = CGAffineTransform(scaleX: 0.001, y: 00.01) // La valeur avec 00 :D Meme les autres valeurs sont tres tres petites... C'est pas commun et on doute que ca fasse vraiment qqchose...
         containerView.insertSubview(toView, at: 1)
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
             toView.transform = .identity

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67F71A792B84AAAE00B6C923 /* Feedbacks.md in Resources */ = {isa = PBXBuildFile; fileRef = 67F71A782B84AAAE00B6C923 /* Feedbacks.md */; };
 		FB0657102AB9E009002B80F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB06570F2AB9E009002B80F5 /* GoogleService-Info.plist */; };
 		FB0E17A92AFB979B009CCCA8 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E17A82AFB979B009CCCA8 /* TransitionManager.swift */; };
 		FB1073BE2A0A552600BC73BD /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1073BD2A0A552600BC73BD /* NewsViewController.swift */; };
@@ -93,6 +94,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		67F71A782B84AAAE00B6C923 /* Feedbacks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Feedbacks.md; sourceTree = "<group>"; };
 		FB06570F2AB9E009002B80F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Astropedia/Model/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FB0E17A82AFB979B009CCCA8 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		FB1073BD2A0A552600BC73BD /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		FB15CACA297566D800FEE718 = {
 			isa = PBXGroup;
 			children = (
+				67F71A782B84AAAE00B6C923 /* Feedbacks.md */,
 				FB15CAD5297566D800FEE718 /* Astropedia */,
 				FB15CAEC297566DB00FEE718 /* PlanetsTests */,
 				FB15CAF6297566DB00FEE718 /* PlanetsUITests */,
@@ -672,6 +675,7 @@
 				FB0657102AB9E009002B80F5 /* GoogleService-Info.plist in Resources */,
 				FB15CAE0297566DA00FEE718 /* Assets.xcassets in Resources */,
 				FB15CADE297566D800FEE718 /* Main.storyboard in Resources */,
+				67F71A792B84AAAE00B6C923 /* Feedbacks.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

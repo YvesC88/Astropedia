@@ -6,12 +6,11 @@
 //
 
 import UIKit
-import SDWebImage
 
 class GalleryViewController: UIViewController {
     
-    @IBOutlet var collectionView: UICollectionView!
-    
+    @IBOutlet private var collectionView: UICollectionView!
+
     var solarSystem: SolarSystem!
     
     override func viewDidLoad() {

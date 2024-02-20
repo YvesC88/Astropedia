@@ -8,21 +8,20 @@
 import Foundation
 import CoreData
 
-class FavoritesViewModel: NSObject {
+final class FavoritesViewModel {
     
     private let coreDataStack = CoreDataStack()
     
-    @Published var favorites: [Favorite] = []
-    @Published var filteredFavorites: [Favorite] = []
-    @Published var isEmptyFavorite: Bool?
-    
-    override init() {
-        super.init()
+    @Published private(set) var favorites: [Favorite] = []
+    @Published private(set) var filteredFavorites: [Favorite] = []
+    @Published private(set) var isEmptyFavorite: Bool?
+
+    init() {
         fetchFavorite()
         isEmpty()
     }
     
-    final func fetchFavorite() {
+    func fetchFavorite() {
         let pictureRequest: NSFetchRequest<LocalPicture> = LocalPicture.fetchRequest()
         let articleRequest: NSFetchRequest<LocalArticle> = LocalArticle.fetchRequest()
         guard let picture = try? coreDataStack.viewContext.fetch(pictureRequest) else { return }
@@ -34,7 +33,7 @@ class FavoritesViewModel: NSObject {
         filteredFavorites = favorites
     }
     
-    final func isEmpty() {
+    func isEmpty() {
         isEmptyFavorite = favorites.allSatisfy { $0.data.isEmpty }
     }
 }

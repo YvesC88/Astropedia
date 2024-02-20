@@ -11,8 +11,11 @@ import UIKit
 enum CelestialObject {
     
     static let celestObjects = [
-        "Soleil": UIImage(named: "Soleil"),
-        "Sirius": UIImage(named: "Sirius"),
+        // Utilise les types resource au lieu des strings pour tes assets comme ci dessous. T'es sur de ne pas faire d'erreur
+        "Soleil": UIImage(resource: .soleil),// UIImage(named: "Soleil"),
+        "Sirius": UIImage(resource: .sirius),
+        // etc.
+    
         "Mercure": UIImage(named: "Mercure"),
         "Mars": UIImage(named: "Mars"),
         "Jupiter": UIImage(named: "Jupiter"),
@@ -45,15 +48,17 @@ enum CelestialObject {
 }
 
 struct SolarSystem: Equatable {
-    // MARK: - Properties
-    
     let name, image, tempMoy, source, membership, type: String
     let sat: Int
     let gravity, diameter: Double
     let statistics, galleries: [String]
 }
 
+// La conception est intrigante. Pourquoi une category contiendrait la data ?
+// Pourquoi pas juste son nom ? Un enum plutot si les categories sont determinees ?
 struct SolarSystemCategory {
+    // let plutot que var ?
     var name: String
+    // Naming data ne signifie pas grand chose... Pourquoi pas `solarSystems` ?
     var data: [SolarSystem]
 }

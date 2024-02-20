@@ -34,6 +34,9 @@ class DetailAsteroidViewController: UIViewController {
     }
     
     func setData() {
+        // Au cas ou, pour tout ce qui est unites de mesure tu as une lib Apple pour ca : https://developer.apple.com/documentation/foundation/measurement
+        // Pour les nombres comme les currency, pourcentage etc. tu as la classe NumberFormatter
+        // Ne pas s'amuser a mettre les signes euros, dollar, m, cm, etc. soit meme.
         sizeLabel.text = String(format: "%.1f", asteroid.estimatedDiameter ?? "")
         velocityLabel.text = "\(asteroid.relativeVelocity ?? 0)"
         distanceLabel.text = String(format: "%.1f×", asteroid.missDistance ?? 0)

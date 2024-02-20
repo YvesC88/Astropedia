@@ -8,7 +8,10 @@
 import Foundation
 
 enum GameState {
-    case notStarted, inProgress, ended
+    // Idem ici pour l'indentation on essaie de mettre 1 sur chaque ligne. Privilegier la comprehension au gain de ligne de code.
+    case notStarted
+    case inProgress
+    case ended
 }
 
 struct Question: Codable {

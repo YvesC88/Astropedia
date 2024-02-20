@@ -18,7 +18,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        notificationsSwitch.isOn = UserDefaults.standard.bool(forKey: "isAllowed")
+        notificationsSwitch.isOn = UserDefaults.standard.bool(forKey: "isAllowed") // A mettre dans ton ViewModel ! avec une property isNotificationSwitchOn: Bool
     }
     
     @IBAction func switchNotificationChanged(_ sender: UISwitch) {
@@ -44,7 +44,7 @@ class SettingsTableViewController: UITableViewController {
                         self.newsViewModel.scheduleDailyNotification()
                     }
                 case .provisional, .ephemeral:
-                    print("")
+                    print("") // ? On laisse rien trainer il faut que tout soit clean le + possible :)
                 @unknown default:
                     break
                 }
@@ -52,15 +52,26 @@ class SettingsTableViewController: UITableViewController {
         } else {
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["dailyNotification"])
         }
-        UserDefaults.standard.set(sender.isOn, forKey: "isAllowed")
+        UserDefaults.standard.set(sender.isOn, forKey: "isAllowed") // ViewModel !
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Soucis de conception algo ici
+        // Si ta section faut 0 ou 3 par ex, le user va taper et rien va se passer et toi t'en saura rien en prod.
         if indexPath.section == 1 {
+            // Ici le switch n'a pas d'interet
+            // Autant utiliser un if else
+            // Le mieux aurait ete de creer une enum pour definir ces row
+
+            enum SettingsFavoritesRow: Int {
+                case favorites
+                case deleteFavorites
+            }
+
             switch indexPath.row {
-            case 0:
+            case SettingsFavoritesRow.favorites.rawValue:
                 toPushVC(with: "FavoritesViewController")
-            case 1:
+            case SettingsFavoritesRow.deleteFavorites.rawValue:
                 showAlertDeleteFavorite(title: "Suppression des favoris",
                                         message: "Êtes-vous sûr de vouloir supprimer vos favoris ?",
                                         cancel: "Annuler",
@@ -70,8 +81,33 @@ class SettingsTableViewController: UITableViewController {
             default:
                 break
             }
+
+            // On peut faire encore mieux mais c'est deja + clair
+
+//            switch indexPath.row {
+//            case 0:
+//                toPushVC(with: "FavoritesViewController")
+//            case 1:
+//                showAlertDeleteFavorite(title: "Suppression des favoris",
+//                                        message: "Êtes-vous sûr de vouloir supprimer vos favoris ?",
+//                                        cancel: "Annuler",
+//                                        delete: "Effacer",
+//                                        confirm: "Supprimé",
+//                                        isEmpty: "Votre liste de favoris est vide. Cliquez sur ♥️ pour en ajouter !")
+//            default:
+//                break
+//            }
         }
         if indexPath.section == 2 {
+
+            // Idem ici
+            enum SettingsOthersRow: Int {
+                case tips
+                case app
+                case share
+                case more
+            }
+
             switch indexPath.row {
             case 0:
                 toPushVC(with: "TipsViewController")

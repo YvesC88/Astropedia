@@ -11,9 +11,9 @@ enum ResultError: Error {
     case invalidUrl, invalidResponse, invalidResult
 }
 
-class AsteroidService {
-    
-    final func getValue(startDate: String, endDate: String) async throws -> ResultAsteroid {
+final class AsteroidService {
+
+    func getValue(startDate: String, endDate: String) async throws -> ResultAsteroid {
         let endPoint = Constant.baseUrl + Constant.apiAsteroid + Constant.apiKey + Constant.startDate + "\(startDate)" + Constant.endDate + "\(endDate)"
         guard let url = URL(string: endPoint) else { throw ResultError.invalidUrl }
         let (result, response) = try await URLSession.shared.data(from: url)

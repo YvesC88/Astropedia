@@ -19,7 +19,9 @@ class PictureTableViewCell: UITableViewCell {
         pictureImageView.layer.cornerRadius = 15
         pictureImageView.clipsToBounds = true
     }
-    
+
+    // idem ici avec le prepareForReuse
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

@@ -13,7 +13,9 @@ enum CategoryType {
 }
 
 struct Favorite {
+    // Pourquoi des var et non pas des let ?
     var name: String
     var type: CategoryType
+    // Le type Any est a evite si c'est possible. Le soucis c'est qu'on peut tout y mettre dedans. Tout et n'importe quoi..
     var data: [Any]
 }
