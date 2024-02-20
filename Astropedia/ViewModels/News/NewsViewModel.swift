@@ -10,8 +10,9 @@ import Combine
 import UserNotifications
 import BackgroundTasks
 
-class NewsViewModel: NSObject {
-    
+final class NewsViewModel {
+
+    // Deja vu plusieurs fois..
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -25,19 +26,20 @@ class NewsViewModel: NSObject {
     @Published var picture: [APIApod] = []
     @Published var isLoading: Bool?
     
-    override init() {
-        super.init()
+    init() {
         Task {
             await fetchPictures()
         }
         fetchArticles()
     }
     
-    private final func formatDate(date: Date) -> String {
+    // J'ai deja vu cette methode qq part.. Evite autant que possible de dupliquer le code.
+    // Tu peux creer une class AppDateFormatter qui est utiliser par tes viewModels. Tu ecris le code une fois
+    private func formatDate(date: Date) -> String {
         return dateFormatter.string(from: date)
     }
     
-    private final func fetchArticles() {
+    private func fetchArticles() {
         articleService.fetchArticle(collectionID: "article") { article, error in
             for data in article {
                 self.article.append(data)
@@ -45,7 +47,7 @@ class NewsViewModel: NSObject {
         }
     }
     
-    private final func fetchPictures() async -> Result<[APIApod], Error> {
+    private func fetchPictures() async -> Result<[APIApod], Error> {
         isLoading = true
         let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         let endDate = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
@@ -57,7 +59,7 @@ class NewsViewModel: NSObject {
         } catch { return .failure(error) }
     }
     
-    final func scheduleDailyNotification() {
+    func scheduleDailyNotification() {
         let lastPicture = self.picture.last?.toPicture()
         let content = UNMutableNotificationContent()
         content.title = "Nouvelle image disponible !"
@@ -77,15 +79,15 @@ class NewsViewModel: NSObject {
         }
     }
     
-    final func isFavoriteArticle(article: Article) -> Bool {
+    func isFavoriteArticle(article: Article) -> Bool {
         return articleService.isFavoriteArticle(article: article)
     }
     
-    final func unsaveArticle(article: Article) {
+    func unsaveArticle(article: Article) {
         articleService.unsaveArticle(article: article)
     }
     
-    final func saveArticle(article: Article) {
+    func saveArticle(article: Article) {
         articleService.saveArticle(title: article.title, subtitle: article.subtitle, image: article.image, source: article.source, articleText: article.articleText, id: article.id)
     }
 }

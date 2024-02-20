@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-class FavoritesViewController: UIViewController, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
+final class FavoritesViewController: UIViewController, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favoriteLabel: UILabel!
     
@@ -30,7 +30,15 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UIViewCont
         favoritesViewModel.isEmpty()
     }
     
-    private final func updateUI(data: Published<[Favorite]>.Publisher, isFavoriteEmpty: Published<Bool?>.Publisher, favorite: UILabel, tableView: UITableView) {
+    // La fonction semble cache bcp de pbmatiques. Les parameters n'ont peu de lien tous entre eux, on passe un label avec de la data et un boolean en publisher et meme une table view.. J'ai pas de solution car il me faudrait comprendre ce que tu veux as besoin de faire avec tout ca ici et il me faudrait du temps
+    // Autre soucis : updateUI mais derriere on a un sink sur un publisher. Un sink sur un publisher est une souscription. Si aucun de tes publishers de ton CombineLatest ne produit d'output il ne se passera rien. La naming de ta func dit qu'il doit se passer qqchose maintenant avec updateUI. Rien ne le dit d'apres son contenu.
+    // Dernier soucis, si tu appelles cette methodes 10x tu auras 10 subscriptions en meme temps... Je suis sur que c'est pas ce que tu souhaites ;)
+    private func updateUI(
+        data: Published<[Favorite]>.Publisher,
+        isFavoriteEmpty: Published<Bool?>.Publisher,
+        favorite: UILabel,
+        tableView: UITableView
+    ) {
         Publishers.CombineLatest(data, isFavoriteEmpty)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _, isEmpty in
@@ -62,15 +70,16 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UIViewCont
         }
     }
     
-    private final func setupSearchController() {
+    private func setupSearchController() {
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Mot-clé"
+        searchController.searchBar.placeholder = "Mot-clé" // ViewModel
         definesPresentationContext = true
     }
     
-    @IBAction func dismissFavoritesVC() {
+    // Le naming n'est pas bon : il dit que ce doit faire l'action et non qui produit l'action cad un bouton tapped ? Comment faire pour retrouver d'ou vient l'action ? Autre pb, si l'action change tu devras aussi changer le naming de la func et donc reconnecter avec ton storyboard..
+    @IBAction private func dismissFavoritesVC() {
         dismiss(animated: true)
     }
 }
@@ -105,6 +114,7 @@ extension FavoritesViewController: UITableViewDataSource {
 
 extension FavoritesViewController: UITableViewDelegate {
     
+    // Le contenu de la methode est complexe ici. Tu fais bcp de choses differentes on n'a pas envie de la lire pour la comprendre. Essaie de decomposer en sous methodes si besoin. Decomposer en sous methodes permettra d'aider a la comprehension grace au naming de ces methodes. Si elle fait trop de choses c'est souvent qu'il y a un pb.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let context = coreDataStack.viewContext
@@ -129,7 +139,7 @@ extension FavoritesViewController: UITableViewDelegate {
             try context.save()
             favoritesViewModel.isEmpty()
         } catch {
-            print("Error")
+            print("Error") // A eviter si possible ;)
         }
     }
     
@@ -170,13 +180,14 @@ extension FavoritesViewController: UISearchResultsUpdating {
             }
             favoritesViewModel.filteredFavorites = filteredFavorites
         }
+        // T'es sur d'etre sur le main thread ici ?
         tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         favoritesViewModel.fetchFavorite()
         favoritesViewModel.filteredFavorites = favoritesViewModel.favorites
+        // Idem ici
         tableView.reloadData()
     }
-
 }

@@ -14,8 +14,8 @@ protocol FirebaseProtocol {
     func fetchQuestion(collectionID: String, completion: @escaping ([Question]?, String?) -> ())
 }
 
-class FirebaseWrapper: FirebaseProtocol {
-    
+final class FirebaseWrapper: FirebaseProtocol {
+
     func fetch(collectionID: String, completion: @escaping ([SolarSystem]?, String?) -> ()) {
         let db = Firestore.firestore()
         db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
@@ -27,7 +27,8 @@ class FirebaseWrapper: FirebaseProtocol {
         }
     }
     
-    internal func buildData(from documents: [QueryDocumentSnapshot]) -> [SolarSystem] {
+    // Internal n'a pas d'utilite ici car ta class est defini en internal (rien = internal) donc cette methode est deja internal
+    func buildData(from documents: [QueryDocumentSnapshot]) -> [SolarSystem] {
         var object = [SolarSystem]()
         for document in documents {
             object.append(SolarSystem(name: document["name"] as? String ?? "",
@@ -56,7 +57,7 @@ class FirebaseWrapper: FirebaseProtocol {
         }
     }
     
-    internal func buildArticle(from documents: [QueryDocumentSnapshot]) -> [Article] {
+    func buildArticle(from documents: [QueryDocumentSnapshot]) -> [Article] {
         var articles = [Article]()
         for document in documents {
             articles.append(Article(title: document["title"] as? String ?? "",
@@ -80,7 +81,7 @@ class FirebaseWrapper: FirebaseProtocol {
         }
     }
     
-    internal func buildPrivacyPolicy(from documents: [QueryDocumentSnapshot]) -> [PrivacyPolicy] {
+    func buildPrivacyPolicy(from documents: [QueryDocumentSnapshot]) -> [PrivacyPolicy] {
         var privacyPolicy = [PrivacyPolicy]()
         for document in documents {
             privacyPolicy.append(PrivacyPolicy(title: document["title"] as? String ?? "",
@@ -90,6 +91,14 @@ class FirebaseWrapper: FirebaseProtocol {
         return privacyPolicy
     }
     
+    // Ta completion prend un array de question en optionel et une string optionel.. Le soucis ici c'est qu'on ne sait pas ce que c'est derriere la string. Surtout que le naming de la func est fetch questions. On s'attend pas a avoir une string en plus. Idem pour les autres func plus haut ;)
+    // Donc pour deviner il faut lire l'implementation/le code. Si j'ai bien compris c'est une description d'erreur. C'est pas judicieux ici, je te conseille plutot de retourner le type error ca permettra aussi de mieux comprendre les types de la completion. Error vs String. Retient que c'est pas une bonne pratique du tout de retourner une string a la place d'une error. Il faut retourner le type error et la string sera utiliser a la fin pour une alert utilisateur (dans la view)
+    // L'autre soucis c'est d'avoir des optionel partout et donc plein de cas possibles (2^2 = 4)
+    // Plusieurs suggestions :
+    // 1. Utiliser le type Result pour gerer soit le success soit la failure du fetch : Result<[Question], Error>
+    // 2. creer un typealias de ta completion : typealias FetchQuestionCompletion = (Result<[Question], Error>) -> ()
+    // Ca devient :
+    // func fetchQuestion(collectionID: String, completion: @escaping FetchQuestionCompletion)
     func fetchQuestion(collectionID: String, completion: @escaping ([Question]?, String?) -> ()) {
         let db = Firestore.firestore()
         db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
@@ -100,8 +109,32 @@ class FirebaseWrapper: FirebaseProtocol {
             }
         }
     }
-    
-    internal func buildQuestion(from documents: [QueryDocumentSnapshot]) -> [Question] {
+
+    // Exemple ici:
+    typealias FetchQuestionCompletion = (Result<[Question], Error>) -> ()
+
+    // Voila la nouvelle func :
+    func fetchQuestion(collectionID: String, completion: @escaping FetchQuestionCompletion) {
+        let db = Firestore.firestore()
+        db.collection(collectionID).addSnapshotListener { (querySnapshot, error) in
+            if let error {
+                completion(.failure(error))
+                return
+            }
+            
+            if let querySnapshot {
+                completion(.success(self.buildQuestion(from: querySnapshot.documents)))
+            } else {
+                // Important ce cas aussi: pas d'erreur mais pas de data
+                completion(.success([]))
+            }
+        }
+    }
+
+    // Je pense que ca vaudrait le coup que tu check a nouveau la diff entre internal, private, fileprivate, open, public, etc.
+    // il y a `package` qui vient de sortir aussi ;)
+    // *buildQuestions
+    func buildQuestion(from documents: [QueryDocumentSnapshot]) -> [Question] {
         var question = [Question]()
         for document in documents {
             question.append(Question(text: document["text"] as? String ?? "",

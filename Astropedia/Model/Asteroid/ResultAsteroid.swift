@@ -28,9 +28,10 @@ struct WelcomeLinks: Codable {
     }
 }
 
+// Ton objet APIAsteroid semble etre un DTO. C'est bien d'avoir fait la disctinction entre les deux. Cote fichiers et naming on ne le voit pas bien cette structure, car tu as des objet avec rien devant comme `EstimatedDiameter` et d'autre avec API comme APIAsteroid. Si possible separe dans des dossiers differents ces models de donnee : API Model > tous tes api models. API n'est pas non plus un super naming car une API n'est par definition qu'une interface. Mais ca reste ok, on sait de quoi tu parles ici. DTO est plus commun, sinon `AsteroidData`
 struct APIAsteroid: Codable {
     let links: NearEarthObjectLinks
-    let id, neoReferenceID, name: String
+    let id, neoReferenceID, name: String // Idem on fuit cette ecriture avec les properties sur la meme lignes, on ne les voit pas du tout !
     let nasaJplURL: String
     let absoluteMagnitudeH: Double
     let estimatedDiameter: EstimatedDiameter
@@ -38,6 +39,9 @@ struct APIAsteroid: Codable {
     let closeApproachData: [CloseApproachDatum]
     let isSentryObject: Bool
     
+    // Ce que tu fais ici en convertissant tes keys avec les `_` c'est une fonctionnalite native du JSONDecoder/JSONEncoder
+    // Regarde la doc a ce sujet, ca t'evitera d'ecrire les keys, tu pourras supprimer toutes tes coding keys de tous tes models !
+    // https://developer.apple.com/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase
     enum CodingKeys: String, CodingKey {
         case links, id
         case neoReferenceID = "neo_reference_id"
@@ -51,6 +55,9 @@ struct APIAsteroid: Codable {
     }
 }
 
+// Pourquoi ne pas faire 1 fichier par model ? On s'y retrouverait mieux
+// Ou a la limite faire des:
+// MARK: - Close ApproachDatum
 struct CloseApproachDatum: Codable {
     let closeApproachDate, closeApproachDateFull: String
     let epochDateCloseApproach: Int
@@ -68,10 +75,12 @@ struct CloseApproachDatum: Codable {
     }
 }
 
+// Pourquoi ces valeurs sont des string et non des nombres ? (Double, Integer, etc.)
 struct MissDistance: Codable {
     let astronomical, lunar, kilometers, miles: String
 }
 
+// Idem ici : Pourquoi ces valeurs sont des string et non des nombres ? (Double, Integer, etc.)
 struct RelativeVelocity: Codable {
     var kilometersPerSecond, kilometersPerHour, milesPerHour: String
     
@@ -104,7 +113,7 @@ struct NearEarthObjectLinks: Codable {
 }
 
 extension APIAsteroid {
-    
+
     func toAsteroid() -> Asteroid {
         let dateFormatter = DateFormatter()
         
@@ -130,20 +139,20 @@ extension APIAsteroid {
         dateFormatter.locale = Locale(identifier: "fr_FR")
         let finalDate = dateFormatter.string(from: date ?? Date())
         
-        var relativeVelocity: String = ""
+        var relativeVelocity = "" // Idem que plus bas, ici on s'attend pas a une string pour une vitesse relative... Le naming n'est pas bon
         for velocity in self.closeApproachData {
             relativeVelocity += velocity.relativeVelocity.kilometersPerSecond
         }
         var relativeVelocityRounded = Double(relativeVelocity)
-        relativeVelocityRounded = round(relativeVelocityRounded ?? 0.0 * 10) / 10
-        
-        var distance: String = ""
+        relativeVelocityRounded = round(relativeVelocityRounded ?? 0.0 * 10) / 10 // Pourquoi ces nombre ? Surtout que 0.0 * 10 / 10 fera toujours 0... Etrange comme calcul, on ne comprend pas ce que tu veux faire la
+
+        var distance = "" // Distance en string...? Une distance est un nombre par definition. Pb de naming
         for missDistance in self.closeApproachData {
             distance += missDistance.missDistance.lunar
         }
         var distanceDouble = Double(distance)
-        distanceDouble = round(distanceDouble ?? 0.0)
-        
+        distanceDouble = round(distanceDouble ?? 0.0) // Tu veux vraiment afficher 0.0 si la distance est nil ?
+
         let url = URL(string: self.nasaJplURL)
         
         return Asteroid(name: formatName,

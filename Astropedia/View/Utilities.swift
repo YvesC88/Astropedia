@@ -7,9 +7,17 @@
 
 import UIKit
 
+// Si possible a eviter ca ressemble a un fourre-tout :D
+// Imagine si t'as 4 devs qui bossent sur le projet avec toi rien qu'1 an. Je pense qu'on arrivera au 10000 lignes de codes dans ce fichier :D
+// Y a plein de chose qui n'ont rien a voir avec ton ViewController specialement. Comme le date format ou la core data stack
+// Si toutes choses sont utilisees dans TOUS tes VC alors ok mais je suis sur que c'est pas le cas ;)
+// Decompose encore une fois. Plusieurs fichier, differentes extensions sur d'autres types par ex.
 extension UIViewController {
     
+    // Ca n'a rien a faire ici selon moi
     static let dateFormat = "yyyy-MM-dd"
+    // Idem, tous tes ViewController doivent avoir une copie de Core Data ?
+    // pourquoi aussi ne pas utiliser la property shared au lieu de le creer a chaque fois ?
     static let coreDataStack = CoreDataStack()
     
     func getGradientLayer(bounds: CGRect, colors: [UIColor]) -> CAGradientLayer {
@@ -22,6 +30,8 @@ extension UIViewController {
         return gradient
     }
     
+    // toPushVC ? Ca veut dire quoi ? Pb de naming au niveau de l'anglais ici
+    // func pushViewController(for identifier: String) ?
     func toPushVC(with identifier: String) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         self.navigationController?.pushViewController(storyboard.instantiateViewController(withIdentifier: identifier), animated: true)
@@ -55,6 +65,7 @@ extension UIViewController {
         }
     }
     
+    // Cette methode n'a pas de sens ici. Est-ce que TOUS tes viewControllers en ont besoin ? Si oui ok mais j'en doute ?
     func showAlertDeleteFavorite(title: String, message: String, cancel: String, delete: String, confirm: String, isEmpty: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: cancel, style: .default)
@@ -75,6 +86,8 @@ extension UIViewController {
         }
         alertVC.addAction(cancelAction)
         alertVC.preferredAction = confirmAction
+        // Personne nous dit qu'on est sur le main thread ici
+        // DispatchQueue.main.async { ... }
         present(alertVC, animated: true, completion: nil)
     }
     
@@ -94,12 +107,17 @@ extension UIViewController {
         }
     }
     
+    // Le naming ne nous dit rien ici, il est trop generic. Le naming des param n'est pas bon non plus tu te repetes et il manque le pluriel car on a un array de view: setupViews(_ views: [UIView])
+    // Avec un naming qui nous aider a comprendre ce qui est fait ca peut donner :
+    // func setupSubviewsLayer(_ views: [UIView])
+    // Et encore pourquoi faire ce setup pour plusieurs views ? On ne voit que celle qui est au dessus de toute. Et la premiere clipsToBounds celle qui sont derriere
+    // Je ne vois pas de use case ou tu aurais besoin de faire ca
     func setUIView(view: [UIView]) {
         view.forEach { view in
             view.layer.cornerRadius = 15
             view.layer.shadowColor = UIColor.black.cgColor
             view.layer.shadowOpacity = 0.2
-            view.center = self.view.center
+            view.center = self.view.center // Pas de constraints avec autolayout ?
             view.layer.shadowOffset = CGSize.zero
             view.layer.shadowRadius = 15
         }
@@ -115,9 +133,11 @@ extension UIViewController {
         blurEffectView.alpha = blurAlpha
         view.insertSubview(blurEffectView, at: 0)
     }
-    
-    final func shareItems(_ items: [Any]) {
+
+    func shareItems(_ items: [Any]) {
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        // Personne nous dit qu'on est sur le main thread ici
+        // DispatchQueue.main.async { ... }
         self.present(activityViewController, animated: true, completion: nil)
     }
 }

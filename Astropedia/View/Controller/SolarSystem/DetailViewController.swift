@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 import WebKit
 
+// Le naming n'est pas bon car pas assez precis. Detail de quoi ? SolarSystemDetailsViewController ?
 final class DetailViewController: UIViewController {
     
     // MARK: - Outlets
@@ -28,7 +29,7 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         scrollView.delegate = self
         setupBarButtonItem()
-//        configureUI()
+//        configureUI() // to delete !
         displayDetail()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
@@ -66,7 +67,7 @@ final class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = menuButton
     }
     
-    @objc func didTapImage() {
+    @objc private func didTapImage() {
         let fullScreenImageViewController = FullScreenImageViewController()
         let fullScreenTransitionManager = FullScreenTransitionManager(anchorViewTag: 1)
         fullScreenImageViewController.modalPresentationStyle = .custom

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AsteroidTableViewCell: UITableViewCell {
+final class AsteroidTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var sizeImageView: UIImageView!
@@ -17,15 +17,24 @@ class AsteroidTableViewCell: UITableViewCell {
     @IBOutlet weak var velocityImageView: UIImageView!
     @IBOutlet weak var isPotentiallyHazardousLabel: UILabel!
     
+    // Pourquoi override si tu ne fais rien de plus que la classe parent ? To delete...
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
+    // Idem
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(name: String?, size: Double?, missDistance: Double, velocity: String, isPotentiallyHazardous: String?) {
+    // Idem que pour la solar cell
+    func configure(
+        name: String?,
+        size: Double?,
+        missDistance: Double,
+        velocity: String,
+        isPotentiallyHazardous: String?
+    ) {
         if isPotentiallyHazardous == "Potentiellement dangereux" {
             isPotentiallyHazardousLabel.textColor = UIColor.systemRed
         } else {
@@ -40,6 +49,8 @@ class AsteroidTableViewCell: UITableViewCell {
         isPotentiallyHazardousLabel.text = isPotentiallyHazardous
     }
     
+    // J'ai l'impression d'avoir deja vu ce code autre part...
+    // Essaie d'eviter la duplication de code. Si besoin fait une cell Mere dans laquelle y a ce setup de fait 1 seule fois
     func getGradientLayer(bounds: CGRect) -> CAGradientLayer {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
@@ -51,6 +62,7 @@ class AsteroidTableViewCell: UITableViewCell {
         return gradient
     }
     
+    // Idem ici
     func gradientColor(bounds: CGRect, gradientLayer: CAGradientLayer) -> UIColor? {
         UIGraphicsBeginImageContext(gradientLayer.bounds.size)
         //create UIImage by rendering gradient layer.

@@ -6,11 +6,19 @@
 //
 
 import UIKit
+// Pour un junior c'est bien de montrer que tu sais faire sans library externes ;)
+// L'utilisation des libs externe est un vaste sujet mais retient que :
+// - c'est bien de savoir en utiliser et importer d'accord mais
+// - c'est qqchose a utiliser avec bcp de parcimonie, meme a eviter autant que possible
+// - sauf bien sur si t'as pas le choix
 import TinyConstraints
 
-class FullScreenImageViewController: UIViewController {
-    
-    private lazy var scrollView: UIScrollView = {
+final class FullScreenImageViewController: UIViewController {
+
+    // Encore une fois, si tu peux utiliser let au lieu de var c'est gagne ! Par sur du let d'abord et du var si besoin
+    // Ici aucune raison d'avoir du var
+    // Idem pour les autres..
+    private let scrollView = {
         let scrollView = UIScrollView()
         scrollView.bouncesZoom = true
         scrollView.bounces = true
@@ -21,12 +29,14 @@ class FullScreenImageViewController: UIViewController {
         return scrollView
     }()
     
+    // let
     private lazy var wrapperView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
         return view
     }()
     
+    // let
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -41,7 +51,7 @@ class FullScreenImageViewController: UIViewController {
         configureUI()
         configureBehaviour()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         scrollView.setContentOffset(scrollView.contentOffset, animated: false)
@@ -72,7 +82,8 @@ class FullScreenImageViewController: UIViewController {
         let aspectRatio = imageView.intrinsicContentSize.height / imageView.intrinsicContentSize.width
         imageView.heightToWidth(of: imageView, multiplier: aspectRatio)
     }
-    
+
+    // Le naming ne dit pas grand chose. Behaviour de quoi ? Le naming ne precise pas de quoi on parle donc on parle du ViewController par defaut. Si je lis le code c'est plutot le comportement de ta scroll View, donc configureScrollViewBehavior() ou plus simplement configureScrollView ?
     private func configureBehaviour() {
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 5.0
@@ -102,7 +113,7 @@ extension FullScreenImageViewController: UIScrollViewDelegate {
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         let currentContentSize = scrollView.contentSize
         let originalContentSize = wrapperView.bounds.size
-        let offsetX = max((originalContentSize.width - currentContentSize.width) * 0.5, 0)
+        let offsetX = max((originalContentSize.width - currentContentSize.width) * 0.5, 0) // Pourquoi 0.5 ? Quand tu utilises des nombres "magique" le mieux c'est de les mettre dans une constante avec un naming qui aide a compprendre le nombre choisi :)
         let offsetY = max((originalContentSize.height - currentContentSize.height) * 0.5, 0)
         imageView.center = CGPoint(x: currentContentSize.width * 0.5 + offsetX,
                                    y: currentContentSize.height * 0.5 + offsetY)

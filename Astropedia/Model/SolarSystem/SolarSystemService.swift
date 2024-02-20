@@ -17,6 +17,7 @@ final class SolarSystemService {
     }
     
     // MARK: - Methods
+    // Ici le final n'a pas d'utilitee car ta class est deja final donc cette methode l'est pas definition ;)
     final func fetchSolarSystem(collectionID: String, completion: @escaping ([SolarSystem]?, String?) -> ()) {
         firebaseWrapper.fetch(collectionID: collectionID) { data, error in
             if let data = data {

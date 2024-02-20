@@ -18,16 +18,18 @@ final class DetailArticleViewController: UIViewController {
     @IBOutlet weak private var shareButton: UIButton!
     @IBOutlet weak private var dismissButton: UIButton!
     
+    // Si possible eviter les implicit unwrap. En entreprise on a meme souvent notre linter qui nous l'interdit.
+    // Si c'est nil ca crash. Et si ca crash l'utilisateur n'est pas content hehe. Donc si pas le choix met le en optionel et gere les cas ou tu en as besoin mais il est nil.
     var article: Article!
-    private var newsViewModel = NewsViewModel()
-    
+    private let newsViewModel = NewsViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
         setUI()
     }
     
-    private final func setUI() {
+    private func setUI() {
         if let imageURL = article.image {
             articleImageView.sd_setImage(with: URL(string: imageURL))
         }
@@ -37,7 +39,7 @@ final class DetailArticleViewController: UIViewController {
         articleTextView.text = article.articleText?.joined(separator: "\n \n")
     }
     
-    final func toggleFavoriteStatus() {
+    private func toggleFavoriteStatus() {
         if newsViewModel.isFavoriteArticle(article: article) {
             newsViewModel.unsaveArticle(article: article)
             favoriteButton.isSelected = false
@@ -49,26 +51,27 @@ final class DetailArticleViewController: UIViewController {
         }
     }
     
-    @IBAction private final func didDoubleTapToFavorite() {
+    @IBAction private func didDoubleTapToFavorite() {
         toggleFavoriteStatus()
     }
     
-    @IBAction private final func didTapFavoriteButton() {
+    @IBAction private func didTapFavoriteButton() {
         toggleFavoriteStatus()
     }
     
-    @IBAction private final func didTapShareButton() {
+    @IBAction private func didTapShareButton() {
         shareItems([articleImageView.image ?? UIImage(), articleTitleLabel.text ?? "", subtitleTextView.text ?? "", articleTextView.text ?? ""])
     }
     
-    @IBAction private final func dismissDetailVC() {
+    // Pas besoin ta classe est deja final !
+    @IBAction private func dismissDetailVC() {
         dismiss(animated: true)
     }
 }
 
 extension DetailArticleViewController: UIScrollViewDelegate {
     
-    internal final func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         if offsetY < 0 {
             let zoomFactor = 1 + abs(offsetY) / 200

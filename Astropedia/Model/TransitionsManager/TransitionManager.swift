@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
+final class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5

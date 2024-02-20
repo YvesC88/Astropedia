@@ -8,8 +8,8 @@
 import UIKit
 import Combine
 
-class AsteroidsViewController: UIViewController {
-    
+final class AsteroidsViewController: UIViewController {
+
     @IBOutlet weak private var asteroidTableView: UITableView!
     @IBOutlet weak private var numberOfAsteroidLabel: UILabel!
     @IBOutlet weak private var datePicker: UIDatePicker!
@@ -30,10 +30,20 @@ class AsteroidsViewController: UIViewController {
         asteroidsViewModel.$updateNumberAsteroid
             .receive(on: DispatchQueue.main)
             .sink { [weak self] number in
+                // Le mapping en string et le calcul de si nil on met 0 devrait etre fait dans ton ViewModel
+                // Le ViewController aka ta view ne devrait juste faire que
+                // self?.numberOfAsteroidLabel.text = value
                 self?.numberOfAsteroidLabel.text = "\(number ?? 0)"
             }
             .store(in: &cancellables)
         
+        // Une autre facon de faire avec Combine qui fait exactement la meme chose qu'au dessus:
+        asteroidsViewModel.$updateNumberAsteroid
+            .map { "\($0 ?? 0)" }
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.text, on: self.numberOfAsteroidLabel)
+            .store(in: &cancellables)
+
         asteroidsViewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -46,6 +56,7 @@ class AsteroidsViewController: UIViewController {
             .store(in: &cancellables)
         
         asteroidsViewModel.$asteroid
+        // ajouter removeDuplicates pour eviter de reload pour rien, pour cela il faudra mettre ton model APIAsteroid Equatable ;)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.asteroidTableView.reloadData()
@@ -53,25 +64,27 @@ class AsteroidsViewController: UIViewController {
             .store(in: &cancellables)
     }
     
-    private final func setUI() {
+    // SetupUI
+    private func setUI() {
         spinner.hidesWhenStopped = true
         spinner.center = asteroidTableView.center
         asteroidTableView.addSubview(spinner)
     }
     
-    private final func setRefreshControl() {
+    // SetupRefreshControl
+    private func setRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         asteroidTableView.addSubview(refreshControl)
     }
     
-    @objc private final func refreshTableView() {
+    @objc private func refreshTableView() {
         datePicker.date = Date()
         refreshControl.endRefreshing()
         asteroidTableView.reloadData()
     }
     
     
-    @IBAction private final func datePickerValueChanged(_ sender: UIDatePicker) {
+    @IBAction private func datePickerValueChanged(_ sender: UIDatePicker) {
         Task {
             await asteroidsViewModel.fetchData(startDate:getFormattedDate(date: sender.date, dateFormat: "yyyy-MM-dd"), endDate: getFormattedDate(date: Calendar.current.date(byAdding: .day, value: 1, to: sender.date) ?? Date(), dateFormat: "yyyy-MM-dd"))
         }
@@ -79,11 +92,13 @@ class AsteroidsViewController: UIViewController {
         sortButton.isSelected = false
     }
     
-    @IBAction private final func categoryChanged(_ sender: UISegmentedControl) {
+    @IBAction private func categoryChanged(_ sender: UISegmentedControl) {
         sortButton.transform = .identity
         sortButton.isSelected = false
         switch sender.selectedSegmentIndex {
         case 0:
+            // Pourquoi ces calculs ne sont pas fait dans le ViewModels ? Il sert justement a ca.
+            // Tous ces calculs n'ont pas leur place ici car ils ne pourront pas etre teste facilement
             asteroidsViewModel.asteroid.sort { ($0.toAsteroid().estimatedDiameter ?? 0) > ($1.toAsteroid().estimatedDiameter ?? 0) }
         case 1:
             asteroidsViewModel.asteroid.sort { ($0.toAsteroid().missDistance ?? 0) > ($1.toAsteroid().missDistance ?? 0) }
@@ -94,7 +109,7 @@ class AsteroidsViewController: UIViewController {
         }
     }
     
-    @IBAction func sortResult(_ sender: UIButton) {
+    @IBAction private func sortResult(_ sender: UIButton) {
         if sender.isSelected {
             sortButton.transform = .identity
             sortButton.isSelected = false
@@ -102,6 +117,7 @@ class AsteroidsViewController: UIViewController {
             sortButton.transform = CGAffineTransform(scaleX: -1, y: -1)
             sortButton.isSelected = true
         }
+        // Idem -> ViewModel
         asteroidsViewModel.asteroid.reverse()
     }
 }
@@ -118,7 +134,15 @@ extension AsteroidsViewController: UITableViewDataSource {
         }
         guard indexPath.row < asteroidsViewModel.asteroid.count else { return cell }
         let asteroid = asteroidsViewModel.asteroid[indexPath.row].toAsteroid()
-        cell.configure(name: asteroid.name, size: asteroid.estimatedDiameter, missDistance: asteroid.missDistance ?? 0, velocity: "\(asteroid.relativeVelocity ?? 0)", isPotentiallyHazardous: asteroid.isPotentiallyHazardous)
+        // Pour indenter comme ca : tu as le raccourci control+m
+        // Ca aide a y voir + clair
+        cell.configure(
+            name: asteroid.name,
+            size: asteroid.estimatedDiameter,
+            missDistance: asteroid.missDistance ?? 0,
+            velocity: "\(asteroid.relativeVelocity ?? 0)",
+            isPotentiallyHazardous: asteroid.isPotentiallyHazardous
+        )
         let info = UIImage(systemName: "info.circle.fill")
         cell.accessoryType = .detailButton
         cell.accessoryView = UIImageView(image: info)

@@ -17,28 +17,29 @@ final class SolarSystemTableViewCell: UITableViewCell {
     @IBOutlet weak var satLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    func configure(name: String, image: UIImage, sat: Int, membership: String, type: String, diameter: Double) {
+    // Pour eviter d'avoir tous ces param, pass un ViewModel
+    // Essaie de te dire qu'au dessus de 3 parameters y a sans doute qqchose de mieux a faire. Au dela c'est pas bon signe, meme 3 ca reste bcp
+    func configure(
+        name: String,
+        image: UIImage,
+        sat: Int,
+        membership: String,
+        type: String,
+        diameter: Double
+    ) {
         objectImageView.image = image
         objectLabel.text = name
         objectLabel.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
         let gradient = getGradientLayer(bounds: objectLabel.bounds, colors: [UIColor(red: 39/255, green: 55/255, blue: 74/255, alpha: 1), UIColor.orange, UIColor.white])
         objectLabel.textColor = gradientColor(bounds: objectLabel.bounds, gradientLayer: gradient)
         membershipLabel.text = membership
-        diameterLabel.text = "\(diameter) km"
+        diameterLabel.text = "\(diameter) km" // Utilise la lib Apple dediee a ca : https://developer.apple.com/documentation/foundation/measurement + A mettre dans le viewModel
         typeLabel.text = type
-        satLabel.isHidden = sat == 0
-        if sat <= 1 {
-            satLabel.text = sat == 0 ? "" : "\(sat) Lune"
+        satLabel.isHidden = sat == 0 // A mettre dans le viewModel
+        if sat <= 1 { // A mettre dans le viewModel
+            satLabel.text = sat == 0 ? "" : "\(sat) Lune" // A mettre dans le viewModel
         } else {
-            satLabel.text = sat == 0 ? "" : "\(sat) Lunes"
+            satLabel.text = sat == 0 ? "" : "\(sat) Lunes" // A mettre dans le viewModel
         }
         
     }

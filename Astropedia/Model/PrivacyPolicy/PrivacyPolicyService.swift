@@ -7,15 +7,17 @@
 
 import Foundation
 
-protocol PrivacyPolicyDelegate {
+protocol PrivacyPolicyDelegate: AnyObject {
     func displayPrivacyPolicy(title: String, date: String, text: String)
 }
 
-class PrivacyPolicyService {
+final class PrivacyPolicyService {
     
     // MARK: - Properties
     let firebaseWrapper: FirebaseProtocol
-    var privacyPolicyDelegate: PrivacyPolicyDelegate?
+    // Un delegate est par definition weak. Sauf rare exception. Ici sans le weak tu as un retain cycle :
+    // On a : PrivacyPolicyViewController -> PrivacyPolicyService -> privacyPolicyDelegate (qui est ton PrivacyPolicyViewController)
+    weak var privacyPolicyDelegate: PrivacyPolicyDelegate?
     var privacyPolicy: [PrivacyPolicy] = []
     
     init(wrapper: FirebaseProtocol) {
@@ -23,7 +25,7 @@ class PrivacyPolicyService {
     }
     
     // MARK: - Methods
-    final func fetchPrivacyPolicy(collectionID: String, completion: @escaping ([PrivacyPolicy], String?) -> ()) {
+    func fetchPrivacyPolicy(collectionID: String, completion: @escaping ([PrivacyPolicy], String?) -> ()) {
         firebaseWrapper.fetchPrivacyPolicy(collectionID: collectionID) { privacyPolicy, error in
             if let privacyPolicy = privacyPolicy {
                 completion(privacyPolicy, nil)
@@ -33,7 +35,7 @@ class PrivacyPolicyService {
         }
     }
     
-    final func loadPrivacyPolicy() {
+    func loadPrivacyPolicy() {
         fetchPrivacyPolicy(collectionID: "privacyPolicy") { privacyPolicy, error in
             for data in privacyPolicy {
                 self.privacyPolicy = privacyPolicy

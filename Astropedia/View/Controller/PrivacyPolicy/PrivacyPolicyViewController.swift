@@ -7,8 +7,9 @@
 
 import UIKit
 
-class PrivacyPolicyViewController: UIViewController {
-    
+// Tous tes ViewController devraient dans 99% des cas etre final
+final class PrivacyPolicyViewController: UIViewController {
+
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateEffectLabel: UILabel!
